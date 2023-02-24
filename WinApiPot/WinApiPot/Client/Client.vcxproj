@@ -83,7 +83,7 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>true</LinkIncremental>
-    <OutDir>$(SolutionDir)OutPut\bin\</OutDir>
+    <OutDir>$(SolutionDir)OutPut\bin_release\</OutDir>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -176,6 +176,8 @@
     <ClInclude Include="CPlayer.h" />
     <ClInclude Include="CPlayerAttack.h" />
     <ClInclude Include="CPlayerAttackDown.h" />
+    <ClInclude Include="CPlayerHit.h" />
+    <ClInclude Include="CPlayerHitUpper.h" />
     <ClInclude Include="CPlayerIdle.h" />
     <ClInclude Include="CPlayerJump.h" />
     <ClInclude Include="CPlayerJumpAir.h" />
@@ -244,6 +246,8 @@
     <ClCompile Include="CPlayer.cpp" />
     <ClCompile Include="CPlayerAttack.cpp" />
     <ClCompile Include="CPlayerAttackDown.cpp" />
+    <ClCompile Include="CPlayerHit.cpp" />
+    <ClCompile Include="CPlayerHitUpper.cpp" />
     <ClCompile Include="CPlayerIdle.cpp" />
     <ClCompile Include="CPlayerJump.cpp" />
     <ClCompile Include="CPlayerJumpAir.cpp" />

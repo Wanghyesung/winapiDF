@@ -1,0 +1,20 @@
+[Animation Name
+Player_idle_back
+[Texture Name]
+Player
+[Path Name]
+Texture\Animation1_walk.bmp
+[Frame Count]
+1
+[Frame Index]
+0
+[LEFT Top]
+46 150
+[Slice Size]
+46 50
+[Offset]
+0 0
+[Duration]
+0.300000
+
+

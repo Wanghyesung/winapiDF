@@ -3,7 +3,7 @@
 
 #include "CPlayer.h"
 #include "CFSM.h"
-CPlayerState::CPlayerState(PLAYER_STATE ePlayerState):
+CPlayerState::CPlayerState(PLAYER_STATE ePlayerState) :
 	m_ePlayerState(ePlayerState)
 {
 

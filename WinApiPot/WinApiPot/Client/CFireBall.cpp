@@ -21,6 +21,13 @@ CFireBall::CFireBall(int iDir, Vec2 _vPos) :
 	m_fDelTime(4.f)
 {
 	SetName(L"FireBall");
+	SetTag(GROUP_TYPE::MONSTER_SKILL);
+
+	m_tAtt.m_eAttType = ATTACK_TYPE::NORMAL;
+	m_tAtt.m_fAttRcnt = 50.f;
+	m_tAtt.m_fAttackDamage = 10.f;
+	m_tAtt.m_fAttRigidityTime = 0.5f;
+	m_tAtt.m_fAttUpperRcnt = -60.f;
 
 	CreateCollider();
 	GetCollider()->SetScale(Vec2(50.f, 50.f));
@@ -34,12 +41,12 @@ CFireBall::CFireBall(int iDir, Vec2 _vPos) :
 	GetAnimator()->CreateAnimation(L"Dragon_Fireball_right", m_pFireballRight, Vec2(0.f, 0.f), Vec2(63.f, 49.f), Vec2(63.f, 0.f), Vec2(0.f, 0.f), 0.1f, 5);
 	GetAnimator()->CreateAnimation(L"Dragon_Fireball_left", m_pFireballLeft, Vec2(315.f, 0.f), Vec2(63.f, 49.f), Vec2(-63.f, 0.f), Vec2(0.f, 0.f), 0.1f, 5);
 
-	
+
 }
 
 CFireBall::~CFireBall()
 {
-	
+
 
 }
 
@@ -53,7 +60,7 @@ void CFireBall::update()
 		DeleteObject(this);
 		return;
 	}
-	
+
 	wstring sAnimName = L"Dragon_Fireball";
 
 	m_iDir >= 0 ? sAnimName += L"_right" : sAnimName += L"_left";

@@ -11,11 +11,24 @@
 #include "CObject.h"
 #include "CPlayer.h"
 
-CKick::CKick():
+#define FIRST_ATTACK 1
+
+CKick::CKick() :
 	CSkillState(SKILL_STATE::UPPER_KICK),
-	m_fOffSet(30.f)
+	m_fOffSet(30.f),
+	m_iAttackFrame(-1)
 {
 	SetSKillName(L"Player_skill_kick_");
+
+	tAttackInfo tAtt = {};
+	tAtt.m_eAttType = ATTACK_TYPE::UPPER;
+	tAtt.m_fAttackDamage = 40.f;
+	tAtt.m_fAttRcnt = 40.f;
+	tAtt.m_fAttRigidityTime = 1.3f;
+	tAtt.m_fAttUpperRcnt = -400.f;
+	tAtt.m_fAttUpperAcc = -600.f;
+
+	SetAttInfo(tAtt);
 }
 
 CKick::~CKick()
@@ -34,12 +47,12 @@ void CKick::Skillupdate()
 	CAnimator* pAnim = pPlayer->GetAnimator();
 	int iDir = pPlayer->GetPlayerDirX();
 
-	float fFinalPos = m_vCollOffSet.x + iDir* m_fOffSet;
+	float fFinalPos = m_vCollOffSet.x + iDir * m_fOffSet;
 	wstring strSkillName = GetSkillName();
 
 	if (iDir > 0)
 	{
-		GetCollider()->SetOffSet(Vec2(fFinalPos , m_vCollOffSet.y));
+		GetCollider()->SetOffSet(Vec2(fFinalPos, m_vCollOffSet.y));
 		strSkillName += L"right";
 	}
 	else
@@ -47,7 +60,7 @@ void CKick::Skillupdate()
 		GetCollider()->SetOffSet(Vec2(fFinalPos, m_vCollOffSet.y));
 		strSkillName += L"left";
 	}
-		
+
 
 
 	if (pAnim->FindAnimation(strSkillName)->IsFinish())
@@ -56,7 +69,7 @@ void CKick::Skillupdate()
 		exit();
 		return;
 	}
-	
+
 }
 
 
@@ -65,15 +78,24 @@ void CKick::init()
 {
 	CreateCollider();
 	GetCollider()->SetActive(false);
+
+	AddAttackFrame(FIRST_ATTACK);
+
 	m_vCollSize = Vec2(60.f, 70.f);
 	m_vCollOffSet = Vec2(-20.f, 70.f);
 	GetCollider()->SetScale(m_vCollSize);
 	GetCollider()->SetOffSet(m_vCollOffSet);
 }
 
+void CKick::exit()
+{
+	CSkillState::exit();
+	m_iAttackFrame = -1;
+}
+
 void CKick::OnColliderEnter(CCollider* _pOther)
 {
-	
+
 }
 
 void CKick::OnColliderExit(CCollider* _pOther)
@@ -83,5 +105,23 @@ void CKick::OnColliderExit(CCollider* _pOther)
 
 void CKick::OnCollision(CCollider* _pOther)
 {
+	if (_pOther->GetObj()->GetTag() == GROUP_TYPE::MONSTER)
+	{
+		const vector<UINT> vecFrame = GetAttackFrame();
+		int iCurFrame = GetCurFram();
 
+		for (int i = 0; i < vecFrame.size(); ++i)
+		{
+			if (vecFrame[i] == iCurFrame && m_iAttackFrame != i)
+			{
+				m_iAttackFrame = i;
+				SetAttackOn(TRUE);
+				break;
+			}
+			else
+			{
+				SetAttackOn(FALSE);
+			}
+		}
+	}
 }

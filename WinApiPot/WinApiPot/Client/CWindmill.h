@@ -12,9 +12,12 @@ private:
     Vec2 m_vCollSize;
     Vec2 m_vCollOffSet;
 
+    int m_iAttackFrame;
+
 public:
     virtual void Skillupdate();
     virtual void init();
+    virtual void exit();
 
 public:
     virtual void OnColliderEnter(CCollider* _pOther);

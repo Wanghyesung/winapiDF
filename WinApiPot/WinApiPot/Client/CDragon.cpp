@@ -34,15 +34,15 @@ CDragon::CDragon()
 	CTexture* m_pDragonRight = CResMgr::GetInst()->LoadTextur(L"Dragon_Monster_right", L"Texture\\dragon_right.bmp");
 	CTexture* m_pDragonLeft = CResMgr::GetInst()->LoadTextur(L"Dragon_Monster_left", L"Texture\\dragon_left.bmp");
 
-	
+
 	GetAnimator()->CreateAnimation(L"Dragon_Motion_right", m_pDragonRight, Vec2(0.f, 0.f), Vec2(100.f, 100.f), Vec2(100.f, 0.f), Vec2(0.f, 0.f), 0.1f, 8);
 	GetAnimator()->CreateAnimation(L"Dragon_Motion_left", m_pDragonLeft, Vec2(700.f, 0.f), Vec2(100.f, 100.f), Vec2(-100.f, 0.f), Vec2(0.f, 0.f), 0.1f, 8);
 
 	GetAnimator()->CreateAnimation(L"Dragon_Attack_right", m_pDragonRight, Vec2(0.f, 100.f), Vec2(100.f, 100.f), Vec2(100.f, 0.f), Vec2(0.f, 0.f), 0.15f, 8);
-	GetAnimator()->CreateAnimation(L"Dragon_Attack_left",  m_pDragonLeft, Vec2(700.f, 100.f), Vec2(100.f, 100.f), Vec2(-100.f, 0.f), Vec2(0.f, 0.f), 0.15f, 8);
+	GetAnimator()->CreateAnimation(L"Dragon_Attack_left", m_pDragonLeft, Vec2(700.f, 100.f), Vec2(100.f, 100.f), Vec2(-100.f, 0.f), Vec2(0.f, 0.f), 0.15f, 8);
 
 	GetAnimator()->CreateAnimation(L"Dragon_Dead_right", m_pDragonRight, Vec2(0.f, 200.f), Vec2(100.f, 100.f), Vec2(100.f, 0.f), Vec2(0.f, 0.f), 0.1f, 3);
-	GetAnimator()->CreateAnimation(L"Dragon_Dead_left",  m_pDragonLeft, Vec2(700.f, 200.f), Vec2(100.f, 100.f), Vec2(-100.f, 0.f), Vec2(0.f, 0.f), 0.1f, 3);
+	GetAnimator()->CreateAnimation(L"Dragon_Dead_left", m_pDragonLeft, Vec2(700.f, 200.f), Vec2(100.f, 100.f), Vec2(-100.f, 0.f), Vec2(0.f, 0.f), 0.1f, 3);
 
 	GetAnimator()->CreateAnimation(L"Dragon_hit_right", m_pDragonRight, Vec2(0.f, 200.f), Vec2(100.f, 100.f), Vec2(100.f, 0.f), Vec2(0.f, 0.f), 0.2f, 2);
 	GetAnimator()->CreateAnimation(L"Dragon_hit_left", m_pDragonLeft, Vec2(700.f, 200.f), Vec2(100.f, 100.f), Vec2(-100.f, 0.f), Vec2(0.f, 0.f), 0.2f, 2);
@@ -50,19 +50,17 @@ CDragon::CDragon()
 	GetAnimator()->CreateAnimation(L"Dragon_fullHit_right", m_pDragonRight, Vec2(0.f, 200.f), Vec2(100.f, 100.f), Vec2(100.f, 0.f), Vec2(0.f, 0.f), 0.2f, 3);
 	GetAnimator()->CreateAnimation(L"Dragon_fullHit_left", m_pDragonLeft, Vec2(700.f, 200.f), Vec2(100.f, 100.f), Vec2(-100.f, 0.f), Vec2(0.f, 0.f), 0.2f, 3);
 
-	
+
 }
 
 CDragon::~CDragon()
 {
-	
+
 }
 
 
 void CDragon::update()
 {
-	//맞고있는지
-	//IsGettingHit();
 
 	//if (IsHit())
 	//{
@@ -81,7 +79,7 @@ void CDragon::update()
 
 	update_state();
 
-//CMonster::update();
+	//CMonster::update();
 }
 
 void CDragon::update_state()
@@ -193,6 +191,7 @@ void CDragon::Hit(CCollider* _pOther, const tAttackInfo& _tAtt)
 			if (GetJumPos().IsZero())
 				SetJumPos(pCollider->GetFinalPos());
 			GetRigidBody()->SetVelocity(Vec2(0.f, tHitInfo.m_fHitUpperRcnt));
+			//GetRigidBody()->SetAccelA(Vec2(0.f, _tAtt.m_fAttUpperAcc));
 			ChangeAIState(GetAI(), MONSTER_STATE::UPPER_HIT);
 		}
 		break;
@@ -212,7 +211,7 @@ void CDragon::Hit(CCollider* _pOther, const tAttackInfo& _tAtt)
 void CDragon::OnColliderEnter(CCollider* _pOther)
 {
 	tMonInfo& tMonInfo = GetMonInfo();
-	CObject* pobj =	_pOther->GetObj();
+	CObject* pobj = _pOther->GetObj();
 
 	if (pobj->GetTag() == GROUP_TYPE::SKILL
 		&& tMonInfo.m_iHp != 0)
@@ -222,15 +221,8 @@ void CDragon::OnColliderEnter(CCollider* _pOther)
 			CBullet* pBullet = dynamic_cast<CBullet*>(pobj);
 			Hit(pBullet->GetCollider(), pBullet->GetAttInfo());
 		}
-		//else if (dynamic_cast<CSkillState*>(pobj))
-		//{
-		//	CSkillState* pSkill = dynamic_cast<CSkillState*>(pobj);
-		//	Hit(pSkill->GetCollider(), pSkill->GetAttInfo());
-		//	스킬은 애니메이션에 프레임에 맞게 
-		//  skillstate에서 애니메이션에 공격모션이 true이면 true상태인지 확인하고 Hit함수로
-		//}
 	}
-	
+
 	if (tMonInfo.m_iHp == 0)
 	{
 		ChangeAIState(GetAI(), MONSTER_STATE::DEAD);
@@ -241,7 +233,28 @@ void CDragon::OnColliderExit(CCollider* _pOther)
 {
 	int a = 10;
 };
-void CDragon::OnCollision(CCollider* _pOther) 
+void CDragon::OnCollision(CCollider* _pOther)
 {
+	tMonInfo& tMonInfo = GetMonInfo();
+	CObject* pobj = _pOther->GetObj();
+
+	if (pobj->GetTag() == GROUP_TYPE::SKILL
+		&& tMonInfo.m_iHp != 0)
+	{
+		if (dynamic_cast<CSkillState*>(pobj))
+		{
+			CSkillState* pSkill = dynamic_cast<CSkillState*>(pobj);
+
+			if (!pSkill->IsAttackOn())
+				return;
+
+			Hit(pSkill->GetCollider(), pSkill->GetAttInfo());
+		}
+
+		if (tMonInfo.m_iHp == 0)
+		{
+			ChangeAIState(GetAI(), MONSTER_STATE::DEAD);
+		}
+	}
 
 };

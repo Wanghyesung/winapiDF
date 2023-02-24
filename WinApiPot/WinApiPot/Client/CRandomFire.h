@@ -15,10 +15,12 @@ private:
     float m_fAccTime;
     float m_fCurTime;
 
+    int m_iAttackFrame;
+
 public:
     virtual void Skillupdate();
     virtual void init();
-
+    virtual void exit();
 
 public:
     virtual void OnColliderEnter(CCollider* _pOther);

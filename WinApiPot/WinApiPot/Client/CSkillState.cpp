@@ -16,14 +16,16 @@
 CSkillState::CSkillState(SKILL_STATE _eSkill) :
 	m_eSkillState(_eSkill),
 	m_pOwner(nullptr),
-	m_bFrm(0)
+	m_iFrm(0),
+	m_bOnAttack(false),
+	m_vecAttackFrame{}
 {
 	SetTag(GROUP_TYPE::SKILL);
 }
 
 CSkillState::~CSkillState()
 {
-	
+
 }
 
 

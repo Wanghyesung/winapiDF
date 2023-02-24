@@ -29,7 +29,7 @@ void CPathMgr::init()
 		}
 	}
 
-	wcscat_s(m_szContenPath, 256, L"\\bin\\Content\\");//Content있는 곳으로 이동
+	wcscat_s(m_szContenPath, 256, L"\\bin_release\\Content\\");//Content있는 곳으로 이동
 }
 
 wstring CPathMgr::GetRelativePath(const wchar_t* _str)

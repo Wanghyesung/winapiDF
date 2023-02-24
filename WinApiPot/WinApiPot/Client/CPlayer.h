@@ -34,9 +34,10 @@ private:
     CFSM* m_pFSM;
 
     tPlayerInfo  m_tPlayerInfo;
+    tHitInfo m_tPlayerHit;
 
     int m_iDirX;     //현재 방향
-    int m_prevDirX; 
+    int m_prevDirX;
     int m_iDirY;
     int m_prevDirY;
 
@@ -64,7 +65,7 @@ public:
     virtual void finalupdate();
     virtual void render(HDC _dc);
 
-    void CreateBullet(CPlayer* _pPlayer ,ATTACK_TYPE _eAttType = ATTACK_TYPE::NORMAL);
+    void CreateBullet(CPlayer* _pPlayer, ATTACK_TYPE _eAttType = ATTACK_TYPE::NORMAL);
 
     void updateState();
     void updateSkillState();
@@ -77,13 +78,16 @@ public:
     virtual void OnCollision(CCollider* _pOther);
 
 public:
-    void SetPlayerInfo(const tPlayerInfo& _tPlayerInfo){m_tPlayerInfo = _tPlayerInfo;}
+    void SetPlayerInfo(const tPlayerInfo& _tPlayerInfo) { m_tPlayerInfo = _tPlayerInfo; }
+    void SetPlayerHitInfo(const tHitInfo& _tHitInfo) { m_tPlayerHit = _tHitInfo; }
 
     int GetPlayerDirX() { return m_iDirX; }
     int GetPlayerDirY() { return m_iDirY; }
 
     void SetPlayerDirX(int _iDir) { m_iDirX = _iDir; }
     void SetPlayerDirY(int _iDir) { m_iDirY = _iDir; }
+
+    void HitPlayer(CCollider* _pOther, const tAttackInfo& _tAttInfo);
 
 public:
     void CreateSkill();
@@ -97,6 +101,8 @@ private:
 
     friend class CBullet;
     friend class CFSM;
+    friend class CPlayerHit;
+    friend class CPlayerHitUpper;
     friend class CSkillMgr;
 };
 

@@ -200,6 +200,12 @@
     <Filter Include="Engine\04.CScene\CSeriaScene">
       <UniqueIdentifier>{9bdccd55-0edc-4439-adcd-77ff9f1b0185}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Engine\08.Module\CPlayerFSM\CPlayerState\CplayerHit">
+      <UniqueIdentifier>{d096258b-f57a-4f5a-bfb3-d3888708a2c0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\08.Module\CPlayerFSM\CPlayerState\CPlayerHitUpper">
+      <UniqueIdentifier>{2bd89710-5810-47f2-84a7-9d878ed59f1d}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="pch.h" />
@@ -401,6 +407,12 @@
     <ClInclude Include="CSeriaScene.h">
       <Filter>Engine\04.CScene\CSeriaScene</Filter>
     </ClInclude>
+    <ClInclude Include="CPlayerHit.h">
+      <Filter>Engine\08.Module\CPlayerFSM\CPlayerState\CplayerHit</Filter>
+    </ClInclude>
+    <ClInclude Include="CPlayerHitUpper.h">
+      <Filter>Engine\08.Module\CPlayerFSM\CPlayerState\CPlayerHitUpper</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Client.rc">
@@ -596,6 +608,12 @@
     </ClCompile>
     <ClCompile Include="CSeriaScene.cpp">
       <Filter>Engine\04.CScene\CSeriaScene</Filter>
+    </ClCompile>
+    <ClCompile Include="CPlayerHit.cpp">
+      <Filter>Engine\08.Module\CPlayerFSM\CPlayerState\CplayerHit</Filter>
+    </ClCompile>
+    <ClCompile Include="CPlayerHitUpper.cpp">
+      <Filter>Engine\08.Module\CPlayerFSM\CPlayerState\CPlayerHitUpper</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

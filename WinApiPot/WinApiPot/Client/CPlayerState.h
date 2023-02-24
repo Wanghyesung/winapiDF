@@ -10,9 +10,9 @@ public:
 
 
 public:
-	PLAYER_STATE GetType() { return m_ePlayerState;}
+	PLAYER_STATE GetType() { return m_ePlayerState; }
 
-	void SetCurFrame(int _iCurFrame) { m_iCurFrame = _iCurFrame;}
+	void SetCurFrame(int _iCurFrame) { m_iCurFrame = _iCurFrame; }
 	int GetCurFrame() { return m_iCurFrame; }
 	void InitZeroFrame() { m_iCurFrame = 0; }
 
@@ -26,9 +26,9 @@ public:
 private:
 	PLAYER_STATE m_ePlayerState;
 	CFSM* m_pOwner;
-	
+
 	int m_iCurFrame;
-	
+
 
 	friend class CFSM;
 };

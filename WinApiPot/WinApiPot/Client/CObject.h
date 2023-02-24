@@ -1,5 +1,7 @@
 #pragma once
 
+#include "pch.h"
+
 class CTexture;
 class CAnimator;
 class CRigidBody;
@@ -23,6 +25,7 @@ struct tAttackInfo
 	float m_fAttackTime;
 	float m_fAttRcnt;//맞으면 날라갈 양
 	float m_fAttUpperRcnt; //맞으면 띄어질 양
+	float m_fAttUpperAcc; //추가 가속도
 	float m_fAttRigidityTime; //경직 시간
 	Vec2 m_fAttackRange;
 	ATTACK_TYPE m_eAttType;

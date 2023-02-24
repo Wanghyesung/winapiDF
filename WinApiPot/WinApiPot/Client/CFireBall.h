@@ -16,6 +16,8 @@ private:
     float m_fDelTime;
     float m_fCurTime;
 
+    tAttackInfo m_tAtt;
+
 private:
     CTexture* m_pFireballRight;
     CTexture* m_pFireballLeft;
@@ -26,7 +28,11 @@ public:
 
     virtual void update();
     virtual void render(HDC _dc);
-   
+
+
+public:
+    const tAttackInfo& GetAttInfo() { return m_tAtt; }
+
 public:
     virtual void OnColliderEnter(CCollider* _pOther);
     virtual void OnColliderExit(CCollider* _pOther);

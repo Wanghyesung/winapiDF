@@ -11,7 +11,7 @@
 #include "CAnimator.h";
 #include "CAnimation.h"
 
-//플레이어 스테이트
+//플레이어 상태
 #include "CPlayerIdle.h"
 #include "CPlayerWalk.h"
 #include "CPlayerRun.h"
@@ -22,6 +22,7 @@
 #include "CPlayerAttackDown.h"
 #include "CPlayerJumpAttack.h"
 #include "CPlayerSliding.h"
+#include "CPlayerHit.h"
 
 void ChangeAIState(AI* _pAI, MONSTER_STATE _eMonState)
 {
@@ -36,7 +37,7 @@ void ChangeAIState(AI* _pAI, MONSTER_STATE _eMonState)
 void ChangeFSMState(CFSM* _pFSM, PLAYER_STATE _ePlayerState)
 {
 	tEvent eve = {};
-	eve.eEventType = EVENT_TYPE::CHANGE_FSM_STATE; 
+	eve.eEventType = EVENT_TYPE::CHANGE_FSM_STATE;
 	eve.lParm = (DWORD_PTR)_pFSM;
 	eve.wParm = (DWORD_PTR)_ePlayerState;
 
@@ -81,7 +82,7 @@ CPlayer* CreatePlayer(Vec2 _vPos)
 	player->SetScale(Vec2(0.f, 0.f));
 
 	//여기에 fsm에 들어갈 state 넣기
-	
+
 	CFSM* pFSM = new CFSM;
 	//player->CreateFSM();
 	pFSM->AddState(new CPlayerIdle);
@@ -95,16 +96,17 @@ CPlayer* CreatePlayer(Vec2 _vPos)
 	pFSM->AddState(new CPlayerAttackDown);
 	pFSM->AddState(new CPlayerJumpAttack);
 	pFSM->AddState(new CPlayerSliding);
+	pFSM->AddState(new CPlayerHit);
 	player->CreateFSM(pFSM);
-	tPlayerInfo playerInfo = {};
-	//attackFrame.first = 3;
-	//attackFrame.second = 5;
-	//attackFrame.third = 14;
-	playerInfo.m_fAtt = 10.f;
-	playerInfo.m_fSpeed = 200.f;
-	playerInfo.m_iHP = 100.f;
 
-	player->SetPlayerInfo(playerInfo);
+	tPlayerInfo tPlayerInfo = {};
+	tHitInfo tPlayerHit = {};
+
+	tPlayerInfo.m_fAtt = 10.f;
+	tPlayerInfo.m_fSpeed = 200.f;
+	tPlayerInfo.m_iHP = 100.f;
+
+	player->SetPlayerInfo(tPlayerInfo);
 
 	return player;
 }

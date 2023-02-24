@@ -1,0 +1,44 @@
+[Animation Name
+Player_walk_forward
+[Texture Name]
+Player
+[Path Name]
+Texture\Animation1_walk.bmp
+[Frame Count]
+3
+[Frame Index]
+0
+[LEFT Top]
+0 0
+[Slice Size]
+46 50
+[Offset]
+0 0
+[Duration]
+0.300000
+
+
+[Frame Index]
+1
+[LEFT Top]
+46 0
+[Slice Size]
+46 50
+[Offset]
+0 0
+[Duration]
+0.300000
+
+
+[Frame Index]
+2
+[LEFT Top]
+93 0
+[Slice Size]
+46 50
+[Offset]
+0 0
+[Duration]
+0.300000
+
+

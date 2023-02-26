@@ -33,8 +33,11 @@ public:
 	virtual void update();//여기서 업데이트 하고 각각의 오브젝트에서 update, finalupdate
 	virtual void finalupdate();
 
-	//배경을 그린다
+	//배경
 	void backgroundrender(HDC _dc, CTexture* _pTex, Vec2 _vStartPos);
+
+	//인터페이스
+	void PlayerInterface_render(HDC _dc, CTexture* _pTex);
 
 	void RegisterPlayer(CObject* _pObj);
 
@@ -63,6 +66,7 @@ public:
 	}
 
 	const vector<CObject*>& GetGroupObject(GROUP_TYPE _eType) {return m_arrObj[(UINT)_eType];}
+	vector<CObject*>& GetGroupUI() { return m_arrObj[(UINT)GROUP_TYPE::UI]; }
 
 	CObject* GetPlayerObj() 
 	{

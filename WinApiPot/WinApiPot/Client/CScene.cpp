@@ -93,6 +93,14 @@ void CScene::backgroundrender(HDC _dc, CTexture* _pTex, Vec2 _vStartPos)
 		SRCCOPY);
 }
 
+void CScene::PlayerInterface_render(HDC _dc, CTexture* _pTex)
+{
+	CTexture* m_pBackGround = _pTex;
+
+	//TransparentBlt(_dc,
+	//	)
+}
+
 void CScene::RegisterPlayer(CObject* _pObj)
 {
 	m_pPlayer = _pObj;

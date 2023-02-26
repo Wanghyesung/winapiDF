@@ -12,7 +12,9 @@
 #include "CGravity.h"
 
 #define HIT_MAX_FRAME 4
+#define HiT_AIR 3
 #define HIT_START 2
+
 
 CPlayerHitUpper::CPlayerHitUpper() :
 	CPlayerState(PLAYER_STATE::UPPER_HIT),
@@ -38,6 +40,10 @@ void CPlayerHitUpper::update()
 		pPlayer->GetAnimator()->GetCurAnimation()->SetFram(HIT_MAX_FRAME);
 	}
 
+	else if (iFrame == HiT_AIR )
+	{
+		pPlayer->GetAnimator()->GetCurAnimation()->SetFram(HiT_AIR);
+	}
 
 	if (m_fCurTime >= m_fDonwTime)
 	{

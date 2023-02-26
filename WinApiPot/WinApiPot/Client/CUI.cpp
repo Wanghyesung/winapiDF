@@ -40,7 +40,7 @@ void CUI::render(HDC _dc)
 
 		CSeleteGDI gdi(_dc, PEN_TYPE::GREEN);
 
-		Rectangle(_dc,
+		Rectangle(_dc,	
 			(int)(vPos.x),
 			(int)(vPos.y),
 			(int)(vPos.x + vScale.x),

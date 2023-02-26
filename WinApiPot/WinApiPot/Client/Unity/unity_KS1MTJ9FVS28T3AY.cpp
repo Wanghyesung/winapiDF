@@ -170,6 +170,12 @@
 #include "C:\Users\wangh\source\tem\WinApiPot\WinApiPot\Client\CTraceState.cpp"
 
 
+#include "C:\Users\wangh\source\tem\WinApiPot\WinApiPot\Client\CUI.cpp"
+
+
+#include "C:\Users\wangh\source\tem\WinApiPot\WinApiPot\Client\CUIMgr.cpp"
+
+
 #include "C:\Users\wangh\source\tem\WinApiPot\WinApiPot\Client\CWalkFire.cpp"
 
 

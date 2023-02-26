@@ -206,6 +206,12 @@
     <Filter Include="Engine\08.Module\CPlayerFSM\CPlayerState\CPlayerHitUpper">
       <UniqueIdentifier>{2bd89710-5810-47f2-84a7-9d878ed59f1d}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Engine\05.CObject\CUI">
+      <UniqueIdentifier>{57cc7de6-cc3d-46a9-9dfc-5f57a19a3f3d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\03.Manager\CUIMgr">
+      <UniqueIdentifier>{9d6b1edf-e5b2-4c9a-93f8-b3e51a8ad8ec}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="pch.h" />
@@ -413,6 +419,12 @@
     <ClInclude Include="CPlayerHitUpper.h">
       <Filter>Engine\08.Module\CPlayerFSM\CPlayerState\CPlayerHitUpper</Filter>
     </ClInclude>
+    <ClInclude Include="CUI.h">
+      <Filter>Engine\05.CObject\CUI</Filter>
+    </ClInclude>
+    <ClInclude Include="CUIMgr.h">
+      <Filter>Engine\03.Manager\CUIMgr</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Client.rc">
@@ -614,6 +626,12 @@
     </ClCompile>
     <ClCompile Include="CPlayerHitUpper.cpp">
       <Filter>Engine\08.Module\CPlayerFSM\CPlayerState\CPlayerHitUpper</Filter>
+    </ClCompile>
+    <ClCompile Include="CUI.cpp">
+      <Filter>Engine\05.CObject\CUI</Filter>
+    </ClCompile>
+    <ClCompile Include="CUIMgr.cpp">
+      <Filter>Engine\03.Manager\CUIMgr</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

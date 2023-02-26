@@ -21,6 +21,7 @@ public:
     virtual void Skillupdate();
     virtual void init();
     virtual void enter();
+    virtual void exit();
 
 public:
     void SetDir(int _i) { m_iDir = _i; }

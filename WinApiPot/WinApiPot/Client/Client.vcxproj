@@ -204,6 +204,8 @@
     <ClInclude Include="CTexture.h" />
     <ClInclude Include="CTimeMgr.h" />
     <ClInclude Include="CTraceState.h" />
+    <ClInclude Include="CUI.h" />
+    <ClInclude Include="CUIMgr.h" />
     <ClInclude Include="CWalkFire.h" />
     <ClInclude Include="CWall.h" />
     <ClInclude Include="CWindmill.h" />
@@ -274,6 +276,8 @@
     <ClCompile Include="CTexture.cpp" />
     <ClCompile Include="CTimeMgr.cpp" />
     <ClCompile Include="CTraceState.cpp" />
+    <ClCompile Include="CUI.cpp" />
+    <ClCompile Include="CUIMgr.cpp" />
     <ClCompile Include="CWalkFire.cpp" />
     <ClCompile Include="CWall.cpp" />
     <ClCompile Include="CWindmill.cpp" />

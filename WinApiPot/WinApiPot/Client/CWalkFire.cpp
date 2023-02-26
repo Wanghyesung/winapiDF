@@ -84,9 +84,7 @@ void CWalkFire::Skillupdate()
 
 	if (m_iFireCount <= 0)
 	{
-		CSkillMgr::GetInst()->SetEndSkill(false);
 		exit();
-		m_iFireCount = 22;
 	}
 
 }
@@ -101,6 +99,12 @@ void CWalkFire::enter()
 {
 	CSkillState::enter();
 	m_iDir = GetSkill()->GetPlayer()->GetPlayerDirX();
+}
+
+void CWalkFire::exit()
+{
+	CSkillState::exit();
+	m_iFireCount = 22;
 }
 
 

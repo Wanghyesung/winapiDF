@@ -48,5 +48,7 @@ public:
     virtual void MouseLbtnUp();//UI안에서 땠을 때
     virtual void MouseLbtnClicked();//UI안에서 누르고 떘을 떄
 
+
+    friend class CUIMgr;
 };
 

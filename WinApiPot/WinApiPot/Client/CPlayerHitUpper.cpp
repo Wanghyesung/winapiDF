@@ -9,11 +9,14 @@
 
 #include "CTimeMgr.h"
 
+#include "CGravity.h"
 
 #define HIT_MAX_FRAME 4
+#define HIT_START 2
 
 CPlayerHitUpper::CPlayerHitUpper() :
-	CPlayerState(PLAYER_STATE::UPPER_HIT)
+	CPlayerState(PLAYER_STATE::UPPER_HIT),
+	m_fDonwTime(0.8f)
 {
 }
 
@@ -24,8 +27,22 @@ CPlayerHitUpper::~CPlayerHitUpper()
 
 void CPlayerHitUpper::update()
 {
-	m_fCurTime += fDT;
+	CFSM* pFSM = GetFSM();
+	CPlayer* pPlayer = pFSM->GetPlayer();
 
+	int iFrame = GetCurFrame();
+
+	if (!pPlayer->GetGravity()->IsGetGravity())
+	{
+		m_fCurTime += fDT;
+		pPlayer->GetAnimator()->GetCurAnimation()->SetFram(HIT_MAX_FRAME);
+	}
+
+
+	if (m_fCurTime >= m_fDonwTime)
+	{
+		ChangeFSMState(pFSM, PLAYER_STATE::IDLE);
+	}
 
 }
 
@@ -42,7 +59,8 @@ void CPlayerHitUpper::Enter()
 	CPlayer* pPlayer = GetFSM()->GetPlayer();
 	if (pPlayer->playerPrevState == PLAYER_STATE::UPPER_HIT)
 	{
-		//pPlayer->m_
+		pPlayer->GetAnimator()->GetCurAnimation()->SetFram(HIT_START);
 	}
+
 }
 

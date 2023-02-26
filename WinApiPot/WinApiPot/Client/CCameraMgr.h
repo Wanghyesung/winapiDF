@@ -71,15 +71,9 @@ public:
 	void SetIsPassX(bool _b) { m_bIsPassX = _b; }
 	void SetIsPassY(bool _b) { m_bIsPassY = _b; }
 
-	void SetEndRangeX(float _fX)
-	{
-		m_fEndRangeX = _fX;
-	}
+	void SetEndRangeX(float _fX){m_fEndRangeX = _fX;}
 
-	void SetEndRangeY(float _fY)
-	{
-		m_fEndRangeY = _fY;
-	}
+	void SetEndRangeY(float _fY){m_fEndRangeY = _fY;}
 
 public:
 	Vec2 GetRenderPos(Vec2 _vObjPos) { return _vObjPos - m_vDiff; }

@@ -23,6 +23,7 @@
 #include "CPlayerJumpAttack.h"
 #include "CPlayerSliding.h"
 #include "CPlayerHit.h"
+#include "CPlayerHitUpper.h"
 
 void ChangeAIState(AI* _pAI, MONSTER_STATE _eMonState)
 {
@@ -97,6 +98,7 @@ CPlayer* CreatePlayer(Vec2 _vPos)
 	pFSM->AddState(new CPlayerJumpAttack);
 	pFSM->AddState(new CPlayerSliding);
 	pFSM->AddState(new CPlayerHit);
+	pFSM->AddState(new CPlayerHitUpper);
 	player->CreateFSM(pFSM);
 
 	tPlayerInfo tPlayerInfo = {};

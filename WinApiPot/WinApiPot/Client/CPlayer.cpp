@@ -308,7 +308,15 @@ void CPlayer::updateState()
 		m_pFSM->GetCurState()->SetCurFrame(iCurFram);
 	}
 	break;
-
+	case PLAYER_STATE::UPPER_HIT :
+	{
+		strMotion = L"Player_Hit";
+		strMotion += strDir;
+		pAninmaotr->Play(strMotion, false);
+		int iCurFram = pAninmaotr->GetCurAnimation()->GetCurFrame();
+		m_pFSM->GetCurState()->SetCurFrame(iCurFram);
+	}
+	break;
 	case PLAYER_STATE::SKILL:
 		break;
 	case PLAYER_STATE::DEAD:
@@ -419,7 +427,7 @@ void CPlayer::HitPlayer(CCollider* _pOther, const tAttackInfo& _tAttInfo)
 		m_tPlayerHit.m_fHitDir = fDir;
 		GetGravity()->SetGravity(true);
 		if (GetJumPos().IsZero())
-			SetJumPos(GetCollider()->GetFinalPos());
+			SetJumPos(GetPos());
 		GetRigidBody()->SetVelocity(Vec2(0.f, m_tPlayerHit.m_fHitUpperRcnt));
 		//GetRigidBody()->SetAccelA(Vec2(0.f, _tAtt.m_fAttUpperAcc));
 		ChangeFSMState(m_pFSM, PLAYER_STATE::UPPER_HIT);

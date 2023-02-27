@@ -43,19 +43,20 @@ CPlayer::CPlayer() :
 	m_pFireMotion(nullptr),
 	m_pSkill(nullptr)
 {
-	CTexture* m_pTexRight = CResMgr::GetInst()->LoadTextur(L"Player_Motion_Right", L"Texture\\montion_right.bmp");//애니메이션 파일 넣기
-	CTexture* m_pTexLeft = CResMgr::GetInst()->LoadTextur(L"Player_Motion_Left", L"Texture\\montion_left.bmp");//애니메이션 파일 넣기
-	CTexture* m_pTexHitRight = CResMgr::GetInst()->LoadTextur(L"Player_Hit_Right", L"Texture\\motion_hit_right.bmp");
-	CTexture* m_pTexHitLeft = CResMgr::GetInst()->LoadTextur(L"Player_Hit_Left", L"Texture\\motion_hit_left.bmp");
-	CTexture* m_pTexRightAttack = CResMgr::GetInst()->LoadTextur(L"Player_Motion_Right_Attack", L"Texture\\motion_attack_right.bmp");
-	CTexture* m_pTexLeftAttack = CResMgr::GetInst()->LoadTextur(L"Player_Motion_Left_Attack", L"Texture\\motion_attack_left.bmp");
-	CTexture* m_pRightAttackJum = CResMgr::GetInst()->LoadTextur(L"Player_Motion_Right_Attack_Jum", L"Texture\\jump_attack_right.bmp");
-	CTexture* m_pLeftAttackJum = CResMgr::GetInst()->LoadTextur(L"Player_Motion_Left_Attack_Jum", L"Texture\\jump_attack_left.bmp");
-	CTexture* m_pRightSkillA = CResMgr::GetInst()->LoadTextur(L"Player_SkillA_Right", L"Texture\\skillA_right.bmp");
-	CTexture* m_pLeftSkillA = CResMgr::GetInst()->LoadTextur(L"Player_SkillA_Left", L"Texture\\skillA_left.bmp");
-	CTexture* m_pRandomFire = CResMgr::GetInst()->LoadTextur(L"Player_Skill_randomfire", L"Texture\\random_fire.bmp");
-	CTexture* m_pWalkFire = CResMgr::GetInst()->LoadTextur(L"Player_Skill_walkfire", L"Texture\\walk_fire.bmp");
-	m_pBullet = CResMgr::GetInst()->LoadTextur(L"Bullet", L"Texture\\bullet.bmp");//총알
+	//PathMgr안쓰고 바로 접근
+	CTexture* m_pTexRight = CResMgr::GetInst()->LoadTextur(L"Player_Motion_Right", L"..\\OutPut\\bin_release\\Content\\Texture\\montion_right.bmp");//애니메이션 파일 넣기
+	CTexture* m_pTexLeft = CResMgr::GetInst()->LoadTextur(L"Player_Motion_Left", L"..\\OutPut\\bin_release\\Content\\Texture\\montion_left.bmp");//애니메이션 파일 넣기
+	CTexture* m_pTexHitRight = CResMgr::GetInst()->LoadTextur(L"Player_Hit_Right", L"..\\OutPut\\bin_release\\Content\\Texture\\motion_hit_right.bmp");
+	CTexture* m_pTexHitLeft = CResMgr::GetInst()->LoadTextur(L"Player_Hit_Left", L"..\\OutPut\\bin_release\\Content\\Texture\\motion_hit_left.bmp");
+	CTexture* m_pTexRightAttack = CResMgr::GetInst()->LoadTextur(L"Player_Motion_Right_Attack", L"..\\OutPut\\bin_release\\Content\\Texture\\motion_attack_right.bmp");
+	CTexture* m_pTexLeftAttack = CResMgr::GetInst()->LoadTextur(L"Player_Motion_Left_Attack", L"..\\OutPut\\bin_release\\Content\\Texture\\motion_attack_left.bmp");
+	CTexture* m_pRightAttackJum = CResMgr::GetInst()->LoadTextur(L"Player_Motion_Right_Attack_Jum", L"..\\OutPut\\bin_release\\Content\\Texture\\jump_attack_right.bmp");
+	CTexture* m_pLeftAttackJum = CResMgr::GetInst()->LoadTextur(L"Player_Motion_Left_Attack_Jum", L"..\\OutPut\\bin_release\\Content\\Texture\\jump_attack_left.bmp");
+	CTexture* m_pRightSkillA = CResMgr::GetInst()->LoadTextur(L"Player_SkillA_Right", L"..\\OutPut\\bin_release\\Content\\Texture\\skillA_right.bmp");
+	CTexture* m_pLeftSkillA = CResMgr::GetInst()->LoadTextur(L"Player_SkillA_Left", L"..\\OutPut\\bin_release\\Content\\Texture\\skillA_left.bmp");
+	CTexture* m_pRandomFire = CResMgr::GetInst()->LoadTextur(L"Player_Skill_randomfire", L"..\\OutPut\\bin_release\\Content\\Texture\\random_fire.bmp");
+	CTexture* m_pWalkFire = CResMgr::GetInst()->LoadTextur(L"Player_Skill_walkfire", L"..\\OutPut\\bin_release\\Content\\Texture\\walk_fire.bmp");
+	m_pBullet = CResMgr::GetInst()->LoadTextur(L"Bullet", L"..\\OutPut\\bin_release\\Content\\Texture\\bullet.bmp");//총알
 	//m_pFireMotion = CResMgr::GetInst()->LoadTextur(L"Bullet", L"Texture\\fire.bmp");//발사 임펙트
 
 	//공격 텍스트

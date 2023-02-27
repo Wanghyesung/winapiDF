@@ -31,8 +31,8 @@ CDragon::CDragon()
 	GetAnimator()->SetRBG(0, 0, 0);
 
 	CreateGravity();
-	CTexture* m_pDragonRight = CResMgr::GetInst()->LoadTextur(L"Dragon_Monster_right", L"Texture\\dragon_right.bmp");
-	CTexture* m_pDragonLeft = CResMgr::GetInst()->LoadTextur(L"Dragon_Monster_left", L"Texture\\dragon_left.bmp");
+	CTexture* m_pDragonRight = CResMgr::GetInst()->LoadTextur(L"Dragon_Monster_right", L"..\\OutPut\\bin_release\\Content\\Texture\\dragon_right.bmp");
+	CTexture* m_pDragonLeft = CResMgr::GetInst()->LoadTextur(L"Dragon_Monster_left", L"..\\OutPut\\bin_release\\Content\\Texture\\dragon_left.bmp");
 
 
 	GetAnimator()->CreateAnimation(L"Dragon_Motion_right", m_pDragonRight, Vec2(0.f, 0.f), Vec2(100.f, 100.f), Vec2(100.f, 0.f), Vec2(0.f, 0.f), 0.1f, 8);

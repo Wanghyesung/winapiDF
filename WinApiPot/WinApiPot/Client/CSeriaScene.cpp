@@ -37,7 +37,7 @@ void CSeriaScene::render(HDC _dc)
 
 void CSeriaScene::Enter()
 {
-	CTexture* pBackGround = CResMgr::GetInst()->LoadTextur(L"Seria", L"background//seria2.bmp");
+	CTexture* pBackGround = CResMgr::GetInst()->LoadTextur(L"Seria", L"..\\OutPut\\bin_release\\Content\\background//seria2.bmp");
 
 	SetBackGround(pBackGround);
 

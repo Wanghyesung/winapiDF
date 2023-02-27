@@ -100,11 +100,11 @@ void CAnimation::Create(CTexture* _pTex, Vec2 _vLt, Vec2 _vSliceSzie, Vec2 _vSte
 
 void CAnimation::Save(const wstring& _strRelativePath)
 {
-	wstring strFilePath =  CPathMgr::GetInst()->GetContenPath();
-	strFilePath += _strRelativePath;
+	//wstring strFilePath =  CPathMgr::GetInst()->GetContenPath();
+	//strFilePath += _strRelativePath;
 
 	FILE* pFile = nullptr;
-	_wfopen_s(&pFile, strFilePath.c_str(), L"wb");
+	_wfopen_s(&pFile, _strRelativePath.c_str(), L"wb");
 
 	assert(pFile);
 
@@ -156,11 +156,11 @@ void CAnimation::Save(const wstring& _strRelativePath)
 
 void CAnimation::Load(const wstring& _strRelativePath)
 {
-	wstring strFilePath = CPathMgr::GetInst()->GetContenPath();
-	strFilePath += _strRelativePath;
+	//wstring strFilePath = CPathMgr::GetInst()->GetContenPath();
+	//strFilePath += _strRelativePath;
 
 	FILE* pFile = nullptr;
-	_wfopen_s(&pFile, strFilePath.c_str(), L"rb");
+	_wfopen_s(&pFile, _strRelativePath.c_str(), L"rb");
 
 	assert(pFile);
 

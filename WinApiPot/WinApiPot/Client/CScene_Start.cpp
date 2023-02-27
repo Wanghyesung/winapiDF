@@ -51,7 +51,7 @@ void CScene_Start::update()
 void CScene_Start::Enter()
 {
 	//바탕화면 가져오기
-	CTexture* m_pBackGround = CResMgr::GetInst()->LoadTextur(L"BackMap", L"background//mainmap.bmp");
+	CTexture* m_pBackGround = CResMgr::GetInst()->LoadTextur(L"BackMap", L"..\\OutPut\\bin_release\\Content\\background//mainmap.bmp");
 	SetBackGround(m_pBackGround);
 
 	//배경정보 담고 만들기

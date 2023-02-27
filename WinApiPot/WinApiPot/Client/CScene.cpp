@@ -97,6 +97,7 @@ void CScene::PlayerInterface_render(HDC _dc, CTexture* _pTex)
 {
 	CTexture* m_pBackGround = _pTex;
 
+
 	//TransparentBlt(_dc,
 	//	)
 }

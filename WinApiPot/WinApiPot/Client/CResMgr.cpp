@@ -23,11 +23,11 @@ CTexture* CResMgr::LoadTextur(const wstring& _strKey, const wstring& _strRelativ
 	}
 
 	//경로값 가져오기
-	wstring strFilePath = CPathMgr::GetInst()->GetContenPath();
-	strFilePath += _strRelativePath;
+	//wstring strFilePath = CPathMgr::GetInst()->GetContenPath();
+	//strFilePath += _strRelativePath;
 
 	pTex = new CTexture;
-	pTex->Load(strFilePath);
+	pTex->Load(_strRelativePath);
 	pTex->SetKey(_strKey);
 	pTex->SetRelativePath(_strRelativePath);
 	

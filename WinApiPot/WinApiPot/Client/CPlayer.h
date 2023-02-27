@@ -24,7 +24,6 @@ class CPlayer :
     public CObject
 {
 
-
 private:
     PLAYER_STATE playerCurState;
     PLAYER_STATE playerPrevState; //이전 상태값

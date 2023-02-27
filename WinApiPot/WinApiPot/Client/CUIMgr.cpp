@@ -6,7 +6,16 @@
 #include "CKeyMgr.h"
 
 #include "CUI.h"
+CUIMgr::CUIMgr():
+	m_pFoucseUI(nullptr)
+{
 
+}
+
+CUIMgr::~CUIMgr()
+{
+
+}
 
 void CUIMgr::update()
 {
@@ -24,6 +33,7 @@ void CUIMgr::update()
 
 	if (pTargetUI != nullptr)
 	{
+		//´©¸£¸é
 		pTargetUI->MouseOn();
 
 		if (KeyTap)

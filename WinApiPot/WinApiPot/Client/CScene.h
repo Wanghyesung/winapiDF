@@ -36,9 +36,6 @@ public:
 	//배경
 	void backgroundrender(HDC _dc, CTexture* _pTex, Vec2 _vStartPos);
 
-	//인터페이스
-	void PlayerInterface_render(HDC _dc, CTexture* _pTex);
-
 	void RegisterPlayer(CObject* _pObj);
 
 	virtual void Enter() = 0;//현재 씬 들어갈 때 

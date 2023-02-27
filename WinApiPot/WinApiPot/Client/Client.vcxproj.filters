@@ -212,6 +212,9 @@
     <Filter Include="Engine\03.Manager\CUIMgr">
       <UniqueIdentifier>{9d6b1edf-e5b2-4c9a-93f8-b3e51a8ad8ec}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Engine\05.CObject\CUI\CInterFace">
+      <UniqueIdentifier>{3e1f7ba3-9168-4ace-b637-8c078178bb58}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="pch.h" />
@@ -425,6 +428,9 @@
     <ClInclude Include="CUIMgr.h">
       <Filter>Engine\03.Manager\CUIMgr</Filter>
     </ClInclude>
+    <ClInclude Include="CInterFace.h">
+      <Filter>Engine\05.CObject\CUI\CInterFace</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Client.rc">
@@ -632,6 +638,9 @@
     </ClCompile>
     <ClCompile Include="CUIMgr.cpp">
       <Filter>Engine\03.Manager\CUIMgr</Filter>
+    </ClCompile>
+    <ClCompile Include="CInterFace.cpp">
+      <Filter>Engine\05.CObject\CUI\CInterFace</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

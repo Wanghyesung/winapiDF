@@ -23,6 +23,15 @@ public:
     virtual void update();//»ó¼Ó
     virtual void finalupdate();
 
+    /*
+    * TransparentBlt(_dc,
+		300, 600,
+		m_pInterFaceTex->Width(), m_pInterFaceTex->Height(),
+		m_pInterFaceTex->GetDC(),
+		0, 0,
+		m_pInterFaceTex->Width(), m_pInterFaceTex->Height(),
+		RGB(0, 0, 0));
+    */
 private:
     void ChildUpdate();
     void ChildRender(HDC _dc);

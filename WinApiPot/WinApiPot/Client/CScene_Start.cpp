@@ -21,6 +21,8 @@
 #include "CMonFactory.h"
 #include "CSkillMgr.h"
 
+#include "CInterFace.h"
+
 CScene_Start::CScene_Start()
 {
 }
@@ -52,7 +54,7 @@ void CScene_Start::Enter()
 {
 	//바탕화면 가져오기
 	CTexture* m_pBackGround = CResMgr::GetInst()->LoadTextur(L"BackMap", L"..\\OutPut\\bin_release\\Content\\background//mainmap.bmp");
-	SetBackGround(m_pBackGround);
+	SetBackGround(m_pBackGround);	
 
 	//배경정보 담고 만들기
 	tBackGround tInfo = {}; 
@@ -105,6 +107,12 @@ void CScene_Start::Enter()
 	//포탈 크기는 고정으로 생성자에서 만듬
 	AddObject(pPortal_2, GROUP_TYPE::PORTAL);
 
+	CInterFace* pInterFace = new CInterFace();
+	pInterFace->SetScale(Vec2(500.f, 120.f));
+	pInterFace->SetPos(Vec2(400.f, 580.f));
+
+	AddObject(pInterFace, GROUP_TYPE::UI);
+
 	CColliderMgr::GetInst()->ChekGroup(GROUP_TYPE::PLAYER, GROUP_TYPE::MONSTER);
 	CColliderMgr::GetInst()->ChekGroup(GROUP_TYPE::PLAYER, GROUP_TYPE::WALL);
 	CColliderMgr::GetInst()->ChekGroup(GROUP_TYPE::PLAYER, GROUP_TYPE::PORTAL);
@@ -114,6 +122,9 @@ void CScene_Start::Enter()
 
 	//스킬 충돌 확인
 	//CColliderMgr::GetInst()->ChekSkillGroup(GROUP_TYPE::MONSTER);
+
+
+
 
 	//CCameraMgr::GetInst()->FadeOut(1.f);
 }

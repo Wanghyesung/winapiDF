@@ -31,32 +31,34 @@ CUI::~CUI()
 
 void CUI::render(HDC _dc)
 {
-	Vec2 vPos = m_vFinalPos;
-	Vec2 vScale = GetScale();
+	//Vec2 vPos = m_vFinalPos;
+	//Vec2 vScale = GetScale();
 
-	if (m_bCamAfeccted)
-	{
-		vPos = CCameraMgr::GetInst()->GetRenderPos(vPos);
+	//if (m_bCamAfeccted)
+	//{
+	//	vPos = CCameraMgr::GetInst()->GetRenderPos(vPos);
+	//
+	//	CSeleteGDI gdi(_dc, PEN_TYPE::GREEN);
+	//
+	//	Rectangle(_dc,	
+	//		(int)(vPos.x),
+	//		(int)(vPos.y),
+	//		(int)(vPos.x + vScale.x),
+	//		(int)(vPos.y + vScale.y)
+	//	);
+	//}
+	//
+	//else
+	//{
+	//	Rectangle(_dc,
+	//		(int)(vPos.x - vScale.x),
+	//		(int)(vPos.y - vScale.y),
+	//		(int)(vPos.x + vScale.x),
+	//		(int)(vPos.y + vScale.y)
+	//	);
+	//}
 
-		CSeleteGDI gdi(_dc, PEN_TYPE::GREEN);
-
-		Rectangle(_dc,	
-			(int)(vPos.x),
-			(int)(vPos.y),
-			(int)(vPos.x + vScale.x),
-			(int)(vPos.y + vScale.y)
-		);
-	}
-
-	else
-	{
-		Rectangle(_dc,
-			(int)(vPos.x - vScale.x),
-			(int)(vPos.y - vScale.y),
-			(int)(vPos.x + vScale.x),
-			(int)(vPos.y + vScale.y)
-		);
-	}
+	ChildRender(_dc);
 }
 
 void CUI::update()
@@ -66,7 +68,7 @@ void CUI::update()
 
 void CUI::finalupdate()
 {
-	CUI::finalupdate();
+	CObject::finalupdate();
 
 	//부모가 이동하면 자식들도 위치를 이동해야함
 	m_vFinalPos = GetPos();

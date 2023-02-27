@@ -11,6 +11,7 @@
 #include "CCameraMgr.h"
 #include "CEventMgr.h"
 #include "CSkillMgr.h"
+#include "CUIMgr.h"
 
 
 CCore::CCore():
@@ -80,6 +81,7 @@ void CCore::progress()
 	CSkillMgr::GetInst()->update();
 	SceneMgr::GetInst()->update();
 	CColliderMgr::GetInst()->update();
+	CUIMgr::GetInst()->update();
 
 	Rectangle(m_memDC, -1, -1, m_ptResolution.x + 1, m_ptResolution.y + 1);//화면에 보여주는 부분이 아니라 다른 프레임의 화면을 지움(1px선 값까지 계산해서)
 

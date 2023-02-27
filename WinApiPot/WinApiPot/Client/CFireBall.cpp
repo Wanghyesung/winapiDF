@@ -34,8 +34,8 @@ CFireBall::CFireBall(int iDir, Vec2 _vPos) :
 
 	CreateAnimator();
 	GetAnimator()->SetRBG(0, 0, 0);
-	m_pFireballRight = CResMgr::GetInst()->LoadTextur(L"Dragon_Fireball_right", L"Texture\\Fireball_right.bmp");
-	m_pFireballLeft = CResMgr::GetInst()->LoadTextur(L"Dragon_Fireball_left", L"Texture\\Fireball_left.bmp");
+	m_pFireballRight = CResMgr::GetInst()->LoadTextur(L"Dragon_Fireball_right", L"..\\OutPut\\bin_release\\Content\\Texture\\Fireball_right.bmp");
+	m_pFireballLeft = CResMgr::GetInst()->LoadTextur(L"Dragon_Fireball_left", L"..\\OutPut\\bin_release\\Content\\Texture\\Fireball_left.bmp");
 
 	//บา
 	GetAnimator()->CreateAnimation(L"Dragon_Fireball_right", m_pFireballRight, Vec2(0.f, 0.f), Vec2(63.f, 49.f), Vec2(63.f, 0.f), Vec2(0.f, 0.f), 0.1f, 5);

@@ -53,6 +53,9 @@
 #include "C:\Users\wangh\source\tem\WinApiPot\WinApiPot\Client\CHitUpper.cpp"
 
 
+#include "C:\Users\wangh\source\tem\WinApiPot\WinApiPot\Client\CHP.cpp"
+
+
 #include "C:\Users\wangh\source\tem\WinApiPot\WinApiPot\Client\CIdleState.cpp"
 
 
@@ -72,6 +75,9 @@
 
 
 #include "C:\Users\wangh\source\tem\WinApiPot\WinApiPot\Client\CMonster.cpp"
+
+
+#include "C:\Users\wangh\source\tem\WinApiPot\WinApiPot\Client\CMP.cpp"
 
 
 #include "C:\Users\wangh\source\tem\WinApiPot\WinApiPot\Client\CObject.cpp"

@@ -35,6 +35,7 @@ public:
 
 	//¹è°æ
 	void backgroundrender(HDC _dc, CTexture* _pTex, Vec2 _vStartPos);
+	void SetInterFace();
 
 	void RegisterPlayer(CObject* _pObj);
 

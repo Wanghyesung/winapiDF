@@ -164,6 +164,7 @@
     <ClInclude Include="CGravity.h" />
     <ClInclude Include="CHitState.h" />
     <ClInclude Include="CHitUpper.h" />
+    <ClInclude Include="CHP.h" />
     <ClInclude Include="CIdleState.h" />
     <ClInclude Include="CInterFace.h" />
     <ClInclude Include="CKeyMgr.h" />
@@ -172,6 +173,7 @@
     <ClInclude Include="CMachKick.h" />
     <ClInclude Include="CMonFactory.h" />
     <ClInclude Include="CMonster.h" />
+    <ClInclude Include="CMP.h" />
     <ClInclude Include="CObject.h" />
     <ClInclude Include="CPathMgr.h" />
     <ClInclude Include="CPlayer.h" />
@@ -238,6 +240,7 @@
     <ClCompile Include="CGravity.cpp" />
     <ClCompile Include="CHitState.cpp" />
     <ClCompile Include="CHitUpper.cpp" />
+    <ClCompile Include="CHP.cpp" />
     <ClCompile Include="CIdleState.cpp" />
     <ClCompile Include="CInterFace.cpp" />
     <ClCompile Include="CKeyMgr.cpp" />
@@ -245,6 +248,7 @@
     <ClCompile Include="CMachKick.cpp" />
     <ClCompile Include="CMonFactory.cpp" />
     <ClCompile Include="CMonster.cpp" />
+    <ClCompile Include="CMP.cpp" />
     <ClCompile Include="CObject.cpp" />
     <ClCompile Include="CPathMgr.cpp" />
     <ClCompile Include="CPlayer.cpp" />

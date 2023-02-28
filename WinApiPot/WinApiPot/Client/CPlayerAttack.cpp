@@ -10,6 +10,8 @@
 #include "CAnimation.h"
 #include "CAnimator.h"
 
+#include "CSkillMgr.h"
+
 UINT CPlayerAttack::m_iCurAttFrame = 0;
 
 CPlayerAttack::CPlayerAttack() :
@@ -75,6 +77,10 @@ void CPlayerAttack::update()
 
 void CPlayerAttack::Exit()
 {
+	if (CSkillMgr::GetInst()->IsOnSkill())
+	{
+		InitMulitZeroFrame();
+	}
 	CPlayerState::Exit();
 	m_fCurTime = 0;
 }

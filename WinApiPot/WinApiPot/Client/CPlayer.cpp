@@ -483,7 +483,8 @@ void CPlayer::CreateSkill()
 
 void CPlayer::update_doubleKey()
 {
-	if (GetGravity()->IsGetGravity())
+	
+	if (GetGravity()->IsGetGravity() || m_bOnSkill)
 	{
 		m_iKeyStack = 0;
 		return;

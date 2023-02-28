@@ -76,7 +76,7 @@ void CUI::finalupdate()
 
 	if (GetParentUI() != nullptr)
 	{
-		m_vFinalPos += GetParentUI()->GetPos();
+		m_vFinalPos += GetParentUI()->GetFinalPos();
 	}
 
 	MouseOnCheck();

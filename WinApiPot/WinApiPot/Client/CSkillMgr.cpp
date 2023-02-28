@@ -17,6 +17,9 @@
 #include "CWalkFire.h"
 #include "CMachKick.h"
 
+#include "CFSM.h"
+#include "CPlayerState.h"
+
 #include "CGravity.h"
 #include "CFSM.h"
 #include "CAnimator.h"
@@ -148,10 +151,6 @@ void CSkillMgr::skillKey_update()
 		m_eCurStkllState = SKILL_STATE::END;
 		return;
 	}
-
-
-	map<SKILL_STATE, float>::iterator iter = m_mapSkill.find(m_eCurStkllState);
-	m_bOnSkill = true;//현재 스킬 상태를 나태냄
 	
 }
 
@@ -161,6 +160,7 @@ void CSkillMgr::SetSkillTimeMax(SKILL_STATE _eSkill)
 
 	iter->second = m_fMaxSkillTime;
 }
+
 
 bool CSkillMgr::IsPossibleSkill(SKILL_STATE _tSkill)
 {
@@ -179,13 +179,22 @@ bool CSkillMgr::IsPossibleSkill(SKILL_STATE _tSkill)
 	//스킬 사용
 	if (iter->second == 0.f)
 	{
-		//사용이 가능하면 그 스킬에 enter() 호출
-		m_pPlayer->m_pSkill->FindSkillState(_tSkill)->enter();
+		//내 state -> exit  skillstate-> enter
+		InitState(_tSkill);
 		return true;
 	}
 
 	return false;
 }
+
+void CSkillMgr::InitState(SKILL_STATE _tSkill)
+{
+	m_bOnSkill = true;//현재 스킬 상태를 나태냄
+	m_pPlayer->m_pSkill->FindSkillState(_tSkill)->enter();
+	m_pPlayer->m_pFSM->GetCurState()->Exit();
+	m_pPlayer->playerCurState = PLAYER_STATE::IDLE;
+}
+
 
 
 

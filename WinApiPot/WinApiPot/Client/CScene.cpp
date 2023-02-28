@@ -10,6 +10,11 @@
 #include "CCameraMgr.h"
 #include "CGravity.h"
 
+#include "CHP.h"
+#include "CMP.h"
+#include "CInterFace.h"
+
+
 CScene::CScene():
 	m_pPlayer(nullptr),
 	m_pBackgroundTex(nullptr)
@@ -91,6 +96,26 @@ void CScene::backgroundrender(HDC _dc, CTexture* _pTex, Vec2 _vStartPos)
 		_pTex->GetDC(),
 		0, 0,
 		SRCCOPY);
+}
+
+void CScene::SetInterFace()
+{
+	CInterFace* pInterFace = new CInterFace();
+	pInterFace->SetScale(Vec2(500.f, 120.f));
+	pInterFace->SetPos(Vec2(400.f, 580.f));
+
+	CHP* pHP = new CHP;
+	pHP->SetScale(Vec2(75.f, 97.f));
+	pHP->SetPos(Vec2(13.f, 14.f));
+	pInterFace->AddChildUI(pHP);
+
+	CMP* pMP = new CMP;
+	pMP->SetScale(Vec2(75.f, 97.f));
+	pMP->SetPos(Vec2(403.f, 14.f));
+	pInterFace->AddChildUI(pMP);
+
+	AddObject(pInterFace, GROUP_TYPE::UI);
+
 }
 
 

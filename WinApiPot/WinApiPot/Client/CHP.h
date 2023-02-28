@@ -1,32 +1,29 @@
 #pragma once
 #include "CUI.h"
-
 class CTexture;
 
-class CInterFace :
+class CHP :
     public CUI
 {
 
 public:
-    CInterFace();
-    virtual ~CInterFace();
+    CHP();
+    virtual ~CHP();
 
 private:
-    CTexture* m_pInterFaceTex;
-    CTexture* m_pMPTex;
+    CTexture* m_pHPTex;
 
+    int m_iMinusHp;
+
+public:
+    virtual void render(HDC _dc);
+    virtual void update();//상속
 
 public:
     virtual void MouseOn();//UI위에 마우스 올라왔을 떄 
     virtual void MouseLbtnDown();//UI안에서 눌렸을 떄
     virtual void MouseLbtnUp();//UI안에서 땠을 때
     virtual void MouseLbtnClicked();//UI안에서 누르고 떘을 떄
-
-public:
-    virtual void render(HDC _dc);
-private:
-    
-
 
 };
 

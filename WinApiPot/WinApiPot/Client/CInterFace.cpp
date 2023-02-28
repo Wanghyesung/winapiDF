@@ -10,6 +10,8 @@ CInterFace::CInterFace():
 	m_pInterFaceTex(nullptr)
 {
 	m_pInterFaceTex = CResMgr::GetInst()->LoadTextur(L"InterFace", L"..\\OutPut\\bin_release\\Content\\Interface//interface.bmp");
+	//m_pHPTex = CResMgr::GetInst()->LoadTextur(L"HP", L"..\\OutPut\\bin_release\\Content\\Interface//HP.bmp");
+	//m_pMPTex = CResMgr::GetInst()->LoadTextur(L"MP", L"..\\OutPut\\bin_release\\Content\\Interface//MP.bmp");
 }
 
 CInterFace::~CInterFace()
@@ -19,12 +21,12 @@ CInterFace::~CInterFace()
 
 void CInterFace::MouseOn()
 {
-	int a = 10;
+
 }
 
 void CInterFace::MouseLbtnDown()
 {
-	int a = 10;
+	
 }
 
 void CInterFace::MouseLbtnUp()
@@ -39,9 +41,7 @@ void CInterFace::MouseLbtnClicked()
 
 void CInterFace::render(HDC _dc)
 {
-	CUI::render(_dc);
-
-	Vec2 vPos = GetPos();
+	Vec2 vPos = GetFinalPos();
 
 	TransparentBlt(_dc,
 		(int)vPos.x, (int)vPos.y,
@@ -50,5 +50,7 @@ void CInterFace::render(HDC _dc)
 		0, 0,
 		m_pInterFaceTex->Width(), m_pInterFaceTex->Height(),
 		RGB(0, 0, 0));
+
+	CUI::render(_dc);
 
 }

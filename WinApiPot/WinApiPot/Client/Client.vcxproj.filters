@@ -215,6 +215,12 @@
     <Filter Include="Engine\05.CObject\CUI\CInterFace">
       <UniqueIdentifier>{3e1f7ba3-9168-4ace-b637-8c078178bb58}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Engine\05.CObject\CUI\CInterFace\CHP">
+      <UniqueIdentifier>{9a99f83b-9767-405b-aec6-46472addb8ff}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\05.CObject\CUI\CInterFace\CMP">
+      <UniqueIdentifier>{85341f5f-4f73-4372-9cd6-9e1caca88a47}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="pch.h" />
@@ -431,6 +437,12 @@
     <ClInclude Include="CInterFace.h">
       <Filter>Engine\05.CObject\CUI\CInterFace</Filter>
     </ClInclude>
+    <ClInclude Include="CHP.h">
+      <Filter>Engine\05.CObject\CUI\CInterFace\CHP</Filter>
+    </ClInclude>
+    <ClInclude Include="CMP.h">
+      <Filter>Engine\05.CObject\CUI\CInterFace\CMP</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Client.rc">
@@ -641,6 +653,12 @@
     </ClCompile>
     <ClCompile Include="CInterFace.cpp">
       <Filter>Engine\05.CObject\CUI\CInterFace</Filter>
+    </ClCompile>
+    <ClCompile Include="CHP.cpp">
+      <Filter>Engine\05.CObject\CUI\CInterFace\CHP</Filter>
+    </ClCompile>
+    <ClCompile Include="CMP.cpp">
+      <Filter>Engine\05.CObject\CUI\CInterFace\CMP</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

@@ -11,6 +11,8 @@
 #include "CAnimation.h"
 #include "CAnimator.h"
 
+#include "CSkillMgr.h"
+
 
 
 CPlayerAttackDown::CPlayerAttackDown():
@@ -63,6 +65,11 @@ void CPlayerAttackDown::update()
 
 void CPlayerAttackDown::Exit()
 {
+	if (CSkillMgr::GetInst()->IsOnSkill())
+	{
+		InitMulitZeroFrame();
+	}
+
 	CPlayerState::Exit();
 	m_fCurTime = 0;
 }

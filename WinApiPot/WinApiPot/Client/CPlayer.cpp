@@ -25,6 +25,7 @@
 #include "CSkill.h"
 #include "CSkillState.h"
 #include "CSkillMgr.h"
+#include "CInterfaceMgr.h"
 
 #include "CFireBall.h"
 
@@ -35,6 +36,8 @@ CPlayer::CPlayer() :
 	playerCurSkill(SKILL_STATE::END),
 	m_fRunTime(0.3f),
 	m_fCurTime(0.f),
+	m_fAccTime(10.f),
+	m_fCurAccTime(0.f),
 	m_iCurPushKey((UINT)KEY::LAST),
 	m_iDirX(1),
 	m_iDirY(1),
@@ -160,6 +163,9 @@ void CPlayer::CreateFSM(CFSM* _pFSM)
 
 void CPlayer::update()
 {
+	//인터페이스에 체력 마나 표시
+	update_InterFace();
+
 	//움직이기 전에 현재 스킬 사용이 되었는지 확인
 	m_bOnSkill = CSkillMgr::GetInst()->IsOnSkill();
 	update_doubleKey();
@@ -404,6 +410,8 @@ void CPlayer::CreateBullet(CPlayer* _pPlayer, ATTACK_TYPE _eAttType)
 	CreateObject(pBullet, GROUP_TYPE::BULLET);
 
 }
+
+
 void CPlayer::HitPlayer(CCollider* _pOther, const tAttackInfo& _tAttInfo)
 {
 	m_tPlayerHit.m_fHitRcnt = _tAttInfo.m_fAttRcnt;
@@ -418,6 +426,7 @@ void CPlayer::HitPlayer(CCollider* _pOther, const tAttackInfo& _tAttInfo)
 
 	CGravity* pGravity = GetGravity();
 	ATTACK_TYPE eAttackType = _tAttInfo.m_eAttType;
+
 	if (playerCurState == PLAYER_STATE::UPPER_HIT || pGravity->IsGetGravity())
 		eAttackType = ATTACK_TYPE::UPPER;
 
@@ -442,14 +451,17 @@ void CPlayer::HitPlayer(CCollider* _pOther, const tAttackInfo& _tAttInfo)
 	break;
 	}
 
-	//m_tPlayerInfo.m_iHP -= _tAttInfo.m_fAttackDamage;
+	
+	m_tPlayerInfo.m_fHP -= _tAttInfo.m_fAttackDamage;
+	if (m_tPlayerInfo.m_fHP <= 0.f)
+		m_tPlayerInfo.m_fHP = 0.f;
 }
 
 void CPlayer::OnColliderEnter(CCollider* _pOther)
 {
 	CObject* pObj = _pOther->GetObj();
 	if (pObj->GetTag() == GROUP_TYPE::MONSTER_SKILL
-		&& m_tPlayerInfo.m_iHP != 0)
+		&& m_tPlayerInfo.m_fHP != 0)
 	{
 		if (dynamic_cast<CFireBall*>(pObj))
 		{
@@ -458,10 +470,11 @@ void CPlayer::OnColliderEnter(CCollider* _pOther)
 		}
 	}
 
-	//if (m_tPlayerInfo.m_iHP == 0)
+	//if (m_tPlayerInfo.m_fHP == 0)
 	//{
 	//	ChangeFSMState(m_pFSM, PLAYER_STATE::DEAD);
 	//}
+
 }
 
 void CPlayer::OnColliderExit(CCollider* _pOther)
@@ -557,4 +570,21 @@ void CPlayer::update_doubleKey()
 		m_bIsOnDobuleKey = false;
 
 	m_iPrePushKey = m_iCurPushKey;
+}
+
+void CPlayer::update_InterFace()
+{
+	//내 체력과 마나 표시 
+	m_fCurAccTime += fDT;
+	if (m_fCurAccTime >= m_fAccTime)
+	{
+		//체력회복
+		m_fCurAccTime = 0.f;
+		float fHP = m_tPlayerInfo.m_fHP + m_tPlayerInfo.m_AccHP;
+		if (fHP > 0.f && fHP < 100.f)
+		{
+			m_tPlayerInfo.m_fHP += m_tPlayerInfo.m_AccHP;
+		}
+	}
+	CInterfaceMgr::GetInst()->ChangeInterFaceValue(m_tPlayerInfo.m_fHP, m_tPlayerInfo.m_fMP);
 }

@@ -19,6 +19,8 @@ CMachKick::CMachKick() :
 {
 	SetSKillName(L"Player_skill_mach_kick_");
 
+	SetMP(4.f);
+
 	tAttackInfo tAtt = {};
 	tAtt.m_eAttType = ATTACK_TYPE::NORMAL;
 	tAtt.m_fAttackDamage = 40.f;

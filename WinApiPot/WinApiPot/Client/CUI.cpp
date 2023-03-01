@@ -110,6 +110,22 @@ void CUI::ChildFinalupdate()
 }
 
 
+CUI* CUI::GetChildUI(const wstring& _strName)
+{
+	vector<CUI*> vecChildUI = GetChildVecUI();
+
+	for (int i = 0; i < vecChildUI.size(); ++i)
+	{
+		 const wstring& strName = vecChildUI[i]->GetName();
+		 if (strName == _strName)
+		 {
+			 return vecChildUI[i];
+		 }
+	}
+
+	return nullptr;
+}
+
 //virtual 
 void CUI::MouseOn()
 {

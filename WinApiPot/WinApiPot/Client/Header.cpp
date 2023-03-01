@@ -106,7 +106,9 @@ CPlayer* CreatePlayer(Vec2 _vPos)
 
 	tPlayerInfo.m_fAtt = 10.f;
 	tPlayerInfo.m_fSpeed = 200.f;
-	tPlayerInfo.m_iHP = 100.f;
+	tPlayerInfo.m_fMP = 100.f;
+	tPlayerInfo.m_fHP = 100.f;
+	tPlayerInfo.m_AccHP = 1.f;
 
 	player->SetPlayerInfo(tPlayerInfo);
 

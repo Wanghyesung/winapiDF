@@ -7,15 +7,15 @@ class CPlayerState;
 class CBullet;
 class CFSM;
 
+
 struct tPlayerInfo
 {
     float       m_fSpeed;   //속도
-    float       m_iHP;      //체력
+    float       m_fHP;      //체력
+    float       m_fMP;      //마나
     float       m_fAtt;     //공격력
+    float       m_AccHP;
 };
-
-
-
 
 class CTexture;
 class CAnimator;
@@ -23,7 +23,7 @@ class CAnimator;
 class CPlayer :
     public CObject
 {
-
+   
 private:
     PLAYER_STATE playerCurState;
     PLAYER_STATE playerPrevState; //이전 상태값
@@ -48,6 +48,9 @@ private:
     float m_fCurTime;
     float m_fRunTime;
     bool m_bIsOnDobuleKey;
+
+    float m_fCurAccTime;
+    float m_fAccTime;
 
     CTexture* m_pBullet;
     CTexture* m_pFireMotion;
@@ -94,6 +97,7 @@ public:
 
 private:
     void update_doubleKey();
+    void update_InterFace();
     PLAYER_STATE GetPrevState() { return playerPrevState; }
     void SetPrevState(PLAYER_STATE _eState) { playerPrevState = _eState; }
 

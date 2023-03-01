@@ -62,6 +62,9 @@
 #include "C:\Users\wangh\source\tem\WinApiPot\WinApiPot\Client\CInterFace.cpp"
 
 
+#include "C:\Users\wangh\source\tem\WinApiPot\WinApiPot\Client\CInterFaceMgr.cpp"
+
+
 #include "C:\Users\wangh\source\tem\WinApiPot\WinApiPot\Client\CKeyMgr.cpp"
 
 

@@ -3,7 +3,7 @@
 
 class CSkill;
 class CCollider;
-
+class CSkillMgr;
 
 
 
@@ -19,6 +19,8 @@ private:
 	wstring m_strSkillName;
 
 	int m_iFrm;
+
+	float m_fMPValue;
 
 	bool m_bOnAttack;
 
@@ -51,6 +53,10 @@ public:
 	const vector<UINT>& GetAttackFrame() { return m_vecAttackFrame; }
 
 protected:
+	void SetMP(float _f) { m_fMPValue = _f; }
+	float GetMP() { return m_fMPValue; }
+
+protected:
 	void SetAttInfo(const tAttackInfo& _tAtt) { m_tAtt = _tAtt; }
 	void SetAttackOn(bool _b) { m_bOnAttack = _b; }
 
@@ -63,6 +69,7 @@ public:
 	virtual void OnCollision(CCollider* _pOther) {};
 
 
+	friend class CSkillMgr;
 	friend class CSkill;
 };
 

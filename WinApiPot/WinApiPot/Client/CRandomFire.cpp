@@ -24,6 +24,8 @@ CRandomFire::CRandomFire() :
 {
 	SetSKillName(L"Player_skill_randomfire");
 
+	SetMP(8.f);
+
 	tAttackInfo tAtt = {};
 	tAtt.m_eAttType = ATTACK_TYPE::NORMAL;
 	tAtt.m_fAttackDamage = 10.f;

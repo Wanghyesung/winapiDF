@@ -20,6 +20,8 @@ CKick::CKick() :
 {
 	SetSKillName(L"Player_skill_kick_");
 
+	SetMP(3.f);
+
 	tAttackInfo tAtt = {};
 	tAtt.m_eAttType = ATTACK_TYPE::UPPER;
 	tAtt.m_fAttackDamage = 40.f;

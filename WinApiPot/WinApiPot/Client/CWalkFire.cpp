@@ -23,6 +23,8 @@ CWalkFire::CWalkFire():
 	m_iCurTime(0.f),
 	m_iDir(1)
 {
+	SetMP(8.f);
+
 	SetSKillName(L"Player_skill_walkfire");
 }
 

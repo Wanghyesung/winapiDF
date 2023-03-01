@@ -24,6 +24,8 @@ CWindmill::CWindmill() :
 	//내 스킬 이름 정하기
 	SetSKillName(L"Player_skill_windmill");
 
+	SetMP(4.f);
+
 	tAttackInfo tAtt = {};
 	tAtt.m_eAttType = ATTACK_TYPE::NORMAL;
 	tAtt.m_fAttackDamage = 20.f;

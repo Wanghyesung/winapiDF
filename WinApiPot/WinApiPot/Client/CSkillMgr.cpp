@@ -26,6 +26,8 @@
 #include "CAnimation.h"
 #include "CKeyMgr.h"
 
+#include "CInterfaceMgr.h"
+
 #define MAX_SKILLTIME 5.f;
 
 CSkillMgr::CSkillMgr() :
@@ -76,6 +78,8 @@ void CSkillMgr::initSkill()
 	m_pPlayer->m_pSkill->AddSkill(pWalkFire);
 	SceneMgr::GetInst()->GetCurSCene()->AddObject(pWalkFire, GROUP_TYPE::SKILL);
 }
+
+
 
 void CSkillMgr::update()
 {
@@ -165,15 +169,16 @@ void CSkillMgr::SetSkillTimeMax(SKILL_STATE _eSkill)
 bool CSkillMgr::IsPossibleSkill(SKILL_STATE _tSkill)
 {
 	map<SKILL_STATE, float>::iterator iter = m_mapSkill.find(_tSkill);
-
+	CSkillState* pSkill = m_pPlayer->m_pSkill->FindSkillState(_tSkill);
 	//등록되어있는 스킬인지
-	if (m_pPlayer->m_pSkill->FindSkillState(_tSkill) == nullptr)
-	{
+	if (pSkill == nullptr)
 		return false;
-	}
 
 	//플레이어 상태값에 따른 스킬 사용 유무
 	if (m_pPlayer->GetGravity()->IsGetGravity())
+		return false;
+
+	if (m_pPlayer->m_tPlayerInfo.m_fMP < pSkill->GetMP())
 		return false;
 
 	//스킬 사용
@@ -181,6 +186,7 @@ bool CSkillMgr::IsPossibleSkill(SKILL_STATE _tSkill)
 	{
 		//내 state -> exit  skillstate-> enter
 		InitState(_tSkill);
+		reducedMp(_tSkill);
 		return true;
 	}
 
@@ -190,9 +196,17 @@ bool CSkillMgr::IsPossibleSkill(SKILL_STATE _tSkill)
 void CSkillMgr::InitState(SKILL_STATE _tSkill)
 {
 	m_bOnSkill = true;//현재 스킬 상태를 나태냄
-	m_pPlayer->m_pSkill->FindSkillState(_tSkill)->enter();
+	CSkillState* pSkill = m_pPlayer->m_pSkill->FindSkillState(_tSkill);
 	m_pPlayer->m_pFSM->GetCurState()->Exit();
 	m_pPlayer->playerCurState = PLAYER_STATE::IDLE;
+	pSkill->enter();
+}
+
+void CSkillMgr::reducedMp(SKILL_STATE _tSkill)
+{
+	//MP 소모
+	CSkillState* pSkill = m_pPlayer->m_pSkill->FindSkillState(_tSkill);
+	m_pPlayer->m_tPlayerInfo.m_fMP -= pSkill->GetMP();
 }
 
 

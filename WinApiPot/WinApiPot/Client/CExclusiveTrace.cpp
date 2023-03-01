@@ -23,7 +23,7 @@
 
 CExclusiveTrace::CExclusiveTrace():
 	CState(MONSTER_STATE::TRACE),
-	m_fCurAttackTime(0.f)
+	m_fCurAttackTime(4.f)
 {
 
 }

@@ -167,6 +167,7 @@
     <ClInclude Include="CHP.h" />
     <ClInclude Include="CIdleState.h" />
     <ClInclude Include="CInterFace.h" />
+    <ClInclude Include="CInterFaceMgr.h" />
     <ClInclude Include="CKeyMgr.h" />
     <ClInclude Include="CKick.h" />
     <ClInclude Include="Client.h" />
@@ -243,6 +244,7 @@
     <ClCompile Include="CHP.cpp" />
     <ClCompile Include="CIdleState.cpp" />
     <ClCompile Include="CInterFace.cpp" />
+    <ClCompile Include="CInterFaceMgr.cpp" />
     <ClCompile Include="CKeyMgr.cpp" />
     <ClCompile Include="CKick.cpp" />
     <ClCompile Include="CMachKick.cpp" />

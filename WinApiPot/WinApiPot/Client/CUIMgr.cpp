@@ -146,7 +146,7 @@ CUI* CUIMgr::GetTargetUI(CUI* _pParentUI)
 			vecNoeTarget.push_back(pUI);
 		}
 
-		const vector<CUI*> vecChildUI = pUI->GetChildUI();
+		const vector<CUI*> vecChildUI = pUI->GetChildVecUI();
 		for (int i = 0; i < vecChildUI.size(); ++i)
 		{
 			queue.push_back(vecChildUI[i]);

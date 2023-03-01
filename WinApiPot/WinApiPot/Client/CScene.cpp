@@ -13,6 +13,7 @@
 #include "CHP.h"
 #include "CMP.h"
 #include "CInterFace.h"
+#include "CInterfaceMgr.h"
 
 
 CScene::CScene():
@@ -115,6 +116,8 @@ void CScene::SetInterFace()
 	pInterFace->AddChildUI(pMP);
 
 	AddObject(pInterFace, GROUP_TYPE::UI);
+
+	CInterfaceMgr::GetInst()->SetInterFace(pInterFace);
 
 }
 

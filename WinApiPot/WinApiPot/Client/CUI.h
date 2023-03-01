@@ -36,12 +36,13 @@ public:
     void SetFinalPos(Vec2 _vPos) { m_vFinalPos = _vPos; }
 
     CUI* GetParentUI() { return m_pParentUI; }
-    vector<CUI*> GetChildUI() { return m_vecChildUI; }
+    vector<CUI*> GetChildVecUI() { return m_vecChildUI; }
 
     bool IsLBntDown() { return m_bLbntDown; }
     bool IsMosueOn() { return m_bMouseOn; }
 
     void AddChildUI(CUI* _pUI) { m_vecChildUI.push_back(_pUI); _pUI->m_pParentUI = this; }
+    CUI* GetChildUI(const wstring& _strName);
 
 public:
     virtual void MouseOn();//UI위에 마우스 올라왔을 떄 

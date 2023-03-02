@@ -23,7 +23,7 @@ public:
     virtual void MouseLbtnClicked();//UI안에서 누르고 떘을 떄
 
 private:
-    void SetMinusMp(float _fMp) { m_iMinusMp += _fMp; }
+    void SetMinusMp(float _fMp) { m_iMinusMp = _fMp; }
 
 
     friend class CInterFace;

@@ -47,6 +47,15 @@ struct Vec2
 		return (Vec2(x / _f, y / _f));
 	}
 
+
+	bool operator <=(Vec2 _v)
+	{
+		if (x <= _v.x && y <= _v.y)
+			return true;
+		else
+			return false;
+	}
+
 	void operator +=(Vec2 _v)
 	{
 		x += _v.x;

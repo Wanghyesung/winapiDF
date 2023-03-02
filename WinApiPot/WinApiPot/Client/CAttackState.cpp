@@ -52,16 +52,8 @@ void CAttackState::update()
 	{
 		return;
 	}
-
-	//if (m_pMon->IsHit())
-	//{ 
-	//	m_iAttCount = 0;
-	//	ChangeAIState(GetAI(), MONSTER_STATE::IDLE);
-	//	m_pMon->GetAnimator()->GetCurAnimation()->SetFram(0);
-	//	return;
-	//}
 	
-	//프레임 2번 나가나보네
+	
 	int iCurFrame = m_pMon->GetAnimator()->GetCurAnimation()->GetCurFrame();
 
 	if (iCurFrame == -1)

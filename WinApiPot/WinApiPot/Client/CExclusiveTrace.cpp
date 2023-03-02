@@ -39,7 +39,6 @@ void CExclusiveTrace::update()
 	if (GetMonster()->IsDead())
 		return;
 
-
 	m_pTarget = (CPlayer*)SceneMgr::GetInst()->GetCurSCene()->GetPlayerObj();
 
 	m_fCurAttackTime += fDT;
@@ -82,7 +81,7 @@ void CExclusiveTrace::update()
 	}
 	
 
-
+	//공격
 	if (vDiff.Length() <= tMonAttackInfo.m_fAttackRange.Length())
 	{
 		//공격 사거리에 들면 플레이어 오브젝트 y축에 맞게 내려감

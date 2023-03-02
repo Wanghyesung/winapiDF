@@ -7,6 +7,7 @@ enum class MON_TYPE
 	NORMAL,
 	RANGE,
 	DRAGON,
+	BLUE_DRAGON,
 };
 
 

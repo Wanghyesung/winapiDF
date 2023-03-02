@@ -82,6 +82,10 @@ void CScene_Start::Enter()
 	pMon->SetName(L"CDragon");
 	AddObject(pMon, GROUP_TYPE::MONSTER);
 
+	CMonster* pBlue = CMonFactory::CraeteMonster(MON_TYPE::BLUE_DRAGON, Vec2(1400.f, 580.f));
+	pBlue->SetName(L"BlueDragon"); 
+	AddObject(pBlue, GROUP_TYPE::MONSTER);
+
 	CWall* pWall_2 = new CWall;
 	pWall_2->SetName(L"Wall_2");
 	pWall_2->SetPos(Vec2(2000.f, 320.f));

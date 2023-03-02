@@ -466,6 +466,10 @@ void CPlayer::OnColliderEnter(CCollider* _pOther)
 		if (dynamic_cast<CFireBall*>(pObj))
 		{
 			CFireBall* pFire = dynamic_cast<CFireBall*>(pObj);
+			if (m_bOnSkill)
+			{
+				m_pSkill->GetCurSkill()->exit();
+			}
 			HitPlayer(_pOther, pFire->GetAttInfo());
 		}
 	}

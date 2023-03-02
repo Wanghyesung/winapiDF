@@ -48,6 +48,9 @@ void CAnimator::LoadAnimation(const wstring& _strRelativePath)
 void CAnimator::Play(const wstring& _strName, bool _bRepeat)
 {
 	m_pCurAnim = FindAnimation(_strName);
+	if (m_pCurAnim == nullptr)
+		assert(nullptr);
+
 	m_bRepeat = _bRepeat;//연속재생
 }
 

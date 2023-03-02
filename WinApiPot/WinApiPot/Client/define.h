@@ -88,6 +88,8 @@ enum class MONSTER_STATE
 	PATROL, //¼øÂû
 	TRACE,
 	ATTACK,
+	ATTACK2,
+	DEFENFS,
 	HIT,
 	UPPER_HIT,
 	DEAD,

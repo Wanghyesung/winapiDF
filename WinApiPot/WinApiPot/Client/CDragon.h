@@ -18,7 +18,9 @@ private:
 public:
 	virtual void update();
 	virtual void render(HDC _dc);
-	virtual void Hit(CCollider* _pOther, const tAttackInfo& _tAtt); 
+
+private:
+	void hit(CCollider* _pOther, const tAttackInfo& _tAtt); 
 
 public:
 	virtual void OnColliderEnter(CCollider* _pOther);

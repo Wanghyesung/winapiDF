@@ -47,13 +47,13 @@ void CTraceState::update()
 
 	if (isJump)//점프중이라면
 	{
-		vPos = GetMonster()->GetPos();
+		vPos = GetMonster()->GetCollider()->GetFinalPos();
 		vTargetPos = m_pTarget->GetJumPos(); //점프할 떄 착지 지점
 	}
 
 	else
 	{
-		vPos = GetMonster()->GetPos();  //내 지점
+		vPos = GetMonster()->GetCollider()->GetFinalPos();//내 지점
 		vTargetPos = m_pTarget->GetCollider()->GetFinalPos(); // 상대 지점
 	}
 
@@ -68,9 +68,13 @@ void CTraceState::update()
 		ChangeAIState(GetAI(),m_eNextState);
 		return;
 	}
-
-	//일직선상에서 내 공격범위안에 들어오면 그때 공격
 	
+	if (vDiff.Length() <= attackInfo.m_fAttackRange.Length())
+	{
+		m_eNextState = MONSTER_STATE::ATTACK;
+		ChangeAIState(GetAI(), m_eNextState);
+		return;
+	}
 
 	if (vDiff.IsZero())
 		vDiff = Vec2(0.f, 0.f);

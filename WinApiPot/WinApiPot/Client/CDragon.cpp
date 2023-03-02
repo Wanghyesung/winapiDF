@@ -146,7 +146,7 @@ void CDragon::update_state()
 	{
 		wstring sMtion = L"Dragon_fullHit" + sDir;
 		GetAnimator()->Play(sMtion, false);
-		SetActiv(false);//비활성화
+		SetActiv(false);//비활성화 (공격 관통하게)
 		int iFrame = GetAnimator()->GetCurAnimation()->GetCurFrame();
 		((CDeadState*)GetAI()->GetState(MONSTER_STATE::DEAD))->SetAnimFrame(iFrame);
 	}
@@ -159,53 +159,9 @@ void CDragon::render(HDC _dc)
 	component_render(_dc);
 }
 
-void CDragon::Hit(CCollider* _pOther, const tAttackInfo& _tAtt)
+void CDragon::hit(CCollider* _pOther, const tAttackInfo& _tAtt)
 {
-	tHitInfo& tHitInfo = GetHitInfo();
-	tMonInfo& tMonInfo = GetMonInfo();
-	CCollider* pCollider = GetCollider();
-
-	tHitInfo.m_fHitRcnt = _tAtt.m_fAttRcnt;
-	tHitInfo.m_fHitRigidityTime = _tAtt.m_fAttRigidityTime;
-	tHitInfo.m_fHitUpperRcnt = _tAtt.m_fAttUpperRcnt;
-
-	if (_pOther->GetObj()->GetTag() == GROUP_TYPE::SKILL
-		&& tMonInfo.m_iHp != 0)
-	{
-		float fDir = GetCollider()->GetFinalPos().x - _pOther->GetFinalPos().x;
-		if (fDir > 0.f)
-			fDir = 1.f;
-		else
-			fDir = -1.f;
-
-		ATTACK_TYPE eAttackType = _tAtt.m_eAttType;
-		if (m_tMonState == MONSTER_STATE::UPPER_HIT)
-			eAttackType = ATTACK_TYPE::UPPER;
-
-		switch (eAttackType)
-		{
-		case ATTACK_TYPE::UPPER:
-		{
-			tHitInfo.m_fHitDir = fDir;
-			GetGravity()->SetGravity(true);
-			if (GetJumPos().IsZero())
-				SetJumPos(pCollider->GetFinalPos());
-			GetRigidBody()->SetVelocity(Vec2(0.f, tHitInfo.m_fHitUpperRcnt));
-			//GetRigidBody()->SetAccelA(Vec2(0.f, _tAtt.m_fAttUpperAcc));
-			ChangeAIState(GetAI(), MONSTER_STATE::UPPER_HIT);
-		}
-		break;
-
-		case ATTACK_TYPE::NORMAL:
-		{
-			tHitInfo.m_fHitDir = fDir;
-			ChangeAIState(GetAI(), MONSTER_STATE::HIT);
-		}
-		break;
-		}
-
-		//tMonInfo.m_iHp -= _tAtt.m_fAttackDamage;
-	}
+	CMonster::hit(_pOther, _tAtt);
 }
 
 void CDragon::OnColliderEnter(CCollider* _pOther)
@@ -219,7 +175,7 @@ void CDragon::OnColliderEnter(CCollider* _pOther)
 		if (dynamic_cast<CBullet*>(pobj))
 		{
 			CBullet* pBullet = dynamic_cast<CBullet*>(pobj);
-			Hit(pBullet->GetCollider(), pBullet->GetAttInfo());
+			hit(pBullet->GetCollider(), pBullet->GetAttInfo());
 		}
 	}
 
@@ -248,7 +204,7 @@ void CDragon::OnCollision(CCollider* _pOther)
 			if (!pSkill->IsAttackOn())
 				return;
 
-			Hit(pSkill->GetCollider(), pSkill->GetAttInfo());
+			hit(pSkill->GetCollider(), pSkill->GetAttInfo());
 		}
 
 		if (tMonInfo.m_iHp == 0)

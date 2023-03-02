@@ -31,22 +31,21 @@ private:
     tHitInfo m_tHitInfo;
     tAttackInfo m_tAttackInfo;
 
-    Vec2 m_vHitMove;
-
     float m_fAttTime;   
     float m_fCurAttTime;
 
-public:
+protected:
     void SetDead() { m_bDead = true; }
-    bool IsDead() { return m_bDead; }
-
     void SetActiv(bool _b) { m_bActiv = _b; }
+
+public:
+    bool IsDead() { return m_bDead; }
     bool IsActiv() { return m_bActiv; }
 
 public:
     virtual void update();
     virtual void render(HDC _dc);
-    virtual void Hit(CCollider* _pOther, const tAttackInfo& _tAtt) {};
+   
 
     AI* GetAI() { return m_AI; }
     void SetAI(AI* _AI);
@@ -58,9 +57,9 @@ protected:
     float& GetAttCurTime() { return m_fCurAttTime;}
     float GetAttTime() { return m_fAttTime; }
 
-public:
-    void SetHitMove(Vec2 _vAmountMove) { m_vHitMove = _vAmountMove; }
-    Vec2 GetHitMove() { return m_vHitMove; }
+    virtual void hit(CCollider* _pOther, const tAttackInfo& _tAtt);
+
+
 
 public:
     void SettMonInfo(const tMonInfo& _tMonInfo) { m_tMonInfo = _tMonInfo; }
@@ -68,7 +67,7 @@ public:
 
 public:
     void SetAttackInfo(const tAttackInfo& _tAttackInfo) { m_tAttackInfo = _tAttackInfo; }
-    tAttackInfo GetAttackInfo() { return m_tAttackInfo; }
+    const tAttackInfo& GetAttackInfo() { return m_tAttackInfo; }
 
     void InitAttackInfo(const tAttackInfo& _tAttackInfo) { m_tAttackInfo = _tAttackInfo; }
 
@@ -76,7 +75,8 @@ public:
     virtual void OnColliderEnter(CCollider* _pOther);
     virtual void OnColliderExit(CCollider* _pOther);   
     virtual void OnCollision(CCollider* _pOther);
-
+    
     friend class CMonFactory;
+    friend class CDeadState;
 };
 

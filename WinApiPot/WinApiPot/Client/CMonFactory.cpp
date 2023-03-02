@@ -6,6 +6,7 @@
 
 #include "CMonster.h"
 #include "CDragon.h"
+#include "CBlueDragon.h"
 #include "AI.h"
 
 #include "CIdleState.h"
@@ -21,21 +22,33 @@ CMonster* CMonFactory::CraeteMonster(MON_TYPE _monType, Vec2 _vPos)
 	CMonster* pMon = nullptr;
 	switch (_monType)
 	{
-	case MON_TYPE::NORMAL:
+	case MON_TYPE::BLUE_DRAGON:
 	{
-		pMon = new CMonster;
+		pMon = new CBlueDragon;
+		pMon->SetTag(GROUP_TYPE::MONSTER);
 		pMon->SetPos(_vPos);
-		pMon->SetScale(Vec2(50.f, 50.f));
-
+		//pMon->SetScale(Vec2(50.f, 50.f));
+		
 		tMonInfo info = {};
-		info.m_fnavigationScope = 200.f;
+		info.m_fnavigationScope = 400.f;
 		info.m_iHp = 100;
 		info.m_fspeed = 150.f;
 		pMon->SettMonInfo(info);
+		
+		tHitInfo tHitInfo = {};
+		tHitInfo.m_iMaxHitFrame = 5;
+		pMon->SetHitInfo(tHitInfo);
+
+		tAttackInfo tAttackInfo = {};
+		tAttackInfo.m_fAttackRange = Vec2(70.f, 50.f);
+		tAttackInfo.m_fAttackTime = 4.f;
+		tAttackInfo.m_fAttackDamage = 10.f;
+		pMon->SetAttackInfo(tAttackInfo);
+
 
 		pMon->CreateRigidBody();
 		pMon->GetRigidBody()->SetMass(1.f);
-
+		
 		AI* pAI = new AI;
 		pAI->AddState(new CIdleState);
 		pAI->AddState(new CTraceState);
@@ -68,7 +81,7 @@ CMonster* CMonFactory::CraeteMonster(MON_TYPE _monType, Vec2 _vPos)
 		tAttackInfo tAttackInfo = {};
 		tAttackInfo.m_fAttackRange = Vec2(300.f,25.f);
 		tAttackInfo.m_fAttackTime = 5.f;
-		tAttackInfo.m_fAttackDamage = 50.f;
+		//tAttackInfo.m_fAttackDamage = 50.f;
 		pMon->SetAttackInfo(tAttackInfo);
 
 		pMon->CreateRigidBody();

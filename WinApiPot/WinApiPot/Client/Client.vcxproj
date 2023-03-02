@@ -150,6 +150,7 @@
     <ClInclude Include="CAnimation.h" />
     <ClInclude Include="CAnimator.h" />
     <ClInclude Include="CAttackState.h" />
+    <ClInclude Include="CBlueDragon.h" />
     <ClInclude Include="CBullet.h" />
     <ClInclude Include="CCameraMgr.h" />
     <ClInclude Include="CCollider.h" />
@@ -227,6 +228,7 @@
     <ClCompile Include="CAnimation.cpp" />
     <ClCompile Include="CAnimator.cpp" />
     <ClCompile Include="CAttackState.cpp" />
+    <ClCompile Include="CBlueDragon.cpp" />
     <ClCompile Include="CBullet.cpp" />
     <ClCompile Include="CCameraMgr.cpp" />
     <ClCompile Include="CCollider.cpp" />

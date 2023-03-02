@@ -224,6 +224,9 @@
     <Filter Include="Engine\03.Manager\CInterFaceMgr">
       <UniqueIdentifier>{5b7060ed-0f76-4c3f-a6a5-fecb899e3219}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Engine\05.CObject\CMonster\CBlueDragon">
+      <UniqueIdentifier>{f4ad8021-be9a-4224-aab7-4510df7a4146}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="pch.h" />
@@ -449,6 +452,9 @@
     <ClInclude Include="CInterFaceMgr.h">
       <Filter>Engine\03.Manager\CInterFaceMgr</Filter>
     </ClInclude>
+    <ClInclude Include="CBlueDragon.h">
+      <Filter>Engine\05.CObject\CMonster\CBlueDragon</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Client.rc">
@@ -668,6 +674,9 @@
     </ClCompile>
     <ClCompile Include="CInterFaceMgr.cpp">
       <Filter>Engine\03.Manager\CInterFaceMgr</Filter>
+    </ClCompile>
+    <ClCompile Include="CBlueDragon.cpp">
+      <Filter>Engine\05.CObject\CMonster\CBlueDragon</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

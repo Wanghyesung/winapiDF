@@ -15,7 +15,6 @@ private:
 
     MONSTER_STATE m_eNextState;
 
-    float m_fCurAttackTime;
 
 
 

@@ -66,6 +66,9 @@ void CDragon::update()
 	//{
 	//	m_tMonState = MONSTER_STATE::HIT;
 	//}
+	//스킬 쿨다임 감소
+	CMonster::update();
+
 	if (IsDead())
 	{
 		DeleteObject(this);

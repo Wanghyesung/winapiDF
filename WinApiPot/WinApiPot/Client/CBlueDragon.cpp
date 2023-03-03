@@ -38,23 +38,24 @@ CBlueDragon::CBlueDragon():
 	//right 
 
 	GetAnimator()->CreateAnimation(L"BDragon_Idle_right", pRightMotion, Vec2(0.f, 344.f), Vec2(308.f, 172.f), Vec2(308.f, 0.f), Vec2(0.f, 0.f), 0.1f, 1);
-	GetAnimator()->CreateAnimation(L"BDragon_Normal_Attack_right", pRightMotion, Vec2(0.f, 0.f), Vec2(308.f, 172.f), Vec2(308.f, 0.f), Vec2(0.f, 0.f), 0.1f, 4);
+	GetAnimator()->CreateAnimation(L"BDragon_Normal_Attack_right", pRightMotion, Vec2(0.f, 0.f), Vec2(308.f, 172.f), Vec2(308.f, 0.f), Vec2(0.f, 0.f), 0.2f, 4);
 	GetAnimator()->CreateAnimation(L"BDragon_Attack_right", pRightMotion, Vec2(0.f, 172.f), Vec2(308.f, 172.f), Vec2(308.f, 0.f), Vec2(0.f, 0.f), 0.1f, 7);
 	GetAnimator()->CreateAnimation(L"BDragon_Defense_right", pRightMotion, Vec2(0.f, 344.f), Vec2(308.f, 172.f), Vec2(308.f, 0.f), Vec2(0.f, 0.f), 0.1f, 3);
 	GetAnimator()->CreateAnimation(L"BDragon_Move_Back_right", pRightMotion, Vec2(0.f, 516.f), Vec2(308.f, 172.f), Vec2(308.f, 0.f), Vec2(0.f, 0.f), 0.1f, 7);
 	GetAnimator()->CreateAnimation(L"BDragon_Move_right", pRightMotion, Vec2(0.f, 688.f), Vec2(308.f, 172.f), Vec2(308.f, 0.f), Vec2(0.f, 0.f), 0.1f, 7);
 	GetAnimator()->CreateAnimation(L"BDragon_Motion_Hit_right", pRightMotion, Vec2(0.f, 1032.f), Vec2(308.f, 172.f), Vec2(308.f, 0.f), Vec2(0.f, 0.f), 0.1f, 2);
-	GetAnimator()->CreateAnimation(L"BDragon_Motion_Dead_right", pRightMotion, Vec2(0.f, 1204.f), Vec2(308.f, 172.f), Vec2(308.f, 0.f), Vec2(0.f, 0.f), 0.1f, 3);
+	GetAnimator()->FindAnimation(L"BDragon_Motion_Hit_right")->Create(pRightMotion, Vec2(0.f, 1204.f), Vec2(308.f, 172.f), Vec2(308.f, 0.f), Vec2(0.f, 0.f), 0.1f, 3);
+	
 	
 	//left
 	GetAnimator()->CreateAnimation(L"BDragon_Idle_left", pLeftMotion, Vec2(1848.f, 344.f), Vec2(308.f, 172.f), Vec2(-308.f, 0.f), Vec2(0.f, 0.f), 0.1f, 1);
-	GetAnimator()->CreateAnimation(L"BDragon_Normal_Attack_left", pLeftMotion, Vec2(1848.f, 0.f), Vec2(308.f, 172.f), Vec2(-308.f, 0.f), Vec2(0.f, 0.f), 0.1f, 4);
+	GetAnimator()->CreateAnimation(L"BDragon_Normal_Attack_left", pLeftMotion, Vec2(1848.f, 0.f), Vec2(308.f, 172.f), Vec2(-308.f, 0.f), Vec2(0.f, 0.f), 0.2f, 4);
 	GetAnimator()->CreateAnimation(L"BDragon_Attack_left", pLeftMotion, Vec2(1848.f, 172.f), Vec2(308.f, 172.f), Vec2(-308.f, 0.f), Vec2(0.f, 0.f), 0.1f, 7);
 	GetAnimator()->CreateAnimation(L"BDragon_Defense_left", pLeftMotion, Vec2(1848.f, 344.f), Vec2(308.f, 172.f), Vec2(-308.f, 0.f), Vec2(0.f, 0.f), 0.1f, 3);
 	GetAnimator()->CreateAnimation(L"BDragon_Move_Back_left", pLeftMotion, Vec2(1848.f, 516.f), Vec2(308.f, 172.f), Vec2(-308.f, 0.f), Vec2(0.f, 0.f), 0.1f, 7);
 	GetAnimator()->CreateAnimation(L"BDragon_Move_left", pLeftMotion, Vec2(1848.f, 688.f), Vec2(308.f, 172.f), Vec2(-308.f, 0.f), Vec2(0.f, 0.f), 0.1f, 7);
 	GetAnimator()->CreateAnimation(L"BDragon_Motion_Hit_left", pLeftMotion, Vec2(1848.f, 1032.f), Vec2(308.f, 172.f), Vec2(-308.f, 0.f), Vec2(0.f, 0.f), 0.1f, 2);
-	GetAnimator()->CreateAnimation(L"BDragon_Motion_Dead_left", pLeftMotion, Vec2(1848.f, 1204.f), Vec2(308.f, 172.f), Vec2(-308.f, 0.f), Vec2(0.f, 0.f), 0.1f, 3);
+	GetAnimator()->FindAnimation(L"BDragon_Motion_Hit_left")->Create(pLeftMotion, Vec2(1848.f, 1032.f), Vec2(308.f, 172.f), Vec2(-308.f, 0.f), Vec2(0.f, 0.f), 0.1f, 2);
 
 	GetAnimator()->Play(L"BDragon_Idle_right", true);
 
@@ -67,11 +68,7 @@ CBlueDragon::~CBlueDragon()
 
 void CBlueDragon::update()
 {
-	if (IsDead())
-	{
-		DeleteObject(this);
-		return;
-	}
+	CMonster::update();
 
 	if (GetAI() != nullptr)
 	{
@@ -127,39 +124,45 @@ void CBlueDragon::update_state()
 	case MONSTER_STATE::ATTACK:
 	{
 		strMotion = L"BDragon_Normal_Attack";
-
+		strMotion += sDir;
+		pAnim->Play(strMotion, false);
 	}
 		break;
 
 	case MONSTER_STATE::ATTACK2:
 	{
-		strMotion = L"BDragon_Attack_right";
-
+		strMotion = L"BDragon_Attack";
+		strMotion += sDir;
+		pAnim->Play(strMotion, false);
 	}
 	break;
 
 	case MONSTER_STATE::DEFENFS:
 	{
-		strMotion = L"BDragon_Defense_right";
-
+		strMotion = L"BDragon_Defense";
+		strMotion += sDir;
+		pAnim->Play(strMotion, false);
 	}
 
 	case MONSTER_STATE::HIT:
 	{
 		strMotion = L"BDragon_Idle";
-
+		strMotion += sDir;
+		pAnim->Play(strMotion, false);
 	}
 		break;
 	case MONSTER_STATE::UPPER_HIT:
 	{
-		strMotion = L"BDragon_Idle";
-
+		strMotion = L"BDragon_Motion_Hit";
+		strMotion += sDir;
+		pAnim->Play(strMotion, false);
 	}
 		break;
 	case MONSTER_STATE::DEAD:
 	{
-		strMotion = L"BDragon_Idle";
-
+		strMotion = L"BDragon_Motion_Hit";
+		strMotion += sDir;
+		pAnim->Play(strMotion, false);
 	}
 		break;
 	}

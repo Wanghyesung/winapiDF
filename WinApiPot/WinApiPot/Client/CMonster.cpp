@@ -13,17 +13,18 @@
 
 #include "CTimeMgr.h"
 
+#include "CAttackObject.h"
+#include "CSceneMgr.h"
+#include "CScene.h"
+
+
 CMonster::CMonster() :
 	m_tMonInfo{},
 	m_bHit(false),
-	m_bActiv(true)
-	//m_fHitTime(0.5f),
-	//m_fHitCurTime(0.f)
+	m_bActiv(true),
+	m_pAttackObj(nullptr)
 {
-	//CreateCollider();
-	//GetCollider()->SetScale(Vec2(40.f, 40.f));
-	//
-	//CreateGravity();
+	 new CAttackObject;
 }
 
 CMonster::~CMonster()
@@ -37,14 +38,16 @@ CMonster::~CMonster()
 
 void CMonster::update()
 {
-
-	if (m_bHit)
-		return;
+	//if (m_bHit)
+	//	return;
 	
-	if (m_AI != nullptr)
-	{
-		m_AI->update();
-	}
+	//내 스킬 쿨타임 감소
+	update_skillTime();
+
+	//if (m_AI != nullptr)
+	//{
+	//	m_AI->update();
+	//}
 }
 
 void CMonster::render(HDC _dc)
@@ -116,6 +119,23 @@ void CMonster::SetAI(AI* _AI)
 {
 	m_AI = _AI;
 	m_AI->m_pOwner = this;
+}
+
+void CMonster::update_skillTime()
+{
+	for (int i = 0; i < m_vecSKill.size(); ++i)
+	{
+		if (m_vecSKill[i].m_fSkillTime <= 0.f)
+			continue;
+		m_vecSKill[i].m_fSkillTime -= fDT;
+	}
+}
+
+void CMonster::set_attackobj()
+{
+	m_pAttackObj = new CAttackObject;
+	m_pAttackObj->m_pOwner = this;
+	SceneMgr::GetInst()->GetCurSCene()->AddObject(m_pAttackObj, GROUP_TYPE::MONSTER_SKILL);
 }
 
 

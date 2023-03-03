@@ -5,6 +5,7 @@
 class CDragon :
 	public CMonster
 {
+
 private:
 	MONSTER_STATE m_tMonState;
 
@@ -26,5 +27,6 @@ public:
 	virtual void OnColliderEnter(CCollider* _pOther);
 	virtual void OnColliderExit(CCollider* _pOther);
 	virtual void OnCollision(CCollider* _pOther);
+
 };
 

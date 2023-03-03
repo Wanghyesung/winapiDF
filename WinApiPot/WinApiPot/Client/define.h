@@ -36,6 +36,7 @@ struct tAttackFrame
 	UINT third = 14;
 };
 
+
 enum class SCENE_TYPE
 {
 	START_SCENE,
@@ -56,10 +57,10 @@ enum class GROUP_TYPE
 	WALL,
 	PORTAL,
 	GROUND,
-	SKILL,
-	MONSTER_SKILL,
 	PLAYER,
+	SKILL,
 	MONSTER,
+	MONSTER_SKILL,
 	BULLET,
 	FIREBALL,
 

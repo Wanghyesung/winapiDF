@@ -149,6 +149,7 @@
     <ClInclude Include="AI.h" />
     <ClInclude Include="CAnimation.h" />
     <ClInclude Include="CAnimator.h" />
+    <ClInclude Include="CAttackObject.h" />
     <ClInclude Include="CAttackState.h" />
     <ClInclude Include="CBlueDragon.h" />
     <ClInclude Include="CBullet.h" />
@@ -176,6 +177,7 @@
     <ClInclude Include="CMonFactory.h" />
     <ClInclude Include="CMonster.h" />
     <ClInclude Include="CMP.h" />
+    <ClInclude Include="CNearAttack.h" />
     <ClInclude Include="CObject.h" />
     <ClInclude Include="CPathMgr.h" />
     <ClInclude Include="CPlayer.h" />
@@ -227,6 +229,7 @@
     <ClCompile Include="AI.cpp" />
     <ClCompile Include="CAnimation.cpp" />
     <ClCompile Include="CAnimator.cpp" />
+    <ClCompile Include="CAttackObject.cpp" />
     <ClCompile Include="CAttackState.cpp" />
     <ClCompile Include="CBlueDragon.cpp" />
     <ClCompile Include="CBullet.cpp" />
@@ -253,6 +256,7 @@
     <ClCompile Include="CMonFactory.cpp" />
     <ClCompile Include="CMonster.cpp" />
     <ClCompile Include="CMP.cpp" />
+    <ClCompile Include="CNearAttack.cpp" />
     <ClCompile Include="CObject.cpp" />
     <ClCompile Include="CPathMgr.cpp" />
     <ClCompile Include="CPlayer.cpp" />

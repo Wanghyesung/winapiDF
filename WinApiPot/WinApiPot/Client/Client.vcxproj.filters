@@ -227,6 +227,9 @@
     <Filter Include="Engine\05.CObject\CMonster\CBlueDragon">
       <UniqueIdentifier>{f4ad8021-be9a-4224-aab7-4510df7a4146}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Engine\08.Module\State\CAttackState\CAttackObject">
+      <UniqueIdentifier>{efd3f845-240a-400b-bd77-dbf22b4bd388}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="pch.h" />
@@ -455,6 +458,12 @@
     <ClInclude Include="CBlueDragon.h">
       <Filter>Engine\05.CObject\CMonster\CBlueDragon</Filter>
     </ClInclude>
+    <ClInclude Include="CNearAttack.h">
+      <Filter>Engine\08.Module\State\CAttackState</Filter>
+    </ClInclude>
+    <ClInclude Include="CAttackObject.h">
+      <Filter>Engine\08.Module\State\CAttackState\CAttackObject</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Client.rc">
@@ -677,6 +686,12 @@
     </ClCompile>
     <ClCompile Include="CBlueDragon.cpp">
       <Filter>Engine\05.CObject\CMonster\CBlueDragon</Filter>
+    </ClCompile>
+    <ClCompile Include="CNearAttack.cpp">
+      <Filter>Engine\08.Module\State\CAttackState</Filter>
+    </ClCompile>
+    <ClCompile Include="CAttackObject.cpp">
+      <Filter>Engine\08.Module\State\CAttackState\CAttackObject</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

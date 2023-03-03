@@ -22,8 +22,7 @@
 #define ATTACKRANGE 30.f
 
 CExclusiveTrace::CExclusiveTrace():
-	CState(MONSTER_STATE::TRACE),
-	m_fCurAttackTime(4.f)
+	CState(MONSTER_STATE::TRACE)
 {
 
 }
@@ -40,8 +39,6 @@ void CExclusiveTrace::update()
 		return;
 
 	m_pTarget = (CPlayer*)SceneMgr::GetInst()->GetCurSCene()->GetPlayerObj();
-
-	m_fCurAttackTime += fDT;
 
 	tMonInfo monInfo = GetMonster()->GetMonInfo();
 	tAttackInfo tMonAttackInfo = GetMonster()->GetAttackInfo();
@@ -75,7 +72,6 @@ void CExclusiveTrace::update()
 	if (vDiff.Length() > monInfo.m_fnavigationScope * 1.5f)//2배 거리로
 	{
 		m_eNextState = MONSTER_STATE::IDLE;
-		m_fCurAttackTime = 0.f;
 		ChangeAIState(GetAI(), m_eNextState);
 		return; 
 	}
@@ -84,23 +80,30 @@ void CExclusiveTrace::update()
 	//공격
 	if (vDiff.Length() <= tMonAttackInfo.m_fAttackRange.Length())
 	{
-		//공격 사거리에 들면 플레이어 오브젝트 y축에 맞게 내려감
-		if (!isJump)
+		//플레이어 y값에 맞게
+		vDiff.NormalRize();
+		GetMonster()->GetRigidBody()->AddForce(Vec2(0.f, vDiff.y * monInfo.m_fspeed));
+		//공격
+		
+		if(abs(vPos.y - vTargetPos.y) <= ATTACKRANGE)
 		{
-			vDiff.NormalRize();
-			GetMonster()->GetRigidBody()->AddForce(Vec2(0.f, vDiff.y * monInfo.m_fspeed));
-		}
-
-		//공격 
-		if (tMonAttackInfo.m_fAttackTime <= m_fCurAttackTime && 
-			abs(vPos.y - vTargetPos.y) <= ATTACKRANGE)
-		{
-			m_eNextState = MONSTER_STATE::ATTACK;
-			GetAI()->GetState(m_eNextState)->SetDir(iDir);
-			m_fCurAttackTime = 0.f;
-			ChangeAIState(GetAI(), m_eNextState);
+			vector<tMonSkill>& vecSkill = GetMonster()->GetVecSkill();
+			for (int i = 0; i < vecSkill.size(); ++i)
+			{
+				if (vecSkill[i].m_fSkillTime <= 0.f)
+				{
+					vecSkill[i].m_fSkillTime = vecSkill[i].m_fMaxSkillTime;
+					m_eNextState = MONSTER_STATE::ATTACK;
+					GetAI()->GetState(m_eNextState)->SetDir(iDir);
+					((CAttackState*)GetAI()->GetState(m_eNextState))->SetAttackFrame(1);
+					ChangeAIState(GetAI(), m_eNextState);
+					return;
+				}
+			}
 		}
 	}
+
+
 	else
 	{
 		vDiff.NormalRize();

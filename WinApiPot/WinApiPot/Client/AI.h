@@ -35,10 +35,7 @@ public:
 	CState* GetPreState() { return m_pPreState; }
 	void	SetPreState(CState* pState) { m_pPreState = pState; }
 
-	CState* GetCurState() 
-	{ 
-		return m_pCurState;
-	}
+	CState* GetCurState(){ return m_pCurState;}
 
 	friend class CMonster;
 };

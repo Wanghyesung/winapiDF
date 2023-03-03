@@ -20,7 +20,6 @@ protected:
 private:
     void update_state();
 
-
 public:
     virtual void OnColliderEnter(CCollider* _pOther);
     virtual void OnColliderExit(CCollider* _pOther);

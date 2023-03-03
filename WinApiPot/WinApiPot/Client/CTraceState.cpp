@@ -1,6 +1,7 @@
 #include "pch.h"
 #include "CTraceState.h"
 #include "CAttackState.h"
+#include "CNearAttack.h"
 
 #include "CScene.h"
 #include "CSceneMgr.h"
@@ -17,7 +18,8 @@
 
 
 CTraceState::CTraceState():
-	CState(MONSTER_STATE::TRACE)
+	CState(MONSTER_STATE::TRACE),
+	m_pTarget(nullptr)
 {
 
 }
@@ -32,9 +34,7 @@ void CTraceState::update()
 	if (GetMonster()->IsDead())
 		return;
 
-
 	m_pTarget = (CPlayer*)SceneMgr::GetInst()->GetCurSCene()->GetPlayerObj();
-
 
 	tMonInfo& monInfo = GetMonster()->GetMonInfo();
 	tAttackInfo attackInfo = GetMonster()->GetAttackInfo();
@@ -58,8 +58,11 @@ void CTraceState::update()
 	}
 
 	vDiff = vTargetPos - vPos;
-	vDiff.x > 0 ? SetDir(1) : SetDir(-1);
 
+	int iDir = 0;
+	vDiff.x > 0 ? iDir = 1 : iDir = -1;
+
+	SetDir(iDir);
 
 	//다시 idel로
 	if (vDiff.Length() > monInfo.m_fnavigationScope * 1.5f)//2배 거리로
@@ -69,19 +72,34 @@ void CTraceState::update()
 		return;
 	}
 	
-	if (vDiff.Length() <= attackInfo.m_fAttackRange.Length())
+
+	if (abs(vDiff.x) <= attackInfo.m_fAttackRange.x &&
+		abs(vDiff.y) <= attackInfo.m_fAttackRange.y)
 	{
-		m_eNextState = MONSTER_STATE::ATTACK;
-		ChangeAIState(GetAI(), m_eNextState);
-		return;
+		vector<tMonSkill>& vecSkill = GetMonster()->GetVecSkill();
+		for (int i = 0; i < vecSkill.size(); ++i)
+		{
+			if (vecSkill[i].m_fSkillTime <= 0.f)
+			{
+				vecSkill[i].m_fSkillTime = vecSkill[i].m_fMaxSkillTime;
+				m_eNextState = MONSTER_STATE::ATTACK;
+				GetAI()->GetState(m_eNextState)->SetDir(iDir);
+				((CNearAttack*)GetAI()->GetState(m_eNextState))->SetAttackFrame(vecSkill[i].m_iStartFrame);
+				ChangeAIState(GetAI(), m_eNextState);
+				return;
+			}
+		}
 	}
 
-	if (vDiff.IsZero())
-		vDiff = Vec2(0.f, 0.f);
 	else
-		vDiff = vDiff.NormalRize() * monInfo.m_fspeed;
+	{
+		if (vDiff.IsZero())
+			vDiff = Vec2(0.f, 0.f);
+		else
+			vDiff = vDiff.NormalRize() * monInfo.m_fspeed;
 
-	GetMonster()->GetRigidBody()->AddForce(vDiff);
+		GetMonster()->GetRigidBody()->AddForce(vDiff);
+	}
 
 }
 

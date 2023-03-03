@@ -22,7 +22,8 @@
 
 CAttackState::CAttackState():
 	CState(MONSTER_STATE::ATTACK),
-	m_iAttCount(0)
+	m_iAttCount(0),
+	m_iAttackFrame(0)
 {
 
 }
@@ -48,11 +49,11 @@ void CAttackState::update()
 {
 
 	CMonster* m_pMon = GetMonster();
+	vector<tMonSkill>& vecSkill = m_pMon->GetVecSkill();
 	if (m_pMon->IsDead())
 	{
 		return;
 	}
-	
 	
 	int iCurFrame = m_pMon->GetAnimator()->GetCurAnimation()->GetCurFrame();
 
@@ -62,17 +63,16 @@ void CAttackState::update()
 		return;
 	}
 
-	for (int i = 0; i < m_vAttackFrame.size(); ++i)
+
+	if (iCurFrame == m_iAttackFrame && m_iAttCount < 1)
 	{
-		if (iCurFrame == m_vAttackFrame[i] && m_iAttCount<1)
-		{
-			++m_iAttCount;
-			int iDir = GetDir();
-			CFireBall* fireBall = new CFireBall(iDir, m_pMon->GetPos());
-			CreateObject(fireBall,GROUP_TYPE::FIREBALL);
-			//여기서 불덩이 생성
-		}
+		++m_iAttCount;
+		int iDir = GetDir();
+		CFireBall* fireBall = new CFireBall(iDir, m_pMon->GetPos());
+		CreateObject(fireBall,GROUP_TYPE::MONSTER_SKILL);
+		//여기서 불덩이 생성
 	}
+
 
 }
 

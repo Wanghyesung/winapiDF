@@ -78,9 +78,9 @@ void CScene_Start::Enter()
 	
 
 	
-	CMonster* pMon = CMonFactory::CraeteMonster(MON_TYPE::DRAGON, Vec2(1050.f, 580.f));
-	pMon->SetName(L"CDragon");
-	AddObject(pMon, GROUP_TYPE::MONSTER);
+	//CMonster* pMon = CMonFactory::CraeteMonster(MON_TYPE::DRAGON, Vec2(1050.f, 580.f));
+	//pMon->SetName(L"CDragon");
+	//AddObject(pMon, GROUP_TYPE::MONSTER);
 
 	CMonster* pBlue = CMonFactory::CraeteMonster(MON_TYPE::BLUE_DRAGON, Vec2(1400.f, 580.f));
 	pBlue->SetName(L"BlueDragon"); 
@@ -120,7 +120,7 @@ void CScene_Start::Enter()
 	CColliderMgr::GetInst()->ChekGroup(GROUP_TYPE::PLAYER, GROUP_TYPE::WALL);
 	CColliderMgr::GetInst()->ChekGroup(GROUP_TYPE::PLAYER, GROUP_TYPE::PORTAL);
 	CColliderMgr::GetInst()->ChekGroup(GROUP_TYPE::BULLET, GROUP_TYPE::MONSTER);
-	CColliderMgr::GetInst()->ChekGroup(GROUP_TYPE::PLAYER, GROUP_TYPE::FIREBALL);
+	CColliderMgr::GetInst()->ChekGroup(GROUP_TYPE::PLAYER, GROUP_TYPE::MONSTER_SKILL);
 	CColliderMgr::GetInst()->ChekGroup(GROUP_TYPE::MONSTER, GROUP_TYPE::SKILL);
 
 	//스킬 충돌 확인

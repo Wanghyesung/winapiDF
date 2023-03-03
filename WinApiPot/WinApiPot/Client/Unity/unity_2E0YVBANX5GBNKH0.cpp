@@ -8,6 +8,9 @@
 #include "C:\Users\wangh\source\tem\WinApiPot\WinApiPot\Client\CAnimator.cpp"
 
 
+#include "C:\Users\wangh\source\tem\WinApiPot\WinApiPot\Client\CAttackObject.cpp"
+
+
 #include "C:\Users\wangh\source\tem\WinApiPot\WinApiPot\Client\CAttackState.cpp"
 
 
@@ -84,6 +87,9 @@
 
 
 #include "C:\Users\wangh\source\tem\WinApiPot\WinApiPot\Client\CMP.cpp"
+
+
+#include "C:\Users\wangh\source\tem\WinApiPot\WinApiPot\Client\CNearAttack.cpp"
 
 
 #include "C:\Users\wangh\source\tem\WinApiPot\WinApiPot\Client\CObject.cpp"

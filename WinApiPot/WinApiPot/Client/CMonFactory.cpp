@@ -12,6 +12,7 @@
 #include "CIdleState.h"
 #include "CTraceState.h"
 #include "CAttackState.h"
+#include "CNearAttack.h"
 #include "CExclusiveTrace.h"
 #include "CHitState.h"
 #include "CHitUpper.h"
@@ -28,7 +29,12 @@ CMonster* CMonFactory::CraeteMonster(MON_TYPE _monType, Vec2 _vPos)
 		pMon->SetTag(GROUP_TYPE::MONSTER);
 		pMon->SetPos(_vPos);
 		//pMon->SetScale(Vec2(50.f, 50.f));
-		
+	
+		tMonSkill tSkill = { eMonsterAttackType::NORMAL, 2, 5.f, 5.f };
+		pMon->add_skill(tSkill);
+		//내 공격 오브젝트 추가
+		pMon->set_attackobj();
+
 		tMonInfo info = {};
 		info.m_fnavigationScope = 400.f;
 		info.m_iHp = 100;
@@ -40,7 +46,7 @@ CMonster* CMonFactory::CraeteMonster(MON_TYPE _monType, Vec2 _vPos)
 		pMon->SetHitInfo(tHitInfo);
 
 		tAttackInfo tAttackInfo = {};
-		tAttackInfo.m_fAttackRange = Vec2(70.f, 50.f);
+		tAttackInfo.m_fAttackRange = Vec2(50.f, 20.f);
 		tAttackInfo.m_fAttackTime = 4.f;
 		tAttackInfo.m_fAttackDamage = 10.f;
 		pMon->SetAttackInfo(tAttackInfo);
@@ -52,6 +58,7 @@ CMonster* CMonFactory::CraeteMonster(MON_TYPE _monType, Vec2 _vPos)
 		AI* pAI = new AI;
 		pAI->AddState(new CIdleState);
 		pAI->AddState(new CTraceState);
+		pAI->AddState(new CNearAttack);
 		pAI->SetCurState(MONSTER_STATE::IDLE);
 		pMon->SetAI(pAI);
 
@@ -63,6 +70,9 @@ CMonster* CMonFactory::CraeteMonster(MON_TYPE _monType, Vec2 _vPos)
 	case MON_TYPE::DRAGON:
 	{
 		pMon = new CDragon;
+		tMonSkill tSkill = { eMonsterAttackType::NORMAL, 1, 5.f, 5.f};	
+		pMon->add_skill(tSkill);
+
 		pMon->SetPos(_vPos);
 		//pMon->SetScale(Vec2(50.f, 50.f));
 		pMon->SetTag(GROUP_TYPE::MONSTER);
@@ -90,9 +100,7 @@ CMonster* CMonFactory::CraeteMonster(MON_TYPE _monType, Vec2 _vPos)
 		AI* pAI = new AI;
 		pAI->AddState(new CIdleState);
 		pAI->AddState(new CExclusiveTrace);
-		CAttackState* pAttackState = new CAttackState();
-		pAttackState->AddAttackFrame(1);//특정 애니메이션에만 공격이 가능하도록
-		pAI->AddState(pAttackState);
+		pAI->AddState(new CAttackState);
 
 		pAI->AddState(new CHitState);
 		pAI->AddState(new CHitUpper);

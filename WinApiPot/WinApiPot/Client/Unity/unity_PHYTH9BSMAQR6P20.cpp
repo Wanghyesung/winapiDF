@@ -35,6 +35,9 @@
 #include "C:\Users\wangh\source\tem\WinApiPot\WinApiPot\Client\CDeadState.cpp"
 
 
+#include "C:\Users\wangh\source\tem\WinApiPot\WinApiPot\Client\CDefenseState.cpp"
+
+
 #include "C:\Users\wangh\source\tem\WinApiPot\WinApiPot\Client\CDragon.cpp"
 
 

@@ -14,6 +14,7 @@
 #include "CAttackState.h"
 #include "CNearAttack.h"
 #include "CExclusiveTrace.h"
+#include "CDefenseState.h"
 #include "CHitState.h"
 #include "CHitUpper.h"
 #include "CDeadState.h"
@@ -29,9 +30,18 @@ CMonster* CMonFactory::CraeteMonster(MON_TYPE _monType, Vec2 _vPos)
 		pMon->SetTag(GROUP_TYPE::MONSTER);
 		pMon->SetPos(_vPos);
 		//pMon->SetScale(Vec2(50.f, 50.f));
-	
-		tMonSkill tSkill = { eMonsterAttackType::NORMAL, 2, 5.f, 5.f };
-		pMon->add_skill(tSkill);
+		tAttackInfo m_tAtt = {};
+		m_tAtt.m_eAttType = ATTACK_TYPE::NORMAL;
+		m_tAtt.m_fAttRcnt = 50.f;
+		m_tAtt.m_fAttackDamage = 8.f;
+		m_tAtt.m_fAttRigidityTime = 0.5f;
+		m_tAtt.m_fAttUpperRcnt = -60.f;
+		tMonSkill tSkill1 = { eMonsterAttackType::NORMAL,m_tAtt,L"_Normal_Attack", 2, 3.f, 5.f};
+		pMon->add_skill(tSkill1);
+		m_tAtt.m_fAttackDamage = 12.f;
+		m_tAtt.m_fAttRigidityTime = 1.f;
+		tMonSkill tSkill2 = { eMonsterAttackType::NORMAL,m_tAtt ,L"_Attack", 4, 7.f, 5.f };
+		pMon->add_skill(tSkill2);
 		//내 공격 오브젝트 추가
 		pMon->set_attackobj();
 
@@ -59,6 +69,10 @@ CMonster* CMonFactory::CraeteMonster(MON_TYPE _monType, Vec2 _vPos)
 		pAI->AddState(new CIdleState);
 		pAI->AddState(new CTraceState);
 		pAI->AddState(new CNearAttack);
+		pAI->AddState(new CHitState);
+		pAI->AddState(new CHitUpper);
+		pAI->AddState(new CDeadState);
+		pAI->AddState(new CDefenseState);
 		pAI->SetCurState(MONSTER_STATE::IDLE);
 		pMon->SetAI(pAI);
 
@@ -70,7 +84,13 @@ CMonster* CMonFactory::CraeteMonster(MON_TYPE _monType, Vec2 _vPos)
 	case MON_TYPE::DRAGON:
 	{
 		pMon = new CDragon;
-		tMonSkill tSkill = { eMonsterAttackType::NORMAL, 1, 5.f, 5.f};	
+		tAttackInfo m_tAtt = {};
+		m_tAtt.m_eAttType = ATTACK_TYPE::UPPER;
+		m_tAtt.m_fAttRcnt = 50.f;
+		m_tAtt.m_fAttackDamage = 5.f;
+		m_tAtt.m_fAttRigidityTime = 0.5f;
+		m_tAtt.m_fAttUpperRcnt = -60.f;
+		tMonSkill tSkill = { eMonsterAttackType::NORMAL,m_tAtt,L"_Normal_Attack", 1, 5.f, 5.f};
 		pMon->add_skill(tSkill);
 
 		pMon->SetPos(_vPos);

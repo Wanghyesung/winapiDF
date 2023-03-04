@@ -18,6 +18,8 @@ enum class eMonsterAttackType
 struct tMonSkill
 {
     eMonsterAttackType MonSKillType;
+    tAttackInfo m_MonAttackInfo;
+    wstring m_strAttackName;
     UINT m_iStartFrame;
     float m_fSkillTime;
     float m_fMaxSkillTime;

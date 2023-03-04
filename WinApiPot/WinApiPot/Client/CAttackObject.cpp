@@ -8,7 +8,8 @@
 
 CAttackObject::CAttackObject() :
 	m_pOwner(nullptr),
-	m_fAttackRange(50.f)
+	m_fAttackRange(50.f),
+	m_iCurAttackIndex(0)
 {
 	SetName(L"MonAttackObject");
 	SetTag(GROUP_TYPE::MONSTER_SKILL);
@@ -21,7 +22,8 @@ CAttackObject::CAttackObject() :
 
 CAttackObject::CAttackObject(Vec2 _vScale):
 	m_pOwner(nullptr),
-	m_fAttackRange(50.f)
+	m_fAttackRange(50.f),
+	m_iCurAttackIndex(0)
 {
 	SetName(L"MonAttackObject");
 	SetTag(GROUP_TYPE::MONSTER_SKILL);
@@ -37,7 +39,7 @@ CAttackObject::~CAttackObject()
 
 }
 
-void CAttackObject::update()
+void CAttackObject::Skill_update()
 {
 	//내 몬스터 오브젝트의 위치
 	CCollider* pCollider = GetCollider();
@@ -57,12 +59,19 @@ void CAttackObject::render(HDC _dc)
 {
 	if (!GetCollider()->IsActive())
 		return;
+
 	component_render(_dc);
 }
 
 void CAttackObject::SetColActive(bool _b)
 {
 	GetCollider()->SetActive(_b);
+}
+
+const tAttackInfo& CAttackObject::GetAttInfo()
+{
+	vector<tMonSkill>& vecSkill = m_pOwner->GetVecSkill();
+	return vecSkill[m_iCurAttackIndex].m_MonAttackInfo;
 }
 
 void CAttackObject::OnColliderEnter(CCollider* _pOther)

@@ -7,15 +7,24 @@
 #include "CGravity.h"
 
 #include "CResMgr.h"
+#include "CTimeMgr.h"
 
 #include "CTexture.h"
 
-
 #include "AI.h"
 #include "CState.h"
+#include "CNearAttack.h"
+#include "CAttackObject.h"
+#include "CBullet.h"
+#include "CSkillState.h"
+#include "CHitState.h"
+#include "CHitUpper.h"
+#include "CDeadState.h"
 
 CBlueDragon::CBlueDragon():
-	m_eMonState(MONSTER_STATE::IDLE)
+	m_eMonState(MONSTER_STATE::IDLE),
+	m_fCurTime(0.f),
+	m_fDefensTime(10.f)
 {
 
 	CreateCollider();
@@ -43,8 +52,8 @@ CBlueDragon::CBlueDragon():
 	GetAnimator()->CreateAnimation(L"BDragon_Defense_right", pRightMotion, Vec2(0.f, 344.f), Vec2(308.f, 172.f), Vec2(308.f, 0.f), Vec2(0.f, 0.f), 0.1f, 3);
 	GetAnimator()->CreateAnimation(L"BDragon_Move_Back_right", pRightMotion, Vec2(0.f, 516.f), Vec2(308.f, 172.f), Vec2(308.f, 0.f), Vec2(0.f, 0.f), 0.1f, 7);
 	GetAnimator()->CreateAnimation(L"BDragon_Move_right", pRightMotion, Vec2(0.f, 688.f), Vec2(308.f, 172.f), Vec2(308.f, 0.f), Vec2(0.f, 0.f), 0.1f, 7);
-	GetAnimator()->CreateAnimation(L"BDragon_Motion_Hit_right", pRightMotion, Vec2(0.f, 1032.f), Vec2(308.f, 172.f), Vec2(308.f, 0.f), Vec2(0.f, 0.f), 0.1f, 2);
-	GetAnimator()->FindAnimation(L"BDragon_Motion_Hit_right")->Create(pRightMotion, Vec2(0.f, 1204.f), Vec2(308.f, 172.f), Vec2(308.f, 0.f), Vec2(0.f, 0.f), 0.1f, 3);
+	GetAnimator()->CreateAnimation(L"BDragon_Motion_Hit_right", pRightMotion, Vec2(0.f, 1032.f), Vec2(308.f, 172.f), Vec2(308.f, 0.f), Vec2(0.f, 0.f), 0.15f, 2);
+	GetAnimator()->FindAnimation(L"BDragon_Motion_Hit_right")->Create(pRightMotion, Vec2(0.f, 1204.f), Vec2(308.f, 172.f), Vec2(308.f, 0.f), Vec2(0.f, 0.f), 0.15f, 3);
 	
 	
 	//left
@@ -54,8 +63,8 @@ CBlueDragon::CBlueDragon():
 	GetAnimator()->CreateAnimation(L"BDragon_Defense_left", pLeftMotion, Vec2(1848.f, 344.f), Vec2(308.f, 172.f), Vec2(-308.f, 0.f), Vec2(0.f, 0.f), 0.1f, 3);
 	GetAnimator()->CreateAnimation(L"BDragon_Move_Back_left", pLeftMotion, Vec2(1848.f, 516.f), Vec2(308.f, 172.f), Vec2(-308.f, 0.f), Vec2(0.f, 0.f), 0.1f, 7);
 	GetAnimator()->CreateAnimation(L"BDragon_Move_left", pLeftMotion, Vec2(1848.f, 688.f), Vec2(308.f, 172.f), Vec2(-308.f, 0.f), Vec2(0.f, 0.f), 0.1f, 7);
-	GetAnimator()->CreateAnimation(L"BDragon_Motion_Hit_left", pLeftMotion, Vec2(1848.f, 1032.f), Vec2(308.f, 172.f), Vec2(-308.f, 0.f), Vec2(0.f, 0.f), 0.1f, 2);
-	GetAnimator()->FindAnimation(L"BDragon_Motion_Hit_left")->Create(pLeftMotion, Vec2(1848.f, 1032.f), Vec2(308.f, 172.f), Vec2(-308.f, 0.f), Vec2(0.f, 0.f), 0.1f, 2);
+	GetAnimator()->CreateAnimation(L"BDragon_Motion_Hit_left", pLeftMotion, Vec2(1848.f, 1032.f), Vec2(308.f, 172.f), Vec2(-308.f, 0.f), Vec2(0.f, 0.f), 0.15f, 2);
+	GetAnimator()->FindAnimation(L"BDragon_Motion_Hit_left")->Create(pLeftMotion, Vec2(1848.f, 1204.f), Vec2(308.f, 172.f), Vec2(-308.f, 0.f), Vec2(0.f, 0.f), 0.15f, 3);
 
 	GetAnimator()->Play(L"BDragon_Idle_right", true);
 
@@ -69,12 +78,39 @@ CBlueDragon::~CBlueDragon()
 void CBlueDragon::update()
 {
 	CMonster::update();
+	AI* pAI = GetAI();
 
-	if (GetAI() != nullptr)
+	MONSTER_STATE eMonState = pAI->GetCurState()->GetType();
+
+	if (m_fDefensTime <= m_fCurTime &&
+		eMonState == MONSTER_STATE::TRACE)
 	{
-		GetAI()->update();
+		m_fCurTime = 0.f;
+		int iDir = pAI->GetCurState()->GetDir();
+
+		pAI->GetState(MONSTER_STATE::DEFENSE)->SetDir(iDir);
+		ChangeAIState(pAI, MONSTER_STATE::DEFENSE);
 	}
 
+	else if(eMonState != MONSTER_STATE::DEFENSE)
+	{
+		m_fCurTime += fDT;//방어시간
+	}
+
+	//내 FSM업데이트
+	if (pAI != nullptr)
+	{
+		pAI->update();
+	}
+
+	//현재 공격중이면 공격오브젝트 업데이트
+	CAttackObject* pMonSkill = GetSKillObj();
+	if (pMonSkill->GetCollider()->IsActive())
+	{
+		pMonSkill->Skill_update();
+	}
+
+	//상태에따라 애니메이션 재생
 	update_state();
 }
 
@@ -86,6 +122,13 @@ void CBlueDragon::render(HDC _dc)
 
 void CBlueDragon::hit(CCollider* _pOther, const tAttackInfo& _tAtt)
 {
+	if (GetAI()->GetCurState()->GetType() == MONSTER_STATE::DEFENSE)
+	{
+		tMonInfo m_tMonInfo = GetAI()->GetCMonster()->GetMonInfo();
+		//m_tMonInfo.m_iHp -= (_tAtt.m_fAttackDamage/2.f);
+		return;
+	}
+
 	CMonster::hit(_pOther, _tAtt);
 }
 
@@ -123,32 +166,28 @@ void CBlueDragon::update_state()
 		break;
 	case MONSTER_STATE::ATTACK:
 	{
-		strMotion = L"BDragon_Normal_Attack";
-		strMotion += sDir;
+		strMotion = ((CNearAttack*)pState)->GetAttackName();
+		strMotion = L"BDragon" + strMotion + sDir;
 		pAnim->Play(strMotion, false);
 	}
 		break;
-
-	case MONSTER_STATE::ATTACK2:
-	{
-		strMotion = L"BDragon_Attack";
-		strMotion += sDir;
-		pAnim->Play(strMotion, false);
-	}
 	break;
 
-	case MONSTER_STATE::DEFENFS:
+	case MONSTER_STATE::DEFENSE:
 	{
 		strMotion = L"BDragon_Defense";
 		strMotion += sDir;
 		pAnim->Play(strMotion, false);
 	}
+	break;
 
 	case MONSTER_STATE::HIT:
 	{
-		strMotion = L"BDragon_Idle";
+		strMotion = L"BDragon_Motion_Hit";
 		strMotion += sDir;
 		pAnim->Play(strMotion, false);
+		int iFrame = GetAnimator()->GetCurAnimation()->GetCurFrame();
+		((CHitState*)GetAI()->GetState(MONSTER_STATE::HIT))->SetAnimFrame(iFrame);
 	}
 		break;
 	case MONSTER_STATE::UPPER_HIT:
@@ -156,6 +195,8 @@ void CBlueDragon::update_state()
 		strMotion = L"BDragon_Motion_Hit";
 		strMotion += sDir;
 		pAnim->Play(strMotion, false);
+		int iFrame = GetAnimator()->GetCurAnimation()->GetCurFrame();
+		((CHitUpper*)GetAI()->GetState(MONSTER_STATE::UPPER_HIT))->SetAnimFrame(iFrame);
 	}
 		break;
 	case MONSTER_STATE::DEAD:
@@ -163,23 +204,61 @@ void CBlueDragon::update_state()
 		strMotion = L"BDragon_Motion_Hit";
 		strMotion += sDir;
 		pAnim->Play(strMotion, false);
+		SetActiv(false);//비활성화 (공격 관통하게)
+		int iFrame = GetAnimator()->GetCurAnimation()->GetCurFrame();
+		((CDeadState*)GetAI()->GetState(MONSTER_STATE::DEAD))->SetAnimFrame(iFrame);
 	}
 		break;
 	}
 
 }
-
 void CBlueDragon::OnColliderEnter(CCollider* _pOther)
 {
+	tMonInfo& tMonInfo = GetMonInfo();
+	CObject* pobj = _pOther->GetObj();
 
-}
+	if (pobj->GetTag() == GROUP_TYPE::SKILL
+		&& tMonInfo.m_iHp != 0)
+	{
+		if (dynamic_cast<CBullet*>(pobj))
+		{
+			CBullet* pBullet = dynamic_cast<CBullet*>(pobj);
+			hit(pBullet->GetCollider(), pBullet->GetAttInfo());
+		}
+	}
+
+	if (tMonInfo.m_iHp == 0)
+	{
+		ChangeAIState(GetAI(), MONSTER_STATE::DEAD);
+	}
+};
 
 void CBlueDragon::OnColliderExit(CCollider* _pOther)
 {
-
-}
-
+	int a = 10;
+};
 void CBlueDragon::OnCollision(CCollider* _pOther)
 {
+	tMonInfo& tMonInfo = GetMonInfo();
+	CObject* pobj = _pOther->GetObj();
 
-}
+	if (pobj->GetTag() == GROUP_TYPE::SKILL
+		&& tMonInfo.m_iHp != 0)
+	{
+		if (dynamic_cast<CSkillState*>(pobj))
+		{
+			CSkillState* pSkill = dynamic_cast<CSkillState*>(pobj);
+
+			if (!pSkill->IsAttackOn())
+				return;
+
+			hit(pSkill->GetCollider(), pSkill->GetAttInfo());
+		}
+
+		if (tMonInfo.m_iHp == 0)
+		{
+			ChangeAIState(GetAI(), MONSTER_STATE::DEAD);
+		}
+	}
+
+};

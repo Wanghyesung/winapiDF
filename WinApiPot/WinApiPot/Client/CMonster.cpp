@@ -24,7 +24,7 @@ CMonster::CMonster() :
 	m_bActiv(true),
 	m_pAttackObj(nullptr)
 {
-	 new CAttackObject;
+	
 }
 
 CMonster::~CMonster()
@@ -33,6 +33,13 @@ CMonster::~CMonster()
 	{
 		delete m_AI;
 	}
+
+	//공격 오브젝트 삭제
+	DeleteObject(m_pAttackObj);
+	//if (m_pAttackObj != nullptr)
+	//{
+	//	delete m_pAttackObj;
+	//}
 }
 
 
@@ -111,7 +118,8 @@ void CMonster::hit(CCollider* _pOther, const tAttackInfo& _tAtt)
 		break;
 		}
 
-		//tMonInfo.m_iHp -= _tAtt.m_fAttackDamage;
+		
+		//m_tMonInfo.m_iHp-= _tAtt.m_fAttackDamage;
 	}
 }
 

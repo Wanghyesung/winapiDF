@@ -2,6 +2,7 @@
 #include "CTraceState.h"
 #include "CAttackState.h"
 #include "CNearAttack.h"
+#include "CAttackObject.h"
 
 #include "CScene.h"
 #include "CSceneMgr.h"
@@ -27,6 +28,26 @@ CTraceState::CTraceState():
 CTraceState::~CTraceState()
 {
 
+}
+
+
+void CTraceState::init_attack(UINT _iDir)
+{
+	vector<tMonSkill>& vecSkill = GetMonster()->GetVecSkill();
+	for (int i = 0; i < vecSkill.size(); ++i)
+	{
+		if (vecSkill[i].m_fSkillTime <= 0.f)
+		{
+			vecSkill[i].m_fSkillTime = vecSkill[i].m_fMaxSkillTime;
+			m_eNextState = MONSTER_STATE::ATTACK;
+			GetAI()->GetState(m_eNextState)->SetDir(_iDir);
+			((CNearAttack*)GetAI()->GetState(m_eNextState))->SetAttackName(vecSkill[i].m_strAttackName);
+			((CNearAttack*)GetAI()->GetState(m_eNextState))->SetAttackFrame(vecSkill[i].m_iStartFrame);
+			GetAI()->GetCMonster()->GetSKillObj()->SetCurAttackIndex(i);
+			ChangeAIState(GetAI(), m_eNextState);
+			return;
+		}
+	}
 }
 
 void CTraceState::update()
@@ -76,19 +97,8 @@ void CTraceState::update()
 	if (abs(vDiff.x) <= attackInfo.m_fAttackRange.x &&
 		abs(vDiff.y) <= attackInfo.m_fAttackRange.y)
 	{
-		vector<tMonSkill>& vecSkill = GetMonster()->GetVecSkill();
-		for (int i = 0; i < vecSkill.size(); ++i)
-		{
-			if (vecSkill[i].m_fSkillTime <= 0.f)
-			{
-				vecSkill[i].m_fSkillTime = vecSkill[i].m_fMaxSkillTime;
-				m_eNextState = MONSTER_STATE::ATTACK;
-				GetAI()->GetState(m_eNextState)->SetDir(iDir);
-				((CNearAttack*)GetAI()->GetState(m_eNextState))->SetAttackFrame(vecSkill[i].m_iStartFrame);
-				ChangeAIState(GetAI(), m_eNextState);
-				return;
-			}
-		}
+		init_attack(iDir);
+		return;
 	}
 
 	else
@@ -102,6 +112,8 @@ void CTraceState::update()
 	}
 
 }
+
+
 
 void CTraceState::exit()
 {

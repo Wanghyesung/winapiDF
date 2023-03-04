@@ -9,7 +9,6 @@
 #include "CTimeMgr.h"
 #include "CRigidBody.h"
 
-#define LASTHITMOTION 2
 
 CHitState::CHitState():
 	CState(MONSTER_STATE::HIT),
@@ -37,10 +36,10 @@ void CHitState::update()
 	}
 	
 	//경직
-
-	if (m_iHitAnimFrame == (tMonHit.m_iMaxHitFrame - LASTHITMOTION))
+	//일반 1 중력 3 데드 4
+	if (m_iHitAnimFrame == 1)
 	{
-		GetMonster()->GetAnimator()->GetCurAnimation()->SetFram(tMonHit.m_iMaxHitFrame - LASTHITMOTION);
+		GetMonster()->GetAnimator()->GetCurAnimation()->SetFram(1);
 	}
 	
 	else

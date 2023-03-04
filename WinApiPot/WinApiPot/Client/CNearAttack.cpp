@@ -11,7 +11,7 @@ CNearAttack::CNearAttack():
 	m_iAttackCount(0),
 	m_iAttackFrame(0)
 {
-
+	
 }
 
 CNearAttack::~CNearAttack()
@@ -34,6 +34,7 @@ void CNearAttack::update()
 	{
 		++m_iAttackCount;
 		pMon->GetSKillObj()->SetColActive(true);
+
 	}
 
 }

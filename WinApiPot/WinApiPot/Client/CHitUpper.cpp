@@ -58,11 +58,12 @@ void CHitUpper::exit()
 void CHitUpper::update()
 {
 	CMonster* pMon = GetMonster();
+	tHitInfo tHit = GetMonster()->GetHitInfo();
 
 	if (!pMon->GetGravity()->IsGetGravity())
 	{
 		m_fCurTime += fDT;
-		pMon->GetAnimator()->GetCurAnimation()->SetFram(LASTHITMOTION);
+		pMon->GetAnimator()->GetCurAnimation()->SetFram(tHit.m_iMaxHitFrame-1);
 	}
 
 	else if (m_iHitAnimFrame == HITMOTION)

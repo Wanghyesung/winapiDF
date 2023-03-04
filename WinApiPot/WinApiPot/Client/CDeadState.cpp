@@ -20,6 +20,7 @@ CDeadState::~CDeadState()
 
 void CDeadState::update()
 {
+	//프레임 다 돌면 -1
 	if (m_iCurFrame == -1)
 	{
 		GetMonster()->SetDead();

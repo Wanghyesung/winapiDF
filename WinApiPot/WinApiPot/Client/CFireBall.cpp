@@ -23,11 +23,6 @@ CFireBall::CFireBall(int iDir, Vec2 _vPos) :
 	SetName(L"FireBall");
 	SetTag(GROUP_TYPE::MONSTER_SKILL);
 
-	m_tAtt.m_eAttType = ATTACK_TYPE::UPPER;
-	m_tAtt.m_fAttRcnt = 50.f;
-	m_tAtt.m_fAttackDamage = 5.f;
-	m_tAtt.m_fAttRigidityTime = 0.5f;
-	m_tAtt.m_fAttUpperRcnt = -60.f;
 
 	CreateCollider();
 	GetCollider()->SetScale(Vec2(50.f, 50.f));

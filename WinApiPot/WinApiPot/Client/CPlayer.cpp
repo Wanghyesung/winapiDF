@@ -28,6 +28,7 @@
 #include "CInterfaceMgr.h"
 
 #include "CFireBall.h"
+#include "CAttackObject.h"
 
 CPlayer::CPlayer() :
 	m_tPlayerInfo{},
@@ -420,9 +421,9 @@ void CPlayer::HitPlayer(CCollider* _pOther, const tAttackInfo& _tAttInfo)
 
 	float fDir = GetCollider()->GetFinalPos().x - _pOther->GetFinalPos().x;
 	if (fDir > 0.f)
-		fDir = 1.f;
-	else
 		fDir = -1.f;
+	else
+		fDir = 1.f;
 
 	CGravity* pGravity = GetGravity();
 	ATTACK_TYPE eAttackType = _tAttInfo.m_eAttType;
@@ -471,6 +472,15 @@ void CPlayer::OnColliderEnter(CCollider* _pOther)
 				m_pSkill->GetCurSkill()->exit();
 			}
 			HitPlayer(_pOther, pFire->GetAttInfo());
+		}
+		if (dynamic_cast<CAttackObject*>(pObj))
+		{
+			CAttackObject* MonAttack = dynamic_cast<CAttackObject*>(pObj);
+			if (m_bOnSkill)
+			{
+				m_pSkill->GetCurSkill()->exit();
+			}
+			HitPlayer(_pOther, MonAttack->GetAttInfo());
 		}
 	}
 

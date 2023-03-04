@@ -1,5 +1,6 @@
 #pragma once
 #include "CState.h"
+#include "CMonster.h"
 
 class CPlayer;
 
@@ -12,8 +13,9 @@ public:
 
 private:
     CPlayer* m_pTarget;//Å¸°Ù
-
     MONSTER_STATE m_eNextState;
+
+    void init_attack(UINT _iDir);
 
 public:
     virtual void update();

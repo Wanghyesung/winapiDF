@@ -230,6 +230,9 @@
     <Filter Include="Engine\08.Module\State\CAttackState\CAttackObject">
       <UniqueIdentifier>{efd3f845-240a-400b-bd77-dbf22b4bd388}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Engine\08.Module\State\CDefenseState">
+      <UniqueIdentifier>{e6bcc385-aec3-473a-990d-6cd3b00e2dfd}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="pch.h" />
@@ -464,6 +467,9 @@
     <ClInclude Include="CAttackObject.h">
       <Filter>Engine\08.Module\State\CAttackState\CAttackObject</Filter>
     </ClInclude>
+    <ClInclude Include="CDefenseState.h">
+      <Filter>Engine\08.Module\State\CDefenseState</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Client.rc">
@@ -692,6 +698,9 @@
     </ClCompile>
     <ClCompile Include="CAttackObject.cpp">
       <Filter>Engine\08.Module\State\CAttackState\CAttackObject</Filter>
+    </ClCompile>
+    <ClCompile Include="CDefenseState.cpp">
+      <Filter>Engine\08.Module\State\CDefenseState</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

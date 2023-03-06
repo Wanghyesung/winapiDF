@@ -26,6 +26,7 @@ CFireBall::CFireBall(int iDir, Vec2 _vPos) :
 
 	CreateCollider();
 	GetCollider()->SetScale(Vec2(50.f, 50.f));
+	
 
 	CreateAnimator();
 	GetAnimator()->SetRBG(0, 0, 0);

@@ -32,6 +32,7 @@ public:
 
 public:
     const tAttackInfo& GetAttInfo() { return m_tAtt; }
+    void SetAttackInfo(const tAttackInfo& _tAtt) { m_tAtt = _tAtt; }
 
 public:
     virtual void OnColliderEnter(CCollider* _pOther);

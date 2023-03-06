@@ -28,8 +28,8 @@ CBlueDragon::CBlueDragon():
 {
 
 	CreateCollider();
-	GetCollider()->SetScale(Vec2(70.f, 70.f));
-	GetCollider()->SetOffSet(Vec2(0.f, 30.f));
+	GetCollider()->SetScale(Vec2(70.f, 90.f));
+	GetCollider()->SetOffSet(Vec2(0.f, 0.f));
 
 	CreateAnimator();
 	GetAnimator()->SetRBG(0, 0, 0);

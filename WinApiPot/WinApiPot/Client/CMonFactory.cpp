@@ -90,6 +90,7 @@ CMonster* CMonFactory::CraeteMonster(MON_TYPE _monType, Vec2 _vPos)
 		m_tAtt.m_fAttackDamage = 5.f;
 		m_tAtt.m_fAttRigidityTime = 0.5f;
 		m_tAtt.m_fAttUpperRcnt = -60.f;
+
 		tMonSkill tSkill = { eMonsterAttackType::NORMAL,m_tAtt,L"_Normal_Attack", 1, 5.f, 5.f};
 		pMon->add_skill(tSkill);
 

@@ -194,9 +194,6 @@
     <Filter Include="Engine\08.Module\CPlayerFSM\CPlayerState\CPlayerSliding">
       <UniqueIdentifier>{20f80fe8-f3dd-4fc7-be79-f1b61c59ebd8}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Engine\04.CScene\NewFilter1">
-      <UniqueIdentifier>{c9119a6a-310b-4873-a624-2ce8d1258447}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Engine\04.CScene\CSeriaScene">
       <UniqueIdentifier>{9bdccd55-0edc-4439-adcd-77ff9f1b0185}</UniqueIdentifier>
     </Filter>
@@ -232,6 +229,9 @@
     </Filter>
     <Filter Include="Engine\08.Module\State\CDefenseState">
       <UniqueIdentifier>{e6bcc385-aec3-473a-990d-6cd3b00e2dfd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\04.CScene\CSkyTower">
+      <UniqueIdentifier>{c9119a6a-310b-4873-a624-2ce8d1258447}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -470,6 +470,9 @@
     <ClInclude Include="CDefenseState.h">
       <Filter>Engine\08.Module\State\CDefenseState</Filter>
     </ClInclude>
+    <ClInclude Include="CTower_1.h">
+      <Filter>Engine\04.CScene\CSkyTower</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Client.rc">
@@ -701,6 +704,9 @@
     </ClCompile>
     <ClCompile Include="CDefenseState.cpp">
       <Filter>Engine\08.Module\State\CDefenseState</Filter>
+    </ClCompile>
+    <ClCompile Include="CTower_1.cpp">
+      <Filter>Engine\04.CScene\CSkyTower</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

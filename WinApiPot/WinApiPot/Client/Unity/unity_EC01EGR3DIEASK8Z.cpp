@@ -191,6 +191,9 @@
 #include "C:\Users\wangh\source\tem\WinApiPot\WinApiPot\Client\CTimeMgr.cpp"
 
 
+#include "C:\Users\wangh\source\tem\WinApiPot\WinApiPot\Client\CTower_1.cpp"
+
+
 #include "C:\Users\wangh\source\tem\WinApiPot\WinApiPot\Client\CTraceState.cpp"
 
 

@@ -33,6 +33,25 @@ CExclusiveTrace::~CExclusiveTrace()
 }
 
 
+void CExclusiveTrace::init_attack(UINT _iDir)
+{
+	vector<tMonSkill>& vecSkill = GetMonster()->GetVecSkill();
+	for (int i = 0; i < vecSkill.size(); ++i)
+	{
+		if (vecSkill[i].m_fSkillTime <= 0.f)
+		{
+			vecSkill[i].m_fSkillTime = vecSkill[i].m_fMaxSkillTime;
+			m_eNextState = MONSTER_STATE::ATTACK;
+			GetAI()->GetState(m_eNextState)->SetDir(_iDir);
+			((CAttackState*)GetAI()->GetState(m_eNextState))->SetAttackName(vecSkill[i].m_strAttackName);
+			((CAttackState*)GetAI()->GetState(m_eNextState))->SetAttackFrame(vecSkill[i].m_iStartFrame); ChangeAIState(GetAI(), m_eNextState);
+			ChangeAIState(GetAI(), m_eNextState);
+			return;
+		}
+	}
+}
+
+
 void CExclusiveTrace::update()
 {
 	if (GetMonster()->IsDead())
@@ -87,22 +106,10 @@ void CExclusiveTrace::update()
 		
 		if(abs(vPos.y - vTargetPos.y) <= ATTACKRANGE)
 		{
-			vector<tMonSkill>& vecSkill = GetMonster()->GetVecSkill();
-			for (int i = 0; i < vecSkill.size(); ++i)
-			{
-				if (vecSkill[i].m_fSkillTime <= 0.f)
-				{
-					vecSkill[i].m_fSkillTime = vecSkill[i].m_fMaxSkillTime;
-					m_eNextState = MONSTER_STATE::ATTACK;
-					GetAI()->GetState(m_eNextState)->SetDir(iDir);
-					((CAttackState*)GetAI()->GetState(m_eNextState))->SetAttackFrame(1);
-					ChangeAIState(GetAI(), m_eNextState);
-					return;
-				}
-			}
+			init_attack(iDir);
+			return;
 		}
 	}
-
 
 	else
 	{

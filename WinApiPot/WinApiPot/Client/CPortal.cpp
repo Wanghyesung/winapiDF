@@ -11,8 +11,9 @@
 CPortal::CPortal()
 {
 	CreateCollider();
-	//크기를 설정해야하는뎅
 	GetCollider()->SetScale(Vec2(80.f, 50.f));
+
+	SetName(L"WC");
 }
 
 CPortal::~CPortal()
@@ -23,7 +24,7 @@ CPortal::~CPortal()
 
 void CPortal::update()
 {
-	//final은 씬에서 모든 오브젝트 update해주고 그다음에 돌려주는걸로
+	
 }
 
 void CPortal::OnColliderEnter(CCollider* _pOther)
@@ -34,12 +35,13 @@ void CPortal::OnColliderEnter(CCollider* _pOther)
 		if (pObj->GetGravity()->IsGetGravity())
 			return;
 
-		/*tEvent eve = {};
-		eve.eEventType = EVENT_TYPE::SCENE_CHANGE;
-		eve.lParm = (DWORD_PTR)m_eNextScene;
+		//ChangeScene();
 
-		CEventMgr::GetInst()->AddEvent(eve);*/
-		int a = 10;
+		//tEvent eve = {};
+		//eve.eEventType = EVENT_TYPE::SCENE_CHANGE;
+		//eve.lParm = (DWORD_PTR)m_eNextScene;
+		//
+		//CEventMgr::GetInst()->AddEvent(eve);
 	}
 }
 

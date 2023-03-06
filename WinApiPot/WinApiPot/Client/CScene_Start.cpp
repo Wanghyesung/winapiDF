@@ -66,7 +66,7 @@ void CScene_Start::Enter()
 	tInfo.fTopHeight = GetStartDrawPoint().y; 
 
 	SetBackGroundInfo(tInfo);
-
+	//플레이어 인터페이스는 씬 바꿀때 삭제X
 	SetInterFace();
 
 	CObject* pObj = CreatePlayer(Vec2(700.f, 550.f));
@@ -78,9 +78,9 @@ void CScene_Start::Enter()
 	
 
 	
-	//CMonster* pMon = CMonFactory::CraeteMonster(MON_TYPE::DRAGON, Vec2(1050.f, 580.f));
-	//pMon->SetName(L"CDragon");
-	//AddObject(pMon, GROUP_TYPE::MONSTER);
+	CMonster* pMon = CMonFactory::CraeteMonster(MON_TYPE::DRAGON, Vec2(1050.f, 580.f));
+	pMon->SetName(L"CDragon");
+	AddObject(pMon, GROUP_TYPE::MONSTER);
 
 	CMonster* pBlue = CMonFactory::CraeteMonster(MON_TYPE::BLUE_DRAGON, Vec2(1400.f, 580.f));
 	pBlue->SetName(L"BlueDragon"); 
@@ -92,7 +92,7 @@ void CScene_Start::Enter()
 	pWall_2->GetCollider()->SetScale(Vec2(3160.f, 400.f));
 	pWall_2->GetCollider()->SetColliderInfo();
 	AddObject(pWall_2, GROUP_TYPE::WALL);
-
+	
 	CWall* pWall_1 = new CWall;
 	pWall_1->SetName(L"Wall_1");
 	pWall_1->SetPos(Vec2(130.f, 320.f));

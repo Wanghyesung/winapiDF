@@ -594,6 +594,7 @@ void CPlayer::update_InterFace()
 	{
 		//체력회복
 		m_fCurAccTime = 0.f;
+		//추가 체력
 		float fHP = m_tPlayerInfo.m_fHP + m_tPlayerInfo.m_AccHP;
 		if (fHP > 0.f && fHP < 100.f)
 		{

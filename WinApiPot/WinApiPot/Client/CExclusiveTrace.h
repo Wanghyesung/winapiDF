@@ -16,7 +16,8 @@ private:
     MONSTER_STATE m_eNextState;
 
 
-
+private:
+    void init_attack(UINT _iDir);
 
 public:
     virtual void update();

@@ -17,9 +17,12 @@
 
 CPlayerAttackDown::CPlayerAttackDown():
 	CPlayerState(PLAYER_STATE::ATTACK_DOWN),
-	m_fAttackTime(0.2f),
+	m_fAttackTime(0.1f),
 	m_fCurTime(0.f)
 {
+	m_vecAttMotion.push_back(3);
+	m_vecAttMotion.push_back(5);
+	m_vecAttMotion.push_back(14);
 }
 
 CPlayerAttackDown::~CPlayerAttackDown()
@@ -34,6 +37,13 @@ void CPlayerAttackDown::update()
 
 	m_fCurTime += fDT;
 
+	if (KEY_TAP(KEY::X) && CPlayerAttack::m_iKeyCount < 2)
+	{
+		++CPlayerAttack::m_iKeyCount;
+	}
+
+	//키 누룰때마다 카운터 증가하고 그 그 값을 벡터 인덱스로 사용하여 (벡터에 공격 모션 프레임 넣음) 현재 프레임이
+	//내 현재 벡터의 인덱스값을 넘겼다면 idle로
 	if (KEY_TAP(KEY::X) || KEY_HOLD(KEY::X))
 	{
 		m_fCurTime = 0.f;
@@ -50,7 +60,7 @@ void CPlayerAttackDown::update()
 		Fire(iFrame);
 	}
 
-	if (m_fCurTime >= m_fAttackTime)
+	if (m_fCurTime >= m_fAttackTime &&iFrame > m_vecAttMotion[CPlayerAttack::m_iKeyCount])
 	{
 		ChangeFSMState(GetFSM(), PLAYER_STATE::IDLE);
 		InitMulitZeroFrame();
@@ -82,6 +92,8 @@ void CPlayerAttackDown::Enter()
 void CPlayerAttackDown::InitMulitZeroFrame()
 {
 	InitZeroFrame();
+	CPlayerAttack::m_iKeyCount = 0;
+	CPlayerAttack::m_iCurAttFrame = 0;
 	GetFSM()->GetPlayer()->GetAnimator()->GetCurAnimation()->SetFram(0);
 	GetFSM()->GetPlayer()->GetAnimator()->GetOtherAnimation()->SetFram(0);
 }

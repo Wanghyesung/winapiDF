@@ -10,6 +10,7 @@
 #include "CTimeMgr.h"
 
 #include "CGravity.h"
+#include "CPlayerAttack.h"
 
 #define HIT_MAX_FRAME 4
 #define HiT_AIR 3
@@ -62,6 +63,13 @@ void CPlayerHitUpper::Exit()
 
 void CPlayerHitUpper::Enter()
 {
+	PLAYER_STATE prevState = GetFSM()->GetPlayer()->GetPrevState();
+	if (prevState == PLAYER_STATE::ATTACK ||
+		prevState == PLAYER_STATE::ATTACK_DOWN)
+	{
+		((CPlayerAttack*)GetFSM()->FindState(prevState))->InitMulitZeroFrame();
+	}
+
 	CPlayer* pPlayer = GetFSM()->GetPlayer();
 	if (pPlayer->playerPrevState == PLAYER_STATE::UPPER_HIT)
 	{

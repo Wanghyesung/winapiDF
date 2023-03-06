@@ -5,6 +5,7 @@
 #include "CScene_Start.h"
 
 #include "CSeriaScene.h"
+#include "CTower_1.h"
 
 SceneMgr::SceneMgr():
 	m_pCurrScene(nullptr),
@@ -28,6 +29,7 @@ void SceneMgr::init()
 {
 	//¾À ¹è¿­¿¡ ¸¸µç ¾Àµé ³Ö±â
 	m_arrScene[(UINT)SCENE_TYPE::START_SCENE] = new CScene_Start;
+	m_arrScene[(UINT)SCENE_TYPE::SKYTOWER_1] = new CTower_1;
 	//m_arrScene[(UINT)SCENE_TYPE::START_SCENE]->SetName(L"Start Scene");
 
 	m_arrScene[(UINT)SCENE_TYPE::SERIA_SCENE] = new CSeriaScene;
@@ -49,7 +51,7 @@ void SceneMgr::update()
 
 void SceneMgr::ChangeScene(SCENE_TYPE _eNext)
 {
-	m_pCurrScene->Exit();
+	//m_pCurrScene->Exit();
 	m_pCurrScene = m_arrScene[(UINT)_eNext];
 
 	m_pCurrScene->Enter();

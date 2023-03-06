@@ -25,6 +25,7 @@ private:
 	wstring			m_strName; //씬의 이름
 
 	CTexture*		m_pBackgroundTex;
+	CTexture*		m_pTileTex;
 	Vec2			m_vStartDrawPos; //그릴 이미지의 시작점
 	tBackGround     m_tBackgroundInfo;
 
@@ -35,6 +36,7 @@ public:
 
 	//배경
 	void backgroundrender(HDC _dc, CTexture* _pTex, Vec2 _vStartPos);
+	void Tile_render(HDC _dc, CTexture* _pTex);
 	void SetInterFace();
 
 	void RegisterPlayer(CObject* _pObj);
@@ -45,6 +47,10 @@ public:
 	void SetBackGround(CTexture* _pTex) { m_pBackgroundTex = _pTex; }
 	CTexture* GetBackGround() { return m_pBackgroundTex; }
 
+	void SetTile(CTexture* _pTex) { m_pTileTex = _pTex; }
+	CTexture* GetTail() { return m_pTileTex; }
+
+	//벽 콜라이더 만들면 삭제
 	void SetBackGroundInfo(const tBackGround _tInfo) { m_tBackgroundInfo = _tInfo; }
 	const tBackGround& GetBackGroundInfo() {return m_tBackgroundInfo;}
 

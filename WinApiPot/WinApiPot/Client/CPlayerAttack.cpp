@@ -13,13 +13,15 @@
 #include "CSkillMgr.h"
 
 UINT CPlayerAttack::m_iCurAttFrame = 0;
-
+UINT CPlayerAttack::m_iKeyCount = 0;
 CPlayerAttack::CPlayerAttack() :
 	CPlayerState(PLAYER_STATE::ATTACK),
-	m_fAttackTime(0.2f),
+	m_fAttackTime(0.1f),
 	m_fCurTime(0.f)
 {
-
+	m_vecAttMotion.push_back(3); 
+	m_vecAttMotion.push_back(5); 
+	m_vecAttMotion.push_back(14);
 }
 
 CPlayerAttack::~CPlayerAttack()
@@ -34,6 +36,11 @@ void CPlayerAttack::update()
 
 	m_fCurTime += fDT;
 
+	if (KEY_TAP(KEY::X) && m_iKeyCount < 2)
+	{
+		++m_iKeyCount;
+	}
+
 	if (KEY_TAP(KEY::X) || KEY_HOLD(KEY::X))
 	{
 		m_fCurTime = 0.f;
@@ -45,21 +52,13 @@ void CPlayerAttack::update()
 		}
 	}
 
-	//if (KEY_NONE(KEY::X) &&
-	//	IS_HOLD_MOVE_KEY)
-	//{
-	//	ChangeFSMState(GetFSM(), PLAYER_STATE::WALK);
-	//	InitMulitZeroFrame();
-	//	return;
-	//}
-
 
 	if (iFrame == m_tAttFrame.first || iFrame == m_tAttFrame.second || iFrame == m_tAttFrame.third)
 	{
 		Fire(iFrame);
 	}
 
-	if (m_fCurTime >= m_fAttackTime)
+	if (m_fCurTime >= m_fAttackTime && iFrame > m_vecAttMotion[m_iKeyCount])
 	{
 		ChangeFSMState(GetFSM(), PLAYER_STATE::IDLE);
 		InitMulitZeroFrame();
@@ -93,6 +92,8 @@ void CPlayerAttack::Enter()
 void CPlayerAttack::InitMulitZeroFrame()
 {
 	InitZeroFrame();
+	m_iKeyCount = 0;
+	m_iCurAttFrame = 0;
 	GetFSM()->GetPlayer()->GetAnimator()->GetCurAnimation()->SetFram(0);
 	GetFSM()->GetPlayer()->GetAnimator()->GetOtherAnimation()->SetFram(0);
 }

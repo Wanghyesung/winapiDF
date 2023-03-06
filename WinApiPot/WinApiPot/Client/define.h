@@ -40,13 +40,14 @@ struct tAttackFrame
 enum class SCENE_TYPE
 {
 	START_SCENE,
+	SKYTOWER_1,
 	SERIA_SCENE,
 	TOOL_SCENE,
 	SCENE_BACKSTREET,//µ‘∞Ò∏Ò
 	SCENE_BAR,//¡÷¡°
 	SCENE_PORT,
 
-	END = 4,
+	END = 7,
 };
 
 

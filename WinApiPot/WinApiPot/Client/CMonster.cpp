@@ -34,8 +34,8 @@ CMonster::~CMonster()
 		delete m_AI;
 	}
 
-	//공격 오브젝트 삭제
-	DeleteObject(m_pAttackObj);
+	//이것도 Scene에서 소멸자에서 삭제
+	//DeleteObject(m_pAttackObj);
 	//if (m_pAttackObj != nullptr)
 	//{
 	//	delete m_pAttackObj;

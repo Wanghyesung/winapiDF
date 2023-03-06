@@ -409,12 +409,12 @@ void CPlayer::CreateBullet(CPlayer* _pPlayer, ATTACK_TYPE _eAttType)
 {
 	CBullet* pBullet = new CBullet(_pPlayer, _eAttType);
 	CreateObject(pBullet, GROUP_TYPE::BULLET);
-
 }
 
 
 void CPlayer::HitPlayer(CCollider* _pOther, const tAttackInfo& _tAttInfo)
 {
+
 	m_tPlayerHit.m_fHitRcnt = _tAttInfo.m_fAttRcnt;
 	m_tPlayerHit.m_fHitRigidityTime = _tAttInfo.m_fAttRigidityTime;
 	m_tPlayerHit.m_fHitUpperRcnt = _tAttInfo.m_fAttUpperRcnt;

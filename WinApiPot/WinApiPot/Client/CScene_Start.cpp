@@ -64,7 +64,6 @@ void CScene_Start::Enter()
 	tInfo.fBottomHeight = m_pBackGround->Height() - 110; 
 	tInfo.fLeftWidth = GetStartDrawPoint().x + 40;
 	tInfo.fTopHeight = GetStartDrawPoint().y; 
-
 	SetBackGroundInfo(tInfo);
 	//플레이어 인터페이스는 씬 바꿀때 삭제X
 	SetInterFace();
@@ -111,7 +110,7 @@ void CScene_Start::Enter()
 	pPortal_2->SetName(L"Back_Street_Portal");
 	pPortal_2->SetPos(Vec2(333.f, 440.f));
 	pPortal_2->GetCollider()->SetScale(Vec2(140.f, 50.f));
-	pPortal_2->SetNextScene(SCENE_TYPE::SCENE_BACKSTREET);
+	pPortal_2->SetNextScene(SCENE_TYPE::SKYTOWER_1);
 	//포탈 크기는 고정으로 생성자에서 만듬
 	AddObject(pPortal_2, GROUP_TYPE::PORTAL);
 

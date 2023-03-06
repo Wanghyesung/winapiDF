@@ -12,8 +12,6 @@ CPortal::CPortal()
 {
 	CreateCollider();
 	GetCollider()->SetScale(Vec2(80.f, 50.f));
-
-	SetName(L"WC");
 }
 
 CPortal::~CPortal()
@@ -35,7 +33,7 @@ void CPortal::OnColliderEnter(CCollider* _pOther)
 		if (pObj->GetGravity()->IsGetGravity())
 			return;
 
-		//ChangeScene();
+		ChangeScene(m_eNextScene);
 
 		//tEvent eve = {};
 		//eve.eEventType = EVENT_TYPE::SCENE_CHANGE;

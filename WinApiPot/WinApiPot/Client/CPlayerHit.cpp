@@ -6,10 +6,9 @@
 
 #include "CAnimation.h"
 #include "CAnimator.h"
-
 #include "CRigidBody.h"
-
 #include "CTimeMgr.h"
+#include "CPlayerAttack.h"
 
 #define MAX_HIT_FRAME 1
 
@@ -54,7 +53,12 @@ void CPlayerHit::update()
 
 void CPlayerHit::Enter()
 {
-
+	PLAYER_STATE prevState = GetFSM()->GetPlayer()->GetPrevState();
+	if (prevState == PLAYER_STATE::ATTACK ||
+		prevState == PLAYER_STATE::ATTACK_DOWN)
+	{
+		((CPlayerAttack*)GetFSM()->FindState(prevState))->InitMulitZeroFrame();
+	}
 }
 
 void CPlayerHit::Exit()

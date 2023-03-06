@@ -99,6 +99,18 @@ void CScene::backgroundrender(HDC _dc, CTexture* _pTex, Vec2 _vStartPos)
 		SRCCOPY);
 }
 
+void CScene::Tile_render(HDC _dc, CTexture* _pTex)
+{
+	BitBlt(_dc,
+		(int)(m_vStartDrawPos.x),
+		(int)(m_vStartDrawPos.y),
+		(int)(_pTex->Width()),
+		(int)(_pTex->Height()),
+		_pTex->GetDC(),
+		0, 0,
+		SRCCOPY);
+}
+
 void CScene::SetInterFace()
 {
 	CInterFace* pInterFace = new CInterFace();
@@ -134,10 +146,6 @@ void CScene::DeleteAll()
 {
 	for (UINT i = 0; i < (UINT)GROUP_TYPE::END; ++i)
 	{
-		if (i == (UINT)GROUP_TYPE::SKILL)
-		{
-			int a = 10;
-		}
 		DeleteGroup((GROUP_TYPE)i);
 	}
 }

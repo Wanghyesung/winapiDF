@@ -25,6 +25,9 @@
 #include "CHP.h"
 #include "CMP.h"
 
+#include "CMonInterface.h"
+#include "CHP.h"
+
 CScene_Start::CScene_Start()
 {
 }
@@ -73,16 +76,24 @@ void CScene_Start::Enter()
 	
 	RegisterPlayer(pObj);
 	CCameraMgr::GetInst()->SetTargetObj(pObj); //vResolution / 2.f
-	CSkillMgr::GetInst()->SetPlayer((CPlayer*)pObj);
 	
 
 	
 	CMonster* pMon = CMonFactory::CraeteMonster(MON_TYPE::DRAGON, Vec2(1050.f, 580.f));
-	pMon->SetName(L"CDragon");
+	pMon->SetName(L"CDragon_1");
+	//내 몬스터 인터페이스에 내 몬스터 이름 넣기
+	CMonInterface* dragonInterface = new CMonInterface(pMon->GetName());
+	dragonInterface->SetScale(Vec2(626, 29));
+	dragonInterface->SetPos(Vec2(40, 20));
+	AddObject(dragonInterface, GROUP_TYPE::UI);
 	AddObject(pMon, GROUP_TYPE::MONSTER);
 
 	CMonster* pBlue = CMonFactory::CraeteMonster(MON_TYPE::BLUE_DRAGON, Vec2(1400.f, 580.f));
-	pBlue->SetName(L"BlueDragon"); 
+	pBlue->SetName(L"BlueDragon_1"); 
+	CMonInterface* bdragonInterface = new CMonInterface(pBlue->GetName());
+	bdragonInterface->SetScale(Vec2(626, 29));
+	bdragonInterface->SetPos(Vec2(40,20));
+	AddObject(bdragonInterface, GROUP_TYPE::UI);
 	AddObject(pBlue, GROUP_TYPE::MONSTER);
 
 	CWall* pWall_2 = new CWall;

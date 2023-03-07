@@ -36,7 +36,7 @@ void CHP::render(HDC _dc)
 
 void CHP::update()
 {
-
+	CUI::update();
 }
 
 void CHP::MouseOn()

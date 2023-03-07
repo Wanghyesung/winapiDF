@@ -16,6 +16,7 @@
 #include "CAttackObject.h"
 #include "CSceneMgr.h"
 #include "CScene.h"
+#include "CInterfaceMgr.h"
 
 
 CMonster::CMonster() :
@@ -34,43 +35,34 @@ CMonster::~CMonster()
 		delete m_AI;
 	}
 
-	//이것도 Scene에서 소멸자에서 삭제
-	//DeleteObject(m_pAttackObj);
-	//if (m_pAttackObj != nullptr)
-	//{
-	//	delete m_pAttackObj;
-	//}
+	
+	if (m_pAttackObj != nullptr)
+	{
+		DeleteObject(m_pAttackObj);
+	}
 }
 
 
 void CMonster::update()
 {
-	//if (m_bHit)
-	//	return;
 	
 	//내 스킬 쿨타임 감소
 	update_skillTime();
 
-	//if (m_AI != nullptr)
-	//{
-	//	m_AI->update();
-	//}
 }
 
 void CMonster::render(HDC _dc)
 {
-	//Vec2 vPos = GetPos();
-	//Vec2 vScale = GetScale();
-	//
-	//vPos = CCameraMgr::GetInst()->GetRenderPos(vPos);
-	//
-	//Rectangle(_dc,
-	//	(int)(vPos.x - vScale.x/ 2.f),
-	//	(int)(vPos.y - vScale.y / 2.f),
-	//	(int)(vPos.x + vScale.x / 2.f),
-	//	(int)(vPos.y + vScale.y / 2.f));
+	
 
 	component_render(_dc);
+}
+
+void CMonster::update_MonInterFace()
+{
+	//추가 체력
+	CInterfaceMgr::GetInst()->SetTargetMon(GetName());
+	CInterfaceMgr::GetInst()->ChangeMonInterFaceValue(GetName(), m_tMonInfo.m_iHp);
 }
 
 void CMonster::hit(CCollider* _pOther, const tAttackInfo& _tAtt)
@@ -119,7 +111,8 @@ void CMonster::hit(CCollider* _pOther, const tAttackInfo& _tAtt)
 		}
 
 		
-		//m_tMonInfo.m_iHp-= _tAtt.m_fAttackDamage;
+		m_tMonInfo.m_iHp-= _tAtt.m_fAttackDamage;
+		update_MonInterFace();
 	}
 }
 

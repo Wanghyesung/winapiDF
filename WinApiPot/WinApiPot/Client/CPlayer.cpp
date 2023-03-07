@@ -132,6 +132,9 @@ CPlayer::CPlayer() :
 
 	GetAnimator()->Play(L"Player_idle_right", true);
 
+	//½ºÅ³
+	CSkillMgr::GetInst()->SetPlayer(this);
+
 	CreateCollider();
 	GetCollider()->SetScale(Vec2(50.f, 60.f));
 	GetCollider()->SetOffSet(Vec2(-20.f, 75.f));

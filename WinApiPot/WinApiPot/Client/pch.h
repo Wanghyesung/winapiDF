@@ -5,12 +5,14 @@
 #include <assert.h>
 #include "define.h"
 #include <vector>
+#include <unordered_map>
 #include "struct.h"
 using std::vector;
 
 #include <map>
 using std::map;
 using std::make_pair;
+using std::unordered_map;
 
 #include <list>
 using std::list;

@@ -20,6 +20,7 @@
 #include "CHitState.h"
 #include "CHitUpper.h"
 #include "CDeadState.h"
+#include "CInterfaceMgr.h"
 
 CBlueDragon::CBlueDragon():
 	m_eMonState(MONSTER_STATE::IDLE),
@@ -125,6 +126,9 @@ void CBlueDragon::hit(CCollider* _pOther, const tAttackInfo& _tAtt)
 	if (GetAI()->GetCurState()->GetType() == MONSTER_STATE::DEFENSE)
 	{
 		tMonInfo m_tMonInfo = GetAI()->GetCMonster()->GetMonInfo();
+
+		CInterfaceMgr::GetInst()->SetTargetMon(GetName());
+		CInterfaceMgr::GetInst()->ChangeMonInterFaceValue(GetName(), m_tMonInfo.m_iHp);
 		//m_tMonInfo.m_iHp -= (_tAtt.m_fAttackDamage/2.f);
 		return;
 	}

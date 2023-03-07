@@ -3,7 +3,8 @@
 
 struct tMonInfo
 {
-    int m_iHp;
+    float m_iHp;
+    float m_AccHP;
     float m_fspeed;
     float m_fnavigationScope;
 };
@@ -63,6 +64,8 @@ public:
 public:
     virtual void update();
     virtual void render(HDC _dc);
+
+    virtual void update_MonInterFace();
 
     void hit(CCollider* _pOther, const tAttackInfo& _tAtt);
 

@@ -86,6 +86,12 @@
 #include "C:\Users\wangh\source\tem\WinApiPot\WinApiPot\Client\CMonFactory.cpp"
 
 
+#include "C:\Users\wangh\source\tem\WinApiPot\WinApiPot\Client\CMonHP.cpp"
+
+
+#include "C:\Users\wangh\source\tem\WinApiPot\WinApiPot\Client\CMonInterface.cpp"
+
+
 #include "C:\Users\wangh\source\tem\WinApiPot\WinApiPot\Client\CMonster.cpp"
 
 

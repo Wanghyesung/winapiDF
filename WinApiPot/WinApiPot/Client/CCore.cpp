@@ -12,6 +12,7 @@
 #include "CEventMgr.h"
 #include "CSkillMgr.h"
 #include "CUIMgr.h"
+#include "CInterfaceMgr.h"
 
 
 CCore::CCore():
@@ -86,6 +87,7 @@ void CCore::progress()
 	Rectangle(m_memDC, -1, -1, m_ptResolution.x + 1, m_ptResolution.y + 1);//화면에 보여주는 부분이 아니라 다른 프레임의 화면을 지움(1px선 값까지 계산해서)
 
 	SceneMgr::GetInst()->render(m_memDC);
+	CInterfaceMgr::GetInst()->TargetRender(m_memDC);
 	CCameraMgr::GetInst()->render(m_memDC);
 
 	//그린 값들을 내 메인 Dc에 그려주기

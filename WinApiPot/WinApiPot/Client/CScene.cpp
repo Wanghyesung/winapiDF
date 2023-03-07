@@ -15,6 +15,8 @@
 #include "CInterFace.h"
 #include "CInterfaceMgr.h"
 
+#include "CMonInterface.h"
+#include "CHP.h"
 
 CScene::CScene():
 	m_pPlayer(nullptr),
@@ -101,9 +103,11 @@ void CScene::backgroundrender(HDC _dc, CTexture* _pTex, Vec2 _vStartPos)
 
 void CScene::Tile_render(HDC _dc, CTexture* _pTex)
 {
+	Vec2 RenderPos = CCameraMgr::GetInst()->GetRenderPos(m_vStartDrawPos);
+
 	BitBlt(_dc,
-		(int)(m_vStartDrawPos.x),
-		(int)(m_vStartDrawPos.y),
+		(int)(RenderPos.x),
+		(int)(RenderPos.y),
 		(int)(_pTex->Width()),
 		(int)(_pTex->Height()),
 		_pTex->GetDC(),
@@ -132,9 +136,6 @@ void CScene::SetInterFace()
 	CInterfaceMgr::GetInst()->SetInterFace(pInterFace);
 
 }
-
-
-
 
 
 void CScene::RegisterPlayer(CObject* _pObj)

@@ -176,6 +176,8 @@
     <ClInclude Include="Client.h" />
     <ClInclude Include="CMachKick.h" />
     <ClInclude Include="CMonFactory.h" />
+    <ClInclude Include="CMonHP.h" />
+    <ClInclude Include="CMonInterface.h" />
     <ClInclude Include="CMonster.h" />
     <ClInclude Include="CMP.h" />
     <ClInclude Include="CNearAttack.h" />
@@ -257,6 +259,8 @@
     <ClCompile Include="CKick.cpp" />
     <ClCompile Include="CMachKick.cpp" />
     <ClCompile Include="CMonFactory.cpp" />
+    <ClCompile Include="CMonHP.cpp" />
+    <ClCompile Include="CMonInterface.cpp" />
     <ClCompile Include="CMonster.cpp" />
     <ClCompile Include="CMP.cpp" />
     <ClCompile Include="CNearAttack.cpp" />

@@ -14,7 +14,6 @@ public:
 
 private:
     CTexture* m_pInterFaceTex;
-    CTexture* m_pMPTex;
 
     
 public:

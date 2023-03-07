@@ -15,11 +15,12 @@ CInterFace::CInterFace():
 	SetName(L"InterFace");
 	m_pInterFaceTex = CResMgr::GetInst()->LoadTextur(L"InterFace", L"..\\OutPut\\bin_release\\Content\\Interface//interface.bmp");
 	
+	//hp 자식 ui로 가지고있기
 }
 
 CInterFace::~CInterFace()
 {
-
+	
 }
 
 void CInterFace::MouseOn()

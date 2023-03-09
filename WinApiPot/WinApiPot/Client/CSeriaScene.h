@@ -14,5 +14,9 @@ public:
 public:
 	virtual void Enter();
 	virtual void Exit();
+	virtual void Init();
+
+private:
+	SCENE_TYPE m_eType;
 };
 

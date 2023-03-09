@@ -35,7 +35,8 @@ CMonster::~CMonster()
 		delete m_AI;
 	}
 
-	
+	//이것도 Scene에서 소멸자에서 삭제
+	//DeleteObject(m_pAttackObj);
 	if (m_pAttackObj != nullptr)
 	{
 		DeleteObject(m_pAttackObj);
@@ -112,6 +113,8 @@ void CMonster::hit(CCollider* _pOther, const tAttackInfo& _tAtt)
 
 		
 		m_tMonInfo.m_iHp-= _tAtt.m_fAttackDamage;
+		if (m_tMonInfo.m_iHp <= 0)
+			m_tMonInfo.m_iHp = 0;
 		update_MonInterFace();
 	}
 }
@@ -132,11 +135,11 @@ void CMonster::update_skillTime()
 	}
 }
 
-void CMonster::set_attackobj()
+void CMonster::set_attackobj(SCENE_TYPE _eSceneType)
 {
 	m_pAttackObj = new CAttackObject;
 	m_pAttackObj->m_pOwner = this;
-	SceneMgr::GetInst()->GetCurSCene()->AddObject(m_pAttackObj, GROUP_TYPE::MONSTER_SKILL);
+	SceneMgr::GetInst()->FindScene(_eSceneType)->AddObject(m_pAttackObj, GROUP_TYPE::MONSTER_SKILL);
 }
 
 

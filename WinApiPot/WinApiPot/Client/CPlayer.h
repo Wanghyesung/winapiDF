@@ -32,7 +32,7 @@ private:
 
     CFSM* m_pFSM;
 
-    tPlayerInfo  m_tPlayerInfo;
+    static tPlayerInfo  m_tPlayerInfo;
     tHitInfo m_tPlayerHit;
 
     int m_iDirX;     //현재 방향

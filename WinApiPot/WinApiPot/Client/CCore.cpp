@@ -66,7 +66,6 @@ int CCore::init(HWND _hWnd, POINT _pt)
 	CPathMgr::GetInst()->init();
 	CCameraMgr::GetInst()->init();
 	SceneMgr::GetInst()->init();
-	CSkillMgr::GetInst()->init();//스킬 리소스 받아두기
 
 	return S_OK;
 }
@@ -78,9 +77,10 @@ void CCore::progress()
 	CTimeMgr::GetInst()->update();
 	CKeyMgr::GetInst()->update();
 
-	CCameraMgr::GetInst()->update();
 	CSkillMgr::GetInst()->update();
 	SceneMgr::GetInst()->update();
+	CCameraMgr::GetInst()->update();
+
 	CColliderMgr::GetInst()->update();
 	CUIMgr::GetInst()->update();
 

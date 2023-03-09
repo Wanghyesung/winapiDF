@@ -29,18 +29,11 @@
 
 #define IS_HOLD_MOVE_KEY (KEY_HOLD(KEY::LEFT) || KEY_HOLD(KEY::RIGHT) || KEY_HOLD(KEY::UP) || KEY_HOLD(KEY::DOWN))
 
-struct tAttackFrame
-{
-	UINT first = 3;
-	UINT second = 5;
-	UINT third = 14;
-};
 
 
 enum class SCENE_TYPE
 {
 	START_SCENE,
-	SKYTOWER_1,
 	SERIA_SCENE,
 	TOOL_SCENE,
 	SCENE_BACKSTREET,//µÔ°ñ¸ñ

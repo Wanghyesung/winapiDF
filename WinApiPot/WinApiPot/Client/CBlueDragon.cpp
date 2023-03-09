@@ -78,6 +78,12 @@ CBlueDragon::~CBlueDragon()
 
 void CBlueDragon::update()
 {
+	if (IsDead())
+	{
+		DeleteObject(this);
+		return;
+	}
+
 	CMonster::update();
 	AI* pAI = GetAI();
 
@@ -129,7 +135,9 @@ void CBlueDragon::hit(CCollider* _pOther, const tAttackInfo& _tAtt)
 
 		CInterfaceMgr::GetInst()->SetTargetMon(GetName());
 		CInterfaceMgr::GetInst()->ChangeMonInterFaceValue(GetName(), m_tMonInfo.m_iHp);
-		//m_tMonInfo.m_iHp -= (_tAtt.m_fAttackDamage/2.f);
+		m_tMonInfo.m_iHp -= (_tAtt.m_fAttackDamage/2.f);
+		if (m_tMonInfo.m_iHp <= 0)
+			m_tMonInfo.m_iHp = 0;
 		return;
 	}
 
@@ -239,7 +247,7 @@ void CBlueDragon::OnColliderEnter(CCollider* _pOther)
 
 void CBlueDragon::OnColliderExit(CCollider* _pOther)
 {
-	int a = 10;
+	
 };
 void CBlueDragon::OnCollision(CCollider* _pOther)
 {

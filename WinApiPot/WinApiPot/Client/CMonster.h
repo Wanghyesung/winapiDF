@@ -85,7 +85,7 @@ public:
     CAttackObject* GetSKillObj() { return m_pAttackObj; }
 
 private:
-    void set_attackobj();
+    void set_attackobj(SCENE_TYPE _eSceneType);
 
 public:
     void SettMonInfo(const tMonInfo& _tMonInfo) { m_tMonInfo = _tMonInfo; }

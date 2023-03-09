@@ -31,12 +31,13 @@ CBullet::CBullet(CPlayer* _pPlayer, ATTACK_TYPE _eAttType = ATTACK_TYPE::NORMAL)
 	m_vPos(Vec2(0.f, 0.f)),
 	vDeadLine(Vec2(0.f, 0.f)),
 	m_fDelTime(5.f),
-	m_fCurTime(0.f)
+	m_fCurTime(0.f),
+	m_iAttackStack(0)
 {
 
 	SetTag(GROUP_TYPE::SKILL);
 
-	m_tAtt.m_fAttackDamage = 20.f;
+	m_tAtt.m_fAttackDamage = 5.f;
 	m_tAtt.m_fAttRigidityTime = 0.8f;
 	m_tAtt.m_fAttUpperRcnt = -60.f;
 	m_tAtt.m_fAttRcnt = 30.f;
@@ -136,8 +137,12 @@ void CBullet::OnColliderEnter(CCollider* _pOther)
 	if (tTag == GROUP_TYPE::MONSTER)
 	{
 		//Á×À¸¸é false
+		if (m_iAttackStack != 0)
+			return;
+
 		if (((CMonster*)_pOther->GetObj())->IsActiv())
 		{
+			++m_iAttackStack;
 			DeleteObject(this);
 		}
 	}

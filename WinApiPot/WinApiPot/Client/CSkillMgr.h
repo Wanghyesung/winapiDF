@@ -19,10 +19,10 @@ private:
 
 public:
 	void update();//매 프레임마다 해당 키의 스킬이 눌렸는지 체크와 해당 스킬을 누르고 재사용대기시간 체크
-	void init();//스킬 리소스 받아두기
+	void init(SCENE_TYPE _eSceneType);//스킬 리소스 받아두기
 
 private:
-	void initSkill();
+	void initSkill(SCENE_TYPE _eSceneType);
 	void reducedMp(SKILL_STATE _tSkill);
 
 public:

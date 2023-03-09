@@ -116,5 +116,5 @@ struct Vec2
 
 };
 
-
+//static inline Vec2 Rotate(Vec2 _vVec, float _f)
 

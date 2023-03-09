@@ -4,9 +4,10 @@
 #include "CResMgr.h"
 #include "CTexture.h"
 
+int CHP::m_iMinusHp = 0;
+
 CHP::CHP():
-	m_pHPTex(nullptr),
-	m_iMinusHp(0)
+	m_pHPTex(nullptr)
 {
 	SetName(L"HP");
 	m_pHPTex = CResMgr::GetInst()->LoadTextur(L"HP", L"..\\OutPut\\bin_release\\Content\\Interface\\HP.bmp");

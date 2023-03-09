@@ -45,6 +45,8 @@ CMonInterface* CInterfaceMgr::FindTargetMon(const wstring& _strName)
 	return nullptr;
 }
 
+
+
 void CInterfaceMgr::TargetRender(HDC _dc)
 {
 	if (m_pTargetMon != nullptr)

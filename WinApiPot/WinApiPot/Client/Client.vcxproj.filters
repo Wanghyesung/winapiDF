@@ -230,9 +230,6 @@
     <Filter Include="Engine\08.Module\State\CDefenseState">
       <UniqueIdentifier>{e6bcc385-aec3-473a-990d-6cd3b00e2dfd}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Engine\04.CScene\CSkyTower">
-      <UniqueIdentifier>{c9119a6a-310b-4873-a624-2ce8d1258447}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Engine\05.CObject\CUI\CMonUI">
       <UniqueIdentifier>{ffe4c152-5e7f-44cd-85dc-44b09b699931}</UniqueIdentifier>
     </Filter>
@@ -241,6 +238,12 @@
     </Filter>
     <Filter Include="Engine\05.CObject\CUI\CMonUI\CMonHP">
       <UniqueIdentifier>{6e845dde-0934-4aef-a27d-5423f5807975}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\04.CScene\NextScene">
+      <UniqueIdentifier>{864c2b24-5d94-427a-a9f4-ac0d46f69ae6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\04.CScene\CSceneBack">
+      <UniqueIdentifier>{41e281c3-6887-4e7a-ab1f-c54216c95ea8}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -479,14 +482,14 @@
     <ClInclude Include="CDefenseState.h">
       <Filter>Engine\08.Module\State\CDefenseState</Filter>
     </ClInclude>
-    <ClInclude Include="CTower_1.h">
-      <Filter>Engine\04.CScene\CSkyTower</Filter>
-    </ClInclude>
     <ClInclude Include="CMonInterface.h">
       <Filter>Engine\05.CObject\CUI\CMonUI\MonInterface</Filter>
     </ClInclude>
     <ClInclude Include="CMonHP.h">
       <Filter>Engine\05.CObject\CUI\CMonUI\CMonHP</Filter>
+    </ClInclude>
+    <ClInclude Include="CSceneBack.h">
+      <Filter>Engine\04.CScene\CSceneBack</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -720,14 +723,14 @@
     <ClCompile Include="CDefenseState.cpp">
       <Filter>Engine\08.Module\State\CDefenseState</Filter>
     </ClCompile>
-    <ClCompile Include="CTower_1.cpp">
-      <Filter>Engine\04.CScene\CSkyTower</Filter>
-    </ClCompile>
     <ClCompile Include="CMonInterface.cpp">
       <Filter>Engine\05.CObject\CUI\CMonUI\MonInterface</Filter>
     </ClCompile>
     <ClCompile Include="CMonHP.cpp">
       <Filter>Engine\05.CObject\CUI\CMonUI\CMonHP</Filter>
+    </ClCompile>
+    <ClCompile Include="CSceneBack.cpp">
+      <Filter>Engine\04.CScene\CSceneBack</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

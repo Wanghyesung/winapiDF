@@ -13,7 +13,7 @@ public:
 private:
     CTexture* m_pHPTex;
 
-    int m_iMinusHp;
+    static int m_iMinusHp;
 
 public:
     virtual void render(HDC _dc);

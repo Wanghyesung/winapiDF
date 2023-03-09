@@ -31,6 +31,8 @@ private:
 	float m_fHitRcnt;
 	float m_fUpperVluae;
 
+	UINT m_iAttackStack;
+
 public:
 	virtual void render(HDC _dc);
 	virtual void update();

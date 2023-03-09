@@ -14,7 +14,7 @@ enum class MON_TYPE
 class CMonFactory
 {
 public:
-	static CMonster* CraeteMonster(MON_TYPE _monType, Vec2 _vPos);
+	static CMonster* CraeteMonster(MON_TYPE _monType, Vec2 _vPos, SCENE_TYPE _eSceneType);
 
 
 private:

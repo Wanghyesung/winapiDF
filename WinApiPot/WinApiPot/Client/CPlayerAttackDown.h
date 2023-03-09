@@ -23,7 +23,6 @@ public:
 private:
     void Fire(UINT _iFireFrame);
 
-    tAttackFrame m_tAttFrame;
 
 };
 

@@ -10,7 +10,7 @@ public:
 private:
     CTexture* m_pMPTex;
 
-    int m_iMinusMp;
+    static int m_iMinusMp;
 
 public:
     virtual void render(HDC _dc);

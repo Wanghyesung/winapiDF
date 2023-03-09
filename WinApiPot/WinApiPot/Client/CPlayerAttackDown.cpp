@@ -55,7 +55,7 @@ void CPlayerAttackDown::update()
 		}
 	}
 
-	if (iFrame == m_tAttFrame.first || iFrame == m_tAttFrame.second || iFrame == m_tAttFrame.third)
+	if (iFrame == m_vecAttMotion[0] || iFrame == m_vecAttMotion[1] || iFrame == m_vecAttMotion[2])
 	{
 		Fire(iFrame);
 	}
@@ -104,7 +104,7 @@ void CPlayerAttackDown::Fire(UINT _iFireFrame)
 	{
 		CPlayer* pPlayer = GetFSM()->GetPlayer();
 		CPlayerAttack::m_iCurAttFrame = _iFireFrame;
-		if (_iFireFrame == m_tAttFrame.third)
+		if (_iFireFrame == m_vecAttMotion[2])
 			pPlayer->CreateBullet(pPlayer, ATTACK_TYPE::UPPER);
 		else
 			pPlayer->CreateBullet(pPlayer);

@@ -4,8 +4,9 @@
 #include "CResMgr.h"
 #include "CTexture.h"
 
+int CMP::m_iMinusMp = 0;
+
 CMP::CMP():
-	m_iMinusMp(0),
 	m_pMPTex(nullptr)
 {
 	SetName(L"MP");

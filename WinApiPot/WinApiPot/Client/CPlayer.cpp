@@ -30,8 +30,9 @@
 #include "CFireBall.h"
 #include "CAttackObject.h"
 
+tPlayerInfo CPlayer::m_tPlayerInfo = {};
+
 CPlayer::CPlayer() :
-	m_tPlayerInfo{},
 	playerCurState(PLAYER_STATE::IDLE),
 	playerPrevState(PLAYER_STATE::IDLE),
 	playerCurSkill(SKILL_STATE::END),
@@ -133,7 +134,7 @@ CPlayer::CPlayer() :
 	GetAnimator()->Play(L"Player_idle_right", true);
 
 	//½ºÅ³
-	CSkillMgr::GetInst()->SetPlayer(this);
+	//CSkillMgr::GetInst()->SetPlayer(this);
 
 	CreateCollider();
 	GetCollider()->SetScale(Vec2(50.f, 60.f));
@@ -467,22 +468,20 @@ void CPlayer::OnColliderEnter(CCollider* _pOther)
 	if (pObj->GetTag() == GROUP_TYPE::MONSTER_SKILL
 		&& m_tPlayerInfo.m_fHP != 0)
 	{
+		if (m_bOnSkill)
+		{
+			m_pSkill->GetCurSkill()->exit();
+		}
+
 		if (dynamic_cast<CFireBall*>(pObj))
 		{
 			CFireBall* pFire = dynamic_cast<CFireBall*>(pObj);
-			if (m_bOnSkill)
-			{
-				m_pSkill->GetCurSkill()->exit();
-			}
 			HitPlayer(_pOther, pFire->GetAttInfo());
 		}
 		if (dynamic_cast<CAttackObject*>(pObj))
 		{
 			CAttackObject* MonAttack = dynamic_cast<CAttackObject*>(pObj);
-			if (m_bOnSkill)
-			{
-				m_pSkill->GetCurSkill()->exit();
-			}
+			
 			HitPlayer(_pOther, MonAttack->GetAttInfo());
 		}
 	}

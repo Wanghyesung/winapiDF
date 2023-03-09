@@ -20,6 +20,8 @@ public:
 	void ChangeScene(SCENE_TYPE _eNext);
 	CScene* GetCurSCene() { return m_pCurrScene; }
 
+	CScene* FindScene(SCENE_TYPE _eSceneType);
+
 	void init();
 
 

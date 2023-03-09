@@ -183,8 +183,8 @@ void CCameraMgr::CheckRangeMap()
 {
 	if (m_pTargetObj == nullptr)
 		return;
+		
 	CTexture* m_pBackGround = SceneMgr::GetInst()->GetCurSCene()->GetBackGround();
-
 	//요StartRenderPos.x와 y범위가 카메라가 바라보는 크기보다 작아지면 
 	//카메라 타겟 범위를 범춤
 	Vec2 vCamLook = m_vCurLookAt;//내가 바라보고있는 벡터 renderPos를 가져와야하나
@@ -193,27 +193,26 @@ void CCameraMgr::CheckRangeMap()
 	Vec2 vBackGroundCenter = Vec2(m_pBackGround->Width() / 2.f, m_pBackGround->Height() / 2.f);//배경 이미지의 가운데 위치
 	Vec2 vPLayerPos = m_pTargetObj->GetPos();
 
-	//점프중이면 카메라가 tempos에 맞춤 때문에 vPlayerPos기준으로 준다면 카메라는 tempos를 보는데 render은 playerpos(점프 위치)를 기준으로 하기 떄문에 오차가 생김
-	//떄문에 중력을 받고있는 플레이어라면 playerpos를 tempos기준으로 바꿔줘야한다
+	
 	if (m_pTargetObj->GetGravity()->IsGetGravity())
 	{
 		vPLayerPos = m_pTargetObj->GetJumPos();
 	}
-
+	
 
 	//내 캐릭터로부터 윈도우 x범위가 비트맵 크기 x좌표 안에 있어야함
-	bool isXPass = (vBackGroundCenter.x - m_pBackGround->Width() / 2.f) >= vPLayerPos.x - vResoltion.x / 2.f ||
-		(vBackGroundCenter.x + m_pBackGround->Width() / 2.f) <= vPLayerPos.x + vResoltion.x / 2.f;
+	bool isXPass = (vBackGroundCenter.x - (float)m_pBackGround->Width() / 2.f) >= vPLayerPos.x - vResoltion.x / 2.f ||
+		(vBackGroundCenter.x + (float)m_pBackGround->Width() / 2.f) <= vPLayerPos.x + vResoltion.x / 2.f;
 
 	//내 윈도우 y범위가 비트맵 크기 y좌표 안에 있어야함
-	bool isYPass = (vBackGroundCenter.y - m_pBackGround->Height() / 2.f) >= vPLayerPos.y - vResoltion.y / 2.f ||
-		(vBackGroundCenter.y + m_pBackGround->Height() / 2.f) <= vPLayerPos.y + vResoltion.y / 2.f;
+	bool isYPass = (vBackGroundCenter.y - (float)m_pBackGround->Height() / 2.f) >= vPLayerPos.y - vResoltion.y / 2.f ||
+		(vBackGroundCenter.y + (float)m_pBackGround->Height() / 2.f) <= vPLayerPos.y + vResoltion.y / 2.f;
 
 	if (isXPass)//넘었다면
 	{
 		//겹친 양 (음수)
 		float fLen = abs(vBackGroundCenter.x - vPLayerPos.x); //두 오브젝트 거리 
-		float fValue = (vResoltion.x / 2.f + m_pBackGround->Width() / 2.f) - fLen; //두 물체의 크기/2의 합 - 두 오브젝트 거리 = 겹친양
+		float fValue = (vResoltion.x / 2.f + (float)m_pBackGround->Width() / 2.f) - fLen; //두 물체의 크기/2의 합 - 두 오브젝트 거리 = 겹친양
 
 		Vec2 vNorDiff = (vBackGroundCenter - vPLayerPos).NormalRize();
 		float fAddValue = vResoltion.x - fValue;
@@ -229,14 +228,17 @@ void CCameraMgr::CheckRangeMap()
 		SetEndRangeX(vPLayerPos.x + fAddValue * iDir);
 	}
 	else
+	{
 		SetIsPassX(false);
+	}
+		
 
 
 	if (isYPass)//넘었다면
 	{
 		//겹친 양 (음수)
 		float fLen = abs(vBackGroundCenter.y - vPLayerPos.y); //두 오브젝트 거리 
-		float fValue = (vResoltion.y / 2.f + m_pBackGround->Height() / 2.f) - fLen; //두 물체의 크기/2의 합 - 두 오브젝트 거리 = 겹친양
+		float fValue = (vResoltion.y / 2.f + (float)m_pBackGround->Height() / 2.f) - fLen; //두 물체의 크기/2의 합 - 두 오브젝트 거리 = 겹친양
 
 		Vec2 vNorDiff = (vBackGroundCenter - vPLayerPos).NormalRize();//y축은 Nor.y가 0.1~0.2밖에 안 나와서 곱해도 미미한 양임
 		float fAddValue = vResoltion.y - fValue;
@@ -246,13 +248,16 @@ void CCameraMgr::CheckRangeMap()
 			iDir = 1;
 		else
 			iDir = -1;
-
+		//1450 725 
 		SetIsPassY(true);
 		//넘은 값만큼 옆으로 밀어주기
 		SetEndRangeY(vPLayerPos.y + fAddValue * iDir);
 	}
 	else
+	{
 		SetIsPassY(false);
+	}
+		
 }
 
 

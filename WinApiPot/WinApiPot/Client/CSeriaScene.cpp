@@ -9,10 +9,13 @@
 #include "CPlayer.h"
 
 #include "CCameraMgr.h"
+#include "CSkillMgr.h"
+#include "CColliderMgr.h"
 
-
-CSeriaScene::CSeriaScene()
+CSeriaScene::CSeriaScene():
+	m_eType(SCENE_TYPE::SERIA_SCENE)
 {
+
 }
 
 CSeriaScene::~CSeriaScene()
@@ -29,13 +32,8 @@ void CSeriaScene::render(HDC _dc)
 
 	CScene::render(_dc);
 
-
-	
-
 }
-
-
-void CSeriaScene::Enter()
+void CSeriaScene::Init()
 {
 	CTexture* pBackGround = CResMgr::GetInst()->LoadTextur(L"Seria", L"..\\OutPut\\bin_release\\Content\\background//seria2.bmp");
 
@@ -43,14 +41,14 @@ void CSeriaScene::Enter()
 
 	tBackGround tInfo = {};
 	tInfo.fRightWidth = pBackGround->Width();
-	tInfo.fBottomHeight = pBackGround->Height(); 
+	tInfo.fBottomHeight = pBackGround->Height();
 	tInfo.fLeftWidth = GetStartDrawPoint().x;
 	tInfo.fTopHeight = GetStartDrawPoint().y;
 
 	SetBackGroundInfo(tInfo);
 
 
-	CObject* pObj = CreatePlayer(Vec2(700.f, 550.f));
+	CPlayer* pObj = CreatePlayer(Vec2(700.f, 550.f));
 	//pObj->SetName(L"Player");
 	//pObj->SetPos(Vec2(620.f, 380.f));
 	//pObj->SetScale(Vec2(50.f, 50.f));
@@ -58,10 +56,22 @@ void CSeriaScene::Enter()
 
 	RegisterPlayer(pObj);
 	CCameraMgr::GetInst()->SetTargetObj(pObj); //vResolution / 2.f
-	//CSkillMgr::GetInst()->SetPlayer(pObj);
+
+}
+
+void CSeriaScene::Enter()
+{
+	
+	CSkillMgr::GetInst()->SetPlayer((CPlayer*)GetPlayerObj());
+	CSkillMgr::GetInst()->init(m_eType);
+
 }
 
 void CSeriaScene::Exit()
 {
+	DeleteGroup(GROUP_TYPE::SKILL);
 
+	CColliderMgr::GetInst()->Reset();
 }
+
+

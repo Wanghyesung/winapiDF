@@ -91,6 +91,7 @@ void CPlayerJump::Enter()
 void CPlayerJump::Exit()
 {
 	CPlayerState::Exit();
+	InitZeroFrame();
 	GetFSM()->GetPlayer()->GetAnimator()->GetCurAnimation()->SetFram(0);
 	GetFSM()->GetPlayer()->GetAnimator()->GetOtherAnimation()->SetFram(0);
 }

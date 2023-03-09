@@ -104,15 +104,31 @@ void CScene::backgroundrender(HDC _dc, CTexture* _pTex, Vec2 _vStartPos)
 void CScene::Tile_render(HDC _dc, CTexture* _pTex)
 {
 	Vec2 RenderPos = CCameraMgr::GetInst()->GetRenderPos(m_vStartDrawPos);
+	Vec2 vCenter = Vec2(_pTex->Width() / .2f, _pTex->Height() / 2.f);
 
-	BitBlt(_dc,
+	TransparentBlt(_dc,
 		(int)(RenderPos.x),
 		(int)(RenderPos.y),
 		(int)(_pTex->Width()),
 		(int)(_pTex->Height()),
 		_pTex->GetDC(),
-		0, 0,
-		SRCCOPY);
+		(int)(0),
+		(int)(0),
+		(int)(_pTex->Width()),
+		(int)(_pTex->Height()),
+		RGB(0, 0, 0));
+
+	/*TransparentBlt(_dc,
+		(int)(vPos.x - m_vecFrm[m_iCurFrm].vSlice.x / 2.f),
+		(int)(vPos.y - m_vecFrm[m_iCurFrm].vSlice.y / 2.f),
+		(int)(m_vecFrm[m_iCurFrm].vSlice.x),
+		(int)(m_vecFrm[m_iCurFrm].vSlice.y),
+		m_pTex->GetDC(),
+		(int)(m_vecFrm[m_iCurFrm].vLt.x),
+		(int)(m_vecFrm[m_iCurFrm].vLt.y),
+		(int)(m_vecFrm[m_iCurFrm].vSlice.x),
+		(int)(m_vecFrm[m_iCurFrm].vSlice.y),
+		RGB(m_pAnimator->r, m_pAnimator->g, m_pAnimator->b));*/
 }
 
 void CScene::SetInterFace()
@@ -134,9 +150,7 @@ void CScene::SetInterFace()
 	AddObject(pInterFace, GROUP_TYPE::UI);
 
 	CInterfaceMgr::GetInst()->SetInterFace(pInterFace);
-
 }
-
 
 void CScene::RegisterPlayer(CObject* _pObj)
 {

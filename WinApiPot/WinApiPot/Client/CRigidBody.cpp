@@ -180,12 +180,6 @@ void CRigidBody::move()
 			vPos += m_vVelocity * fDT;
 			m_pOwner->SetPos(vPos);
 		}
-		//여기 걸려서 안 움직여
-		//else if (((CPlayer*)m_pOwner)->IsSlidingNow() && m_pOwner->GetName() == L"Player")
-		//{
-		//	vPos += m_vVelocity * fDT; //* fDT;
-		//	m_pOwner->SetPos(vPos);
-		//}
 
 		//점프중이 아니면
 		else 
@@ -202,10 +196,7 @@ void CRigidBody::move()
 void CRigidBody::IsOutRangeMap()
 {
 	tBackGround tMapInfo = SceneMgr::GetInst()->GetCurSCene()->GetBackGroundInfo();
-	//Vec2 vfinalPos = m_pOwner->GetCollider()->GetFinalPos();
 	Vec2 vPos = m_pOwner->GetPos();
-	//Vec2 vCollOffsetPos = m_pOwner->GetCollider()->GetOffSetPos();
-
 	Vec2 vVelocity = GetVelocity();
 
 
@@ -240,7 +231,7 @@ void CRigidBody::IsOutRangeMap()
 		{
 			Vec2 vJumPos = m_pOwner->GetJumPos();
 			//x쪽만 막는다 y쪽으로는 점프 가능하게 할것임 하지만 중력값을 뺀 y움직임은 막아줘야함
-			m_pOwner->SetJumPos(Vec2(vJumPos.x, vJumPos.y + m_vNgravityPos));//Ngravity값이 맵 밖으로 넘어가면 뺴야하나
+			m_pOwner->SetJumPos(Vec2(vJumPos.x, vJumPos.y + m_vNgravityPos - 3));//Ngravity값이 맵 밖으로 넘어가면 뺴야하나
 			vPos.y += -vVelocity.y * fDT;
 		}
 		else

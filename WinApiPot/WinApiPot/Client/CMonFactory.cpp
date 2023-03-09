@@ -19,7 +19,7 @@
 #include "CHitUpper.h"
 #include "CDeadState.h"
 
-CMonster* CMonFactory::CraeteMonster(MON_TYPE _monType, Vec2 _vPos)
+CMonster* CMonFactory::CraeteMonster(MON_TYPE _monType, Vec2 _vPos, SCENE_TYPE _eSceneType)
 {
 	CMonster* pMon = nullptr;
 	switch (_monType)
@@ -43,7 +43,7 @@ CMonster* CMonFactory::CraeteMonster(MON_TYPE _monType, Vec2 _vPos)
 		tMonSkill tSkill2 = { eMonsterAttackType::NORMAL,m_tAtt ,L"_Attack", 4, 7.f, 5.f };
 		pMon->add_skill(tSkill2);
 		//내 공격 오브젝트 추가
-		pMon->set_attackobj();
+		pMon->set_attackobj(_eSceneType);
 
 		tMonInfo info = {};
 		info.m_fnavigationScope = 400.f;
@@ -138,6 +138,10 @@ CMonster* CMonFactory::CraeteMonster(MON_TYPE _monType, Vec2 _vPos)
 	assert(pMon);
 
 	return pMon;
+}
+
+CMonFactory::~CMonFactory()
+{
 }
 
 

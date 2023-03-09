@@ -44,7 +44,7 @@ CSkillMgr::~CSkillMgr()
 
 }
 
-void CSkillMgr::init()
+void CSkillMgr::init(SCENE_TYPE _eSceneType)
 {
 	if (m_pPlayer == nullptr || m_pPlayer->IsDead())
 		return;
@@ -53,30 +53,30 @@ void CSkillMgr::init()
 	{
 		m_mapSkill.insert(make_pair((SKILL_STATE)i, 0.f));
 	}
-	initSkill();
+	initSkill(_eSceneType);
 }
 
-void CSkillMgr::initSkill()
+void CSkillMgr::initSkill(SCENE_TYPE _eSceneType)
 {
 	CKick* pCkick = new CKick;
 	m_pPlayer->m_pSkill->AddSkill(pCkick);
-	SceneMgr::GetInst()->GetCurSCene()->AddObject(pCkick, GROUP_TYPE::SKILL);
+	SceneMgr::GetInst()->FindScene(_eSceneType)->AddObject(pCkick, GROUP_TYPE::SKILL);
 
 	CMachKick* pMachKick = new CMachKick;
 	m_pPlayer->m_pSkill->AddSkill(pMachKick);
-	SceneMgr::GetInst()->GetCurSCene()->AddObject(pMachKick, GROUP_TYPE::SKILL);
+	SceneMgr::GetInst()->FindScene(_eSceneType)->AddObject(pMachKick, GROUP_TYPE::SKILL);
 
 	CRandomFire* pRandomFire = new CRandomFire;
 	m_pPlayer->m_pSkill->AddSkill(pRandomFire);
-	SceneMgr::GetInst()->GetCurSCene()->AddObject(pRandomFire, GROUP_TYPE::SKILL);
+	SceneMgr::GetInst()->FindScene(_eSceneType)->AddObject(pRandomFire, GROUP_TYPE::SKILL);
 
 	CWindmill* pWindMill = new CWindmill;
 	m_pPlayer->m_pSkill->AddSkill(pWindMill);
-	SceneMgr::GetInst()->GetCurSCene()->AddObject(pWindMill, GROUP_TYPE::SKILL);
+	SceneMgr::GetInst()->FindScene(_eSceneType)->AddObject(pWindMill, GROUP_TYPE::SKILL);
 
 	CWalkFire* pWalkFire = new CWalkFire;
 	m_pPlayer->m_pSkill->AddSkill(pWalkFire);
-	SceneMgr::GetInst()->GetCurSCene()->AddObject(pWalkFire, GROUP_TYPE::SKILL);
+	SceneMgr::GetInst()->FindScene(_eSceneType)->AddObject(pWalkFire, GROUP_TYPE::SKILL);
 }
 
 

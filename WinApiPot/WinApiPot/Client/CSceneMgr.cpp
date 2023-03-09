@@ -5,7 +5,7 @@
 #include "CScene_Start.h"
 
 #include "CSeriaScene.h"
-#include "CTower_1.h"
+#include "CSceneBack.h"
 
 SceneMgr::SceneMgr():
 	m_pCurrScene(nullptr),
@@ -25,14 +25,29 @@ SceneMgr::~SceneMgr()
 	}
 }
 
+CScene* SceneMgr::FindScene(SCENE_TYPE _eSceneType)
+{
+	if (m_arrScene[(UINT)_eSceneType] != nullptr)
+		return m_arrScene[(UINT)_eSceneType];
+
+	return nullptr;
+}
+
 void SceneMgr::init()
 {
 	//씬 배열에 만든 씬들 넣기
 	m_arrScene[(UINT)SCENE_TYPE::START_SCENE] = new CScene_Start;
-	m_arrScene[(UINT)SCENE_TYPE::SKYTOWER_1] = new CTower_1;
 	//m_arrScene[(UINT)SCENE_TYPE::START_SCENE]->SetName(L"Start Scene");
-
+	m_arrScene[(UINT)SCENE_TYPE::SCENE_BACKSTREET] = new CSceneBack;
 	m_arrScene[(UINT)SCENE_TYPE::SERIA_SCENE] = new CSeriaScene;
+
+	for (UINT i = 0; i < (UINT)SCENE_TYPE::END; ++i)
+	{
+		if (m_arrScene[i] == nullptr)
+			continue;
+		m_arrScene[i]->Init();
+	}
+
 	m_pCurrScene = m_arrScene[(UINT)SCENE_TYPE::START_SCENE];//현재 씬 넣어주고
 	m_pCurrScene->Enter();
 }
@@ -51,8 +66,12 @@ void SceneMgr::update()
 
 void SceneMgr::ChangeScene(SCENE_TYPE _eNext)
 {
-	//m_pCurrScene->Exit();
+	//플레이어만 가져오기
+	//vector<CObject*> vecPlayer = m_pCurrScene->GetGroupObject(GROUP_TYPE::PLAYER);
+	m_pCurrScene->Exit();
+
 	m_pCurrScene = m_arrScene[(UINT)_eNext];
+	//m_pCurrScene->AddObject(vecPlayer[0],GROUP_TYPE::PLAYER);
 
 	m_pCurrScene->Enter();
 }

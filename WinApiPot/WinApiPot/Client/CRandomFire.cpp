@@ -13,6 +13,7 @@
 
 #include "CKeyMgr.h"
 #include "CTimeMgr.h"
+#include "CResMgr.h"
 
 #define ATTACK_RANGE 30
 
@@ -35,6 +36,10 @@ CRandomFire::CRandomFire() :
 
 	SetAttInfo(tAtt);
 
+	//난사 애니메이션
+	CreateAnimator();
+	CTexture* m_pRadomFireMotion = CResMgr::GetInst()->LoadTextur(L"Radomfire_0", L"..\\OutPut\\bin_release\\Content\\Texture\\randomfire.bmp");
+	GetAnimator()->CreateAnimation(L"Radomfire0", m_pRadomFireMotion, Vec2(0.f, 0.f), Vec2(241.f, 247.f), Vec2(241.f, 0.f), Vec2(100.f, 0.f), 0.1f, 6);
 }
 
 CRandomFire::~CRandomFire()
@@ -54,6 +59,8 @@ void CRandomFire::Skillupdate()
 	GetCollider()->SetOffSet(Vec2(fFinalPos, m_vCollOffSet.y));
 
 	m_fCurTime += fDT;
+
+	GetAnimator()->Play(L"Radomfire0", false);
 
 	if (((KEY_TAP(KEY::X) || KEY_HOLD(KEY::X))) &&
 		m_fCurTime >= m_fAccTime)
@@ -105,13 +112,15 @@ void CRandomFire::OnCollision(CCollider* _pOther)
 	if (_pOther->GetObj()->GetTag() == GROUP_TYPE::MONSTER)
 	{
 		const vector<UINT> vecFrame = GetAttackFrame();
+		vector<UINT>& vecColl = GetOtherCollVec();
 		int iCurFrame = GetCurFram();
+
 
 		for (int i = 0; i < vecFrame.size(); ++i)
 		{
-			if (vecFrame[i] == iCurFrame && m_iAttackFrame != i)
+			if (vecFrame[i] == iCurFrame && vecColl[_pOther->GetID()] != iCurFrame)
 			{
-				m_iAttackFrame = i;
+				vecColl[_pOther->GetID()] = iCurFrame;
 				SetAttackOn(TRUE);
 				break;
 			}

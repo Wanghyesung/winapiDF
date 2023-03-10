@@ -26,7 +26,8 @@ private:
 
 	tAttackInfo m_tAtt;
 
-	vector<UINT> m_vecAttackFrame;
+	vector<UINT> m_vecAttackFrame;//내가 공격할 프레임을 모아둔 벡터
+	vector<UINT> m_vecOtherColl;//공격할 몬스터 colliderID를 보관하는 벡터
 
 public:
 	virtual void Skillupdate() = 0;
@@ -51,6 +52,9 @@ public:
 
 	void AddAttackFrame(UINT _i) { m_vecAttackFrame.push_back(_i); }
 	const vector<UINT>& GetAttackFrame() { return m_vecAttackFrame; }
+
+protected:
+	vector<UINT>& GetOtherCollVec() { return m_vecOtherColl; }
 
 protected:
 	void SetMP(float _f) { m_fMPValue = _f; }

@@ -6,7 +6,7 @@ class CPlayerState
 {
 public:
 	CPlayerState(PLAYER_STATE ePlayerState);
-	~CPlayerState();
+	virtual ~CPlayerState();
 
 
 public:

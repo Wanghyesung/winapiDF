@@ -36,7 +36,7 @@ public:
     void SetFinalPos(Vec2 _vPos) { m_vFinalPos = _vPos; }
 
     CUI* GetParentUI() { return m_pParentUI; }
-    vector<CUI*> GetChildVecUI() { return m_vecChildUI; }
+    const vector<CUI*>& GetChildVecUI() { return m_vecChildUI; }
 
     bool IsLBntDown() { return m_bLbntDown; }
     bool IsMosueOn() { return m_bMouseOn; }

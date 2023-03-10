@@ -43,6 +43,8 @@ void CWall::OnColliderEnter(CCollider* _pOther)
 		Vec2 vPlayerScale = _pOther->GetScale(); //크기
 		Vec2 vPlayerPosition = pOther->GetPos();
 
+		
+
 		//jumpos.y + 
 		Vec2 vPos = GetCollider()->GetFinalPos();//내 위치
 		Vec2 vScale = GetCollider()->GetScale();
@@ -100,7 +102,7 @@ void CWall::OnColliderEnter(CCollider* _pOther)
 				else
 					iDir = -1;
 
-				vPlayerObjPos.x += fValue * vNorDiff.x;
+				vPlayerObjPos.x += fValue * iDir;
 			}
 			else
 			{
@@ -116,7 +118,7 @@ void CWall::OnColliderEnter(CCollider* _pOther)
 				else
 					iDir = -1;
 
-				vPlayerObjPos.y += fValue * vNorDiff.y;
+				vPlayerObjPos.y += fValue * iDir;
 
 			}
 			pOther->SetPos(vPlayerObjPos);
@@ -205,7 +207,7 @@ void CWall::OnCollision(CCollider* _pOther)
 				else
 					iDir = -1;
 
-				vPlayerObjPos.x += fValue * vNorDiff.x;
+				vPlayerObjPos.x += fValue * iDir;
 			}
 			else
 			{
@@ -221,7 +223,7 @@ void CWall::OnCollision(CCollider* _pOther)
 				else
 					iDir = -1;
 
-				vPlayerObjPos.y += fValue * vNorDiff.y;
+				vPlayerObjPos.y += fValue * iDir;
 
 			}
 			pOther->SetPos(vPlayerObjPos);

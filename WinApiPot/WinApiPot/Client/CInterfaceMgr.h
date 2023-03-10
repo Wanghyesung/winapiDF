@@ -26,5 +26,7 @@ private:
 
 	//map<wstring, CMonInterface*>m_mapMonInterface;
 	unordered_map<wstring, CMonInterface*> m_hashMonInterface;
+
+	friend class CMonInterface;
 };
 

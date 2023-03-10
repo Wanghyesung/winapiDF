@@ -37,10 +37,10 @@ CMonster::~CMonster()
 
 	//이것도 Scene에서 소멸자에서 삭제
 	//DeleteObject(m_pAttackObj);
-	if (m_pAttackObj != nullptr)
-	{
-		DeleteObject(m_pAttackObj);
-	}
+	//if (m_pAttackObj != nullptr)
+	//{
+	//	DeleteObject(m_pAttackObj);
+	//}
 }
 
 

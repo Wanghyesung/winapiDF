@@ -109,14 +109,16 @@ void CKick::OnCollision(CCollider* _pOther)
 {
 	if (_pOther->GetObj()->GetTag() == GROUP_TYPE::MONSTER)
 	{
-		const vector<UINT> vecFrame = GetAttackFrame();
+		const vector<UINT>& vecFrame = GetAttackFrame();
+		vector<UINT>& vecColl = GetOtherCollVec();
+
 		int iCurFrame = GetCurFram();
 
 		for (int i = 0; i < vecFrame.size(); ++i)
 		{
-			if (vecFrame[i] == iCurFrame && m_iAttackFrame != i)
+			if (vecFrame[i] == iCurFrame && vecColl[_pOther->GetID()] != iCurFrame)
 			{
-				m_iAttackFrame = i;
+				vecColl[_pOther->GetID()] = iCurFrame;
 				SetAttackOn(TRUE);
 				break;
 			}

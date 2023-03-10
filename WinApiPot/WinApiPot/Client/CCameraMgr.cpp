@@ -54,6 +54,8 @@ void CCameraMgr::update()
 			{
 				m_vLookAt = m_pTargetObj->GetPos();
 			}
+			//내 맵에서 벗어났는지
+			CheckRangeMap();
 
 			//씬에서 지정한 배경 이미지를 넘었다면 여기로 넘어간 지점의 x, y좌표를 줌 그럼 넘아가지지 않게 해당 좌표를 고정해야함
 			//배경 x지점을 넘었나
@@ -92,8 +94,9 @@ void CCameraMgr::update()
 		}
 	}
 	
+	
 	CalDiff();//거리 값 구하기
-	CheckRangeMap();//구한 거리 값을 바탕으로 맵 안쪽으로만 움직이게 하기
+	
 }
 
 void CCameraMgr::init()
@@ -210,11 +213,11 @@ void CCameraMgr::CheckRangeMap()
 
 	if (isXPass)//넘었다면
 	{
-		//겹친 양 (음수)
-		float fLen = abs(vBackGroundCenter.x - vPLayerPos.x); //두 오브젝트 거리 
-		float fValue = (vResoltion.x / 2.f + (float)m_pBackGround->Width() / 2.f) - fLen; //두 물체의 크기/2의 합 - 두 오브젝트 거리 = 겹친양
+		
+		float fLen = abs(vBackGroundCenter.x - vCamLook.x); //두 오브젝트 거리 
+		float fValue = (vResoltion.x / 2.f + (float)m_pBackGround->Width() / 2.f) - fLen;
 
-		Vec2 vNorDiff = (vBackGroundCenter - vPLayerPos).NormalRize();
+		Vec2 vNorDiff = (vBackGroundCenter - vCamLook).NormalRize();
 		float fAddValue = vResoltion.x - fValue;
 
 		int iDir = 0;
@@ -225,7 +228,7 @@ void CCameraMgr::CheckRangeMap()
 
 		SetIsPassX(true);
 		//넘은 값만큼 옆으로 밀어주기
-		SetEndRangeX(vPLayerPos.x + fAddValue * iDir);
+		SetEndRangeX(vCamLook.x + fAddValue * iDir);
 	}
 	else
 	{
@@ -240,7 +243,7 @@ void CCameraMgr::CheckRangeMap()
 		float fLen = abs(vBackGroundCenter.y - vPLayerPos.y); //두 오브젝트 거리 
 		float fValue = (vResoltion.y / 2.f + (float)m_pBackGround->Height() / 2.f) - fLen; //두 물체의 크기/2의 합 - 두 오브젝트 거리 = 겹친양
 
-		Vec2 vNorDiff = (vBackGroundCenter - vPLayerPos).NormalRize();//y축은 Nor.y가 0.1~0.2밖에 안 나와서 곱해도 미미한 양임
+		Vec2 vNorDiff = (vBackGroundCenter - vPLayerPos).NormalRize();
 		float fAddValue = vResoltion.y - fValue;
 
 		int iDir = 0;

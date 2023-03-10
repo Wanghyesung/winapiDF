@@ -61,6 +61,12 @@ void CMonInterface::changeValue(float _fHpValue)
 	{
 		float fValue = ((100.f - _fHpValue) / 100.f * 626.f);
 		pHP->SetMinusHp(fValue);
+		if (fValue >= 626)
+		{
+			DeleteObject(this);
+			CInterfaceMgr::GetInst()->m_pTargetMon = nullptr;
+		}
+			
 	}
 }
 

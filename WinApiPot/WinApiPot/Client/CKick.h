@@ -15,6 +15,8 @@ private:
 
     int m_iAttackFrame;
 
+    
+
 public:
     virtual void Skillupdate();
     virtual void init();

@@ -208,10 +208,10 @@ void CPlayer::updateState()
 	CAnimator* pAninmaotr = GetAnimator();
 
 	//방향잡기
-	wstring strMotion = L"";
-	wstring strOtherMtion = L"";
-	wstring strDir = L"";
-	wstring strOtherDir = L"";
+	wstring strMotion;
+	wstring strOtherMtion;
+	wstring strDir;
+	wstring strOtherDir; 
 	if (m_iDirX > 0)
 	{
 		strDir = L"_right";

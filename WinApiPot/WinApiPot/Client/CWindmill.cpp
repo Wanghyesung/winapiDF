@@ -96,13 +96,14 @@ void CWindmill::OnCollision(CCollider* _pOther)
 	if (_pOther->GetObj()->GetTag() == GROUP_TYPE::MONSTER)
 	{
 		const vector<UINT> vecFrame = GetAttackFrame();
-		int iCurFrame = GetCurFram();
 
+		int iCurFrame = GetCurFram();
+		vector<UINT>& vecColl = GetOtherCollVec();
 		for (int i = 0; i < vecFrame.size(); ++i)
 		{
-			if (vecFrame[i] == iCurFrame && m_iAttackFrame != i)
+			if (vecFrame[i] == iCurFrame && vecColl[_pOther->GetID()] != iCurFrame)
 			{
-				m_iAttackFrame = i;
+				vecColl[_pOther->GetID()] = iCurFrame;
 				SetAttackOn(TRUE);
 				break;
 			}

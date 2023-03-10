@@ -19,14 +19,15 @@ CUI::CUI(const CUI& _pUI):
 	m_bMouseOn(false),
 	m_bLbntDown(false)
 {
-	for (int i = 0; _pUI.m_vecChildUI.size(); ++i)
-	{
-		AddChildUI(_pUI.m_vecChildUI[i]);
-	}
+	//for (int i = 0; _pUI.m_vecChildUI.size(); ++i)
+	//{
+	//	AddChildUI(_pUI.m_vecChildUI[i]);
+	//}
 }
 
 CUI::~CUI()
 {
+	Safe_Delete_Vec(m_vecChildUI);
 }
 
 void CUI::render(HDC _dc)
@@ -112,7 +113,7 @@ void CUI::ChildFinalupdate()
 
 CUI* CUI::GetChildUI(const wstring& _strName)
 {
-	vector<CUI*> vecChildUI = GetChildVecUI();
+	const vector<CUI*>& vecChildUI = GetChildVecUI();
 
 	for (int i = 0; i < vecChildUI.size(); ++i)
 	{

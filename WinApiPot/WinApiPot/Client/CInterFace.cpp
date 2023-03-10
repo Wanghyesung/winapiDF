@@ -15,7 +15,6 @@ CInterFace::CInterFace():
 	SetName(L"InterFace");
 	m_pInterFaceTex = CResMgr::GetInst()->LoadTextur(L"InterFace", L"..\\OutPut\\bin_release\\Content\\Interface//interface.bmp");
 	
-	//hp 자식 ui로 가지고있기
 }
 
 CInterFace::~CInterFace()
@@ -48,6 +47,7 @@ void CInterFace::ChangeValue(float _HPfValue, float _MPfValue)
 	
 	if (dynamic_cast<CHP*>(GetChildUI(L"HP")))
 	{
+		//여기
 		CHP* pHP = dynamic_cast<CHP*>(GetChildUI(L"HP"));
 		float fHpValue = ((100.f - _HPfValue) / 101.f) * 100.f;
 		pHP->SetMinusHp(fHpValue);

@@ -196,7 +196,7 @@ void CDragon::OnCollision(CCollider* _pOther)
 {
 	tMonInfo& tMonInfo = GetMonInfo();
 	CObject* pobj = _pOther->GetObj();
-
+	
 	if (pobj->GetTag() == GROUP_TYPE::SKILL
 		&& tMonInfo.m_iHp != 0)
 	{

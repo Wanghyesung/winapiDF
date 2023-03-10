@@ -72,7 +72,7 @@ void CScene_Start::Init()
 	//플레이어 인터페이스는 씬 바꿀때 삭제X
 	SetInterFace();
 
-	CObject* pObj = CreatePlayer(Vec2(700.f, 550.f));
+	CObject* pObj = CreatePlayer(Vec2(200.f, 550.f));
 	AddObject(pObj, GROUP_TYPE::PLAYER);
 	RegisterPlayer(pObj);
 
@@ -87,7 +87,7 @@ void CScene_Start::Init()
 	dragonInterface->SetPos(Vec2(40, 20));
 	AddObject(dragonInterface, GROUP_TYPE::UI);
 	AddObject(pMon, GROUP_TYPE::MONSTER);
-
+	
 	CMonster* pBlue = CMonFactory::CraeteMonster(MON_TYPE::BLUE_DRAGON, Vec2(1400.f, 580.f), m_eType);
 	pBlue->SetName(L"BlueDragon_1");
 	CMonInterface* bdragonInterface = new CMonInterface(pBlue->GetName());
@@ -95,7 +95,7 @@ void CScene_Start::Init()
 	bdragonInterface->SetPos(Vec2(40, 20));
 	AddObject(bdragonInterface, GROUP_TYPE::UI);
 	AddObject(pBlue, GROUP_TYPE::MONSTER);
-
+	
 	CMonster* pBlue2 = CMonFactory::CraeteMonster(MON_TYPE::BLUE_DRAGON, Vec2(1200.f, 580.f), m_eType);
 	pBlue2->SetName(L"BlueDragon_2");
 	CMonInterface* bdragonInterface2 = new CMonInterface(pBlue2->GetName());

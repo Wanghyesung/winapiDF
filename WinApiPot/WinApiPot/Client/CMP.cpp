@@ -15,6 +15,7 @@ CMP::CMP():
 
 CMP::~CMP()
 {
+
 }
 
 void CMP::render(HDC _dc)

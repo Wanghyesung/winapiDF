@@ -239,7 +239,7 @@ void CBlueDragon::OnColliderEnter(CCollider* _pOther)
 		}
 	}
 
-	if (tMonInfo.m_iHp == 0)
+	if (tMonInfo.m_iHp <= 0.f)
 	{
 		ChangeAIState(GetAI(), MONSTER_STATE::DEAD);
 	}

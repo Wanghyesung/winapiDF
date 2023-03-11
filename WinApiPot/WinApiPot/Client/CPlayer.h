@@ -35,16 +35,16 @@ private:
     static tPlayerInfo  m_tPlayerInfo;
     tHitInfo m_tPlayerHit;
 
-    int m_iDirX;     //현재 방향
+    static int m_iDirX;     //현재 방향
     int m_prevDirX;
-    int m_iDirY;
+    static int m_iDirY;
     int m_prevDirY;
 
     bool m_bOnSkill;
 
-    UINT m_iKeyStack;
-    UINT m_iPrePushKey;
-    UINT m_iCurPushKey;
+    static UINT m_iKeyStack;
+    static UINT m_iPrePushKey;
+    static UINT m_iCurPushKey;
     float m_fCurTime;
     float m_fRunTime;
     bool m_bIsOnDobuleKey;

@@ -6,6 +6,8 @@
 
 #include "CSeriaScene.h"
 #include "CSceneBack.h"
+#include "CSceneWest.h"
+#include "CSceneTowerFirst.h"
 
 SceneMgr::SceneMgr():
 	m_pCurrScene(nullptr),
@@ -40,6 +42,9 @@ void SceneMgr::init()
 	//m_arrScene[(UINT)SCENE_TYPE::START_SCENE]->SetName(L"Start Scene");
 	m_arrScene[(UINT)SCENE_TYPE::SCENE_BACKSTREET] = new CSceneBack;
 	m_arrScene[(UINT)SCENE_TYPE::SERIA_SCENE] = new CSeriaScene;
+	m_arrScene[(UINT)SCENE_TYPE::WEST_COAST] = new CSceneWest;
+	m_arrScene[(UINT)SCENE_TYPE::FIRST_DUNGEON] = new CSceneTowerFirst;
+
 
 	for (UINT i = 0; i < (UINT)SCENE_TYPE::END; ++i)
 	{
@@ -48,7 +53,7 @@ void SceneMgr::init()
 		m_arrScene[i]->Init();
 	}
 
-	m_pCurrScene = m_arrScene[(UINT)SCENE_TYPE::START_SCENE];//현재 씬 넣어주고
+	m_pCurrScene = m_arrScene[(UINT)SCENE_TYPE::WEST_COAST];//현재 씬 넣어주고
 	m_pCurrScene->Enter();
 }
 

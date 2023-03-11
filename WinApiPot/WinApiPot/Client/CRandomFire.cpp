@@ -14,6 +14,7 @@
 #include "CKeyMgr.h"
 #include "CTimeMgr.h"
 #include "CResMgr.h"
+#include "CMath.h"
 
 #define ATTACK_RANGE 30
 
@@ -24,9 +25,8 @@ CRandomFire::CRandomFire() :
 	m_iAttackFrame(-1)
 {
 	SetSKillName(L"Player_skill_randomfire");
-
 	SetMP(8.f);
-
+	
 	tAttackInfo tAtt = {};
 	tAtt.m_eAttType = ATTACK_TYPE::NORMAL;
 	tAtt.m_fAttackDamage = 10.f;
@@ -38,8 +38,10 @@ CRandomFire::CRandomFire() :
 
 	//난사 애니메이션
 	CreateAnimator();
-	CTexture* m_pRadomFireMotion = CResMgr::GetInst()->LoadTextur(L"Radomfire_0", L"..\\OutPut\\bin_release\\Content\\Texture\\randomfire.bmp");
-	GetAnimator()->CreateAnimation(L"Radomfire0", m_pRadomFireMotion, Vec2(0.f, 0.f), Vec2(241.f, 247.f), Vec2(241.f, 0.f), Vec2(100.f, 0.f), 0.1f, 6);
+	GetAnimator()->SetRBG(0, 0, 0);
+	CTexture* m_pRadomFireMotion = CResMgr::GetInst()->LoadTextur(L"Radomfire_0", L"..\\OutPut\\bin_release\\Content\\Texture\\randomfire1.bmp");
+	GetAnimator()->CreateAnimation(L"Radomfire0", m_pRadomFireMotion, Vec2(0.f, 0.f), Vec2(273.f, 261.f), Vec2(273.f, 0.f), Vec2(0.f, 0.f), 0.1f, 5);
+	//회전시켜서 offset값 바꾸기
 }
 
 CRandomFire::~CRandomFire()
@@ -60,8 +62,10 @@ void CRandomFire::Skillupdate()
 
 	m_fCurTime += fDT;
 
-	GetAnimator()->Play(L"Radomfire0", false);
+	//GetAnimator()->FindAnimation(L"Radomfire0")->
+	//Vec2 v90 =  Rotate(GetPos(),1) * 200.f;
 
+	GetAnimator()->Play(L"Radomfire0",true);
 	if (((KEY_TAP(KEY::X) || KEY_HOLD(KEY::X))) &&
 		m_fCurTime >= m_fAccTime)
 	{
@@ -95,6 +99,7 @@ void CRandomFire::init()
 
 void CRandomFire::exit()
 {
+	GetAnimator()->SetRepeat(false);
 	CSkillState::exit();
 	m_iAttackFrame = -1;
 }

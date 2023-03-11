@@ -72,7 +72,7 @@ void CScene_Start::Init()
 	//플레이어 인터페이스는 씬 바꿀때 삭제X
 	SetInterFace();
 
-	CObject* pObj = CreatePlayer(Vec2(200.f, 550.f));
+	CObject* pObj = CreatePlayer(Vec2(2500.f, 550.f));
 	AddObject(pObj, GROUP_TYPE::PLAYER);
 	RegisterPlayer(pObj);
 
@@ -132,12 +132,21 @@ void CScene_Start::Init()
 	pPortal_2->SetNextScene(SCENE_TYPE::SCENE_BACKSTREET);
 	//포탈 크기는 고정으로 생성자에서 만듬
 	AddObject(pPortal_2, GROUP_TYPE::PORTAL);
+
+	CPortal* pPortal_3 = new CPortal;
+	pPortal_3->SetName(L"Back_Street_Portal");
+	pPortal_3->SetPos(Vec2(3550.f, 740.f));
+	pPortal_3->GetCollider()->SetScale(Vec2(50.f, 500.f));
+	pPortal_3->SetNextScene(SCENE_TYPE::WEST_COAST);
+	//포탈 크기는 고정으로 생성자에서 만듬
+	AddObject(pPortal_3, GROUP_TYPE::PORTAL);
 }
 
 void CScene_Start::Enter()
 {
 	//매니져 클레스에 현재 플레이어로 세티d
 	CCameraMgr::GetInst()->SetTargetObj((CPlayer*)GetPlayerObj()); 
+	CCameraMgr::GetInst()->init();
 	CSkillMgr::GetInst()->SetPlayer((CPlayer*)GetPlayerObj());
 	
 	
@@ -154,7 +163,6 @@ void CScene_Start::Enter()
 
 void CScene_Start::Exit()
 {
-	
 
 	CColliderMgr::GetInst()->Reset();
 }

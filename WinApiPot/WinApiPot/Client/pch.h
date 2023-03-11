@@ -18,6 +18,7 @@ using std::unordered_map;
 using std::list;
 
 #include<math.h>
+#include "CMath.h"
 #include <algorithm>
 #include <string>
 

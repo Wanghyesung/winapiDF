@@ -31,6 +31,11 @@
 #include "CAttackObject.h"
 
 tPlayerInfo CPlayer::m_tPlayerInfo = {};
+UINT CPlayer::m_iKeyStack = 0;
+UINT CPlayer::m_iPrePushKey = -1;
+UINT CPlayer::m_iCurPushKey = ((UINT)KEY::LAST);
+int CPlayer::m_iDirX = 1;
+int CPlayer::m_iDirY = 1;
 
 CPlayer::CPlayer() :
 	playerCurState(PLAYER_STATE::IDLE),
@@ -40,10 +45,6 @@ CPlayer::CPlayer() :
 	m_fCurTime(0.f),
 	m_fAccTime(10.f),
 	m_fCurAccTime(0.f),
-	m_iCurPushKey((UINT)KEY::LAST),
-	m_iDirX(1),
-	m_iDirY(1),
-	m_iKeyStack(0),
 	m_pBullet(nullptr),
 	m_pFireMotion(nullptr),
 	m_pSkill(nullptr)

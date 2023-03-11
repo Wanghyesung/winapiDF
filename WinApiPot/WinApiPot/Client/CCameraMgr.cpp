@@ -101,8 +101,20 @@ void CCameraMgr::update()
 
 void CCameraMgr::init()
 {
-	Vec2 vResolution = CCore::GetInst()->GetResolution();
-	m_pVeilTex = CResMgr::GetInst()->CreatTexture(L"Veil", (UINT)vResolution.x, (UINT)vResolution.y);
+	//Vec2 vResolution = CCore::GetInst()->GetResolution();
+	//m_pVeilTex = CResMgr::GetInst()->CreatTexture(L"Veil", (UINT)vResolution.x, (UINT)vResolution.y);
+	if (m_pTargetObj != nullptr)
+	{
+		if (m_pTargetObj->GetGravity()->IsGetGravity())
+		{
+			m_vCurLookAt = m_pTargetObj->GetJumPos();
+		}
+		else
+		{
+			m_vCurLookAt = m_pTargetObj->GetPos();
+		}
+	}
+
 }
 
 void CCameraMgr::render(HDC _dc)
@@ -240,10 +252,10 @@ void CCameraMgr::CheckRangeMap()
 	if (isYPass)//넘었다면
 	{
 		//겹친 양 (음수)
-		float fLen = abs(vBackGroundCenter.y - vPLayerPos.y); //두 오브젝트 거리 
+		float fLen = abs(vBackGroundCenter.y - vCamLook.y); //두 오브젝트 거리 
 		float fValue = (vResoltion.y / 2.f + (float)m_pBackGround->Height() / 2.f) - fLen; //두 물체의 크기/2의 합 - 두 오브젝트 거리 = 겹친양
 
-		Vec2 vNorDiff = (vBackGroundCenter - vPLayerPos).NormalRize();
+		Vec2 vNorDiff = (vBackGroundCenter - vCamLook).NormalRize();
 		float fAddValue = vResoltion.y - fValue;
 
 		int iDir = 0;
@@ -254,7 +266,7 @@ void CCameraMgr::CheckRangeMap()
 		//1450 725 
 		SetIsPassY(true);
 		//넘은 값만큼 옆으로 밀어주기
-		SetEndRangeY(vPLayerPos.y + fAddValue * iDir);
+		SetEndRangeY(vCamLook.y + fAddValue * iDir);
 	}
 	else
 	{

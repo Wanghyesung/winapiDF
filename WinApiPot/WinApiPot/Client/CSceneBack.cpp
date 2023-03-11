@@ -70,6 +70,7 @@ void CSceneBack::Init()
 void CSceneBack::Enter()
 {
 	CCameraMgr::GetInst()->SetTargetObj((CPlayer*)GetPlayerObj()); //vResolution / 2.f
+	CCameraMgr::GetInst()->init();
 	//현재 씬에 스킬 초기화
 	CSkillMgr::GetInst()->SetPlayer((CPlayer*)GetPlayerObj());
 	

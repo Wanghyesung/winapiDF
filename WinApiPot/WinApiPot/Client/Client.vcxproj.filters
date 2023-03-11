@@ -245,6 +245,12 @@
     <Filter Include="Engine\04.CScene\CSceneBack">
       <UniqueIdentifier>{41e281c3-6887-4e7a-ab1f-c54216c95ea8}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Engine\04.CScene\CSceneWest">
+      <UniqueIdentifier>{3512ed0b-fece-4dbc-98d5-4a03954d8ee5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\04.CScene\CSceneSky">
+      <UniqueIdentifier>{7c3d8268-6ace-49d2-985e-2faa12e93af5}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="pch.h" />
@@ -268,9 +274,6 @@
     </ClInclude>
     <ClInclude Include="struct.h">
       <Filter>Engine\02.Header</Filter>
-    </ClInclude>
-    <ClInclude Include="CScene.h">
-      <Filter>Engine\04.CScene</Filter>
     </ClInclude>
     <ClInclude Include="CObject.h">
       <Filter>Engine\05.CObject</Filter>
@@ -491,6 +494,18 @@
     <ClInclude Include="CSceneBack.h">
       <Filter>Engine\04.CScene\CSceneBack</Filter>
     </ClInclude>
+    <ClInclude Include="CMath.h">
+      <Filter>Engine\02.Header</Filter>
+    </ClInclude>
+    <ClInclude Include="CSceneWest.h">
+      <Filter>Engine\04.CScene\CSceneWest</Filter>
+    </ClInclude>
+    <ClInclude Include="CSceneTowerFirst.h">
+      <Filter>Engine\04.CScene\CSceneSky</Filter>
+    </ClInclude>
+    <ClInclude Include="CScene.h">
+      <Filter>Engine\04.CScene</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Client.rc">
@@ -509,9 +524,6 @@
     <ClCompile Include="main.cpp" />
     <ClCompile Include="CCore.cpp">
       <Filter>Engine\01.Core</Filter>
-    </ClCompile>
-    <ClCompile Include="CScene.cpp">
-      <Filter>Engine\04.CScene</Filter>
     </ClCompile>
     <ClCompile Include="CObject.cpp">
       <Filter>Engine\05.CObject</Filter>
@@ -731,6 +743,15 @@
     </ClCompile>
     <ClCompile Include="CSceneBack.cpp">
       <Filter>Engine\04.CScene\CSceneBack</Filter>
+    </ClCompile>
+    <ClCompile Include="CSceneWest.cpp">
+      <Filter>Engine\04.CScene\CSceneWest</Filter>
+    </ClCompile>
+    <ClCompile Include="CSceneTowerFirst.cpp">
+      <Filter>Engine\04.CScene\CSceneSky</Filter>
+    </ClCompile>
+    <ClCompile Include="CScene.cpp">
+      <Filter>Engine\04.CScene</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

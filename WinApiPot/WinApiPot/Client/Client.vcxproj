@@ -205,6 +205,8 @@
     <ClInclude Include="CRigidBody.h" />
     <ClInclude Include="CScene.h" />
     <ClInclude Include="CSceneBack.h" />
+    <ClInclude Include="CSceneTowerFirst.h" />
+    <ClInclude Include="CSceneWest.h" />
     <ClInclude Include="CScene_Start.h" />
     <ClInclude Include="CSeleteGDI.h" />
     <ClInclude Include="CSeriaScene.h" />
@@ -223,6 +225,7 @@
     <ClInclude Include="define.h" />
     <ClInclude Include="framework.h" />
     <ClInclude Include="Header.h" />
+    <ClInclude Include="CMath.h" />
     <ClInclude Include="pch.h" />
     <ClInclude Include="Resource.h" />
     <ClInclude Include="CSceneMgr.h" />
@@ -288,6 +291,8 @@
     <ClCompile Include="CRigidBody.cpp" />
     <ClCompile Include="CScene.cpp" />
     <ClCompile Include="CSceneBack.cpp" />
+    <ClCompile Include="CSceneTowerFirst.cpp" />
+    <ClCompile Include="CSceneWest.cpp" />
     <ClCompile Include="CScene_Start.cpp" />
     <ClCompile Include="CSeleteGDI.cpp" />
     <ClCompile Include="CSeriaScene.cpp" />

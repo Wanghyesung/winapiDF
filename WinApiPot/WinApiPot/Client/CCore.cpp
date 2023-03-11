@@ -64,7 +64,7 @@ int CCore::init(HWND _hWnd, POINT _pt)
 	CTimeMgr::GetInst()->init();
 	CKeyMgr::GetInst()->init();
 	CPathMgr::GetInst()->init();
-	CCameraMgr::GetInst()->init();
+	//CCameraMgr::GetInst()->init();
 	SceneMgr::GetInst()->init();
 
 	return S_OK;

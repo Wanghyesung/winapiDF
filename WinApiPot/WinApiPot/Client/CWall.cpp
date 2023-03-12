@@ -155,7 +155,7 @@ void CWall::OnCollision(CCollider* _pOther)
 
 		if (pOther->GetGravity()->IsGetGravity())
 		{
-			//그냥 콜리이더에 부딪치면 이동 애니메이션만 나오고 움직임을 주지 말까
+			
 			if (vCloudJumPos.y +20.f < tCollInfo.fBottomHeight)
 			{
 				float fLen = abs(vPos.x - vPlayerJumPos.x);

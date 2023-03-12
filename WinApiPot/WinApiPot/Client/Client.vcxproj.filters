@@ -251,6 +251,24 @@
     <Filter Include="Engine\04.CScene\CSceneSky">
       <UniqueIdentifier>{7c3d8268-6ace-49d2-985e-2faa12e93af5}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Engine\05.CObject\SkyTowerObj">
+      <UniqueIdentifier>{be2794e1-fa48-4d0d-9da9-d70f91e05686}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\05.CObject\SkyTowerObj\stonebox">
+      <UniqueIdentifier>{2ef78a1c-f0bf-4b03-8f0a-580ab7a6281c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\05.CObject\SkyTowerObj\spinner">
+      <UniqueIdentifier>{e27da192-8275-4479-8dc4-6ee9237174cb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\05.CObject\SkyTowerObj\gate">
+      <UniqueIdentifier>{e569bf89-de54-4b48-b201-8f23b8762ec1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\05.CObject\SkyTowerObj\stone_pillar">
+      <UniqueIdentifier>{61b855c9-85ad-4c13-96ab-ff4988bd60a5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\05.CObject\SkyTowerObj\dragonobj">
+      <UniqueIdentifier>{e39a6c6a-2d60-410d-b606-30386497318d}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="pch.h" />
@@ -506,6 +524,15 @@
     <ClInclude Include="CScene.h">
       <Filter>Engine\04.CScene</Filter>
     </ClInclude>
+    <ClInclude Include="CStoneBox.h">
+      <Filter>Engine\05.CObject\SkyTowerObj\stonebox</Filter>
+    </ClInclude>
+    <ClInclude Include="CPillar.h">
+      <Filter>Engine\05.CObject\SkyTowerObj\stone_pillar</Filter>
+    </ClInclude>
+    <ClInclude Include="CSpinner.h">
+      <Filter>Engine\05.CObject\SkyTowerObj\spinner</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Client.rc">
@@ -752,6 +779,15 @@
     </ClCompile>
     <ClCompile Include="CScene.cpp">
       <Filter>Engine\04.CScene</Filter>
+    </ClCompile>
+    <ClCompile Include="CStoneBox.cpp">
+      <Filter>Engine\05.CObject\SkyTowerObj\stonebox</Filter>
+    </ClCompile>
+    <ClCompile Include="CPillar.cpp">
+      <Filter>Engine\05.CObject\SkyTowerObj\stone_pillar</Filter>
+    </ClCompile>
+    <ClCompile Include="CSpinner.cpp">
+      <Filter>Engine\05.CObject\SkyTowerObj\spinner</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

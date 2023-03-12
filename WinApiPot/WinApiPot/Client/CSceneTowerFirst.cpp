@@ -4,6 +4,7 @@
 #include "CCameraMgr.h"
 #include "CSkillMgr.h"
 #include "CColliderMgr.h"
+#include "CCollider.h"
 
 #include "CPlayer.h"
 #include "CObject.h"
@@ -12,7 +13,9 @@
 #include "CTexture.h"
 
 #include "CPortal.h"
-
+#include "CStoneBox.h"
+#include "CPillar.h"
+#include "CSpinner.h"
 
 CSceneTowerFirst::CSceneTowerFirst():
 	m_eType(SCENE_TYPE::FIRST_DUNGEON)
@@ -46,6 +49,23 @@ void CSceneTowerFirst::Init()
 	CSkillMgr::GetInst()->SetPlayer((CPlayer*)GetPlayerObj());
 	CSkillMgr::GetInst()->init(m_eType);
 
+	CStoneBox* pStone = new CStoneBox;
+	pStone->SetPos(Vec2(400.f, 700.f));
+	pStone->GetCollider()->SetScale(Vec2(50.f, 50.f));
+	AddObject(pStone, GROUP_TYPE::STONE_BOX);
+
+	CPillar* pPillar = new CPillar;
+	pPillar->SetPos(Vec2(700.f, 700.f));
+	pPillar->GetCollider()->SetOffSet(Vec2(0.f, 50.f));
+	pPillar->GetCollider()->SetScale(Vec2(50.f, 50.f));
+	AddObject(pPillar, GROUP_TYPE::STONE_PILLAR);
+
+
+	CSpinner* pSpinner = new CSpinner;
+	pSpinner->SetPos(Vec2(1000.f, 700.f));
+	pPillar->GetCollider()->SetOffSet(Vec2(0.f, 50.f));
+	pSpinner->GetCollider()->SetScale(Vec2(50.f, 110.f));
+	AddObject(pSpinner, GROUP_TYPE::SPINNER);
 	//CPortal* pPortal_1 = new CPortal;
 	//pPortal_1->SetName(L"Port_Portal");
 	//pPortal_1->SetPos(Vec2(300.f, 850.f));
@@ -57,6 +77,11 @@ void CSceneTowerFirst::Init()
 
 void CSceneTowerFirst::render(HDC _dc)
 {
+	Vec2 StartPos = Vec2(0.f, 0.f);//그림을 처음에 그릴 위치
+	SetStartDrawPoint(StartPos);
+
+	CScene::backgroundrender(_dc, GetBackGround(), StartPos);
+
 	CScene::render(_dc);
 }
 
@@ -70,6 +95,10 @@ void CSceneTowerFirst::Enter()
 	CCameraMgr::GetInst()->SetTargetObj((CPlayer*)GetPlayerObj());
 	CCameraMgr::GetInst()->init();
 	CSkillMgr::GetInst()->SetPlayer((CPlayer*)GetPlayerObj());
+
+	CColliderMgr::GetInst()->ChekGroup(GROUP_TYPE::PLAYER, GROUP_TYPE::STONE_BOX);
+	CColliderMgr::GetInst()->ChekGroup(GROUP_TYPE::PLAYER, GROUP_TYPE::STONE_PILLAR);
+	CColliderMgr::GetInst()->ChekGroup(GROUP_TYPE::PLAYER, GROUP_TYPE::SPINNER);
 }
 
 void CSceneTowerFirst::Exit()

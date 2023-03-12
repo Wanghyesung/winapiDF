@@ -183,6 +183,7 @@
     <ClInclude Include="CNearAttack.h" />
     <ClInclude Include="CObject.h" />
     <ClInclude Include="CPathMgr.h" />
+    <ClInclude Include="CPillar.h" />
     <ClInclude Include="CPlayer.h" />
     <ClInclude Include="CPlayerAttack.h" />
     <ClInclude Include="CPlayerAttackDown.h" />
@@ -213,7 +214,9 @@
     <ClInclude Include="CSkill.h" />
     <ClInclude Include="CSkillMgr.h" />
     <ClInclude Include="CSkillState.h" />
+    <ClInclude Include="CSpinner.h" />
     <ClInclude Include="CState.h" />
+    <ClInclude Include="CStoneBox.h" />
     <ClInclude Include="CTexture.h" />
     <ClInclude Include="CTimeMgr.h" />
     <ClInclude Include="CTraceState.h" />
@@ -269,6 +272,7 @@
     <ClCompile Include="CNearAttack.cpp" />
     <ClCompile Include="CObject.cpp" />
     <ClCompile Include="CPathMgr.cpp" />
+    <ClCompile Include="CPillar.cpp" />
     <ClCompile Include="CPlayer.cpp" />
     <ClCompile Include="CPlayerAttack.cpp" />
     <ClCompile Include="CPlayerAttackDown.cpp" />
@@ -299,7 +303,9 @@
     <ClCompile Include="CSkill.cpp" />
     <ClCompile Include="CSkillMgr.cpp" />
     <ClCompile Include="CSkillState.cpp" />
+    <ClCompile Include="CSpinner.cpp" />
     <ClCompile Include="CState.cpp" />
+    <ClCompile Include="CStoneBox.cpp" />
     <ClCompile Include="CTexture.cpp" />
     <ClCompile Include="CTimeMgr.cpp" />
     <ClCompile Include="CTraceState.cpp" />

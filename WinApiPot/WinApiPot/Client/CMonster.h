@@ -18,12 +18,12 @@ enum class eMonsterAttackType
 
 struct tMonSkill
 {
-    eMonsterAttackType MonSKillType;
-    tAttackInfo m_MonAttackInfo;
-    wstring m_strAttackName;
-    UINT m_iStartFrame;
-    float m_fSkillTime;
-    float m_fMaxSkillTime;
+    eMonsterAttackType MonSKillType; //스킬 타입
+    tAttackInfo m_MonAttackInfo; //기본 스킬 정보
+    wstring m_strAttackName; //스킬 이름
+    UINT m_iStartFrame; //스킬 시작 프레임
+    float m_fSkillTime; //스킬 쿨타임
+    float m_fMaxSkillTime;//재사용 대기시간
 };
 
 class AI;

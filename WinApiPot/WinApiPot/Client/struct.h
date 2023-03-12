@@ -79,6 +79,12 @@ struct Vec2
 		y += _f;
 	}
 
+	Vec2 operator -(float _f)
+	{
+		x - _f;
+		y - _f;
+	}
+
 	Vec2 operator -()
 	{
 		return Vec2(-x, -y);

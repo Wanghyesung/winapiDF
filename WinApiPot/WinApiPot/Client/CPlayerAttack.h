@@ -1,6 +1,5 @@
 #pragma once
 #include "CPlayerState.h"
-
 #include "CPlayerAttackDown.h"
 
 class CPlayerAttack :

@@ -29,6 +29,7 @@
 
 #include "CFireBall.h"
 #include "CAttackObject.h"
+#include "CSpinner.h"
 
 tPlayerInfo CPlayer::m_tPlayerInfo = {};
 UINT CPlayer::m_iKeyStack = 0;
@@ -425,10 +426,15 @@ void CPlayer::HitPlayer(CCollider* _pOther, const tAttackInfo& _tAttInfo)
 	m_tPlayerHit.m_fHitUpperRcnt = _tAttInfo.m_fAttUpperRcnt;
 
 	float fDir = GetCollider()->GetFinalPos().x - _pOther->GetFinalPos().x;
+
 	if (fDir > 0.f)
 		fDir = -1.f;
 	else
 		fDir = 1.f;
+
+	//spiiner은 방향 반대로 주기
+	if (_pOther->GetObj()->GetTag() == GROUP_TYPE::SPINNER)
+		fDir *= -1;
 
 	CGravity* pGravity = GetGravity();
 	ATTACK_TYPE eAttackType = _tAttInfo.m_eAttType;
@@ -484,6 +490,19 @@ void CPlayer::OnColliderEnter(CCollider* _pOther)
 			CAttackObject* MonAttack = dynamic_cast<CAttackObject*>(pObj);
 			
 			HitPlayer(_pOther, MonAttack->GetAttInfo());
+		}
+	}
+
+	else if (pObj->GetTag() == GROUP_TYPE::SPINNER)
+	{
+		if (m_bOnSkill)
+		{
+			m_pSkill->GetCurSkill()->exit();
+		}
+		if (dynamic_cast<CSpinner*>(pObj))
+		{
+			CSpinner* pSpinner = dynamic_cast<CSpinner*>(pObj);
+			HitPlayer(_pOther, pSpinner->GetAttInfo());
 		}
 	}
 

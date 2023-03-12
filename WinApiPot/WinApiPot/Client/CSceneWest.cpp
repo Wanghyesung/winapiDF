@@ -10,6 +10,8 @@
 #include "CSkillMgr.h"
 #include "CColliderMgr.h"
 #include "CCameraMgr.h"
+#include "CPortal.h"
+#include "CCollider.h"
 
 CSceneWest::CSceneWest():
 	m_eType(SCENE_TYPE::WEST_COAST)
@@ -54,6 +56,16 @@ void CSceneWest::Init()
 	RegisterPlayer(pObj);
 	CSkillMgr::GetInst()->SetPlayer((CPlayer*)GetPlayerObj());
 	CSkillMgr::GetInst()->init(m_eType);
+
+
+	CPortal* pPortal_1 = new CPortal;
+	pPortal_1->SetName(L"Port_Portal");
+	pPortal_1->SetPos(Vec2(2450.f, 650.f));
+	pPortal_1->GetCollider()->SetScale(Vec2(50.f, 200.f));
+	pPortal_1->SetNextScene(SCENE_TYPE::FIRST_DUNGEON);
+	//포탈 크기는 고정으로 생성자에서 만듬
+	AddObject(pPortal_1, GROUP_TYPE::PORTAL);
+
 }
 
 void CSceneWest::Enter()

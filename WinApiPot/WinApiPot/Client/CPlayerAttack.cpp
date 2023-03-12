@@ -14,6 +14,7 @@
 
 UINT CPlayerAttack::m_iCurAttFrame = 0;
 UINT CPlayerAttack::m_iKeyCount = 0;
+
 CPlayerAttack::CPlayerAttack() :
 	CPlayerState(PLAYER_STATE::ATTACK),
 	m_fAttackTime(0.1f),

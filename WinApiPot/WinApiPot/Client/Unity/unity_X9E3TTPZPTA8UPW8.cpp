@@ -107,6 +107,9 @@
 #include "C:\Users\wangh\source\tem\WinApiPot\WinApiPot\Client\CPathMgr.cpp"
 
 
+#include "C:\Users\wangh\source\tem\WinApiPot\WinApiPot\Client\CPillar.cpp"
+
+
 #include "C:\Users\wangh\source\tem\WinApiPot\WinApiPot\Client\CPlayer.cpp"
 
 
@@ -197,7 +200,13 @@
 #include "C:\Users\wangh\source\tem\WinApiPot\WinApiPot\Client\CSkillState.cpp"
 
 
+#include "C:\Users\wangh\source\tem\WinApiPot\WinApiPot\Client\CSpinner.cpp"
+
+
 #include "C:\Users\wangh\source\tem\WinApiPot\WinApiPot\Client\CState.cpp"
+
+
+#include "C:\Users\wangh\source\tem\WinApiPot\WinApiPot\Client\CStoneBox.cpp"
 
 
 #include "C:\Users\wangh\source\tem\WinApiPot\WinApiPot\Client\CTexture.cpp"

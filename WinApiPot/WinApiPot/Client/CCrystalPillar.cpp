@@ -1,71 +1,64 @@
 #include "pch.h"
-#include "CStoneBox.h"
-
-#include "CTexture.h"
+#include "CCrystalPillar.h"
 
 #include "CResMgr.h"
+#include "CTexture.h"
+
 #include "CCameraMgr.h"
-#include "CTimeMgr.h"
 
-#include "CPlayer.h"
 #include "CCollider.h"
-#include "CGravity.h"
+#include "CPlayer.h"
 #include "CRigidBody.h"
+#include "CGravity.h"
 
+#include "CAnimation.h"
+#include "CAnimator.h"
 
-CStoneBox::CStoneBox()
+CCrystalPillar::CCrystalPillar() 
 {
 	CreateCollider();
+	GetCollider()->SetScale(Vec2(50.f, 50.f));
 
 	SetTag(GROUP_TYPE::STONE_BOX);
 
-	CTex = CResMgr::GetInst()->LoadTextur(L"StoneBox", L"..\\OutPut\\bin_release\\Content\\Object\\stonebox.bmp");
+	CTexture* pTex = CResMgr::GetInst()->LoadTextur(L"crystalpillar", L"..\\OutPut\\bin_release\\Content\\Object\\crystal_pillar.bmp");
+	CTexture* pInTex = CResMgr::GetInst()->LoadTextur(L"inactive", L"..\\OutPut\\bin_release\\Content\\Object\\crystal_pillar_destroyed.bmp");
+
+	CreateAnimator();
+	GetAnimator()->SetRBG(0, 0, 0);
+	GetAnimator()->CreateAnimation(L"crystal_pillar", pTex, Vec2(0.f, 0.f), Vec2(30.f, 91.f), Vec2(30.f, 0.f), Vec2(0.f, 0.f), 0.15f, 6);
+	GetAnimator()->CreateAnimation(L"inactive_crystal", pInTex, Vec2(0.f, 0.f), Vec2(32.f, 79.f), Vec2(32.f, 0.f), Vec2(0.f, 0.f), 0.15f, 1);
+
+	GetAnimator()->Play(L"crystal_pillar", true);
 }
 
-CStoneBox::~CStoneBox()
+CCrystalPillar::~CCrystalPillar()
+{
+}
+
+void CCrystalPillar::render(HDC _dc)
+{
+	component_render(_dc);
+}
+
+void CCrystalPillar::update()
 {
 
 }
 
-void CStoneBox::render(HDC _dc)
-{
-	Vec2 vPos = GetPos();
-	vPos = CCameraMgr::GetInst()->GetRenderPos(vPos);
-
-	TransparentBlt(_dc,
-		(int)(vPos.x - CTex->Width() / 2.f),
-		(int)(vPos.y - CTex->Height() / 2.f),
-		(int)(CTex->Width()),
-		(int)(CTex->Height()),
-		CTex->GetDC(),
-		(int)0,
-		(int)0,
-		(int)(CTex->Width()),
-		(int)(CTex->Height()),
-		RGB(0, 0, 0));
-
-	CObject::component_render(_dc);
-}
-
-void CStoneBox::update()
-{
-
-}
-
-void CStoneBox::finalupdate()
+void CCrystalPillar::finalupdate()
 {
 	CObject::finalupdate();
 }
 
-void CStoneBox::OnColliderEnter(CCollider* _pOther)
-{
+void CCrystalPillar::OnColliderEnter(CCollider* _pOther)
+{	
 	CObject* pObj = _pOther->GetObj();
 
 	if (pObj->GetTag() == GROUP_TYPE::BULLET ||
 		pObj->GetTag() == GROUP_TYPE::SKILL)
 	{
-		//현재씬의 이 오브젝트 삭제
-		DeleteObject(this);
+		GetAnimator()->Play(L"inactive_crystal", true);
 		return;
 	}
 
@@ -82,9 +75,9 @@ void CStoneBox::OnColliderEnter(CCollider* _pOther)
 		Vec2 vPlayerScale = _pOther->GetScale();
 		Vec2 vJumPos = pPlayer->GetJumPos();
 
-		
 
-		if(!pPlayer->GetGravity()->IsGetGravity())
+
+		if (!pPlayer->GetGravity()->IsGetGravity())
 		{
 			float fLenX = abs(vPos.x - vOtherPos.x);
 			float fLenY = abs(vPos.y - vOtherPos.y);
@@ -109,70 +102,21 @@ void CStoneBox::OnColliderEnter(CCollider* _pOther)
 			pPlayer->SetPos(vPlayerPos);
 
 		}
-		
 	}
 }
 
-void CStoneBox::OnColliderExit(CCollider* _pOther)
+void CCrystalPillar::OnColliderExit(CCollider* _pOther)
 {
-	//CObject* pObj = _pOther->GetObj();
-	//
-	//if (pObj->GetTag() == GROUP_TYPE::PLAYER)
-	//{
-	//	CPlayer* pPlayer = dynamic_cast<CPlayer*>(pObj);
-	//	Vec2 vOtherPos = _pOther->GetFinalPos();
-	//	Vec2 vPos = GetCollider()->GetFinalPos();
-	//
-	//	Vec2 vOtherScale = _pOther->GetScale();
-	//	Vec2 vScale = GetCollider()->GetScale();
-	//
-	//	Vec2 vNor = (vOtherPos - vPos).NormalRize();
-	//	Vec2 vVel = pPlayer->GetRigidBody()->GetVelocity();
-	//
-	//	if (pPlayer->GetGravity()->IsGetGravity())
-	//	{
-	//		vOtherPos = pPlayer->GetPos();
-	//	}
-	//
-	//	//방향
-	//	//350 -409
-	//	int DirX = (vOtherPos - vPos).x;
-	//	int DirY = (vOtherPos - vPos).y;
-	//
-	//	int iDirX = DirX < 1 ? -1 : 1;
-	//	int iDirY = DirY < 1 ? -1 : 1;
-	//
-	//	//길이
-	//	float fLenX = abs(vPos.x - vOtherPos.x);
-	//	float fLenY = abs(vPos.y - vOtherPos.y);
-	//
-	//	float fValueX = (vScale.x / 2.f + vOtherScale.x / 2.f) - fLenX; //겹친양
-	//	float fValueY = (vScale.y / 2.f + vOtherScale.y / 2.f) - fLenY; //겹친양
-	//
-	//	Vec2 vAddPlayerPos;
-	//	if (vVel.IsZero())
-	//	{
-	//		vAddPlayerPos = vNor;
-	//	}
-	//	else
-	//	{
-	//		vAddPlayerPos = -vVel * 1.0f + vNor;
-	//	}
-	//
-	//
-	//	pPlayer->SetPos(pPlayer->GetPos() + vAddPlayerPos);
-	//}
 }
 
-void CStoneBox::OnCollision(CCollider* _pOther)
+void CCrystalPillar::OnCollision(CCollider* _pOther)
 {
 	CObject* pObj = _pOther->GetObj();
 
 	if (pObj->GetTag() == GROUP_TYPE::BULLET ||
 		pObj->GetTag() == GROUP_TYPE::SKILL)
 	{
-		//현재씬의 이 오브젝트 삭제
-		DeleteObject(this);
+		GetAnimator()->Play(L"inactive_crystal", true);
 		return;
 	}
 

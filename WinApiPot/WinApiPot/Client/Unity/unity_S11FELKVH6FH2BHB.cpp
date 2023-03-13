@@ -32,6 +32,9 @@
 #include "C:\Users\wangh\source\tem\WinApiPot\WinApiPot\Client\CCore.cpp"
 
 
+#include "C:\Users\wangh\source\tem\WinApiPot\WinApiPot\Client\CCrystalPillar.cpp"
+
+
 #include "C:\Users\wangh\source\tem\WinApiPot\WinApiPot\Client\CDeadState.cpp"
 
 
@@ -39,6 +42,9 @@
 
 
 #include "C:\Users\wangh\source\tem\WinApiPot\WinApiPot\Client\CDragon.cpp"
+
+
+#include "C:\Users\wangh\source\tem\WinApiPot\WinApiPot\Client\CDragonObj.cpp"
 
 
 #include "C:\Users\wangh\source\tem\WinApiPot\WinApiPot\Client\CEventMgr.cpp"
@@ -51,6 +57,9 @@
 
 
 #include "C:\Users\wangh\source\tem\WinApiPot\WinApiPot\Client\CFSM.cpp"
+
+
+#include "C:\Users\wangh\source\tem\WinApiPot\WinApiPot\Client\CGate.cpp"
 
 
 #include "C:\Users\wangh\source\tem\WinApiPot\WinApiPot\Client\CGravity.cpp"

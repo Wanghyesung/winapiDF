@@ -4,6 +4,7 @@
 #include "CTexture.h"
 
 #include "CCameraMgr.h"
+#include "CTimeMgr.h"
 
 #include "CCollider.h"
 #include "CPlayer.h"
@@ -13,7 +14,10 @@
 #include "CAnimation.h"
 #include "CAnimator.h"
 
-CSpinner::CSpinner()
+CSpinner::CSpinner():
+	m_fDegree(0.f),
+	m_fCurTime(0.f),
+	m_fMaxTime(0.2f)
 {
 	m_tAttackInfo.m_eAttType = ATTACK_TYPE::NORMAL;
 	m_tAttackInfo.m_fAttRcnt = 50.f;
@@ -22,6 +26,7 @@ CSpinner::CSpinner()
 	m_tAttackInfo.m_fAttUpperRcnt = -60.f;
 
 	CreateCollider();
+	CreateRigidBody();
 
 	SetTag(GROUP_TYPE::SPINNER);
 
@@ -41,12 +46,23 @@ CSpinner::~CSpinner()
 
 void CSpinner::render(HDC _dc)
 {
+
 	component_render(_dc);
 }
 
 void CSpinner::update()
 {
+	m_fCurTime += fDT;
+	if (m_fCurTime >= m_fMaxTime)
+	{
+		m_fCurTime = 0.f;
+		m_fDegree += 20.f;
+	}
 
+	Vec2 vPos = GetPos();
+	Vec2 fRadian = Rotate(vPos, m_fDegree);
+
+	GetRigidBody()->AddForce(fRadian * 100.f);
 }
 
 void CSpinner::finalupdate()

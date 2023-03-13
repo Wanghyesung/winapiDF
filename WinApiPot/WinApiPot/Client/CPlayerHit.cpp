@@ -53,6 +53,10 @@ void CPlayerHit::update()
 
 void CPlayerHit::Enter()
 {
+	//내 속도 0으로 초기화
+	GetFSM()->GetPlayer()->GetRigidBody()->SetVelocity(Vec2(0.f, 0.f));
+	GetFSM()->GetPlayer()->GetRigidBody()->SetAccel(false);
+
 	PLAYER_STATE prevState = GetFSM()->GetPlayer()->GetPrevState();
 	if (prevState == PLAYER_STATE::ATTACK ||
 		prevState == PLAYER_STATE::ATTACK_DOWN)

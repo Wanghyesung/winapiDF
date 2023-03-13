@@ -472,6 +472,7 @@ void CPlayer::HitPlayer(CCollider* _pOther, const tAttackInfo& _tAttInfo)
 void CPlayer::OnColliderEnter(CCollider* _pOther)
 {
 	CObject* pObj = _pOther->GetObj();
+
 	if (pObj->GetTag() == GROUP_TYPE::MONSTER_SKILL
 		&& m_tPlayerInfo.m_fHP != 0)
 	{

@@ -1,18 +1,24 @@
 #pragma once
 #include "CObject.h"
-class CSpinner :
+class CDragonObj :
     public CObject
 {
 public:
-    CSpinner();
-    virtual ~CSpinner();
+    CDragonObj();
+    virtual ~CDragonObj();
 
 private:
-    tAttackInfo m_tAttackInfo;
-    float m_fDegree;
+    bool m_bActive;
 
+    //내 hp가 다 달면 비활성화
+    float m_fHp;
+
+    //공겨 시작
     float m_fCurTime;
-    float m_fMaxTime;
+    float m_fTime;
+
+    CTexture* CTex;
+    CTexture* CTex1;
 
 public:
     virtual void render(HDC _dc);
@@ -20,12 +26,10 @@ public:
     virtual void finalupdate();
 
 public:
-    const tAttackInfo& GetAttInfo() { return m_tAttackInfo; }
-
-public:
     virtual void OnColliderEnter(CCollider* _pOther);
     virtual void OnColliderExit(CCollider* _pOther);
     virtual void OnCollision(CCollider* _pOther);
+
 
 };
 

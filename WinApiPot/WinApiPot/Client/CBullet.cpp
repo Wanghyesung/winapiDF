@@ -134,7 +134,8 @@ void CBullet::OnColliderEnter(CCollider* _pOther)
 {
 	GROUP_TYPE tTag = _pOther->GetObj()->GetTag();
 
-	if (tTag == GROUP_TYPE::MONSTER)
+	if (tTag == GROUP_TYPE::MONSTER ||
+		tTag == GROUP_TYPE::STONE_BOX)
 	{
 		//Á×À¸¸é false
 		if (m_iAttackStack != 0)

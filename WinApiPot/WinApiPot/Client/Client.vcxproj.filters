@@ -269,6 +269,9 @@
     <Filter Include="Engine\05.CObject\SkyTowerObj\dragonobj">
       <UniqueIdentifier>{e39a6c6a-2d60-410d-b606-30386497318d}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Engine\05.CObject\SkyTowerObj\crystal_pillar">
+      <UniqueIdentifier>{13866778-1b66-4cb5-a0e1-f37dcd170975}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="pch.h" />
@@ -533,6 +536,15 @@
     <ClInclude Include="CSpinner.h">
       <Filter>Engine\05.CObject\SkyTowerObj\spinner</Filter>
     </ClInclude>
+    <ClInclude Include="CGate.h">
+      <Filter>Engine\05.CObject\SkyTowerObj\gate</Filter>
+    </ClInclude>
+    <ClInclude Include="CCrystalPillar.h">
+      <Filter>Engine\05.CObject\SkyTowerObj\crystal_pillar</Filter>
+    </ClInclude>
+    <ClInclude Include="CDragonObj.h">
+      <Filter>Engine\05.CObject\SkyTowerObj\dragonobj</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Client.rc">
@@ -788,6 +800,15 @@
     </ClCompile>
     <ClCompile Include="CSpinner.cpp">
       <Filter>Engine\05.CObject\SkyTowerObj\spinner</Filter>
+    </ClCompile>
+    <ClCompile Include="CGate.cpp">
+      <Filter>Engine\05.CObject\SkyTowerObj\gate</Filter>
+    </ClCompile>
+    <ClCompile Include="CCrystalPillar.cpp">
+      <Filter>Engine\05.CObject\SkyTowerObj\crystal_pillar</Filter>
+    </ClCompile>
+    <ClCompile Include="CDragonObj.cpp">
+      <Filter>Engine\05.CObject\SkyTowerObj\dragonobj</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

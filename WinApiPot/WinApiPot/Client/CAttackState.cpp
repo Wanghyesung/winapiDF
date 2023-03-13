@@ -70,6 +70,7 @@ void CAttackState::update()
 		int iDir = GetDir();
 		CFireBall* fireBall = new CFireBall(iDir, m_pMon->GetPos());
 		const vector<tMonSkill>& vecSkill = GetMonster()->GetVecSkill();
+		//스킬이 하나밖에 없음
 		fireBall->SetAttackInfo(vecSkill[0].m_MonAttackInfo);
 		CreateObject(fireBall,GROUP_TYPE::MONSTER_SKILL);
 		//여기서 불덩이 생성

@@ -48,7 +48,8 @@ void CRigidBody::finalupdate()
 	}
 
 	//중력 없는 물체면 오류가 나옴
-	if (m_pOwner->GetGravity()->IsGetGravity())//(중력이 가해지면)
+	if (m_pOwner->GetGravity() != nullptr &&
+		m_pOwner->GetGravity()->IsGetGravity())//(중력이 가해지면)
 	{
 		m_vNgravityPos = m_vAccel.y * fDT;
 
@@ -126,12 +127,9 @@ void CRigidBody::move()
 
 		Vec2 vPos = m_pOwner->GetPos();
 
-		if (m_pOwner->GetGravity()->IsGetGravity()) //점프상태일 떄
+		if (m_pOwner->GetGravity() != nullptr &&
+			m_pOwner->GetGravity()->IsGetGravity()) //점프상태일 떄
 		{
-			
-			//if (m_fCurTIme > 1.f)
-				//int a = 1;
-			//m_fCurTIme += fDT;//시간 제기..
 
 			m_vCurJumPos = vPos;
 
@@ -205,7 +203,8 @@ void CRigidBody::IsOutRangeMap()
 
 	if (bIsXpass)
 	{
-		if (m_pOwner->GetGravity()->IsGetGravity())
+		if (m_pOwner->GetGravity() != nullptr &&
+			m_pOwner->GetGravity()->IsGetGravity())
 		{
 			Vec2 vJumPos = m_pOwner->GetJumPos();
 			m_pOwner->SetJumPos(Vec2(vJumPos.x - vVelocity.x * fDT, vJumPos.y));//걍 줬던 velocity다 반대로 주면 될듯
@@ -227,11 +226,12 @@ void CRigidBody::IsOutRangeMap()
 	if (bIsYpass)
 	{
 
-		if (m_pOwner->GetGravity()->IsGetGravity())
+		if (m_pOwner->GetGravity() != nullptr &&
+			m_pOwner->GetGravity()->IsGetGravity())
 		{
 			Vec2 vJumPos = m_pOwner->GetJumPos();
 			//x쪽만 막는다 y쪽으로는 점프 가능하게 할것임 하지만 중력값을 뺀 y움직임은 막아줘야함
-			m_pOwner->SetJumPos(Vec2(vJumPos.x, vJumPos.y + m_vNgravityPos - 3));//Ngravity값이 맵 밖으로 넘어가면 뺴야하나
+			m_pOwner->SetJumPos(Vec2(vJumPos.x, vJumPos.y + m_vNgravityPos - 3));
 			vPos.y += -vVelocity.y * fDT;
 		}
 		else

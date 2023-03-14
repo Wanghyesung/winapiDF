@@ -8,6 +8,9 @@
 
 #include "CPlayer.h"
 #include "CObject.h"
+#include "CMonster.h"
+
+#include "CMonFactory.h"
 
 #include "CResMgr.h"
 #include "CTexture.h"
@@ -52,39 +55,43 @@ void CSceneTowerFirst::Init()
 	CSkillMgr::GetInst()->SetPlayer((CPlayer*)GetPlayerObj());
 	CSkillMgr::GetInst()->init(m_eType);
 
-	CStoneBox* pStone = new CStoneBox;
-	pStone->SetPos(Vec2(400.f, 700.f));
-	pStone->GetCollider()->SetScale(Vec2(50.f, 50.f));
-	AddObject(pStone, GROUP_TYPE::STONE_BOX);
-
-	CPillar* pPillar = new CPillar;
-	pPillar->SetPos(Vec2(700.f, 700.f));
-	pPillar->GetCollider()->SetOffSet(Vec2(0.f, 50.f));
-	pPillar->GetCollider()->SetScale(Vec2(50.f, 50.f));
-	AddObject(pPillar, GROUP_TYPE::STONE_PILLAR);
-
-
+	//CStoneBox* pStone = new CStoneBox;
+	//pStone->SetPos(Vec2(400.f, 700.f));
+	//pStone->GetCollider()->SetScale(Vec2(50.f, 50.f));
+	//AddObject(pStone, GROUP_TYPE::STONE_BOX);
+	//
+	//CPillar* pPillar = new CPillar;
+	//pPillar->SetPos(Vec2(700.f, 700.f));
+	//pPillar->GetCollider()->SetOffSet(Vec2(0.f, 50.f));
+	//pPillar->GetCollider()->SetScale(Vec2(50.f, 50.f));
+	//AddObject(pPillar, GROUP_TYPE::STONE_PILLAR);
+	//
+	//
 	CSpinner* pSpinner = new CSpinner;
 	pSpinner->SetPos(Vec2(1000.f, 700.f));
-	pPillar->GetCollider()->SetOffSet(Vec2(0.f, 50.f));
+	pSpinner->GetCollider()->SetOffSet(Vec2(0.f, 50.f));
 	pSpinner->GetCollider()->SetScale(Vec2(50.f, 110.f));
 	AddObject(pSpinner, GROUP_TYPE::SPINNER);
 
-	//방향 먼저 잡기
-	CGate* pGate = new CGate(L"right");
-	pGate->SetPos(Vec2(1200.f, 400.f));
-	pGate->GetCollider()->SetScale(Vec2(70.f, 70.f));
-	pGate->SetNextScene(SCENE_TYPE::WEST_COAST);
-	AddObject(pGate, GROUP_TYPE::GATE);
-
-	//크기는 생성장에서
-	CCrystalPillar* pCryStal = new CCrystalPillar;
-	pCryStal->SetPos(Vec2(500.f, 500.f));
-	AddObject(pCryStal, GROUP_TYPE::STONE_BOX);
-
-	CDragonObj* pDragonObj = new CDragonObj;
-	pDragonObj->SetPos(Vec2(200.f, 600.f));
-	AddObject(pDragonObj, GROUP_TYPE::STONE_BOX);
+	CMonster* pLord = CMonFactory::CraeteMonster(MON_TYPE::LORD, Vec2(1200.f, 580.f), m_eType);
+	pLord->SetName(L"Lord");
+	AddObject(pLord, GROUP_TYPE::MONSTER);
+	//
+	////방향 먼저 잡기
+	//CGate* pGate = new CGate(L"right");
+	//pGate->SetPos(Vec2(1200.f, 400.f));
+	//pGate->GetCollider()->SetScale(Vec2(70.f, 70.f));
+	//pGate->SetNextScene(SCENE_TYPE::WEST_COAST);
+	//AddObject(pGate, GROUP_TYPE::GATE);
+	//
+	////크기는 생성장에서
+	//CCrystalPillar* pCryStal = new CCrystalPillar;
+	//pCryStal->SetPos(Vec2(500.f, 500.f));
+	//AddObject(pCryStal, GROUP_TYPE::STONE_BOX);
+	//
+	//CDragonObj* pDragonObj = new CDragonObj;
+	//pDragonObj->SetPos(Vec2(200.f, 600.f));
+	//AddObject(pDragonObj, GROUP_TYPE::STONE_BOX);
 
 	//CPortal* pPortal_1 = new CPortal;
 	//pPortal_1->SetName(L"Port_Portal");
@@ -124,6 +131,7 @@ void CSceneTowerFirst::Enter()
 	CColliderMgr::GetInst()->ChekGroup(GROUP_TYPE::PLAYER, GROUP_TYPE::CRYSTAL);
 	CColliderMgr::GetInst()->ChekGroup(GROUP_TYPE::BULLET, GROUP_TYPE::CRYSTAL);
 	CColliderMgr::GetInst()->ChekGroup(GROUP_TYPE::SKILL, GROUP_TYPE::CRYSTAL);
+	CColliderMgr::GetInst()->ChekGroup(GROUP_TYPE::PLAYER, GROUP_TYPE::MONSTER_SKILL);
 }
 
 void CSceneTowerFirst::Exit()

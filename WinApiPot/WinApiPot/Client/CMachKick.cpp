@@ -98,23 +98,27 @@ void CMachKick::OnColliderExit(CCollider* _pOther)
 
 void CMachKick::OnCollision(CCollider* _pOther)
 {
-	if (_pOther->GetObj()->GetTag() == GROUP_TYPE::MONSTER)
+	if (_pOther->GetObj()->GetTag() == GROUP_TYPE::MONSTER ||
+		_pOther->GetObj()->GetTag() == GROUP_TYPE::STONE_BOX)
 	{
 		const vector<UINT> vecFrame = GetAttackFrame();
+		//상대방 콜리이더 ID를 vec에 저장
 		vector<UINT>& vecColl = GetOtherCollVec();
 		int iCurFrame = GetCurFram();
 
+		//드래곤 오브젝트 딜
 		for (int i = 0; i < vecFrame.size(); ++i)
 		{
+			//콜라이더ID에 해당하는 벡터의 값이 내 프레임과 달라야지 딜
 			if (vecFrame[i] == iCurFrame && vecColl[_pOther->GetID()] != iCurFrame)
 			{
 				vecColl[_pOther->GetID()] = iCurFrame;
-				SetAttackOn(TRUE);
+				SetAttackOn(true);
 				break;
 			}
 			else
 			{
-				SetAttackOn(FALSE);
+				SetAttackOn(false);
 			}
 		}
 	}

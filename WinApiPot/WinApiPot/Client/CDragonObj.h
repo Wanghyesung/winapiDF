@@ -20,6 +20,8 @@ private:
     CTexture* CTex;
     CTexture* CTex1;
 
+    tAttackInfo m_tAttackInfo;
+
 public:
     virtual void render(HDC _dc);
     virtual void update();

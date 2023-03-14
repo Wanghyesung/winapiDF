@@ -134,18 +134,25 @@ void CBullet::OnColliderEnter(CCollider* _pOther)
 {
 	GROUP_TYPE tTag = _pOther->GetObj()->GetTag();
 
-	if (tTag == GROUP_TYPE::MONSTER ||
-		tTag == GROUP_TYPE::STONE_BOX)
+	if (tTag == GROUP_TYPE::MONSTER)
 	{
 		//죽으면 false
 		if (m_iAttackStack != 0)
 			return;
-
+		//몬스터 오브젝트 활성화되어있으면
 		if (((CMonster*)_pOther->GetObj())->IsActiv())
 		{
 			++m_iAttackStack;
 			DeleteObject(this);
 		}
+	}
+	else if (tTag == GROUP_TYPE::STONE_BOX)
+	{
+		if (m_iAttackStack != 0)
+			return;
+
+		++m_iAttackStack;
+		DeleteObject(this);
 	}
 }
 

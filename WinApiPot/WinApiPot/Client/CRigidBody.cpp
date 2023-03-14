@@ -44,7 +44,7 @@ void CRigidBody::finalupdate()
 		vForce.NormalRize();//방향
 		float m_fAccel = fForce / m_fMass; //가속도
 
-		m_vAccel = vForce * m_fAccel; //내 속도는 내 힘의 방향 * 내 실수 가속도
+		m_vAccel = vForce * m_fAccel; //내 속도는 내 힘의 방향 * 내 가속도
 	}
 
 	//중력 없는 물체면 오류가 나옴

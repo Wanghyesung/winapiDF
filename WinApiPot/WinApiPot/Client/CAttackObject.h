@@ -25,10 +25,14 @@ public:
     virtual void update(){};
 public:
     void SetColActive(bool _b);
-    void SetCurAttackIndex(UINT _i) { m_iCurAttackIndex = _i; }
+    void SetCurAttackIndex(UINT _i) { m_iCurAttackIndex = _i; }    
 
 public:
     const tAttackInfo& GetAttInfo();
+
+private:
+    void SetAttackRange(float _fXRange, Vec2 _vCollScale);
+
 public:
     virtual void OnColliderEnter(CCollider* _pOther);
     virtual void OnColliderExit(CCollider* _pOther);

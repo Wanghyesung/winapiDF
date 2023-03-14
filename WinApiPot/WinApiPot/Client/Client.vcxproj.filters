@@ -272,6 +272,9 @@
     <Filter Include="Engine\05.CObject\SkyTowerObj\crystal_pillar">
       <UniqueIdentifier>{13866778-1b66-4cb5-a0e1-f37dcd170975}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Engine\05.CObject\CBoss">
+      <UniqueIdentifier>{1a671ec5-b3b2-4440-988a-0ff08d44d9eb}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="pch.h" />
@@ -545,6 +548,9 @@
     <ClInclude Include="CDragonObj.h">
       <Filter>Engine\05.CObject\SkyTowerObj\dragonobj</Filter>
     </ClInclude>
+    <ClInclude Include="CLord.h">
+      <Filter>Engine\05.CObject\CBoss</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Client.rc">
@@ -632,9 +638,6 @@
     </ClCompile>
     <ClCompile Include="CTraceState.cpp">
       <Filter>Engine\08.Module\State\Trace</Filter>
-    </ClCompile>
-    <ClCompile Include="CMonFactory.cpp">
-      <Filter>Engine\09.Factory</Filter>
     </ClCompile>
     <ClCompile Include="CGravity.cpp">
       <Filter>Engine\07.Component\Gravity</Filter>
@@ -809,6 +812,12 @@
     </ClCompile>
     <ClCompile Include="CDragonObj.cpp">
       <Filter>Engine\05.CObject\SkyTowerObj\dragonobj</Filter>
+    </ClCompile>
+    <ClCompile Include="CMonFactory.cpp">
+      <Filter>Engine\09.Factory</Filter>
+    </ClCompile>
+    <ClCompile Include="CLord.cpp">
+      <Filter>Engine\05.CObject\CBoss</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

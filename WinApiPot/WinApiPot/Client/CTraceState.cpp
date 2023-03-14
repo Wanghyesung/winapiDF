@@ -93,6 +93,7 @@ void CTraceState::update()
 		return;
 	}
 	
+	//여기에 스킬 공격 넣기
 
 	if (abs(vDiff.x) <= attackInfo.m_fAttackRange.x &&
 		abs(vDiff.y) <= attackInfo.m_fAttackRange.y)

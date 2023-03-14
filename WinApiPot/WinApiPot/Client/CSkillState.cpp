@@ -45,9 +45,10 @@ void CSkillState::exit()
 
 void CSkillState::enter()
 {
-	//대충 크게 잡아서 30
-	m_vecOtherColl.resize(30,-1);
+	//대충 크게 잡아서 100
+	m_vecOtherColl.resize(100,-1);
 	GetCollider()->SetActive(true);
+	
 }
 
 

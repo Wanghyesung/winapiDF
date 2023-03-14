@@ -18,11 +18,10 @@ enum class eMonsterAttackType
 
 struct tMonSkill
 {
-    eMonsterAttackType MonSKillType; //스킬 타입
     tAttackInfo m_MonAttackInfo; //기본 스킬 정보
     wstring m_strAttackName; //스킬 이름
     UINT m_iStartFrame; //스킬 시작 프레임
-    float m_fSkillTime; //스킬 쿨타임
+    float m_fSkillTime; //스킬 현재 쿨타임
     float m_fMaxSkillTime;//재사용 대기시간
 };
 
@@ -94,8 +93,6 @@ public:
 public:
     void SetAttackInfo(const tAttackInfo& _tAttackInfo) { m_tAttackInfo = _tAttackInfo; }
     const tAttackInfo& GetAttackInfo() { return m_tAttackInfo; }
-
-    void InitAttackInfo(const tAttackInfo& _tAttackInfo) { m_tAttackInfo = _tAttackInfo; }
 
 public:
     virtual void OnColliderEnter(CCollider* _pOther);

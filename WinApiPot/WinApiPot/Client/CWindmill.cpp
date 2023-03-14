@@ -93,7 +93,8 @@ void CWindmill::OnColliderExit(CCollider* _pOther)
 
 void CWindmill::OnCollision(CCollider* _pOther)
 {
-	if (_pOther->GetObj()->GetTag() == GROUP_TYPE::MONSTER)
+	if (_pOther->GetObj()->GetTag() == GROUP_TYPE::MONSTER ||
+		_pOther->GetObj()->GetTag() == GROUP_TYPE::STONE_BOX)
 	{
 		const vector<UINT> vecFrame = GetAttackFrame();
 
@@ -104,12 +105,12 @@ void CWindmill::OnCollision(CCollider* _pOther)
 			if (vecFrame[i] == iCurFrame && vecColl[_pOther->GetID()] != iCurFrame)
 			{
 				vecColl[_pOther->GetID()] = iCurFrame;
-				SetAttackOn(TRUE);
+				SetAttackOn(true);
 				break;
 			}
 			else
 			{
-				SetAttackOn(FALSE);
+				SetAttackOn(false);
 			}
 		}
 	}

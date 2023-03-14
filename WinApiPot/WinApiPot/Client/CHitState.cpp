@@ -35,8 +35,7 @@ void CHitState::update()
 		return;
 	}
 	
-	//경직
-	//일반 1 중력 3 데드 4
+	
 	if (m_iHitAnimFrame == 1)
 	{
 		GetMonster()->GetAnimator()->GetCurAnimation()->SetFram(1);

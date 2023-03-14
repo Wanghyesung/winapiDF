@@ -59,6 +59,7 @@ void CColliderMgr::CollisionGroupUpdate(GROUP_TYPE _eLeft, GROUP_TYPE _eRight)
 				m_LarrObject[i] == m_RarrObject[j]))// ex) 내 플레이어랑 내 플레이어일 떄, 비활성일 떄 collider가 없을 떄
 				continue;
 
+			//같은 그룹이면 두번 호출되나?
 			CCollider* m_lCollider = m_LarrObject[i]->GetCollider();
 			CCollider* m_rCollider = m_RarrObject[j]->GetCollider();
 

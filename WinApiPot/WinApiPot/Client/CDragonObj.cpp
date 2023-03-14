@@ -18,6 +18,8 @@
 #include "CSkillState.h"
 #include "CBullet.h"
 
+#include "CFireBall.h"
+
 CDragonObj::CDragonObj():
 	m_bActive(true),
 	m_fHp(100.f),
@@ -25,6 +27,13 @@ CDragonObj::CDragonObj():
 	m_fTime(5.f)
 {
 	SetTag(GROUP_TYPE::STONE_BOX);
+
+	m_tAttackInfo = {};
+	m_tAttackInfo.m_eAttType = ATTACK_TYPE::UPPER;
+	m_tAttackInfo.m_fAttRcnt = 50.f;
+	m_tAttackInfo.m_fAttackDamage = 5.f;
+	m_tAttackInfo.m_fAttRigidityTime = 0.5f;
+	m_tAttackInfo.m_fAttUpperRcnt = -60.f;
 
 	CreateCollider();
 	
@@ -83,11 +92,18 @@ void CDragonObj::render(HDC _dc)
 
 void CDragonObj::update()
 {
+	if (!m_bActive)
+		return;
+
 	m_fCurTime += fDT;
-	if (m_fCurTime <= m_fTime)
+	if (m_fCurTime >= m_fTime)
 	{
 		m_fCurTime = 0.f;
 		//ºÒµ¢ÀÌ
+		CFireBall* pFire = new CFireBall(1,GetPos());
+		//°ø°Ý ½ºÅÈ ÃÊ±âÈ­
+		pFire->SetAttackInfo(m_tAttackInfo);
+		CreateObject(pFire, GROUP_TYPE::MONSTER_SKILL);
 	}
 }
 
@@ -111,6 +127,9 @@ void CDragonObj::OnColliderEnter(CCollider* _pOther)
 		else
 		{
 			CSkillState* pSkill = dynamic_cast<CSkillState*>(pObj);
+			if (!pSkill->IsAttackOn())
+				return;
+
 			m_fHp -= pSkill->GetAttInfo().m_fAttackDamage;
 		}
 
@@ -181,6 +200,8 @@ void CDragonObj::OnCollision(CCollider* _pOther)
 		else
 		{
 			CSkillState* pSkill = dynamic_cast<CSkillState*>(pObj);
+			if (!pSkill->IsAttackOn())
+				return;
 			m_fHp -= pSkill->GetAttInfo().m_fAttackDamage;
 		}
 

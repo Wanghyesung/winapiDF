@@ -6,6 +6,7 @@ enum class MON_TYPE
 {
 	NORMAL,
 	RANGE,
+	LORD,
 	DRAGON,
 	BLUE_DRAGON,
 };

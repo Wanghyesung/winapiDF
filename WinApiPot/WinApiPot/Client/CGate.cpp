@@ -8,7 +8,8 @@
 #include "CResMgr.h"
 #include "CTexture.h"
 #include "CCameraMgr.h"
-
+#include "CSceneMgr.h"
+#include "CScene.h"
 
 CGate::CGate(const wstring& _strDir) :
 	m_strDir(_strDir),
@@ -39,6 +40,12 @@ CGate::~CGate()
 void CGate::update()
 {
 	
+	//if (!m_bActive)
+	//	return;
+	//
+	//const vector<CObject*>& MonVec = SceneMgr::GetInst()->GetCurSCene()->GetGroupObject(GROUP_TYPE::MONSTER);
+	//if (MonVec.size() == 0)
+	//	m_bActive = false;
 }
 
 void CGate::render(HDC _dc)

@@ -114,7 +114,8 @@ void CRandomFire::OnColliderExit(CCollider* _pOther)
 
 void CRandomFire::OnCollision(CCollider* _pOther)
 {
-	if (_pOther->GetObj()->GetTag() == GROUP_TYPE::MONSTER)
+	if (_pOther->GetObj()->GetTag() == GROUP_TYPE::MONSTER ||
+		_pOther->GetObj()->GetTag() == GROUP_TYPE::STONE_BOX)
 	{
 		const vector<UINT> vecFrame = GetAttackFrame();
 		vector<UINT>& vecColl = GetOtherCollVec();
@@ -126,12 +127,12 @@ void CRandomFire::OnCollision(CCollider* _pOther)
 			if (vecFrame[i] == iCurFrame && vecColl[_pOther->GetID()] != iCurFrame)
 			{
 				vecColl[_pOther->GetID()] = iCurFrame;
-				SetAttackOn(TRUE);
+				SetAttackOn(true);
 				break;
 			}
 			else
 			{
-				SetAttackOn(FALSE);
+				SetAttackOn(false);
 			}
 		}
 	}

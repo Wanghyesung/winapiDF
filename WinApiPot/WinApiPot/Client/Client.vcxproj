@@ -177,6 +177,7 @@
     <ClInclude Include="CKeyMgr.h" />
     <ClInclude Include="CKick.h" />
     <ClInclude Include="Client.h" />
+    <ClInclude Include="CLord.h" />
     <ClInclude Include="CMachKick.h" />
     <ClInclude Include="CMonFactory.h" />
     <ClInclude Include="CMonHP.h" />
@@ -269,6 +270,7 @@
     <ClCompile Include="CInterFaceMgr.cpp" />
     <ClCompile Include="CKeyMgr.cpp" />
     <ClCompile Include="CKick.cpp" />
+    <ClCompile Include="CLord.cpp" />
     <ClCompile Include="CMachKick.cpp" />
     <ClCompile Include="CMonFactory.cpp" />
     <ClCompile Include="CMonHP.cpp" />

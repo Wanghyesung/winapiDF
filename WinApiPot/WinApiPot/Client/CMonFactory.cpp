@@ -14,6 +14,7 @@
 #include "CTraceState.h"
 #include "CAttackState.h"
 #include "CNearAttack.h"
+#include "CStandOffAttack.h"
 #include "CExclusiveTrace.h"
 #include "CDefenseState.h"
 #include "CHitState.h"
@@ -37,11 +38,11 @@ CMonster* CMonFactory::CraeteMonster(MON_TYPE _monType, Vec2 _vPos, SCENE_TYPE _
 		m_tAtt.m_fAttackDamage = 8.f;
 		m_tAtt.m_fAttRigidityTime = 0.5f;
 		m_tAtt.m_fAttUpperRcnt = -60.f;
-		tMonSkill tSkill1 = {m_tAtt,L"_Normal_Attack", 2, 3.f, 5.f};
+		tMonSkill tSkill1 = { eMonsterAttackType::NORMAL, m_tAtt,L"_Normal_Attack", 2, 20, 3.f, 5.f};
 		pMon->add_skill(tSkill1);
 		m_tAtt.m_fAttackDamage = 12.f;
 		m_tAtt.m_fAttRigidityTime = 1.f;
-		tMonSkill tSkill2 = {m_tAtt ,L"_Attack", 4, 7.f, 5.f };
+		tMonSkill tSkill2 = { eMonsterAttackType::NORMAL, m_tAtt ,L"_Attack", 4, 20, 7.f, 5.f };
 		pMon->add_skill(tSkill2);
 		//내 공격 오브젝트 추가
 		pMon->set_attackobj(_eSceneType);
@@ -88,7 +89,7 @@ CMonster* CMonFactory::CraeteMonster(MON_TYPE _monType, Vec2 _vPos, SCENE_TYPE _
 		tMonInfo info = {};
 		info.m_fnavigationScope = 400.f;
 		info.m_iHp = 100;
-		info.m_fspeed = 150.f;
+		info.m_fspeed = 70.f;
 		pMon->SettMonInfo(info);
 
 		tHitInfo tHitInfo = {};
@@ -99,20 +100,20 @@ CMonster* CMonFactory::CraeteMonster(MON_TYPE _monType, Vec2 _vPos, SCENE_TYPE _
 		tAttackInfo m_tAtt = {};
 		m_tAtt.m_eAttType = ATTACK_TYPE::NORMAL;
 		m_tAtt.m_fAttRcnt = 50.f;
-		m_tAtt.m_fAttackDamage = 8.f;
+		m_tAtt.m_fAttackDamage = 15.f;
 		m_tAtt.m_fAttRigidityTime = 0.5f;
 		m_tAtt.m_fAttUpperRcnt = -60.f;
-		tMonSkill tSkill1 = {m_tAtt,L"_Normal_Attack", 4, 3.f, 5.f };
+		tMonSkill tSkill1 = {eMonsterAttackType::NORMAL, m_tAtt,L"_Normal_Attack", 4, 7, 3.f, 5.f };
 		pMon->add_skill(tSkill1);
 		//Lord_Skill
 		
 		tAttackInfo m_tAtt2 = {};
 		m_tAtt2.m_eAttType = ATTACK_TYPE::NORMAL;
-		m_tAtt2.m_fAttRcnt = 50.f;
-		m_tAtt2.m_fAttackDamage = 5.f;
+		m_tAtt2.m_fAttRcnt = 1.f;
+		m_tAtt2.m_fAttackDamage = 2.f;
 		m_tAtt2.m_fAttRigidityTime = 0.4f;
 		m_tAtt2.m_fAttUpperRcnt = -60.f;
-		tMonSkill tSkill2 = { m_tAtt2,L"_Lord_Skill", 3, 10.f, 15.f };
+		tMonSkill tSkill2 = { eMonsterAttackType::SKILL, m_tAtt2,L"_Skill", 3, 20, 12.f, 12.f };
 		pMon->add_skill(tSkill2);
 
 		pMon->set_attackobj(_eSceneType);
@@ -133,6 +134,7 @@ CMonster* CMonFactory::CraeteMonster(MON_TYPE _monType, Vec2 _vPos, SCENE_TYPE _
 		pAI->AddState(new CIdleState);
 		pAI->AddState(new CTraceState);
 		pAI->AddState(new CNearAttack);
+		pAI->AddState(new CStandOffAttack);
 		pAI->SetCurState(MONSTER_STATE::IDLE);
 		pMon->SetAI(pAI);
 	}
@@ -149,7 +151,7 @@ CMonster* CMonFactory::CraeteMonster(MON_TYPE _monType, Vec2 _vPos, SCENE_TYPE _
 		m_tAtt.m_fAttRigidityTime = 0.5f;
 		m_tAtt.m_fAttUpperRcnt = -60.f;
 
-		tMonSkill tSkill = { m_tAtt, L"_Normal_Attack", 1, 5.f, 5.f};
+		tMonSkill tSkill = { eMonsterAttackType::NORMAL, m_tAtt, L"_Normal_Attack", 1, 20, 5.f, 5.f};
 		pMon->add_skill(tSkill);
 
 		pMon->SetPos(_vPos);

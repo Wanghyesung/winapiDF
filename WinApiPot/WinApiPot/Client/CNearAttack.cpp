@@ -9,7 +9,8 @@
 CNearAttack::CNearAttack():
 	CState(MONSTER_STATE::ATTACK),
 	m_iAttackCount(0),
-	m_iAttackFrame(0)
+	m_iAttackFrame(0),
+	m_iEndAttackFrame(0)
 {
 	
 }
@@ -35,6 +36,10 @@ void CNearAttack::update()
 		++m_iAttackCount;
 		pMon->GetSKillObj()->SetColActive(true);
 
+	}
+	else if (iFrame == m_iEndAttackFrame)
+	{
+		pMon->GetSKillObj()->SetColActive(false);
 	}
 
 }

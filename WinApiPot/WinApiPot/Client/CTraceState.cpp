@@ -2,6 +2,7 @@
 #include "CTraceState.h"
 #include "CAttackState.h"
 #include "CNearAttack.h"
+#include "CStandOffAttack.h"
 #include "CAttackObject.h"
 
 #include "CScene.h"
@@ -31,23 +32,44 @@ CTraceState::~CTraceState()
 }
 
 
-void CTraceState::init_attack(UINT _iDir)
+bool CTraceState::init_attack(int _iDir)
 {
 	vector<tMonSkill>& vecSkill = GetMonster()->GetVecSkill();
 	for (int i = 0; i < vecSkill.size(); ++i)
 	{
-		if (vecSkill[i].m_fSkillTime <= 0.f)
+		if (vecSkill[i].m_fSkillTime <= 0.f && vecSkill[i].m_eSkillType == eMonsterAttackType::NORMAL)
 		{
 			vecSkill[i].m_fSkillTime = vecSkill[i].m_fMaxSkillTime;
 			m_eNextState = MONSTER_STATE::ATTACK;
 			GetAI()->GetState(m_eNextState)->SetDir(_iDir);
 			((CNearAttack*)GetAI()->GetState(m_eNextState))->SetAttackName(vecSkill[i].m_strAttackName);
-			((CNearAttack*)GetAI()->GetState(m_eNextState))->SetAttackFrame(vecSkill[i].m_iStartFrame);
+			((CNearAttack*)GetAI()->GetState(m_eNextState))->SetAttackFrame(vecSkill[i].m_iStartFrame, vecSkill[i].m_iEndFrame);
 			GetAI()->GetCMonster()->GetSKillObj()->SetCurAttackIndex(i);
 			ChangeAIState(GetAI(), m_eNextState);
-			return;
+			return true;
 		}
 	}
+	return false;
+}
+
+bool CTraceState::init_skill(int _iDir)
+{
+	vector<tMonSkill>& vecSkill = GetMonster()->GetVecSkill();
+	for (int i = 0; i < vecSkill.size(); ++i)
+	{
+		if (vecSkill[i].m_fSkillTime <= 0.f && vecSkill[i].m_eSkillType == eMonsterAttackType::SKILL)
+		{
+			//스킬 초기화
+			vecSkill[i].m_fSkillTime = vecSkill[i].m_fMaxSkillTime;
+			m_eNextState = MONSTER_STATE::ATTACK_STAND;
+			GetAI()->GetState(m_eNextState)->SetDir(_iDir);
+			((CStandOffAttack*)GetAI()->GetState(m_eNextState))->SetAttackName(vecSkill[i].m_strAttackName);
+			((CStandOffAttack*)GetAI()->GetState(m_eNextState))->SetAttackFrame(vecSkill[i].m_iStartFrame, vecSkill[i].m_iEndFrame);
+			ChangeAIState(GetAI(), m_eNextState);
+			return true;
+		}
+	}
+	return false;
 }
 
 void CTraceState::update()
@@ -93,16 +115,25 @@ void CTraceState::update()
 		return;
 	}
 	
-	//여기에 스킬 공격 넣기
+	//여기에 스킬 공격 넣기 스킬이 없다면 0d
 
-	if (abs(vDiff.x) <= attackInfo.m_fAttackRange.x &&
-		abs(vDiff.y) <= attackInfo.m_fAttackRange.y)
+	if (abs(vDiff.x) <= attackInfo.m_fSkillRange.x &&
+		abs(vDiff.y) <= attackInfo.m_fSkillRange.y)
 	{
-		init_attack(iDir);
-		return;
+		if(init_skill(iDir))
+			return;
 	}
 
-	else
+	if (abs(vDiff.x) <= attackInfo.m_fAttackRange.x &&
+			abs(vDiff.y) <= attackInfo.m_fAttackRange.y)
+	{
+		if(init_attack(iDir))
+			return;
+	}
+	
+
+	if (abs(vDiff.x) > attackInfo.m_fAttackRange.x ||
+		abs(vDiff.y) > attackInfo.m_fAttackRange.y)
 	{
 		if (vDiff.IsZero())
 			vDiff = Vec2(0.f, 0.f);
@@ -111,6 +142,7 @@ void CTraceState::update()
 
 		GetMonster()->GetRigidBody()->AddForce(vDiff);
 	}
+	
 
 }
 

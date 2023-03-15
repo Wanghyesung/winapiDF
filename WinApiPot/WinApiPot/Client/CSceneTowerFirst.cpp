@@ -22,6 +22,7 @@
 #include "CGate.h"
 #include "CCrystalPillar.h"
 #include "CDragonObj.h"
+#include "CThunder.h"
 
 CSceneTowerFirst::CSceneTowerFirst():
 	m_eType(SCENE_TYPE::FIRST_DUNGEON)
@@ -55,11 +56,11 @@ void CSceneTowerFirst::Init()
 	CSkillMgr::GetInst()->SetPlayer((CPlayer*)GetPlayerObj());
 	CSkillMgr::GetInst()->init(m_eType);
 
-	//CStoneBox* pStone = new CStoneBox;
-	//pStone->SetPos(Vec2(400.f, 700.f));
-	//pStone->GetCollider()->SetScale(Vec2(50.f, 50.f));
-	//AddObject(pStone, GROUP_TYPE::STONE_BOX);
-	//
+	CStoneBox* pStone = new CStoneBox;
+	pStone->SetPos(Vec2(400.f, 700.f));
+	pStone->GetCollider()->SetScale(Vec2(50.f, 50.f));
+	AddObject(pStone, GROUP_TYPE::STONE_BOX);
+	
 	//CPillar* pPillar = new CPillar;
 	//pPillar->SetPos(Vec2(700.f, 700.f));
 	//pPillar->GetCollider()->SetOffSet(Vec2(0.f, 50.f));
@@ -76,6 +77,7 @@ void CSceneTowerFirst::Init()
 	CMonster* pLord = CMonFactory::CraeteMonster(MON_TYPE::LORD, Vec2(1200.f, 580.f), m_eType);
 	pLord->SetName(L"Lord");
 	AddObject(pLord, GROUP_TYPE::MONSTER);
+
 	//
 	////방향 먼저 잡기
 	//CGate* pGate = new CGate(L"right");

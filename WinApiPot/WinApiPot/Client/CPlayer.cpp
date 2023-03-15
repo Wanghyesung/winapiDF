@@ -30,6 +30,7 @@
 #include "CFireBall.h"
 #include "CAttackObject.h"
 #include "CSpinner.h"
+#include "CThunder.h"
 
 tPlayerInfo CPlayer::m_tPlayerInfo = {};
 UINT CPlayer::m_iKeyStack = 0;
@@ -521,7 +522,25 @@ void CPlayer::OnColliderExit(CCollider* _pOther)
 
 void CPlayer::OnCollision(CCollider* _pOther)
 {
+	CObject* pObj = _pOther->GetObj();
 
+	if (pObj->GetTag() == GROUP_TYPE::MONSTER_SKILL
+		&& m_tPlayerInfo.m_fHP != 0)
+	{
+		if (m_bOnSkill)
+		{
+			m_pSkill->GetCurSkill()->exit();
+		}
+
+		if (dynamic_cast<CThunder*>(pObj))
+		{
+			CThunder* pThunder = dynamic_cast<CThunder*>(pObj);
+			if (pThunder->IsAttackOn())
+			{
+				HitPlayer(_pOther, pThunder->GetAttackInfo());
+			}
+		}
+	}
 }
 
 

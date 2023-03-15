@@ -49,7 +49,6 @@ void CAttackState::update()
 {
 
 	CMonster* m_pMon = GetMonster();
-	vector<tMonSkill>& vecSkill = m_pMon->GetVecSkill();
 	if (m_pMon->IsDead())
 	{
 		return;

@@ -42,6 +42,7 @@ void CPlayerHit::update()
 	if (iCurFrame == MAX_HIT_FRAME)
 	{
 		pPlayer->GetAnimator()->GetCurAnimation()->SetFram(MAX_HIT_FRAME);
+		
 	}
 	else
 	{

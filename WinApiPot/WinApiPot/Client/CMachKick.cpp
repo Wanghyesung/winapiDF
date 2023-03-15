@@ -94,6 +94,7 @@ void CMachKick::OnColliderEnter(CCollider* _pOther)
 
 void CMachKick::OnColliderExit(CCollider* _pOther)
 {
+	
 }
 
 void CMachKick::OnCollision(CCollider* _pOther)

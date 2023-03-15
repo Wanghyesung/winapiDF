@@ -275,6 +275,12 @@
     <Filter Include="Engine\05.CObject\CBoss">
       <UniqueIdentifier>{1a671ec5-b3b2-4440-988a-0ff08d44d9eb}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Engine\08.Module\State\CAttackState\Near">
+      <UniqueIdentifier>{01dbc869-30e4-4c29-8cad-ca074fa2f7ea}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\08.Module\State\CAttackState\Standoff">
+      <UniqueIdentifier>{52ca265b-aaaa-40d2-806b-0d5922816b25}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="pch.h" />
@@ -500,9 +506,6 @@
     <ClInclude Include="CBlueDragon.h">
       <Filter>Engine\05.CObject\CMonster\CBlueDragon</Filter>
     </ClInclude>
-    <ClInclude Include="CNearAttack.h">
-      <Filter>Engine\08.Module\State\CAttackState</Filter>
-    </ClInclude>
     <ClInclude Include="CAttackObject.h">
       <Filter>Engine\08.Module\State\CAttackState\CAttackObject</Filter>
     </ClInclude>
@@ -549,6 +552,15 @@
       <Filter>Engine\05.CObject\SkyTowerObj\dragonobj</Filter>
     </ClInclude>
     <ClInclude Include="CLord.h">
+      <Filter>Engine\05.CObject\CBoss</Filter>
+    </ClInclude>
+    <ClInclude Include="CNearAttack.h">
+      <Filter>Engine\08.Module\State\CAttackState\Near</Filter>
+    </ClInclude>
+    <ClInclude Include="CStandOffAttack.h">
+      <Filter>Engine\08.Module\State\CAttackState\Standoff</Filter>
+    </ClInclude>
+    <ClInclude Include="CThunder.h">
       <Filter>Engine\05.CObject\CBoss</Filter>
     </ClInclude>
   </ItemGroup>
@@ -768,9 +780,6 @@
     <ClCompile Include="CBlueDragon.cpp">
       <Filter>Engine\05.CObject\CMonster\CBlueDragon</Filter>
     </ClCompile>
-    <ClCompile Include="CNearAttack.cpp">
-      <Filter>Engine\08.Module\State\CAttackState</Filter>
-    </ClCompile>
     <ClCompile Include="CAttackObject.cpp">
       <Filter>Engine\08.Module\State\CAttackState\CAttackObject</Filter>
     </ClCompile>
@@ -817,6 +826,15 @@
       <Filter>Engine\09.Factory</Filter>
     </ClCompile>
     <ClCompile Include="CLord.cpp">
+      <Filter>Engine\05.CObject\CBoss</Filter>
+    </ClCompile>
+    <ClCompile Include="CNearAttack.cpp">
+      <Filter>Engine\08.Module\State\CAttackState\Near</Filter>
+    </ClCompile>
+    <ClCompile Include="CStandOffAttack.cpp">
+      <Filter>Engine\08.Module\State\CAttackState\Standoff</Filter>
+    </ClCompile>
+    <ClCompile Include="CThunder.cpp">
       <Filter>Engine\05.CObject\CBoss</Filter>
     </ClCompile>
   </ItemGroup>

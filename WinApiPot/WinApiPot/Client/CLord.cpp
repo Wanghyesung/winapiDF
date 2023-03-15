@@ -11,8 +11,10 @@
 #include "CResMgr.h"
 
 #include "CNearAttack.h"
+#include "CStandOffAttack.h"
 #include "CHitState.h"
 #include "CAttackObject.h"
+#include "CThunder.h"
 
 CLord::CLord():
 	m_eMonState(MONSTER_STATE::IDLE)
@@ -32,18 +34,21 @@ CLord::CLord():
 
 	//right
 	GetAnimator()->CreateAnimation(L"Lord_Idle_right", pRightTex, Vec2(0.f, 750.f), Vec2(300.f, 250.f), Vec2(300.f, 0.f), Vec2(20.f, 0.f), 0.2f, 6);
-	GetAnimator()->CreateAnimation(L"Lord_Skill_right", pRightTex, Vec2(0.f, 250.f), Vec2(300.f, 250.f), Vec2(300.f, 0.f), Vec2(20.f, 0.f), 0.2f, 8);
+	GetAnimator()->CreateAnimation(L"Lord_Skill_right", pRightTex, Vec2(0.f, 250.f), Vec2(300.f, 250.f), Vec2(300.f, 0.f), Vec2(20.f, 0.f), 0.2f, 7);
+	GetAnimator()->FindAnimation(L"Lord_Skill_right")->Create(pRightTex, Vec2(2100.f, 250.f), Vec2(300.f, 250.f), Vec2(300.f, 0.f), Vec2(20.f, 0.f), 2.f, 1);
 	GetAnimator()->CreateAnimation(L"Lord_Hit_right", pRightTex, Vec2(0.f, 500.f), Vec2(300.f, 250.f), Vec2(300.f, 0.f), Vec2(20.f, 0.f), 0.2f, 2);
-	GetAnimator()->CreateAnimation(L"Lord_Normal_Attack_right", pRightTex, Vec2(0.f, 0.f), Vec2(300.f, 250.f), Vec2(300.f, 0.f), Vec2(20.f, 0.f), 0.2f, 11);
+	GetAnimator()->CreateAnimation(L"Lord_Normal_Attack_right", pRightTex, Vec2(0.f, 0.f), Vec2(300.f, 250.f), Vec2(300.f, 0.f), Vec2(20.f, 0.f), 0.1f, 11);
 	GetAnimator()->CreateAnimation(L"Lord_Skill2_right", pRightTex, Vec2(0.f, 1000.f), Vec2(300.f, 250.f), Vec2(300.f, 0.f), Vec2(20.f, 0.f), 0.2f, 8);
 	//스킬 마지막 공격은 druation 길게
 
 	//left
 	GetAnimator()->CreateAnimation(L"Lord_Idle_left", pLeftTex, Vec2(3000.f, 750.f), Vec2(300.f, 250.f), Vec2(-300.f, 0.f), Vec2(-20.f, 0.f), 0.2f, 6);
-	GetAnimator()->CreateAnimation(L"Lord_Skill_left", pLeftTex, Vec2(3000.f, 250.f), Vec2(300.f, 250.f), Vec2(-300.f, 0.f), Vec2(-20.f, 0.f), 0.2f, 8);
+	GetAnimator()->CreateAnimation(L"Lord_Skill_left", pLeftTex, Vec2(3000.f, 250.f), Vec2(300.f, 250.f), Vec2(-300.f, 0.f), Vec2(-20.f, 0.f), 0.2f, 7);
+	GetAnimator()->FindAnimation(L"Lord_Skill_left")->Create(pLeftTex, Vec2(900.f, 250.f), Vec2(300.f, 250.f), Vec2(300.f, 0.f), Vec2(-20.f, 0.f), 2.f, 1);
 	GetAnimator()->CreateAnimation(L"Lord_Hit_left", pLeftTex, Vec2(3000.f, 500.f), Vec2(300.f, 250.f), Vec2(-300.f, 0.f), Vec2(-20.f, 0.f), 0.2f, 2);
-	GetAnimator()->CreateAnimation(L"Lord_Normal_Attack_left", pLeftTex, Vec2(3000.f, 0.f), Vec2(300.f, 250.f), Vec2(-300.f, 0.f), Vec2(-20.f, 0.f), 0.2f, 11);
+	GetAnimator()->CreateAnimation(L"Lord_Normal_Attack_left", pLeftTex, Vec2(3000.f, 0.f), Vec2(300.f, 250.f), Vec2(-300.f, 0.f), Vec2(-20.f, 0.f), 0.1f, 11);
 	GetAnimator()->CreateAnimation(L"Lord_Skill2_left", pLeftTex, Vec2(3000.f, 1000.f), Vec2(300.f, 250.f), Vec2(-300.f, 0.f), Vec2(-20.f, 0.f), 0.2f, 8);
+
 }
 
 CLord::~CLord()
@@ -122,7 +127,15 @@ void CLord::update_state()
 		strMotion = L"Lord" + strMotion + sDir;
 		pAnim->Play(strMotion, false);
 	}
-		break;;
+		break;
+	//원거리 공격
+	case MONSTER_STATE::ATTACK_STAND:
+	{
+		strMotion = ((CStandOffAttack*)pState)->GetAttackName();
+		strMotion = L"Lord" + strMotion + sDir;
+		pAnim->Play(strMotion, false);
+	}
+		break;
 	case MONSTER_STATE::HIT:
 	{
 		strMotion = L"Lord_Hit";
@@ -144,6 +157,23 @@ void CLord::render(HDC _dc)
 {
 
 	component_render(_dc);
+}
+
+CThunder* CLord::CreateThunder()
+{
+	CThunder* pThunder = nullptr;
+	const vector<tMonSkill>& vecSkill = GetVecSkill();
+	for (int i = 0; i < vecSkill.size(); ++i)
+	{
+		if (vecSkill[i].m_strAttackName == L"_Skill")
+		{
+			pThunder = new CThunder;
+			pThunder->m_pOwner = this;
+			pThunder->SetAttackInfo(vecSkill[i].m_MonAttackInfo);
+		}
+	}
+
+	return pThunder;
 }
 
 void CLord::OnColliderEnter(CCollider* _pOther)

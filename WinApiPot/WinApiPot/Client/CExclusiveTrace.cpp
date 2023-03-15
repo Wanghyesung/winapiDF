@@ -44,7 +44,7 @@ void CExclusiveTrace::init_attack(UINT _iDir)
 			m_eNextState = MONSTER_STATE::ATTACK;
 			GetAI()->GetState(m_eNextState)->SetDir(_iDir);
 			((CAttackState*)GetAI()->GetState(m_eNextState))->SetAttackName(vecSkill[i].m_strAttackName);
-			((CAttackState*)GetAI()->GetState(m_eNextState))->SetAttackFrame(vecSkill[i].m_iStartFrame); ChangeAIState(GetAI(), m_eNextState);
+			((CAttackState*)GetAI()->GetState(m_eNextState))->SetAttackFrame(vecSkill[i].m_iStartFrame); 
 			ChangeAIState(GetAI(), m_eNextState);
 			return;
 		}

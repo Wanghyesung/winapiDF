@@ -15,7 +15,8 @@ private:
     CPlayer* m_pTarget;//Å¸°Ù
     MONSTER_STATE m_eNextState;
 
-    void init_attack(UINT _iDir);
+    bool init_attack(int _iDir);
+    bool init_skill(int _iDir);
 
 public:
     virtual void update();

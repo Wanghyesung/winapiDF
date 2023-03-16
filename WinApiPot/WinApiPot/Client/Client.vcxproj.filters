@@ -278,8 +278,14 @@
     <Filter Include="Engine\08.Module\State\CAttackState\Near">
       <UniqueIdentifier>{01dbc869-30e4-4c29-8cad-ca074fa2f7ea}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Engine\08.Module\State\CAttackState\Standoff">
+    <Filter Include="Engine\08.Module\State\BossAttackState">
+      <UniqueIdentifier>{3533685a-64e2-486c-8cdd-225769880e79}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\08.Module\State\BossAttackState\Standoff">
       <UniqueIdentifier>{52ca265b-aaaa-40d2-806b-0d5922816b25}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\08.Module\State\BossAttackState\UltimateState">
+      <UniqueIdentifier>{db03a90b-2cd7-42b1-9442-ae3301519c06}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -558,10 +564,16 @@
       <Filter>Engine\08.Module\State\CAttackState\Near</Filter>
     </ClInclude>
     <ClInclude Include="CStandOffAttack.h">
-      <Filter>Engine\08.Module\State\CAttackState\Standoff</Filter>
+      <Filter>Engine\08.Module\State\BossAttackState\Standoff</Filter>
     </ClInclude>
     <ClInclude Include="CThunder.h">
       <Filter>Engine\05.CObject\CBoss</Filter>
+    </ClInclude>
+    <ClInclude Include="CThunderDown.h">
+      <Filter>Engine\05.CObject\CBoss</Filter>
+    </ClInclude>
+    <ClInclude Include="CUltimateState.h">
+      <Filter>Engine\08.Module\State\BossAttackState\UltimateState</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -832,10 +844,16 @@
       <Filter>Engine\08.Module\State\CAttackState\Near</Filter>
     </ClCompile>
     <ClCompile Include="CStandOffAttack.cpp">
-      <Filter>Engine\08.Module\State\CAttackState\Standoff</Filter>
+      <Filter>Engine\08.Module\State\BossAttackState\Standoff</Filter>
     </ClCompile>
     <ClCompile Include="CThunder.cpp">
       <Filter>Engine\05.CObject\CBoss</Filter>
+    </ClCompile>
+    <ClCompile Include="CThunderDown.cpp">
+      <Filter>Engine\05.CObject\CBoss</Filter>
+    </ClCompile>
+    <ClCompile Include="CUltimateState.cpp">
+      <Filter>Engine\08.Module\State\BossAttackState\UltimateState</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

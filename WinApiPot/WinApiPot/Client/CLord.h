@@ -1,6 +1,7 @@
 #pragma once
 #include "CMonster.h"
 class CThunder;
+class CThunderDown;
 
 class CLord :
     public CMonster
@@ -13,8 +14,11 @@ private:
     MONSTER_STATE m_eMonState;
 
     //일정시간 번개
-    float m_fThunderCurTime;
-    float m_fThunderMaxTime;
+    //float m_fThunderCurTime;
+    //float m_fThunderMaxTime;
+
+    float m_fUltimateTime;
+    float m_fUltimateCurTime;
 
 public:
     virtual void update();
@@ -22,6 +26,7 @@ public:
 
 public:
     CThunder* CreateThunder();
+    CThunderDown* CreateThunderDown();
 
 public:
     virtual void OnColliderEnter(CCollider* _pOther);

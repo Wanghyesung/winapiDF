@@ -16,6 +16,7 @@
 #include "CNearAttack.h"
 #include "CStandOffAttack.h"
 #include "CExclusiveTrace.h"
+#include "CUltimateState.h"
 #include "CDefenseState.h"
 #include "CHitState.h"
 #include "CHitUpper.h"
@@ -31,7 +32,7 @@ CMonster* CMonFactory::CraeteMonster(MON_TYPE _monType, Vec2 _vPos, SCENE_TYPE _
 		pMon = new CBlueDragon;
 		pMon->SetTag(GROUP_TYPE::MONSTER);
 		pMon->SetPos(_vPos);
-		//pMon->SetScale(Vec2(50.f, 50.f));
+		pMon->SetScale(Vec2(50.f, 50.f));
 		tAttackInfo m_tAtt = {};
 		m_tAtt.m_eAttType = ATTACK_TYPE::NORMAL;
 		m_tAtt.m_fAttRcnt = 50.f;
@@ -93,7 +94,7 @@ CMonster* CMonFactory::CraeteMonster(MON_TYPE _monType, Vec2 _vPos, SCENE_TYPE _
 		pMon->SettMonInfo(info);
 
 		tHitInfo tHitInfo = {};
-		tHitInfo.m_iMaxHitFrame = 5;
+		tHitInfo.m_iMaxHitFrame = 2;
 		pMon->SetHitInfo(tHitInfo);
 
 		//몬스터 스킬 추가
@@ -135,6 +136,8 @@ CMonster* CMonFactory::CraeteMonster(MON_TYPE _monType, Vec2 _vPos, SCENE_TYPE _
 		pAI->AddState(new CTraceState);
 		pAI->AddState(new CNearAttack);
 		pAI->AddState(new CStandOffAttack);
+		pAI->AddState(new CUltimateState);
+		pAI->AddState(new CDeadState);
 		pAI->SetCurState(MONSTER_STATE::IDLE);
 		pMon->SetAI(pAI);
 	}

@@ -224,10 +224,12 @@
     <ClInclude Include="CStoneBox.h" />
     <ClInclude Include="CTexture.h" />
     <ClInclude Include="CThunder.h" />
+    <ClInclude Include="CThunderDown.h" />
     <ClInclude Include="CTimeMgr.h" />
     <ClInclude Include="CTraceState.h" />
     <ClInclude Include="CUI.h" />
     <ClInclude Include="CUIMgr.h" />
+    <ClInclude Include="CUltimateState.h" />
     <ClInclude Include="CWalkFire.h" />
     <ClInclude Include="CWall.h" />
     <ClInclude Include="CWindmill.h" />
@@ -319,10 +321,12 @@
     <ClCompile Include="CStoneBox.cpp" />
     <ClCompile Include="CTexture.cpp" />
     <ClCompile Include="CThunder.cpp" />
+    <ClCompile Include="CThunderDown.cpp" />
     <ClCompile Include="CTimeMgr.cpp" />
     <ClCompile Include="CTraceState.cpp" />
     <ClCompile Include="CUI.cpp" />
     <ClCompile Include="CUIMgr.cpp" />
+    <ClCompile Include="CUltimateState.cpp" />
     <ClCompile Include="CWalkFire.cpp" />
     <ClCompile Include="CWall.cpp" />
     <ClCompile Include="CWindmill.cpp" />

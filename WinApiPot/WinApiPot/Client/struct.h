@@ -2,7 +2,7 @@
 
 struct Vec2
 {
-	//좌표와 위치의 계념으로 사용
+	//좌표와 위치의 개념으로 사용
 	float x;
 	float y;
 

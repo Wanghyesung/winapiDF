@@ -31,6 +31,7 @@
 #include "CAttackObject.h"
 #include "CSpinner.h"
 #include "CThunder.h"
+#include "CThunderDown.h"
 
 tPlayerInfo CPlayer::m_tPlayerInfo = {};
 UINT CPlayer::m_iKeyStack = 0;
@@ -487,11 +488,15 @@ void CPlayer::OnColliderEnter(CCollider* _pOther)
 			CFireBall* pFire = dynamic_cast<CFireBall*>(pObj);
 			HitPlayer(_pOther, pFire->GetAttInfo());
 		}
-		if (dynamic_cast<CAttackObject*>(pObj))
+		else if (dynamic_cast<CAttackObject*>(pObj))
 		{
 			CAttackObject* MonAttack = dynamic_cast<CAttackObject*>(pObj);
-			
 			HitPlayer(_pOther, MonAttack->GetAttInfo());
+		}
+		else if (dynamic_cast<CThunderDown*>(pObj))
+		{
+			CThunderDown* pThunder = dynamic_cast<CThunderDown*>(pObj);
+			HitPlayer(_pOther, pThunder->GetAttackInfo());
 		}
 	}
 

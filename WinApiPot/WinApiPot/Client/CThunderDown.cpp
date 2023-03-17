@@ -91,3 +91,9 @@ void CThunderDown::OnColliderExit(CCollider* _pOther)
 void CThunderDown::OnCollision(CCollider* _pOther)
 {
 }
+
+bool CThunderDown::IsSameJumLoc(CCollider* _pOther, CCollider* _pThis)
+{
+	return false;
+}
+

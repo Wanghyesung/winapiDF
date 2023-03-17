@@ -5,6 +5,7 @@
 #include "CAnimation.h"
 #include "CAnimator.h"
 #include "CCollider.h"
+#include "CGravity.h"
 
 #include "CResMgr.h"
 #include "CTimeMgr.h"
@@ -80,6 +81,8 @@ void CThunder::OnColliderEnter(CCollider* _pOther)
 
 }
 
+
+
 void CThunder::OnColliderExit(CCollider* _pOther)
 {
 }
@@ -90,6 +93,12 @@ void CThunder::OnCollision(CCollider* _pOther)
 
 	if (pObj->GetTag() == GROUP_TYPE::PLAYER)
 	{
+		if (pObj->GetGravity()->IsGetGravity())
+		{
+			if (!IsSameJumLoc(_pOther, GetCollider()))
+				return;
+		}
+		
 		int iFrame = GetAnimator()->GetCurAnimation()->GetCurFrame();
 		if (m_iFrame != iFrame)
 		{
@@ -100,5 +109,25 @@ void CThunder::OnCollision(CCollider* _pOther)
 		{
 			m_bAttackOn = false;
 		}
+		
 	}
+}
+
+bool CThunder::IsSameJumLoc(CCollider* _pOther, CCollider* _pThis)
+{
+
+	Vec2 vOffset = _pOther->GetOffSetPos();//상대 offset
+	Vec2 vJumPos = _pOther->GetObj()->GetJumPos() + vOffset; //상대 점프위치 + offset
+	Vec2 vOtherScale = _pOther->GetScale();
+
+	Vec2 vScale = GetCollider()->GetScale();
+	Vec2 vPos = GetCollider()->GetFinalPos();
+
+	if (abs(vPos.x - vJumPos.x) > abs((vScale.x + vOtherScale.x) / 2.f) ||
+		abs(vPos.y - vJumPos.y) > abs((vScale.y + vOtherScale.y) / 2.f))
+	{
+		return false;
+	}
+
+	return true;
 }

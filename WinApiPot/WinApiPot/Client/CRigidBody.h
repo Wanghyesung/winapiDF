@@ -30,10 +30,12 @@ private:
 
 	bool	m_bAccel;//가속도로 움직일지 일정속도로 움직일지
 
-	//점프해서 내려가는 타이밍 잡기용
+	//점프해서 내려가는 타이밍 잡기용 
 	Vec2    m_vCurJumPos;
 	Vec2    m_vPreJumPos;
 	
+	////첫 점프를 한 위치 기록 (점프중 피격 계산을 위해)
+	//Vec2    m_vStartJumPos;
 
 	
 

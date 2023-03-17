@@ -419,9 +419,32 @@ void CPlayer::CreateBullet(CPlayer* _pPlayer, ATTACK_TYPE _eAttType)
 	CreateObject(pBullet, GROUP_TYPE::BULLET);
 }
 
+bool CPlayer::IsSameJumLoc(CCollider* _pOther, CCollider* _pThis)
+{
+	if (GetGravity()->IsGetGravity())
+	{
+		Vec2 vOffset = _pThis->GetOffSetPos();
+		Vec2 vJumPos = GetJumPos() + vOffset;
+		Vec2 vOtherPos = _pOther->GetFinalPos();
+		Vec2 vScale = _pThis->GetScale();
+		Vec2 vOtherScale = _pOther->GetScale();
+
+		if (abs(vJumPos.x - vOtherPos.x) > abs((vScale.x + vOtherScale.x) / 2.f) ||
+			abs(vJumPos.y - vOtherPos.y) > abs((vScale.y + vOtherScale.y) / 2.f))
+		{
+			return false;
+		}
+	}
+	return true;
+}
 
 void CPlayer::HitPlayer(CCollider* _pOther, const tAttackInfo& _tAttInfo)
 {
+	if (GetGravity()->IsGetGravity())
+	{
+		if(!IsSameJumLoc(_pOther, GetCollider()))
+			return;
+	}
 
 	m_tPlayerHit.m_fHitRcnt = _tAttInfo.m_fAttRcnt;
 	m_tPlayerHit.m_fHitRigidityTime = _tAttInfo.m_fAttRigidityTime;
@@ -470,6 +493,8 @@ void CPlayer::HitPlayer(CCollider* _pOther, const tAttackInfo& _tAttInfo)
 	if (m_tPlayerInfo.m_fHP <= 0.f)
 		m_tPlayerInfo.m_fHP = 0.f;
 }
+
+
 
 void CPlayer::OnColliderEnter(CCollider* _pOther)
 {

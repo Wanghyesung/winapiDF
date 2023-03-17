@@ -34,6 +34,9 @@ public:
     const tAttackInfo& GetAttInfo() { return m_tAtt; }
     void SetAttackInfo(const tAttackInfo& _tAtt) { m_tAtt = _tAtt; }
 
+private:
+    bool IsSameJumLoc(CCollider* _pOther, CCollider* _pThis);
+
 public:
     virtual void OnColliderEnter(CCollider* _pOther);
     virtual void OnColliderExit(CCollider* _pOther);

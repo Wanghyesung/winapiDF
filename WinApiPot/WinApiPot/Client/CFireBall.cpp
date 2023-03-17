@@ -70,14 +70,44 @@ void CFireBall::render(HDC _dc)
 	component_render(_dc);
 }
 
+bool CFireBall::IsSameJumLoc(CCollider* _pOther, CCollider* _pThis)
+{
+
+	Vec2 vOffset = _pOther->GetOffSetPos();//상대 offset
+	Vec2 vJumPos = _pOther->GetObj()->GetJumPos() + vOffset; //상대 점프위치 + offset
+	Vec2 vOtherScale = _pOther->GetScale();
+
+	Vec2 vScale = GetCollider()->GetScale();
+	Vec2 vPos = GetCollider()->GetFinalPos();
+
+	if (abs(vPos.x - vJumPos.x) > abs((vScale.x + vOtherScale.x) / 2.f) ||
+		abs(vPos.y - vJumPos.y) > abs((vScale.y + vOtherScale.y) / 2.f))
+	{
+		return false;
+	}
+
+	return true;
+}
+
 void CFireBall::OnColliderEnter(CCollider* _pOther)
 {
-	if (_pOther->GetObj()->GetTag() == GROUP_TYPE::PLAYER)
+	CObject* pObj = _pOther->GetObj();
+	if (pObj->GetTag() == GROUP_TYPE::PLAYER)
 	{
 		//점프 상태인지 확인하고 점프상태이면 점프 위치를 기준으로
 
-		//데미지 주고
-		DeleteObject(this);
+		if (pObj->GetGravity()->IsGetGravity())
+		{
+			if(!IsSameJumLoc(_pOther, GetCollider()))
+				return;
+			else
+				DeleteObject(this);
+		}
+		else
+		{
+			DeleteObject(this);
+		}
+		
 	}
 }
 

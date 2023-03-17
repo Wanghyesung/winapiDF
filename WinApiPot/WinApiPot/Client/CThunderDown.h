@@ -33,6 +33,9 @@ public:
 private:
 	void SetAttackInfo(const tAttackInfo& _tAtt) { m_tAtt = _tAtt; }
 
+	bool IsSameJumLoc(CCollider* _pOther, CCollider* _pThis);
+
+
 	friend class CLord;
 };
 

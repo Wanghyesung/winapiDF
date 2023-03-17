@@ -71,7 +71,7 @@ void CLord::hit(CCollider* _pOther, const tAttackInfo& _tAtt)
 	
 	float fDamage = _tAtt.m_fAttackDamage;
 	m_tInfo.m_iHp -= (fDamage / 5.f);
-	//CMonster::hit(_pOther, _tAtt);
+	
 }
 
 

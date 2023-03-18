@@ -7,13 +7,14 @@ class CInterfaceMgr
 {
 	SINGLE(CInterfaceMgr);
 
+	//플레이어는 인터페이스 1개
+	//몬스터 인터페이스는 hash테이블로 여러개 보유
 public:
 	void ChangeInterFaceValue(float _fHPValue, float _fMPValue);
 	void ChangeMonInterFaceValue(const wstring& _strName, float _fHpValue);
 
 public:
 	void SetInterFace(CInterFace* _pInterFace) { m_pPlayerInterFace = _pInterFace; }
-
 	void TargetRender(HDC _dc);
 
 	void AddMonInterface(const wstring& _strName, CMonInterface* _pMonInterface) { m_hashMonInterface.insert(make_pair(_strName, _pMonInterface)); }
@@ -26,6 +27,8 @@ private:
 
 	//map<wstring, CMonInterface*>m_mapMonInterface;
 	unordered_map<wstring, CMonInterface*> m_hashMonInterface;
+
+	void deleteInterface(const wstring& _strName);
 
 	friend class CMonInterface;
 };

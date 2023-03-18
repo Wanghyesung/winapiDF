@@ -10,7 +10,7 @@ CHP::CHP():
 	m_pHPTex(nullptr)
 {
 	SetName(L"HP");
-	m_pHPTex = CResMgr::GetInst()->LoadTextur(L"HP", L"..\\OutPut\\bin_release\\Content\\Interface\\HP.bmp");
+	m_pHPTex = CResMgr::GetInst()->LoadTextur(L"HP", L"..\\OutPut\\bin_release\\Content\\Interface\\playerHP.bmp");
 }
 
 CHP::~CHP()

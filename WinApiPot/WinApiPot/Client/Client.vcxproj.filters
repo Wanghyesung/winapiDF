@@ -239,9 +239,6 @@
     <Filter Include="Engine\05.CObject\CUI\CMonUI\CMonHP">
       <UniqueIdentifier>{6e845dde-0934-4aef-a27d-5423f5807975}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Engine\04.CScene\NextScene">
-      <UniqueIdentifier>{864c2b24-5d94-427a-a9f4-ac0d46f69ae6}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Engine\04.CScene\CSceneBack">
       <UniqueIdentifier>{41e281c3-6887-4e7a-ab1f-c54216c95ea8}</UniqueIdentifier>
     </Filter>
@@ -286,6 +283,15 @@
     </Filter>
     <Filter Include="Engine\08.Module\State\BossAttackState\UltimateState">
       <UniqueIdentifier>{db03a90b-2cd7-42b1-9442-ae3301519c06}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\03.Manager\CInventoryMgr">
+      <UniqueIdentifier>{6f4d7948-8259-4da2-9007-02ee28257683}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\05.CObject\CUI\CItem">
+      <UniqueIdentifier>{b581aa59-a96c-4c5a-9cd8-d0cb3b3dbb03}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\05.CObject\CUI\CItem\CHPItem">
+      <UniqueIdentifier>{d8427d69-a26c-4d95-a3b2-cb018c595dfb}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -575,6 +581,15 @@
     <ClInclude Include="CUltimateState.h">
       <Filter>Engine\08.Module\State\BossAttackState\UltimateState</Filter>
     </ClInclude>
+    <ClInclude Include="CInventoryMgr.h">
+      <Filter>Engine\03.Manager\CInventoryMgr</Filter>
+    </ClInclude>
+    <ClInclude Include="CItem.h">
+      <Filter>Engine\05.CObject\CUI\CItem</Filter>
+    </ClInclude>
+    <ClInclude Include="CHPItem.h">
+      <Filter>Engine\05.CObject\CUI\CItem\CHPItem</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Client.rc">
@@ -854,6 +869,15 @@
     </ClCompile>
     <ClCompile Include="CUltimateState.cpp">
       <Filter>Engine\08.Module\State\BossAttackState\UltimateState</Filter>
+    </ClCompile>
+    <ClCompile Include="CInventoryMgr.cpp">
+      <Filter>Engine\03.Manager\CInventoryMgr</Filter>
+    </ClCompile>
+    <ClCompile Include="CItem.cpp">
+      <Filter>Engine\05.CObject\CUI\CItem</Filter>
+    </ClCompile>
+    <ClCompile Include="CHPItem.cpp">
+      <Filter>Engine\05.CObject\CUI\CItem\CHPItem</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

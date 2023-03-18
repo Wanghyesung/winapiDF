@@ -45,6 +45,25 @@ CMonInterface* CInterfaceMgr::FindTargetMon(const wstring& _strName)
 	return nullptr;
 }
 
+void CInterfaceMgr::deleteInterface(const wstring& _strName)
+{
+	unordered_map<wstring, CMonInterface*>::iterator iter = m_hashMonInterface.find(_strName);
+	if(iter != m_hashMonInterface.end())
+	{
+		//delete iter->second;
+		if (m_pTargetMon->GetMonName() == iter->second->GetMonName())
+		{
+			m_hashMonInterface.erase(_strName);
+			m_pTargetMon = nullptr;
+		}
+		else
+		{
+			m_hashMonInterface.erase(_strName);
+		}
+	}
+
+}
+
 
 
 void CInterfaceMgr::TargetRender(HDC _dc)

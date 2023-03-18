@@ -134,17 +134,17 @@ void CScene::Tile_render(HDC _dc, CTexture* _pTex)
 void CScene::SetInterFace()
 {
 	CInterFace* pInterFace = new CInterFace();
-	pInterFace->SetScale(Vec2(500.f, 120.f));
-	pInterFace->SetPos(Vec2(400.f, 580.f));
+	//pInterFace->SetScale(Vec2(500.f, 120.f));
+	pInterFace->SetPos(Vec2(0.f, 599.f));
 
 	CHP* pHP = new CHP;
-	pHP->SetScale(Vec2(75.f, 97.f));
-	pHP->SetPos(Vec2(13.f, 14.f));
+	//pHP->SetScale(Vec2(75.f, 97.f));
+	pHP->SetPos(Vec2(9.f, 10.f));
 	pInterFace->AddChildUI(pHP);
-
+	
 	CMP* pMP = new CMP;
 	pMP->SetScale(Vec2(75.f, 97.f));
-	pMP->SetPos(Vec2(403.f, 14.f));
+	pMP->SetPos(Vec2(1195.f, 10.f));
 	pInterFace->AddChildUI(pMP);
 
 	AddObject(pInterFace, GROUP_TYPE::UI);

@@ -29,7 +29,7 @@ CRandomFire::CRandomFire() :
 	
 	tAttackInfo tAtt = {};
 	tAtt.m_eAttType = ATTACK_TYPE::NORMAL;
-	tAtt.m_fAttackDamage = 10.f;
+	tAtt.m_fAttackDamage = 3.f;
 	tAtt.m_fAttRcnt = 15.f;
 	tAtt.m_fAttRigidityTime = 0.3f;
 	tAtt.m_fAttUpperRcnt = -40.f;

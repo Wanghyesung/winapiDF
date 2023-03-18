@@ -11,6 +11,8 @@
 #include "CMonster.h"
 
 #include "CMonFactory.h"
+#include "CMonInterface.h"
+#include "CMonHP.h"
 
 #include "CResMgr.h"
 #include "CTexture.h"
@@ -76,6 +78,10 @@ void CSceneTowerFirst::Init()
 
 	CMonster* pLord = CMonFactory::CraeteMonster(MON_TYPE::LORD, Vec2(1200.f, 580.f), m_eType);
 	pLord->SetName(L"Lord");
+	CMonInterface* pLordInterface = new CMonInterface(pLord->GetName(),true);
+	pLordInterface->SetScale(Vec2(626, 29));
+	pLordInterface->SetPos(Vec2(40, 20));
+	AddObject(pLordInterface, GROUP_TYPE::UI);
 	AddObject(pLord, GROUP_TYPE::MONSTER);
 
 	//

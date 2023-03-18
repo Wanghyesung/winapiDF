@@ -1,25 +1,19 @@
 #pragma once
-#include "CUI.h"
-class CMonHP :
-    public CUI
+#include "CItem.h"
+class CHPItem :
+    public CItem
 {
 public:
-    CMonHP();
-    virtual ~CMonHP();
+    CHPItem();
+    virtual ~CHPItem();
 
 private:
-    CTexture* m_pHPTex;
-
-    float   m_fHp;
-    Vec2    m_vUIOffset;
+    CTexture* m_pItemTex;
 
 public:
     virtual void render(HDC _dc);
     virtual void update();//상속
     virtual void finalupdate();
-
-    void render_hp(HDC _dc);
-
 
 public:
     virtual void MouseOn();//UI위에 마우스 올라왔을 떄 
@@ -27,10 +21,5 @@ public:
     virtual void MouseLbtnUp();//UI안에서 땠을 때
     virtual void MouseLbtnClicked();//UI안에서 누르고 떘을 떄
 
-private:
-    void SetMinusHp(float _fValue) { m_fHp = _fValue; }
-    void SetUIOffset(Vec2 _vOffset) { m_vUIOffset = _vOffset; }
-
-    friend class CMonInterface;
 };
 

@@ -9,21 +9,36 @@
 
 
 
-CMonInterface::CMonInterface(const wstring& _strMonName)
+CMonInterface::CMonInterface(const wstring& _strMonName, bool _bIsBoss):
+	m_strMonName(_strMonName)
 {
 	//네임은 동적할당하고 다음에 설정
-	CInterfaceMgr::GetInst()->AddMonInterface(_strMonName, this);
-	CMonHP* pHP = new CMonHP;
-	pHP->SetName(L"HP");
-	AddChildUI(pHP);
+	//보스면 HP텍스쳐까지 바꿔줌
+	if (_bIsBoss)
+	{
+		CInterfaceMgr::GetInst()->AddMonInterface(_strMonName, this);
+		CMonHP* pHP = new CMonHP;
+		pHP->SetUIOffset(Vec2(32.f, 1.f));
+		pHP->SetName(L"HP");
+		AddChildUI(pHP);
+		m_pInterfaceTex = CResMgr::GetInst()->LoadTextur(L"BossInterface", L"..\\OutPut\\bin_release\\Content\\Interface\\BossInterface.bmp");
+		pHP->m_pHPTex = CResMgr::GetInst()->LoadTextur(L"BossHp", L"..\\OutPut\\bin_release\\Content\\Interface\\BossHP.bmp");
+	}
+	else
+	{
+		CInterfaceMgr::GetInst()->AddMonInterface(_strMonName, this);
+		CMonHP* pHP = new CMonHP;
+		pHP->SetName(L"HP");
+		AddChildUI(pHP);
+		m_pInterfaceTex = CResMgr::GetInst()->LoadTextur(L"MonInterface", L"..\\OutPut\\bin_release\\Content\\Interface\\MonInterface.bmp");
+	}
 
-	m_pInterfaceTex = CResMgr::GetInst()->LoadTextur(L"MonInterface", L"..\\OutPut\\bin_release\\Content\\Interface\\MonInterface.bmp");
 	m_pDleTex = CResMgr::GetInst()->LoadTextur(L"MonHp", L"..\\OutPut\\bin_release\\Content\\Interface\\DeleteMon.bmp");
-
 }
 
 CMonInterface::~CMonInterface()
 {
+
 }
 
 
@@ -53,20 +68,20 @@ void CMonInterface::MouseLbtnClicked()
 {
 }
 
+
 void CMonInterface::changeValue(float _fHpValue)
 {
 	CMonHP* pHP = ((CMonHP*)GetChildUI(L"HP"));
 
+	float fFullValue = pHP->m_pHPTex->Width();
 	if (pHP != nullptr)
 	{
-		float fValue = ((100.f - _fHpValue) / 100.f * 626.f);
+		float fValue = ((100.f - _fHpValue) / 100.f * fFullValue);
 		pHP->SetMinusHp(fValue);
-		if (fValue >= 626)
+		if (fValue >= fFullValue)
 		{
-			DeleteObject(this);
-			CInterfaceMgr::GetInst()->m_pTargetMon = nullptr;
+			CInterfaceMgr::GetInst()->deleteInterface(m_strMonName);
 		}
-			
 	}
 }
 

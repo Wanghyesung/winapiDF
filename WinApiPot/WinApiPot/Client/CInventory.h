@@ -1,25 +1,27 @@
 #pragma once
 #include "CUI.h"
-class CMonHP :
+
+class CItem;
+
+class CInventory :
     public CUI
 {
 public:
-    CMonHP();
-    virtual ~CMonHP();
+    CInventory();
+    virtual ~CInventory();
 
 private:
-    CTexture* m_pHPTex;
+    //활성화
+    CTexture* m_pInvenTex;
+    bool m_bActive;
 
-    float   m_fHp;
-    Vec2    m_vUIOffset;
+    //내 인벤토리의 아이템들
+    map<wstring, CItem*> m_mapInventory;
 
 public:
     virtual void render(HDC _dc);
     virtual void update();//상속
     virtual void finalupdate();
-
-    void render_hp(HDC _dc);
-
 
 public:
     virtual void MouseOn();//UI위에 마우스 올라왔을 떄 
@@ -27,10 +29,6 @@ public:
     virtual void MouseLbtnUp();//UI안에서 땠을 때
     virtual void MouseLbtnClicked();//UI안에서 누르고 떘을 떄
 
-private:
-    void SetMinusHp(float _fValue) { m_fHp = _fValue; }
-    void SetUIOffset(Vec2 _vOffset) { m_vUIOffset = _vOffset; }
-
-    friend class CMonInterface;
+    friend class CInventoryMgr;
 };
 

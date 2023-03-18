@@ -13,7 +13,7 @@ CInterFace::CInterFace():
 	m_pInterFaceTex(nullptr)
 {
 	SetName(L"InterFace");
-	m_pInterFaceTex = CResMgr::GetInst()->LoadTextur(L"InterFace", L"..\\OutPut\\bin_release\\Content\\Interface//interface.bmp");
+	m_pInterFaceTex = CResMgr::GetInst()->LoadTextur(L"InterFace", L"..\\OutPut\\bin_release\\Content\\Interface\\playerInterface.bmp");
 	
 }
 
@@ -44,20 +44,18 @@ void CInterFace::MouseLbtnClicked()
 
 void CInterFace::ChangeValue(float _HPfValue, float _MPfValue)
 {
-	
 	if (dynamic_cast<CHP*>(GetChildUI(L"HP")))
 	{
-		//¿©±â
 		CHP* pHP = dynamic_cast<CHP*>(GetChildUI(L"HP"));
-		float fHpValue = ((100.f - _HPfValue) / 101.f) * 100.f;
+		float fHpValue = ((100.f - _HPfValue) / 100.f) * 88.f;
 		pHP->SetMinusHp(fHpValue);
-	
 	}
 	if (dynamic_cast<CMP*>(GetChildUI(L"MP")))
 	{
 		CMP* pMP = dynamic_cast<CMP*>(GetChildUI(L"MP"));
-		float fValue = ((100.f - _MPfValue) / 101.f) * 100.f;
+		float fValue = ((100.f - _MPfValue) / 100.f) * 88.f;
 		pMP->SetMinusMp(fValue);
+
 	}
 }
 

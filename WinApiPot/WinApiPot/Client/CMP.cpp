@@ -10,7 +10,7 @@ CMP::CMP():
 	m_pMPTex(nullptr)
 {
 	SetName(L"MP");
-	m_pMPTex = CResMgr::GetInst()->LoadTextur(L"MP", L"..\\OutPut\\bin_release\\Content\\Interface\\MP.bmp");
+	m_pMPTex = CResMgr::GetInst()->LoadTextur(L"MP", L"..\\OutPut\\bin_release\\Content\\Interface\\playerMP.bmp");
 }
 
 CMP::~CMP()

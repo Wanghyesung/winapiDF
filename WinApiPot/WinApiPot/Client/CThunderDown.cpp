@@ -13,6 +13,7 @@
 #include "CTimeMgr.h"
 
 #include "CLord.h"
+#include "AI.h"
 
 CThunderDown::CThunderDown():
 	pTex(nullptr),

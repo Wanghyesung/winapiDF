@@ -19,7 +19,7 @@ SceneMgr::SceneMgr():
 SceneMgr::~SceneMgr()
 {
 	for (UINT i = 0; i < (UINT)SCENE_TYPE::END; ++i) {
-
+		
 		if (nullptr != m_arrScene[i])
 		{
 			delete m_arrScene[i];
@@ -53,7 +53,7 @@ void SceneMgr::init()
 		m_arrScene[i]->Init();
 	}
 
-	m_pCurrScene = m_arrScene[(UINT)SCENE_TYPE::FIRST_DUNGEON];//현재 씬 넣어주고
+	m_pCurrScene = m_arrScene[(UINT)SCENE_TYPE::START_SCENE];//현재 씬 넣어주고
 	m_pCurrScene->Enter();
 }
 

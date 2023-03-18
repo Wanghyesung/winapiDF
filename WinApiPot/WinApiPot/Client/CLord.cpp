@@ -22,6 +22,9 @@
 #include "CSkillState.h"
 #include "CDeadState.h"
 
+#include "CInterfaceMgr.h"
+#include "CMonInterface.h"
+
 CLord::CLord():
 	m_eMonState(MONSTER_STATE::IDLE),
 	m_fUltimateTime(20.f),
@@ -47,7 +50,7 @@ CLord::CLord():
 	GetAnimator()->CreateAnimation(L"Lord_Hit_right", pRightTex, Vec2(0.f, 500.f), Vec2(300.f, 250.f), Vec2(300.f, 0.f), Vec2(20.f, 0.f), 0.2f, 2);
 	GetAnimator()->CreateAnimation(L"Lord_Normal_Attack_right", pRightTex, Vec2(0.f, 0.f), Vec2(300.f, 250.f), Vec2(300.f, 0.f), Vec2(20.f, 0.f), 0.1f, 11);
 	GetAnimator()->CreateAnimation(L"Lord_ultimate_right", pRightTex, Vec2(0.f, 1000.f), Vec2(300.f, 250.f), Vec2(300.f, 0.f), Vec2(20.f, 0.f), 0.2f, 7);
-	GetAnimator()->FindAnimation(L"Lord_ultimate_right")->Create(pRightTex, Vec2(0.f, 2100.f), Vec2(300.f, 250.f), Vec2(300.f, 0.f), Vec2(20.f, 0.f), 5.f, 1);
+	GetAnimator()->FindAnimation(L"Lord_ultimate_right")->Create(pRightTex, Vec2(0.f, 2100.f), Vec2(300.f, 250.f), Vec2(300.f, 0.f), Vec2(20.f, 0.f), 7.f, 1);
 	//스킬 마지막 공격은 druation 길게
 
 	//left
@@ -57,7 +60,7 @@ CLord::CLord():
 	GetAnimator()->CreateAnimation(L"Lord_Hit_left", pLeftTex, Vec2(3000.f, 500.f), Vec2(300.f, 250.f), Vec2(-300.f, 0.f), Vec2(-20.f, 0.f), 0.2f, 2);
 	GetAnimator()->CreateAnimation(L"Lord_Normal_Attack_left", pLeftTex, Vec2(3000.f, 0.f), Vec2(300.f, 250.f), Vec2(-300.f, 0.f), Vec2(-20.f, 0.f), 0.1f, 11);
 	GetAnimator()->CreateAnimation(L"Lord_ultimate_left", pLeftTex, Vec2(3000.f, 1000.f), Vec2(300.f, 250.f), Vec2(-300.f, 0.f), Vec2(-20.f, 0.f), 0.2f, 7);
-	GetAnimator()->FindAnimation(L"Lord_ultimate_left")->Create(pLeftTex, Vec2(900.f, 1000.f), Vec2(300.f, 250.f), Vec2(300.f, 0.f), Vec2(-20.f, 0.f), 5.f, 1);
+	GetAnimator()->FindAnimation(L"Lord_ultimate_left")->Create(pLeftTex, Vec2(900.f, 1000.f), Vec2(300.f, 250.f), Vec2(300.f, 0.f), Vec2(-20.f, 0.f), 7.f, 1);
 }
 
 CLord::~CLord()
@@ -71,7 +74,9 @@ void CLord::hit(CCollider* _pOther, const tAttackInfo& _tAtt)
 	
 	float fDamage = _tAtt.m_fAttackDamage;
 	m_tInfo.m_iHp -= (fDamage / 5.f);
-	
+
+	CInterfaceMgr::GetInst()->SetTargetMon(GetName());
+	CInterfaceMgr::GetInst()->ChangeMonInterFaceValue(GetName(), m_tInfo.m_iHp);
 }
 
 
@@ -238,6 +243,7 @@ void CLord::OnColliderEnter(CCollider* _pOther)
 	if (tMonInfo.m_iHp <= 0.f)
 	{
 		ChangeAIState(GetAI(), MONSTER_STATE::DEAD);
+		//CInterfaceMgr::GetInst()->SetInterFace(nullptr);
 	}
 }
 

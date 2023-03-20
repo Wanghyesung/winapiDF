@@ -86,6 +86,9 @@
 #include "C:\Users\wangh\source\tem\WinApiPot\WinApiPot\Client\CInterFaceMgr.cpp"
 
 
+#include "C:\Users\wangh\source\tem\WinApiPot\WinApiPot\Client\CInventory.cpp"
+
+
 #include "C:\Users\wangh\source\tem\WinApiPot\WinApiPot\Client\CInventoryMgr.cpp"
 
 
@@ -117,6 +120,9 @@
 
 
 #include "C:\Users\wangh\source\tem\WinApiPot\WinApiPot\Client\CMP.cpp"
+
+
+#include "C:\Users\wangh\source\tem\WinApiPot\WinApiPot\Client\CMPItem.cpp"
 
 
 #include "C:\Users\wangh\source\tem\WinApiPot\WinApiPot\Client\CNearAttack.cpp"

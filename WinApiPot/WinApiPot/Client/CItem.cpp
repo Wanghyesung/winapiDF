@@ -25,7 +25,7 @@ void CItem::update()
 
 void CItem::finalupdate()
 {
-	CUI::update();
+	CUI::finalupdate();
 }
 
 void CItem::MouseOn()

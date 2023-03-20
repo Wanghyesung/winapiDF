@@ -56,6 +56,22 @@ struct Vec2
 			return false;
 	}
 
+	bool operator <(Vec2 _v)
+	{
+		if (x < _v.x && y < _v.y)
+			return true;
+		else
+			return false;
+	}
+
+	bool operator >(Vec2 _v)
+	{
+		if (x > _v.x && y > _v.y)
+			return true;
+		else
+			return false;
+	}
+
 	void operator +=(Vec2 _v)
 	{
 		x += _v.x;
@@ -93,6 +109,11 @@ struct Vec2
 	bool operator ==(Vec2 _v)
 	{
 		return((int)_v.x == (int)x && (int)_v.y == (int)y);
+	}
+
+	bool operator !=(Vec2 _v)
+	{
+		return((int)_v.x != (int)x && (int)_v.y != (int)y);
 	}
 
 	Vec2& NormalRize()

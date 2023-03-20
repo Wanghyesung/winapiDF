@@ -1,5 +1,12 @@
 #pragma once
 #include "CObject.h"
+
+struct tItemInfo
+{
+    wstring m_strName;//아이템 이름 
+    Vec2 m_vPos;//인벤토리 보관 위치
+};
+
 class CUI :
     public CObject
 {

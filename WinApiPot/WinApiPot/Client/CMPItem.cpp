@@ -1,32 +1,28 @@
 #include "pch.h"
-#include "CHPItem.h"
+#include "CMPItem.h"
+
 
 #include "CResMgr.h"
 #include "CTexture.h"
 
 #include "CKeyMgr.h"
 
-
-
-CHPItem::CHPItem()
+CMPItem::CMPItem()
 {
-	m_pItemTex = CResMgr::GetInst()->LoadTextur(L"HPItem", L"..\\OutPut\\bin_release\\Content\\Item\\HPItem.bmp");
+	m_pItemTex = CResMgr::GetInst()->LoadTextur(L"MPItem", L"..\\OutPut\\bin_release\\Content\\Item\\MPItem.bmp");
 
 	//아이템 이미지 크기
 	SetScale(Vec2(28.f, 28.f));
 
-	SetItemName(L"HPItem");
+	SetItemName(L"MPItem");
 }
 
-CHPItem::~CHPItem()
+CMPItem::~CMPItem()
 {
 }
 
-void CHPItem::render(HDC _dc)
+void CMPItem::render(HDC _dc)
 {
-	//if (!m_bActive)
-	//	return;
-
 	Vec2 vPos = GetFinalPos();
 
 	//offset
@@ -41,20 +37,19 @@ void CHPItem::render(HDC _dc)
 
 
 	CUI::render(_dc);
-
 }
 
-void CHPItem::update()
+void CMPItem::update()
 {
-	CUI::update();
+
 }
 
-void CHPItem::finalupdate()
+void CMPItem::finalupdate()
 {
 	CUI::finalupdate();
 }
 
-void CHPItem::MouseOn()
+void CMPItem::MouseOn()
 {
 	if (IsLBntDown())
 	{
@@ -68,17 +63,15 @@ void CHPItem::MouseOn()
 	}
 }
 
-void CHPItem::MouseLbtnDown()
+void CMPItem::MouseLbtnDown()
 {
 	m_vDragStartPos = CKeyMgr::GetInst()->GetMousePos();
 }
 
-void CHPItem::MouseLbtnUp()
+void CMPItem::MouseLbtnUp()
 {
-	
 }
 
-void CHPItem::MouseLbtnClicked()
+void CMPItem::MouseLbtnClicked()
 {
-	
 }

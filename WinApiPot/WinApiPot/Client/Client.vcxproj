@@ -175,6 +175,7 @@
     <ClInclude Include="CIdleState.h" />
     <ClInclude Include="CInterFace.h" />
     <ClInclude Include="CInterFaceMgr.h" />
+    <ClInclude Include="CInventory.h" />
     <ClInclude Include="CInventoryMgr.h" />
     <ClInclude Include="CItem.h" />
     <ClInclude Include="CKeyMgr.h" />
@@ -187,6 +188,7 @@
     <ClInclude Include="CMonInterface.h" />
     <ClInclude Include="CMonster.h" />
     <ClInclude Include="CMP.h" />
+    <ClInclude Include="CMPItem.h" />
     <ClInclude Include="CNearAttack.h" />
     <ClInclude Include="CObject.h" />
     <ClInclude Include="CPathMgr.h" />
@@ -276,6 +278,7 @@
     <ClCompile Include="CIdleState.cpp" />
     <ClCompile Include="CInterFace.cpp" />
     <ClCompile Include="CInterFaceMgr.cpp" />
+    <ClCompile Include="CInventory.cpp" />
     <ClCompile Include="CInventoryMgr.cpp" />
     <ClCompile Include="CItem.cpp" />
     <ClCompile Include="CKeyMgr.cpp" />
@@ -287,6 +290,7 @@
     <ClCompile Include="CMonInterface.cpp" />
     <ClCompile Include="CMonster.cpp" />
     <ClCompile Include="CMP.cpp" />
+    <ClCompile Include="CMPItem.cpp" />
     <ClCompile Include="CNearAttack.cpp" />
     <ClCompile Include="CObject.cpp" />
     <ClCompile Include="CPathMgr.cpp" />

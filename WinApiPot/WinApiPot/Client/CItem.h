@@ -1,5 +1,7 @@
 #pragma once
 #include "CUI.h"
+
+
 class CItem :
     public CUI
 {
@@ -8,7 +10,7 @@ public:
     virtual ~CItem();
 
 private:
-    wstring m_strItemName;
+    tItemInfo m_tItemInfo;
     UINT m_iItemCount;
 
     //활성화
@@ -26,8 +28,14 @@ public:
     virtual void MouseLbtnClicked();//UI안에서 누르고 떘을 떄
 
 public:
-    void SetItemName(const wstring& _strName) { m_strItemName = _strName; }
+    void SetItemName(const wstring& _strName) { m_tItemInfo.m_strName = _strName; }
+    const wstring& GetItemName() { return m_tItemInfo.m_strName; }
+
+private:
+    tItemInfo& GetItemInfo() { return m_tItemInfo; }
     const UINT& GetItemqQantity() { return m_iItemCount; }
 
+
+    friend class CInventory;
 };
 

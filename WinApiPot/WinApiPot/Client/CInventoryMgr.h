@@ -1,5 +1,7 @@
 #pragma once
 
+class CInventory;
+
 class CInventoryMgr
 {
 	SINGLE(CInventoryMgr);
@@ -13,6 +15,7 @@ public:
 
 
 private:
+	CInventory* m_pTargetInven;//현재 씬의 인벤토리
 
 	friend class CInventory;
 };

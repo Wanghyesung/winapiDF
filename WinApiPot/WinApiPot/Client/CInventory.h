@@ -18,6 +18,15 @@ private:
     //내 인벤토리의 아이템들
     map<wstring, CItem*> m_mapInventory;
 
+    Vec2 m_vStartPos;
+    Vec2 m_vEndPos;
+    Vec2 m_vStep;
+
+public:
+    CItem* FindItem(const wstring& _strName);
+    void AddItem(CItem* _pItem);
+
+
 public:
     virtual void render(HDC _dc);
     virtual void update();//상속
@@ -28,6 +37,9 @@ public:
     virtual void MouseLbtnDown();//UI안에서 눌렸을 떄
     virtual void MouseLbtnUp();//UI안에서 땠을 때
     virtual void MouseLbtnClicked();//UI안에서 누르고 떘을 떄
+
+private:
+    bool IsSamePos(Vec2 _vPos);
 
     friend class CInventoryMgr;
 };

@@ -20,16 +20,17 @@ CUIMgr::~CUIMgr()
 void CUIMgr::update()
 {
 	//현재 마우스 위에 올라온 UI 가져오기
-	CUI* pFoucesUI = GetFoucseUI();
+	m_pFoucseUI = GetFoucseUI();
 
-	if (pFoucesUI == nullptr)
+	if (!m_pFoucseUI)
 		return;
 
 	// 마우스 위에 UI중에서 가장 우선순위(가장 밑에 있는)가 높은 UI 가져오기
-	CUI* pTargetUI = GetTargetUI(pFoucesUI);
+	CUI* pTargetUI = GetTargetUI(m_pFoucseUI);
 
-	bool KeyAway = KEY_AWAY(KEY::LBTN);
 	bool KeyTap = KEY_TAP(KEY::LBTN);
+	bool KeyAway = KEY_AWAY(KEY::LBTN);
+	
 
 	if (pTargetUI != nullptr)
 	{
@@ -125,6 +126,9 @@ CUI* CUIMgr::GetTargetUI(CUI* _pParentUI)
 
 	static list<CUI*> queue;
 	static vector<CUI*> vecNoeTarget;
+
+	queue.clear();
+	vecNoeTarget.clear();
 
 	queue.push_back(_pParentUI);
 

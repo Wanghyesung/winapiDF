@@ -1,11 +1,11 @@
 #pragma once
 #include "CItem.h"
-class CHPItem :
+class CMPItem :
     public CItem
 {
 public:
-    CHPItem();
-    virtual ~CHPItem();
+    CMPItem();
+    virtual ~CMPItem();
 
 private:
     CTexture* m_pItemTex;
@@ -22,6 +22,5 @@ public:
     virtual void MouseLbtnDown();//UI안에서 눌렸을 떄
     virtual void MouseLbtnUp();//UI안에서 땠을 때
     virtual void MouseLbtnClicked();//UI안에서 누르고 떘을 떄
-
 };
 

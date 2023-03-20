@@ -151,16 +151,16 @@ void CUI::MouseLbtnClicked()
 
 void CUI::MouseOnCheck()
 {
-	Vec2 vKeyPos = CKeyMgr::GetInst()->GetMousePos();
+	Vec2 vMousePos = CKeyMgr::GetInst()->GetMousePos();
 	Vec2 vScale = GetScale();
 
 	if (m_bCamAfeccted)
 	{
-		vKeyPos = CCameraMgr::GetInst()->GetRealPos(vKeyPos);
+		vMousePos = CCameraMgr::GetInst()->GetRealPos(vMousePos);
 	}
 
-	if (m_vFinalPos.x <= vKeyPos.x && m_vFinalPos.x <= (m_vFinalPos.x + vScale.x) &&
-		m_vFinalPos.y <= vKeyPos.y && m_vFinalPos.y <= (m_vFinalPos.y + vScale.y))
+	if (m_vFinalPos.x <= vMousePos.x && vMousePos.x <= (m_vFinalPos.x + vScale.x) &&
+		m_vFinalPos.y <= vMousePos.y && vMousePos.y <= (m_vFinalPos.y + vScale.y))
 	{
 		m_bMouseOn = true;
 	}

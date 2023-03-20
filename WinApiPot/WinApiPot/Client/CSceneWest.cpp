@@ -13,6 +13,12 @@
 #include "CPortal.h"
 #include "CCollider.h"
 
+#include "CInventoryMgr.h"
+#include "CInventory.h"
+
+#include "CHPItem.h"
+#include "CMPItem.h"
+
 CSceneWest::CSceneWest():
 	m_eType(SCENE_TYPE::WEST_COAST)
 {
@@ -51,6 +57,16 @@ void CSceneWest::Init()
 	//플레이어 인터페이스는 씬 바꿀때 삭제X
 	SetInterFace();
 
+	//
+	CInventory* pInven = new CInventory;
+
+	CHPItem* pItemHP = new CHPItem;
+	pInven->AddItem(pItemHP);
+	CMPItem* pItemMP = new CMPItem;
+	pInven->AddItem(pItemMP);
+
+	AddObject(pInven, GROUP_TYPE::UI);
+
 	CObject* pObj = CreatePlayer(Vec2(500.f, 650.f));
 	AddObject(pObj, GROUP_TYPE::PLAYER);
 	RegisterPlayer(pObj);
@@ -74,6 +90,7 @@ void CSceneWest::Enter()
 	CCameraMgr::GetInst()->init();
 	//현재 씬에 스킬 초기화
 	CSkillMgr::GetInst()->SetPlayer((CPlayer*)GetPlayerObj());
+	CInventoryMgr::GetInst()->init();
 
 
 	CColliderMgr::GetInst()->ChekGroup(GROUP_TYPE::PLAYER, GROUP_TYPE::PORTAL);

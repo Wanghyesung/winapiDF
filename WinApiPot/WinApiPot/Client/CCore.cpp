@@ -13,7 +13,7 @@
 #include "CSkillMgr.h"
 #include "CUIMgr.h"
 #include "CInterfaceMgr.h"
-
+#include "CInventoryMgr.h"
 
 CCore::CCore():
 	m_hDC(0),
@@ -83,6 +83,8 @@ void CCore::progress()
 
 	CColliderMgr::GetInst()->update();
 	CUIMgr::GetInst()->update();
+	CInventoryMgr::GetInst()->update();
+
 
 	Rectangle(m_memDC, -1, -1, m_ptResolution.x + 1, m_ptResolution.y + 1);//화면에 보여주는 부분이 아니라 다른 프레임의 화면을 지움(1px선 값까지 계산해서)
 

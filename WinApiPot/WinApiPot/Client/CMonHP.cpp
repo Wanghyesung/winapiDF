@@ -10,6 +10,8 @@ CMonHP::CMonHP():
 	m_vUIOffset(Vec2(28.f, 17.f))
 {
 	m_pHPTex = CResMgr::GetInst()->LoadTextur(L"MonHp", L"..\\OutPut\\bin_release\\Content\\Interface\\MonHP.bmp");
+
+	SetScale(Vec2(597.f, 9.f));
 }
 
 CMonHP::~CMonHP()

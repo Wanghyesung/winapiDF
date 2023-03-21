@@ -46,7 +46,7 @@ void CHPItem::render(HDC _dc)
 
 void CHPItem::update()
 {
-	CUI::update();
+	CItem::update();
 }
 
 void CHPItem::finalupdate()
@@ -56,26 +56,18 @@ void CHPItem::finalupdate()
 
 void CHPItem::MouseOn()
 {
-	if (IsLBntDown())
-	{
-		Vec2 vMousePos = CKeyMgr::GetInst()->GetMousePos();
-
-		Vec2 vDiff = vMousePos - m_vDragStartPos;
-		Vec2 vPos = GetPos() + vDiff;
-
-		SetPos(vPos);
-		m_vDragStartPos = CKeyMgr::GetInst()->GetMousePos();
-	}
+	CItem::MouseOn();
 }
 
 void CHPItem::MouseLbtnDown()
 {
-	m_vDragStartPos = CKeyMgr::GetInst()->GetMousePos();
+	CItem::MouseLbtnDown();
 }
 
 void CHPItem::MouseLbtnUp()
 {
-	
+	//땠을 떄 위치에 맞게 들어가기
+	CItem::MouseLbtnUp();
 }
 
 void CHPItem::MouseLbtnClicked()

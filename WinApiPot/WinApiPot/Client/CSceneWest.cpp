@@ -57,7 +57,7 @@ void CSceneWest::Init()
 	//플레이어 인터페이스는 씬 바꿀때 삭제X
 	SetInterFace();
 
-	//
+	//static
 	CInventory* pInven = new CInventory;
 
 	CHPItem* pItemHP = new CHPItem;

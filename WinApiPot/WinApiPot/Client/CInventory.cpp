@@ -56,6 +56,20 @@ bool CInventory::IsSamePos(Vec2 _vPos)
 	return false;
 }
 
+CItem* CInventory::GetItemThisPos(Vec2 _vPos)
+{
+	map<wstring, CItem*>::iterator iter = m_mapInventory.begin();
+
+	for (; iter != m_mapInventory.end(); ++iter)
+	{
+		if (iter->second->GetItemInfo().m_vPos == _vPos)
+		{
+			return iter->second;
+		}
+	}
+	return nullptr;
+}
+
 void CInventory::AddItem(CItem* _pItem)
 {
 	//공통으로 위치 잡기
@@ -73,7 +87,8 @@ void CInventory::AddItem(CItem* _pItem)
 				}
 				else
 				{
-					_pItem->GetItemInfo().m_vPos = Vec2(x, y);
+					_pItem->m_pInven = this;
+					_pItem->m_tItemInfo.m_vPos = Vec2(x, y);
 					_pItem->SetPos(Vec2(x, y));
 					m_mapInventory.insert(make_pair(_pItem->GetItemName(), _pItem));
 					AddChildUI(_pItem);
@@ -87,30 +102,65 @@ void CInventory::AddItem(CItem* _pItem)
 		++_pItem->m_iItemCount;
 	}
 
-	//인벤토리에 이 아이템 위치가 없다면
-	//if (FindItem(_pItem->GetItemInfo().m_vPos) == nullptr)
-	//{
-	//	for (int y = m_vStartPos.y; y <= m_vEndPos.y; y += m_vStep.y)
-	//	{
-	//		for (int x = m_vStartPos.x; x <= m_vEndPos.x; x += m_vStep.x)
-	//		{
-	//			if (FindItem(Vec2(x, y)) == nullptr)
-	//			{
-	//				Vec2 vPos = Vec2(x, y);
-	//				_pItem->GetItemInfo().m_vPos = vPos;
-	//				_pItem->SetPos(vPos);
-	//				m_mapInventory.insert(make_pair(vPos, _pItem));
-	//				AddChildUI(_pItem);
-	//				return;
-	//			}
-	//		}
-	//	}
-	//}
-	////이미 인벤토리 위치에 이 아이템이 있다면
-	//else
-	//{
-	//	++_pItem->m_iItemCount;
-	//}
+}
+
+//제대로된 위치가 아닌 내 아이템이 있는 위치에 근접해서 마우스를 땠으면
+void CInventory::ChangeItemPos(CItem* _pItem)
+{
+	//상대 아이템을 처음 눌렀을 때 위치
+	Vec2 vOtherDragePrePos = _pItem->m_vDragePrePos;
+	Vec2 vOtherItemPos = _pItem->GetPos();
+
+	//최종적으로 나랑 바꿀 아이템
+	CItem* pItem = nullptr;
+
+	//일단 아무 값이나
+	float fMinLen = 1000.f;
+	Vec2  vMinVec = vOtherDragePrePos;
+
+	for (int y = m_vStartPos.y; y <= m_vEndPos.y; y += m_vStep.y)
+	{
+		for (int x = m_vStartPos.x; x <= m_vEndPos.x; x += m_vStep.x)
+		{
+			//내 원래자리는 무시
+			if (Vec2(x, y) == vOtherDragePrePos)
+				continue;
+
+			//내 인벤토리 아이템 위치칸과 아이템 들어올 아이템 위치
+			float fLen = Vec2(abs(vOtherItemPos.x - x), abs(vOtherItemPos.y - y)).Length();
+			if (fLen <= 23.5f && fMinLen >= fLen)
+			{
+				fMinLen = fLen;
+				vMinVec = Vec2(x, y);
+			}
+		}
+	}
+
+	//여기서 최종적으로 걸린 위치에 이미 아이템이 있는지 검사 있으면 바꾸고 없으면 그냥
+
+	//내 원래 위치에 두었다면
+	if (vMinVec == vOtherDragePrePos)
+	{
+		_pItem->m_tItemInfo.m_vPos = vOtherDragePrePos;
+		_pItem->SetPos(vOtherDragePrePos);
+		return;
+	}
+
+	//같은 위치라면 바꾸고 같은 위치가 아니면 그 위치에 아이템 넣기
+	pItem = GetItemThisPos(vMinVec);//이 위치에 있던 원래 아이템
+	if (pItem != nullptr)
+	{
+		pItem->m_tItemInfo.m_vPos = vOtherDragePrePos;
+		pItem->SetPos(vOtherDragePrePos);
+	}
+	_pItem->m_tItemInfo.m_vPos = vMinVec;
+	_pItem->SetPos(vMinVec);
+
+}
+
+void CInventory::MoveToInterFace(CItem* _pItem)
+{
+
 }
 
 void CInventory::render(HDC _dc)
@@ -155,8 +205,7 @@ void CInventory::MouseOn()
 
 void CInventory::MouseLbtnDown()
 {
-	//scale정하기
-	int a = 10;
+	
 }
 
 void CInventory::MouseLbtnUp()

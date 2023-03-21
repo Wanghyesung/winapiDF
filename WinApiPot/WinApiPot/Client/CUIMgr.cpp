@@ -66,7 +66,7 @@ void CUIMgr::SetFoucseUI(CUI* _pUI)
 	}
 
 	m_pFoucseUI = _pUI;
-	vector<CObject*> vecUI = SceneMgr::GetInst()->GetCurSCene()->GetGroupUI();
+	vector<CObject*>& vecUI = SceneMgr::GetInst()->GetCurSCene()->GetGroupUI();
 
 	vector<CObject*>::iterator iter = vecUI.begin();
 
@@ -83,6 +83,8 @@ void CUIMgr::SetFoucseUI(CUI* _pUI)
 	vecUI.push_back(m_pFoucseUI);
 
 }
+
+
 
 CUI* CUIMgr::GetFoucseUI()
 {
@@ -141,7 +143,7 @@ CUI* CUIMgr::GetTargetUI(CUI* _pParentUI)
 		{
 			if (pTargetUI != nullptr)
 			{
-				vecNoeTarget.push_back(pUI);
+				vecNoeTarget.push_back(pTargetUI);
 			}
 			pTargetUI = pUI;
 		}
@@ -150,7 +152,7 @@ CUI* CUIMgr::GetTargetUI(CUI* _pParentUI)
 			vecNoeTarget.push_back(pUI);
 		}
 
-		const vector<CUI*> vecChildUI = pUI->GetChildVecUI();
+		const vector<CUI*>& vecChildUI = pUI->GetChildVecUI();
 		for (int i = 0; i < vecChildUI.size(); ++i)
 		{
 			queue.push_back(vecChildUI[i]);
@@ -167,4 +169,30 @@ CUI* CUIMgr::GetTargetUI(CUI* _pParentUI)
 
 
 	return pTargetUI;
+}
+
+void CUIMgr::MoveFrontChildUI(CUI* pUI)
+{
+	vector<CObject*>& vecUI = SceneMgr::GetInst()->GetCurSCene()->GetGroupUI();
+
+	CUI* pTargetUI = nullptr;
+	for (int i = 0; i < vecUI.size(); ++i)
+	{
+		vector<CUI*>& vecChildUI = ((CUI*)vecUI[i])->GetChildVecUI();
+		vector<CUI*>::iterator iter = vecChildUI.begin();
+
+		for (; iter != vecChildUI.end(); ++iter)
+		{
+			if (*iter == pUI)
+			{
+				////가장 뒤쪽으로 보내기
+				pTargetUI = pUI;
+				vecChildUI.erase(iter);
+				vecChildUI.push_back(pTargetUI);
+
+				return;
+			}
+		}
+	}
+
 }

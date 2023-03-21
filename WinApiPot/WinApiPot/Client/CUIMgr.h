@@ -11,8 +11,8 @@ private:
 
 public:
 	void update();
-
 	void SetFoucseUI(CUI* _pUI);
+	void MoveFrontChildUI(CUI* pUI);
 
 public:
 	CUI* GetFoucseUI();

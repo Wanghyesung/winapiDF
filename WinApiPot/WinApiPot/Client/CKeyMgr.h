@@ -15,6 +15,10 @@ enum class KEY
 	RIGHT,
 	UP,
 	DOWN,
+
+	KEY1, KEY2, KEY3, KEY4, KEY5,
+
+
 	Q, W, E, R, T, Y, U, I, O, P,
 	A, S, D, F, G, Z, X, C, V, B,
 
@@ -28,7 +32,7 @@ enum class KEY
 	LBTN,
 	RBTN,
 
-	LAST = 32,
+	LAST = 37,
 };
 
 

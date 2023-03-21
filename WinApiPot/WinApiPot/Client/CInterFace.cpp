@@ -1,9 +1,11 @@
 #include "pch.h"
 #include "CInterFace.h"
 
+#include "CKeyMgr.h"
 #include "CResMgr.h"
 #include "CTexture.h"
 
+#include "CItem.h"
 #include "CObject.h"
 #include "CHP.h"
 #include "CMP.h"
@@ -14,12 +16,21 @@ CInterFace::CInterFace():
 {
 	SetName(L"InterFace");
 	m_pInterFaceTex = CResMgr::GetInst()->LoadTextur(L"InterFace", L"..\\OutPut\\bin_release\\Content\\Interface\\playerInterface.bmp");
-	
+	SetScale(Vec2(1280.f, 100.f));
 }
 
 CInterFace::~CInterFace()
 {
 	
+}
+
+void CInterFace::update()
+{
+	//if (KEY_TAP(KEY::KEY1))
+	//{
+	//	int a = 10;
+	//}
+	//여기서 포션
 }
 
 void CInterFace::MouseOn()

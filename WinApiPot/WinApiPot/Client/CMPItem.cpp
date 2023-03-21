@@ -41,7 +41,7 @@ void CMPItem::render(HDC _dc)
 
 void CMPItem::update()
 {
-
+	CItem::update();
 }
 
 void CMPItem::finalupdate()
@@ -51,25 +51,17 @@ void CMPItem::finalupdate()
 
 void CMPItem::MouseOn()
 {
-	if (IsLBntDown())
-	{
-		Vec2 vMousePos = CKeyMgr::GetInst()->GetMousePos();
-
-		Vec2 vDiff = vMousePos - m_vDragStartPos;
-		Vec2 vPos = GetPos() + vDiff;
-
-		SetPos(vPos);
-		m_vDragStartPos = CKeyMgr::GetInst()->GetMousePos();
-	}
+	CItem::MouseOn();
 }
 
 void CMPItem::MouseLbtnDown()
 {
-	m_vDragStartPos = CKeyMgr::GetInst()->GetMousePos();
+	CItem::MouseLbtnDown();
 }
 
 void CMPItem::MouseLbtnUp()
 {
+	CItem::MouseLbtnUp();
 }
 
 void CMPItem::MouseLbtnClicked()

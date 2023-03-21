@@ -11,6 +11,8 @@ CMP::CMP():
 {
 	SetName(L"MP");
 	m_pMPTex = CResMgr::GetInst()->LoadTextur(L"MP", L"..\\OutPut\\bin_release\\Content\\Interface\\playerMP.bmp");
+
+	SetScale(Vec2(74.f, 88.f));
 }
 
 CMP::~CMP()

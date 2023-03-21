@@ -11,6 +11,8 @@ CHP::CHP():
 {
 	SetName(L"HP");
 	m_pHPTex = CResMgr::GetInst()->LoadTextur(L"HP", L"..\\OutPut\\bin_release\\Content\\Interface\\playerHP.bmp");
+
+	SetScale(Vec2(74.f, 88.f));
 }
 
 CHP::~CHP()

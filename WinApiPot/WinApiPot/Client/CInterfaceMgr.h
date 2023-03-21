@@ -23,6 +23,7 @@ public:
 
 private:
 	CInterFace* m_pPlayerInterFace;
+	//현재 화면에 그릴 몬스터의 인터페이스
 	CMonInterface* m_pTargetMon;
 
 	//map<wstring, CMonInterface*>m_mapMonInterface;

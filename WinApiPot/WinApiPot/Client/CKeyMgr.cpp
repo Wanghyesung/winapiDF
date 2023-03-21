@@ -11,6 +11,12 @@ int g_arrKey[(int)KEY::LAST] =
 	VK_UP,
 	VK_DOWN,
 
+	0x31,//1
+	0x32,//2
+	0x33,//3
+	0x34,//4
+	0x35,//5
+
 	'Q',
 	'W',
 	'E',

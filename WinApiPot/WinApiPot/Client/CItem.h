@@ -1,6 +1,7 @@
 #pragma once
 #include "CUI.h"
 
+class CInventory;
 
 class CItem :
     public CUI
@@ -15,6 +16,14 @@ private:
 
     //È°¼ºÈ­
     bool m_bActive;
+    bool m_bTargetOn;
+    Vec2 m_vDragStartPos;
+    Vec2 m_vDragePrePos;
+
+    CInventory* m_pInven;
+
+protected:
+    CInventory* GetInventory() { return m_pInven; }
 
 public:
     virtual void render(HDC _dc);

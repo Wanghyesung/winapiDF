@@ -10,8 +10,6 @@ public:
 private:
     CTexture* m_pItemTex;
 
-    Vec2 m_vDragStartPos;
-
 public:
     virtual void render(HDC _dc);
     virtual void update();//»ó¼Ó

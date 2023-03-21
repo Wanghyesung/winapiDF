@@ -20,9 +20,12 @@ CMonInterface::CMonInterface(const wstring& _strMonName, bool _bIsBoss):
 		CMonHP* pHP = new CMonHP;
 		pHP->SetUIOffset(Vec2(32.f, 1.f));
 		pHP->SetName(L"HP");
+		pHP->SetScale(Vec2(590.f, 33.f));
 		AddChildUI(pHP);
 		m_pInterfaceTex = CResMgr::GetInst()->LoadTextur(L"BossInterface", L"..\\OutPut\\bin_release\\Content\\Interface\\BossInterface.bmp");
 		pHP->m_pHPTex = CResMgr::GetInst()->LoadTextur(L"BossHp", L"..\\OutPut\\bin_release\\Content\\Interface\\BossHP.bmp");
+
+		SetScale(Vec2(630.f, 33.f));
 	}
 	else
 	{
@@ -31,7 +34,9 @@ CMonInterface::CMonInterface(const wstring& _strMonName, bool _bIsBoss):
 		pHP->SetName(L"HP");
 		AddChildUI(pHP);
 		m_pInterfaceTex = CResMgr::GetInst()->LoadTextur(L"MonInterface", L"..\\OutPut\\bin_release\\Content\\Interface\\MonInterface.bmp");
+		SetScale(Vec2(626.f, 29.f));
 	}
+
 
 	m_pDleTex = CResMgr::GetInst()->LoadTextur(L"MonHp", L"..\\OutPut\\bin_release\\Content\\Interface\\DeleteMon.bmp");
 }

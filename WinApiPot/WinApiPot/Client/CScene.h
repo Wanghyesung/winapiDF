@@ -2,6 +2,7 @@
 
 class CObject;
 class CTexture;
+class CInterFace;
 
 struct tBackGround 
 {
@@ -33,13 +34,11 @@ public:
 	virtual void update();//여기서 업데이트 하고 각각의 오브젝트에서 update, finalupdate
 	virtual void finalupdate();
 
-
 	void RegisterPlayer(CObject* _pObj);
 
 	//배경
 	void backgroundrender(HDC _dc, CTexture* _pTex, Vec2 _vStartPos);
 	void Tile_render(HDC _dc, CTexture* _pTex);
-	void SetInterFace();
 
 	virtual void Enter() = 0;//현재 씬 들어갈 때 
 	virtual void Exit() = 0; //현재 씬 나갈 떄
@@ -56,6 +55,9 @@ public:
 	void SetStartDrawPoint(Vec2 _v) { m_vStartDrawPos = _v; }
 	Vec2 GetStartDrawPoint() { return m_vStartDrawPos; }
 
+	//인터페이스
+public:
+	void CreateInterFace();
 
 public:
 	void DeleteAll();

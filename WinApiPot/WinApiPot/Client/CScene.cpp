@@ -18,6 +18,7 @@
 #include "CMonInterface.h"
 #include "CHP.h"
 
+
 CScene::CScene():
 	m_pPlayer(nullptr),
 	m_pBackgroundTex(nullptr)
@@ -31,7 +32,6 @@ CScene::~CScene()
 	{
 		for (size_t j = 0; j < m_arrObj[i].size(); ++j)
 		{
-			// m_arrObj[i]그룹의 j 물체 삭제 
 			delete m_arrObj[i][j];
 		}
 	}
@@ -85,7 +85,6 @@ void CScene::finalupdate()
 
 
 
-
 void CScene::backgroundrender(HDC _dc, CTexture* _pTex, Vec2 _vStartPos)
 {
 	CTexture* m_pBackGround = _pTex;
@@ -131,9 +130,15 @@ void CScene::Tile_render(HDC _dc, CTexture* _pTex)
 		RGB(m_pAnimator->r, m_pAnimator->g, m_pAnimator->b));*/
 }
 
-void CScene::SetInterFace()
+
+void CScene::RegisterPlayer(CObject* _pObj)
 {
-	CInterFace* pInterFace = new CInterFace();
+	m_pPlayer = _pObj;
+}
+
+void CScene::CreateInterFace()
+{
+	CInterFace* pInterFace = new CInterFace;
 	//pInterFace->SetScale(Vec2(500.f, 120.f));
 	pInterFace->SetPos(Vec2(0.f, 599.f));
 
@@ -141,9 +146,8 @@ void CScene::SetInterFace()
 	//pHP->SetScale(Vec2(75.f, 97.f));
 	pHP->SetPos(Vec2(9.f, 10.f));
 	pInterFace->AddChildUI(pHP);
-	
+
 	CMP* pMP = new CMP;
-	pMP->SetScale(Vec2(75.f, 97.f));
 	pMP->SetPos(Vec2(1195.f, 10.f));
 	pInterFace->AddChildUI(pMP);
 
@@ -152,10 +156,6 @@ void CScene::SetInterFace()
 	CInterfaceMgr::GetInst()->SetInterFace(pInterFace);
 }
 
-void CScene::RegisterPlayer(CObject* _pObj)
-{
-	m_pPlayer = _pObj;
-}
 
 void CScene::DeleteAll()
 {

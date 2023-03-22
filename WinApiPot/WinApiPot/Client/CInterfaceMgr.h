@@ -21,6 +21,12 @@ public:
 	void SetTargetMon(const wstring& _strName);//현재 타겟 몬스터
 	CMonInterface* FindTargetMon(const wstring& _strName);//해당 몬스터 인터페이스를 가져온다
 
+	CInterFace* Exit();//나갈 때 내 현재 씬에 인터페이스 지우고 다음 씬을 위한 인터페이스 반환
+	void Enter(CInterFace* _pInterFace);
+
+public:
+	CInterFace* GetPlayerInterFace() { return m_pPlayerInterFace; }
+
 private:
 	CInterFace* m_pPlayerInterFace;
 	//현재 화면에 그릴 몬스터의 인터페이스

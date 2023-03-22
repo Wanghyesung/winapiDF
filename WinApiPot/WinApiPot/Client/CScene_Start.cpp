@@ -70,7 +70,7 @@ void CScene_Start::Init()
 	tInfo.fTopHeight = GetStartDrawPoint().y;
 	SetBackGroundInfo(tInfo);
 	//플레이어 인터페이스는 씬 바꿀때 삭제X
-	SetInterFace();
+	
 
 	CObject* pObj = CreatePlayer(Vec2(2500.f, 550.f));
 	AddObject(pObj, GROUP_TYPE::PLAYER);

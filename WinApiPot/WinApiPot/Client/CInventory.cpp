@@ -158,10 +158,6 @@ void CInventory::ChangeItemPos(CItem* _pItem)
 
 }
 
-void CInventory::MoveToInterFace(CItem* _pItem)
-{
-
-}
 
 void CInventory::render(HDC _dc)
 {
@@ -180,6 +176,7 @@ void CInventory::render(HDC _dc)
 		m_pInvenTex->Width(), m_pInvenTex->Height(),
 		RGB(255, 255, 255));
 
+	//인터페이스에 아이템이 있다면 render
 
 	CUI::render(_dc);
 }

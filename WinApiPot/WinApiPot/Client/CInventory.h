@@ -31,9 +31,7 @@ public:
     Vec2 GetStartPos() { return m_vStartPos; }
     Vec2 GetEndPos() { return m_vEndPos; }
 
-public:
-    //인터페이스로 이동
-    void MoveToInterFace(CItem* _pItem);
+
 
 public:
     virtual void render(HDC _dc);

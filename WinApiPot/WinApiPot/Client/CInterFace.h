@@ -15,12 +15,18 @@ public:
 
     //포션
     virtual void update();
+    virtual void render(HDC _dc);
 
 private:
     CTexture* m_pInterFaceTex;
 
-    //여기 아이템 보관
+    //내 인터페이스 아이템들
     vector<CItem*> m_vecItem;
+    //아이템 1번~5번째 칸 위치 아이템 1칸씩 범위
+    Vec2 m_vItemStartPos;
+    Vec2 m_vItemEndPos;
+    Vec2 m_vItemStep;
+   
 
 public:
     virtual void MouseOn();//UI위에 마우스 올라왔을 떄 
@@ -28,13 +34,22 @@ public:
     virtual void MouseLbtnUp();//UI안에서 땠을 때
     virtual void MouseLbtnClicked();//UI안에서 누르고 떘을 떄
 
+public:
+    void MoveIoInterface(CItem* _pItem);
+
+    Vec2 GetItemStartPos() { return m_vItemStartPos; }
+    Vec2 GetItemEndPos() { return m_vItemEndPos; }
+
 private:
     void ChangeValue(float _HPfValue, float _MPfValue);
 
     //void CHANGE
 
-public:
-    virtual void render(HDC _dc);
+    //아이템 찾기
+    CItem* getItemThisIndex(int _iIndex);
+    int GetItemIndex(CItem* _pItem);
+    void changeItemIndex(CItem* _pItem, CItem* _pOtehr);
+
 private:
     
 

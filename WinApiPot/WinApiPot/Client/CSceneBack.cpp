@@ -4,6 +4,7 @@
 #include "CResMgr.h"
 #include "CTexture.h"
 
+#include "CInterFace.h"
 #include "CCameraMgr.h"
 #include "CSkillMgr.h"
 #include "CColliderMgr.h"
@@ -50,7 +51,8 @@ void CSceneBack::Init()
 	tInfo.fTopHeight = GetStartDrawPoint().y ;
 	SetBackGroundInfo(tInfo);
 	//플레이어 인터페이스는 씬 바꿀때 삭제X
-	SetInterFace();
+	//GetInterFace();
+
 
 	CObject* pObj = CreatePlayer(Vec2(300.f, 650.f));
 	AddObject(pObj, GROUP_TYPE::PLAYER);

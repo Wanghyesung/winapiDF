@@ -9,6 +9,10 @@
 #include "CSceneWest.h"
 #include "CSceneTowerFirst.h"
 
+#include "CInterfaceMgr.h"
+
+#include "CInventoryMgr.h"
+
 SceneMgr::SceneMgr():
 	m_pCurrScene(nullptr),
 	m_arrScene{}
@@ -69,15 +73,24 @@ void SceneMgr::update()
 	m_pCurrScene->finalupdate();
 }
 
+
 void SceneMgr::ChangeScene(SCENE_TYPE _eNext)
 {
 	//플레이어만 가져오기
 	//vector<CObject*> vecPlayer = m_pCurrScene->GetGroupObject(GROUP_TYPE::PLAYER);
 	m_pCurrScene->Exit();
+	CInterFace* pInter = CInterfaceMgr::GetInst()->Exit();
+	CInventory* pInven = CInventoryMgr::GetInst()->Exit();
 
 	m_pCurrScene = m_arrScene[(UINT)_eNext];
 	//m_pCurrScene->AddObject(vecPlayer[0],GROUP_TYPE::PLAYER);
 
 	m_pCurrScene->Enter();
+
+	if (pInter != nullptr)
+		CInterfaceMgr::GetInst()->Enter(pInter);
+
+	if (pInven != nullptr)
+		CInventoryMgr::GetInst()->Enter(pInven);
 }
 

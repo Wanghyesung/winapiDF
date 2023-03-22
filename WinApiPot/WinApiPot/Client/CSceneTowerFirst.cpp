@@ -10,6 +10,7 @@
 #include "CObject.h"
 #include "CMonster.h"
 
+#include "CInterFace.h"
 #include "CMonFactory.h"
 #include "CMonInterface.h"
 #include "CMonHP.h"
@@ -50,7 +51,9 @@ void CSceneTowerFirst::Init()
 	tInfo.fTopHeight = GetStartDrawPoint().y;
 	SetBackGroundInfo(tInfo);
 	//플레이어 인터페이스는 씬 바꿀때 삭제X
-	SetInterFace();
+	
+	
+
 
 	CObject* pObj = CreatePlayer(Vec2(300.f, 650.f));
 	AddObject(pObj, GROUP_TYPE::PLAYER);

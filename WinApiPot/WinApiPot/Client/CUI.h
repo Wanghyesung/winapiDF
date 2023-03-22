@@ -24,12 +24,16 @@ private:
     bool m_bCamAfeccted;//카메라 
     bool m_bMouseOn;
     bool m_bLbntDown;
+    
+    //부모 위치의 영향을 받는지
+    bool m_bParentAfeccted;
 
 public:
     virtual void render(HDC _dc);
     virtual void update();//상속
     virtual void finalupdate();
 
+    void SetParentAfeccted(bool _b) { m_bParentAfeccted = _b; }
 
 private:
     void ChildUpdate();
@@ -38,6 +42,9 @@ private:
    
     void MouseOnCheck();
 
+public:
+    void DeleteChildUI();
+    
 public:
     Vec2 GetFinalPos() { return m_vFinalPos; }
     void SetFinalPos(Vec2 _vPos) { m_vFinalPos = _vPos; }

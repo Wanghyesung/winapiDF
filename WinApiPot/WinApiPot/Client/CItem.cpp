@@ -4,6 +4,10 @@
 #include "CUIMgr.h"
 #include "CKeyMgr.h"
 #include "CInventory.h"
+#include "CScene.h"
+
+#include "CInterFace.h"
+#include "CInterfaceMgr.h"
 
 CItem::CItem():
 	m_pInven(nullptr),
@@ -62,6 +66,7 @@ void CItem::MouseOn()
 void CItem::MouseLbtnDown()
 {
 	m_bTargetOn = true;
+
 	CUIMgr::GetInst()->MoveFrontChildUI(this);
 	m_vDragStartPos = CKeyMgr::GetInst()->GetMousePos();
 	m_vDragePrePos = GetPos();
@@ -73,7 +78,23 @@ void CItem::MouseLbtnUp()
 
 	if (m_pInven != nullptr)
 	{
-		m_pInven->ChangeItemPos(this);
+		CInterFace* pInter = CInterfaceMgr::GetInst()->GetPlayerInterFace();
+		Vec2 vStartPos = pInter->GetItemStartPos();
+		Vec2 vEndPos = pInter->GetItemEndPos();
+		Vec2 vPos = GetPos();
+		//인터페이스 아이템창 위치에 두면 인터페이스쪽으로 이동
+		if (vStartPos <= vPos && vPos <= vEndPos)
+		{
+			pInter->MoveIoInterface(this);
+		}
+		else
+		{
+			//아니면 인벤토리에서 이동
+			m_pInven->ChangeItemPos(this);
+			//}
+		}
+
+		//interface위치에 놓으면 인터페이스로 바꾸기
 	}
 }
 

@@ -2,6 +2,8 @@
 #include "CUI.h"
 
 class CInventory;
+class CInterFace;
+
 
 class CItem :
     public CUI
@@ -17,13 +19,22 @@ private:
     //활성화
     bool m_bActive;
     bool m_bTargetOn;
+    
+    //현재 나를 보관하고있는 공간 
+    //인터페이스면 크기 변경
+    bool m_bIsInterfacePos;
+
     Vec2 m_vDragStartPos;
     Vec2 m_vDragePrePos;
 
     CInventory* m_pInven;
 
+    //이미지 상대적으로 크게
+    Vec2 m_vOffsetScale;
+
 protected:
     CInventory* GetInventory() { return m_pInven; }
+    Vec2 GetOffsetScale() { return m_vOffsetScale; }
 
 public:
     virtual void render(HDC _dc);
@@ -46,5 +57,6 @@ private:
 
 
     friend class CInventory;
+    friend class CInterFace;
 };
 

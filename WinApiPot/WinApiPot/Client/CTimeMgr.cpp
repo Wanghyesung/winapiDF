@@ -46,12 +46,12 @@ void CTimeMgr::render(HDC _dc)
 		m_iFPS = m_iCallCount;
 		m_dAcc = 0;
 		m_iCallCount = 0;
-		//Vec2 vMousePos = CKeyMgr::GetInst()->GetMousePos();
+		Vec2 vMousePos = CKeyMgr::GetInst()->GetMousePos();
 
 		//18 175 
 		wchar_t szBuffer[256] = {};
-		swprintf_s(szBuffer, L"FPS : %d, DT : %f", m_iFPS, m_dDT);
-		//swprintf_s(szBuffer, L"FPS : %d, DT : %f, MousePos X : %f, Y : %f",m_iFPS, m_dDT, vMousePos.x, vMousePos.y);
+		//swprintf_s(szBuffer, L"FPS : %d, DT : %f", m_iFPS, m_dDT);
+		swprintf_s(szBuffer, L"FPS : %d, DT : %f, MousePos X : %f, Y : %f",m_iFPS, m_dDT, vMousePos.x, vMousePos.y);
 		SetWindowText(CCore::GetInst()->GetMainHwnd(), szBuffer);
 	}
 }

@@ -8,7 +8,8 @@
 CUI::CUI():m_pParentUI(nullptr),
 			m_bCamAfeccted(false),
 			m_bMouseOn(false),
-			m_bLbntDown(false)
+			m_bLbntDown(false),
+			m_bParentAfeccted(true)
 {
 }
 
@@ -75,7 +76,7 @@ void CUI::finalupdate()
 	m_vFinalPos = GetPos();
 	Vec2 vScale = GetScale();
 
-	if (GetParentUI() != nullptr)
+	if (GetParentUI() != nullptr && m_bParentAfeccted)
 	{
 		m_vFinalPos += GetParentUI()->GetFinalPos();
 	}
@@ -169,3 +170,22 @@ void CUI::MouseOnCheck()
 		m_bMouseOn = false;
 	}
 }
+
+void CUI::DeleteChildUI()
+{
+	vector<CUI*>& vecChildUI = this->GetParentUI()->GetChildVecUI();
+	CUI* pTemUI = nullptr;
+	vector<CUI*>::iterator iter = vecChildUI.begin();
+	//자식 벡터에서 내 UI없애기 
+	for (; iter != vecChildUI.end(); ++iter)
+	{
+		if (*iter == this)
+		{
+			pTemUI = *iter;
+			break;
+		}
+			
+	}
+	vecChildUI.erase(iter);
+}
+

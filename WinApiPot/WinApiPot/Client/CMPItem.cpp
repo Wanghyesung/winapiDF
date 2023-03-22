@@ -19,11 +19,13 @@ CMPItem::CMPItem()
 
 CMPItem::~CMPItem()
 {
+	int a = 10;
 }
 
 void CMPItem::render(HDC _dc)
 {
-	Vec2 vPos = GetFinalPos();
+	Vec2 vRealPos = GetFinalPos();
+	Vec2 vPos = GetPos();
 
 	//offset
 	TransparentBlt(_dc,

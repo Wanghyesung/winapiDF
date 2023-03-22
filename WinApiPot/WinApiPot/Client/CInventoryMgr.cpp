@@ -45,3 +45,32 @@ void CInventoryMgr::init()
 		}
 	}
 }
+
+CInventory* CInventoryMgr::Exit()
+{
+	vector<CObject*>& vecUI = SceneMgr::GetInst()->GetCurSCene()->GetGroupUI();
+	vector<CObject*>::iterator iter = vecUI.begin();
+	CInventory* pIven = nullptr;
+
+	for (; iter != vecUI.end(); )
+	{
+		if ((*iter)->GetName() == L"Inventory")
+		{
+			pIven = (CInventory*)*iter;
+			iter = vecUI.erase(iter);
+		}
+		else
+		{
+			++iter;
+		}
+	}
+
+	return pIven;
+}
+
+void CInventoryMgr::Enter(CInventory* _pInven)
+{
+	CScene* pScene = SceneMgr::GetInst()->GetCurSCene();
+
+	pScene->AddObject(_pInven, GROUP_TYPE::UI);
+}

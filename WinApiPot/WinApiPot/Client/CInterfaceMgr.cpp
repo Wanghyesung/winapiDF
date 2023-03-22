@@ -4,6 +4,9 @@
 #include "CInterFace.h"
 #include "CMonInterface.h"
 
+#include "CSceneMgr.h"
+#include "CScene.h"
+
 CInterfaceMgr::CInterfaceMgr():
 	m_pPlayerInterFace(nullptr),
 	m_pTargetMon(nullptr)
@@ -43,6 +46,35 @@ CMonInterface* CInterfaceMgr::FindTargetMon(const wstring& _strName)
 	}
 
 	return nullptr;
+}
+
+CInterFace* CInterfaceMgr::Exit()
+{
+	vector<CObject*>& vecUI = SceneMgr::GetInst()->GetCurSCene()->GetGroupUI();
+	vector<CObject*>::iterator iter = vecUI.begin();
+	CInterFace* pInter = nullptr;
+
+	for (; iter != vecUI.end(); )
+	{
+		if ((*iter)->GetName() == L"InterFace")
+		{
+			pInter = (CInterFace*)*iter;
+			iter = vecUI.erase(iter);
+		}
+		else
+		{
+			++iter;
+		}
+	}
+
+	return pInter;
+}
+
+void CInterfaceMgr::Enter(CInterFace* _pInterFace)
+{
+	CScene* pScene = SceneMgr::GetInst()->GetCurSCene();
+
+	pScene->AddObject(_pInterFace, GROUP_TYPE::UI);
 }
 
 void CInterfaceMgr::deleteInterface(const wstring& _strName)

@@ -15,6 +15,7 @@
 #include "CInterfaceMgr.h"
 #include "CInventoryMgr.h"
 
+
 CCore::CCore():
 	m_hDC(0),
 	m_hWnd(0),

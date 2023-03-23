@@ -48,6 +48,7 @@ private:
     bool IsSamePos(Vec2 _vPos);
     CItem* GetItemThisPos(Vec2 _vPos);
 
+    void changeInterface(CItem* _pItem, CItem* _pOtherItem, Vec2 _vOtherDragePrePos);
 
     friend class CInventoryMgr;
 };

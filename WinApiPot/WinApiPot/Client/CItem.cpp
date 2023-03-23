@@ -9,28 +9,62 @@
 #include "CInterFace.h"
 #include "CInterfaceMgr.h"
 
-CItem::CItem():
+#include "CTexture.h"
+#include "CResMgr.h"
+
+CItem::CItem() :
 	m_pInven(nullptr),
 	m_bActive(false),
 	m_bTargetOn(false),
-	m_iItemCount(0)
+	m_bIsInterfacePos(false),
+	m_iItemCount(0),
+	m_iWidth(0),
+	m_iHeight(0),
+	m_vecNumber{}
 {
+	//1~9
+	m_vecNumber.resize(9);
+	//자식 오브젝트 추가
+	for (int i = 0; i < 9; ++i)
+	{
+		wstring strNum = std::to_wstring(i+1);
+		m_vecNumber[i] = CResMgr::GetInst()->LoadTextur(L"Number", L"..\\OutPut\\bin_release\\Content\\Item\\" + strNum + L".bmp");
+	}
+	m_iNumberWidth = m_vecNumber[0]->Width();
+	m_iNumberHeight = m_vecNumber[0]->Height();
 
 }
 
 CItem::~CItem()
 {
-
+	
 }
 
 void CItem::render(HDC _dc)
 {
+
+	if (m_iItemCount != 0)
+	{
+		Vec2 vPos = GetFinalPos();
+
+		//offset
+		TransparentBlt(_dc,
+			(int)vPos.x, (int)vPos.y,
+			m_iNumberWidth, m_iNumberHeight,
+			m_vecNumber[m_iItemCount-1]->GetDC(),
+			//시작지점 좌표부터 가져올 이미지 크기
+			0, 0,
+			m_vecNumber[m_iItemCount - 1]->Width(), m_vecNumber[m_iItemCount - 1]->Height(),
+			RGB(255, 255, 255));
+	}
+
+	//아이템 먼저 렌더링 하고
 	CUI::render(_dc);
+
 }
 
 void CItem::update()
 {
-
 	if (m_bTargetOn)
 	{
 		Vec2 vMousePos = CKeyMgr::GetInst()->GetMousePos();
@@ -101,4 +135,22 @@ void CItem::MouseLbtnUp()
 void CItem::MouseLbtnClicked()
 {
 
+}
+
+void CItem::SetItemScale(Vec2 _vScale)
+{
+	SetScale(_vScale);
+	m_iHeight = _vScale.y;
+	m_iWidth = _vScale.x;
+
+	if (m_bIsInterfacePos)
+	{
+		m_iNumberHeight *= 2;
+		m_iNumberWidth *= 2;
+	}
+	else
+	{
+		m_iNumberHeight /= 2;
+		m_iNumberWidth /= 2;
+	}
 }

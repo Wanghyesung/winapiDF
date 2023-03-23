@@ -16,6 +16,11 @@ CHPItem::CHPItem()
 	SetScale(Vec2(28.f, 28.f));
 
 	SetItemName(L"HPItem");
+
+	m_iHeight = m_pItemTex->Height();
+	m_iWidth = m_pItemTex->Width();
+
+
 }
 
 CHPItem::~CHPItem()
@@ -32,7 +37,7 @@ void CHPItem::render(HDC _dc)
 	//offset
 	TransparentBlt(_dc,
 		(int)vPos.x, (int)vPos.y,
-		m_pItemTex->Width(), m_pItemTex->Height(),
+		m_iWidth, m_iHeight,
 		m_pItemTex->GetDC(),
 		//시작지점 좌표부터 가져올 이미지 크기
 		0, 0,
@@ -40,7 +45,7 @@ void CHPItem::render(HDC _dc)
 		RGB(255, 255, 255));
 
 
-	CUI::render(_dc);
+	CItem::render(_dc);
 
 }
 

@@ -7,6 +7,8 @@
 
 #include "CKeyMgr.h"
 
+#include "CInterfaceMgr.h"
+
 CMPItem::CMPItem()
 {
 	m_pItemTex = CResMgr::GetInst()->LoadTextur(L"MPItem", L"..\\OutPut\\bin_release\\Content\\Item\\MPItem.bmp");
@@ -15,22 +17,24 @@ CMPItem::CMPItem()
 	SetScale(Vec2(28.f, 28.f));
 
 	SetItemName(L"MPItem");
+
+	m_iHeight = m_pItemTex->Height();
+	m_iWidth = m_pItemTex->Width();
 }
 
 CMPItem::~CMPItem()
 {
-	int a = 10;
+	
 }
 
 void CMPItem::render(HDC _dc)
 {
-	Vec2 vRealPos = GetFinalPos();
 	Vec2 vPos = GetPos();
 
 	//offset
 	TransparentBlt(_dc,
 		(int)vPos.x, (int)vPos.y,
-		m_pItemTex->Width(), m_pItemTex->Height(),
+		m_iWidth, m_iHeight,
 		m_pItemTex->GetDC(),
 		//시작지점 좌표부터 가져올 이미지 크기
 		0, 0,
@@ -38,7 +42,7 @@ void CMPItem::render(HDC _dc)
 		RGB(255, 255, 255));
 
 
-	CUI::render(_dc);
+	CItem::render(_dc);
 }
 
 void CMPItem::update()

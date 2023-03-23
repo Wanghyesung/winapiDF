@@ -40,19 +40,20 @@ public:
     Vec2 GetItemStartPos() { return m_vItemStartPos; }
     Vec2 GetItemEndPos() { return m_vItemEndPos; }
 
+    void DeleteItem(CItem* _pItem);
+    void AddVecItem(CItem* _pItem, int _iIndx) {m_vecItem[_iIndx] = _pItem;}
+    int GetItemIndex(CItem* _pItem);
+
 private:
     void ChangeValue(float _HPfValue, float _MPfValue);
 
-    //void CHANGE
+    void changeInvenotry(CItem* _pItem, Vec2 _vOtherDragePrePos);
 
     //아이템 찾기
     CItem* getItemThisIndex(int _iIndex);
-    int GetItemIndex(CItem* _pItem);
     void changeItemIndex(CItem* _pItem, CItem* _pOtehr);
 
 private:
-    
-
     friend class CInterfaceMgr;
 };
 

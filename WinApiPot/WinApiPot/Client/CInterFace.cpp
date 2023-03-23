@@ -10,6 +10,7 @@
 #include "CHP.h"
 #include "CMP.h"
 
+#include "CInventoryMgr.h"
 #include "CInventory.h"
 
 
@@ -107,17 +108,25 @@ void CInterFace::MoveIoInterface(CItem* _pItem)
 	}
 
 	
-	//원래 interface에 있던 아이템인지
+	//원래 인벤토리에 있던 아이템인지
 	if (!_pItem->m_bIsInterfacePos)
 	{
 		_pItem->m_bIsInterfacePos = true;
+		//아이템 크기 키우기
+		_pItem->SetItemScale(m_vItemStep);
 		//부모 위치 영향 안받게
 		_pItem->SetParentAfeccted(false);
 		//원래 부모UI 버리고 interfaceUI를 부모로
 		_pItem->DeleteChildUI();
 		AddChildUI(_pItem);
+
+		//여기서 둘 자리에 아이템이 있는지 검사
+		CItem* pItem = getItemThisIndex(iFinalIndx);
+		if(pItem != nullptr)
+			changeInvenotry(pItem, vOtherDragePrePos);
 	}
-	//인벤토리 창에서 바꾼거라면
+
+	//인터페이스 창에서 바꾼거라면
 	else
 	{
 		//해당 인덱스에 있는 아이템 가져오기
@@ -131,14 +140,47 @@ void CInterFace::MoveIoInterface(CItem* _pItem)
 			int iIndex = GetItemIndex(_pItem);
 			m_vecItem[iIndex] = nullptr;
 		}
-
 	}
 
 	m_vecItem[iFinalIndx] = _pItem;
 	_pItem->m_tItemInfo.m_vPos = vMinVec;
 	_pItem->SetPos(vMinVec);
 
+}
 
+void CInterFace::changeInvenotry(CItem* _pItem, Vec2 _vOtherDragePrePos)
+{
+	int iIndex = GetItemIndex(_pItem);
+	//둘 자리에 아이템이 없는상태라면 그냥 return
+	if (iIndex == -1)
+		return;
+	
+	CItem* pPreItem = getItemThisIndex(iIndex);
+
+	//인벤토리로 보내기
+    pPreItem->m_bIsInterfacePos = false;
+	pPreItem->SetItemScale(Vec2(28.f,28.f));
+	//부모 위치 영향 안받게
+	pPreItem->SetParentAfeccted(true);
+	//원래 부모UI 버리고 interfaceUI를 부모로
+	pPreItem->DeleteChildUI();
+	
+	pPreItem->m_tItemInfo.m_vPos = _vOtherDragePrePos;
+	pPreItem->SetPos(_vOtherDragePrePos);
+
+	CInventoryMgr::GetInst()->GetInventory()->AddChildUI(pPreItem);
+
+
+}
+
+void CInterFace::changeItemIndex(CItem* _pItem, CItem* _pOtehr)
+{
+	int iIndex = GetItemIndex(_pItem);
+	int iOtherIndex = GetItemIndex(_pOtehr);
+
+	m_vecItem[iOtherIndex] = _pItem;
+	_pItem->m_tItemInfo.m_vPos = _pOtehr->m_tItemInfo.m_vPos;
+	_pItem->SetPos(_pOtehr->m_tItemInfo.m_vPos);
 }
 
 CItem* CInterFace::getItemThisIndex(int _iIndex)
@@ -159,18 +201,16 @@ int CInterFace::GetItemIndex(CItem* _pItem)
 		if (m_vecItem[i] == _pItem)
 			return i;
 	}
-
 	return -1;
 }
 
-void CInterFace::changeItemIndex(CItem* _pItem, CItem* _pOtehr)
+void CInterFace::DeleteItem(CItem* _pItem)
 {
-	int iIndex = GetItemIndex(_pItem);
-	int iOtherIndex = GetItemIndex(_pOtehr);
-
-	m_vecItem[iOtherIndex] = _pItem;
-	_pItem->m_tItemInfo.m_vPos = _pOtehr->m_tItemInfo.m_vPos;
-	_pItem->SetPos(_pOtehr->m_tItemInfo.m_vPos);
+	for (int i = 0; i < m_vecItem.size(); ++i)
+	{
+		if (m_vecItem[i] == _pItem)
+			m_vecItem[i] = nullptr;
+	}
 }
 
 void CInterFace::ChangeValue(float _HPfValue, float _MPfValue)
@@ -189,6 +229,7 @@ void CInterFace::ChangeValue(float _HPfValue, float _MPfValue)
 
 	}
 }
+
 
 void CInterFace::render(HDC _dc)
 {

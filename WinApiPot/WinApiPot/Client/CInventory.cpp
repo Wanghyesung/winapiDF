@@ -7,6 +7,9 @@
 
 #include "CKeyMgr.h"
 
+#include "CInterFace.h"
+#include "CInterfaceMgr.h"
+
 //시작 18.5 177  끝 243 273
    //step = 32.5 32.5
    //for(int i =0; i<)
@@ -70,6 +73,8 @@ CItem* CInventory::GetItemThisPos(Vec2 _vPos)
 	return nullptr;
 }
 
+
+
 void CInventory::AddItem(CItem* _pItem)
 {
 	//공통으로 위치 잡기
@@ -92,6 +97,7 @@ void CInventory::AddItem(CItem* _pItem)
 					_pItem->SetPos(Vec2(x, y));
 					m_mapInventory.insert(make_pair(_pItem->GetItemName(), _pItem));
 					AddChildUI(_pItem);
+					++_pItem->m_iItemCount;
 					return;
 				}
 			}
@@ -146,6 +152,31 @@ void CInventory::ChangeItemPos(CItem* _pItem)
 		return;
 	}
 
+	//인터페이스에서 온 아이템이라면
+	if (_pItem->m_bIsInterfacePos)
+	{
+		CItem* pItem = GetItemThisPos(vMinVec);
+		if (pItem != nullptr)
+		{
+			changeInterface(pItem, _pItem, vOtherDragePrePos);
+		}
+		else
+		{
+			//아이템 벡터에서 지우기
+			CInterfaceMgr::GetInst()->GetPlayerInterFace()->DeleteItem(_pItem);
+		}
+		_pItem->m_bIsInterfacePos = false;
+
+		_pItem->SetItemScale(Vec2(28.f, 28.f));
+
+		//부모 위치 영향 안받게
+		_pItem->SetParentAfeccted(true);
+		//원래 부모UI 버리고 interfaceUI를 부모로
+		_pItem->DeleteChildUI();
+		AddChildUI(_pItem);
+
+	}
+
 	//같은 위치라면 바꾸고 같은 위치가 아니면 그 위치에 아이템 넣기
 	pItem = GetItemThisPos(vMinVec);//이 위치에 있던 원래 아이템
 	if (pItem != nullptr)
@@ -156,6 +187,26 @@ void CInventory::ChangeItemPos(CItem* _pItem)
 	_pItem->m_tItemInfo.m_vPos = vMinVec;
 	_pItem->SetPos(vMinVec);
 
+}
+
+//원래 있던 아이템 , 내가 둘려는 아이템 , 드래그 처음 시작한 위치
+void CInventory::changeInterface(CItem* _pItem, CItem* _pOtherItem, Vec2 _vOtherDragePrePos)
+{
+	//인벤토리에서 interface로
+	_pItem->m_bIsInterfacePos = true;
+	_pItem->SetItemScale(Vec2(62.f, 38.f));//아이템 크기 증가
+	//부모 위치 영향 안받게
+	_pItem->SetParentAfeccted(false);
+	//원래 부모UI 버리고 interfaceUI를 부모로
+	_pItem->DeleteChildUI();
+
+	_pItem->m_tItemInfo.m_vPos = _vOtherDragePrePos;
+	_pItem->SetPos(_vOtherDragePrePos);
+
+	CInterFace* pInter = CInterfaceMgr::GetInst()->GetPlayerInterFace();
+	int iIndex = pInter->GetItemIndex(_pOtherItem);
+	pInter->AddChildUI(_pItem);
+	pInter->AddVecItem(_pItem, iIndex);
 }
 
 

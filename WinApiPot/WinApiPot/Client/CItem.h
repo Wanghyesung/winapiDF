@@ -22,8 +22,21 @@ private:
     
     //현재 나를 보관하고있는 공간 
     //인터페이스면 크기 변경
+
+    //숫자 이미지 벡터
+    vector<CTexture*> m_vecNumber;
+
+protected:
     bool m_bIsInterfacePos;
 
+    //인터페이스로 가면 커지게
+    int m_iWidth;//내 이미지 가로
+    int m_iHeight;//내 이미지 세로
+
+    int m_iNumberWidth; 
+    int m_iNumberHeight;
+
+private:
     Vec2 m_vDragStartPos;
     Vec2 m_vDragePrePos;
 
@@ -55,6 +68,7 @@ private:
     tItemInfo& GetItemInfo() { return m_tItemInfo; }
     const UINT& GetItemqQantity() { return m_iItemCount; }
 
+    void SetItemScale(Vec2 _vScale);
 
     friend class CInventory;
     friend class CInterFace;

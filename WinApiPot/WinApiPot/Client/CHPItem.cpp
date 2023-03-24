@@ -6,9 +6,14 @@
 
 #include "CKeyMgr.h"
 
+#include "CPlayer.h"
+#include "CScene.h"
+#include "CSceneMgr.h"
 
 
-CHPItem::CHPItem()
+
+CHPItem::CHPItem():
+	m_fHealValue(30.f)
 {
 	m_pItemTex = CResMgr::GetInst()->LoadTextur(L"HPItem", L"..\\OutPut\\bin_release\\Content\\Item\\HPItem.bmp");
 
@@ -19,7 +24,6 @@ CHPItem::CHPItem()
 
 	m_iHeight = m_pItemTex->Height();
 	m_iWidth = m_pItemTex->Width();
-
 
 }
 
@@ -57,6 +61,30 @@ void CHPItem::update()
 void CHPItem::finalupdate()
 {
 	CUI::finalupdate();
+}
+
+void CHPItem::UseItem()
+{
+	//개수 줄이기
+	CPlayer* pPlayer = (CPlayer*)SceneMgr::GetInst()->GetCurSCene()->GetPlayerObj();
+
+	if (pPlayer != nullptr)
+	{
+		if (pPlayer->m_tPlayerInfo.m_fHP > 0.f && pPlayer->m_tPlayerInfo.m_fHP < 100.f)
+		{
+			pPlayer->m_tPlayerInfo.m_fHP += 30.f;
+			if (pPlayer->m_tPlayerInfo.m_fHP >= 100.f)
+				pPlayer->m_tPlayerInfo.m_fHP = 100.f;
+
+			--m_iItemCount;
+		}
+	}
+
+
+	if (m_iItemCount == 0)
+	{
+		deleteItem();
+	}
 }
 
 void CHPItem::MouseOn()

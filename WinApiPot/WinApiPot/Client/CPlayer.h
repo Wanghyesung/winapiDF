@@ -6,7 +6,8 @@ class CSkill;
 class CPlayerState;
 class CBullet;
 class CFSM;
-
+class CHPItem;
+class CMPItem;
 
 struct tPlayerInfo
 {
@@ -90,6 +91,7 @@ public:
     void SetPlayerDirY(int _iDir) { m_iDirY = _iDir; }
 
     void HitPlayer(CCollider* _pOther, const tAttackInfo& _tAttInfo);
+
     //점프중일때 피격을 입으면 내 점프위치에 맞는지 확인
     bool IsSameJumLoc(CCollider* _pOther, CCollider* _pThis);
 
@@ -109,5 +111,7 @@ private:
     friend class CPlayerHit;
     friend class CPlayerHitUpper;
     friend class CSkillMgr;
+    friend class CHPItem;
+    friend class CMPItem;
 };
 

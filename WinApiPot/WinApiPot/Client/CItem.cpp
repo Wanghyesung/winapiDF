@@ -35,6 +35,22 @@ CItem::CItem() :
 
 }
 
+void CItem::deleteItem()
+{
+	CInterFace* pInter = CInterfaceMgr::GetInst()->GetPlayerInterFace();
+
+	//인터페이스 창에서 없애기
+	pInter->DeleteItem(this);
+	//부모 UI에서 내 객체 지우기
+	DeleteChildUI();
+
+	//내 인벤토에서 없애기
+	m_pInven->DeleteItem(this);
+	
+	DeleteObject(this);
+}
+
+
 CItem::~CItem()
 {
 	
@@ -154,3 +170,5 @@ void CItem::SetItemScale(Vec2 _vScale)
 		m_iNumberWidth /= 2;
 	}
 }
+
+

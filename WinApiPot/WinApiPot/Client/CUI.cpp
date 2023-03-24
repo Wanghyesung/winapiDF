@@ -186,6 +186,10 @@ void CUI::DeleteChildUI()
 		}
 			
 	}
-	vecChildUI.erase(iter);
+
+	if (iter != vecChildUI.end())
+	{
+		vecChildUI.erase(iter);
+	}
 }
 

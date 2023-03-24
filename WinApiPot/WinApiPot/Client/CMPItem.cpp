@@ -55,6 +55,10 @@ void CMPItem::finalupdate()
 	CUI::finalupdate();
 }
 
+void CMPItem::UseItem()
+{
+}
+
 void CMPItem::MouseOn()
 {
 	CItem::MouseOn();

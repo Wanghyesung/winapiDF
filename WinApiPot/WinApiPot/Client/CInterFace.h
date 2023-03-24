@@ -20,6 +20,7 @@ public:
 private:
     CTexture* m_pInterFaceTex;
 
+    vector<CTexture*> m_vecSKillTex;
     //내 인터페이스 아이템들
     vector<CItem*> m_vecItem;
     //아이템 1번~5번째 칸 위치 아이템 1칸씩 범위

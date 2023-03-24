@@ -16,6 +16,7 @@ int g_arrKey[(int)KEY::LAST] =
 	0x33,//3
 	0x34,//4
 	0x35,//5
+	0x36,
 
 	'Q',
 	'W',

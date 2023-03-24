@@ -10,11 +10,15 @@ public:
 private:
     CTexture* m_pItemTex;
 
+    float m_fHealValue;
+
 
 public:
     virtual void render(HDC _dc);
     virtual void update();//상속
     virtual void finalupdate();
+
+    virtual void UseItem();
 
 public:
     virtual void MouseOn();//UI위에 마우스 올라왔을 떄 

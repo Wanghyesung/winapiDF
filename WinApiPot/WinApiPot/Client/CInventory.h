@@ -44,6 +44,8 @@ public:
     virtual void MouseLbtnUp();//UI안에서 땠을 때
     virtual void MouseLbtnClicked();//UI안에서 누르고 떘을 떄
 
+    void DeleteItem(CItem* _pItem);
+
 private:
     bool IsSamePos(Vec2 _vPos);
     CItem* GetItemThisPos(Vec2 _vPos);

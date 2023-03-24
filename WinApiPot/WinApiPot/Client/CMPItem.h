@@ -15,6 +15,8 @@ public:
     virtual void update();//상속
     virtual void finalupdate();
 
+    virtual void UseItem();
+
 public:
     virtual void MouseOn();//UI위에 마우스 올라왔을 떄 
     virtual void MouseLbtnDown();//UI안에서 눌렸을 떄

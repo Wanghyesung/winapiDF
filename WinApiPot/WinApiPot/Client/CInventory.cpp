@@ -265,4 +265,14 @@ void CInventory::MouseLbtnClicked()
 {
 }
 
+void CInventory::DeleteItem(CItem* _pItem)
+{
+	map<wstring,CItem*>::iterator iter = m_mapInventory.find(_pItem->GetItemName());
+
+	if (iter != m_mapInventory.end())
+	{
+		m_mapInventory.erase(iter);
+	}
+}
+
 

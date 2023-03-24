@@ -14,7 +14,6 @@ public:
 
 private:
     tItemInfo m_tItemInfo;
-    UINT m_iItemCount;
 
     //활성화
     bool m_bActive;
@@ -27,6 +26,8 @@ private:
     vector<CTexture*> m_vecNumber;
 
 protected:
+    UINT m_iItemCount;
+
     bool m_bIsInterfacePos;
 
     //인터페이스로 가면 커지게
@@ -49,10 +50,14 @@ protected:
     CInventory* GetInventory() { return m_pInven; }
     Vec2 GetOffsetScale() { return m_vOffsetScale; }
 
+    void deleteItem();
+
 public:
     virtual void render(HDC _dc);
     virtual void update();//상속
     virtual void finalupdate();
+
+    virtual void UseItem() = 0;
 
 public:
     virtual void MouseOn();//UI위에 마우스 올라왔을 떄 
@@ -69,6 +74,7 @@ private:
     const UINT& GetItemqQantity() { return m_iItemCount; }
 
     void SetItemScale(Vec2 _vScale);
+
 
     friend class CInventory;
     friend class CInterFace;

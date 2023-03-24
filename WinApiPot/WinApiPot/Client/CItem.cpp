@@ -28,7 +28,7 @@ CItem::CItem() :
 	for (int i = 0; i < 9; ++i)
 	{
 		wstring strNum = std::to_wstring(i+1);
-		m_vecNumber[i] = CResMgr::GetInst()->LoadTextur(L"Number", L"..\\OutPut\\bin_release\\Content\\Item\\" + strNum + L".bmp");
+		m_vecNumber[i] = CResMgr::GetInst()->FindTexture(L"Number" + strNum);
 	}
 	m_iNumberWidth = m_vecNumber[0]->Width();
 	m_iNumberHeight = m_vecNumber[0]->Height();

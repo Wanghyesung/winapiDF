@@ -26,6 +26,8 @@ CWalkFire::CWalkFire():
 	SetMP(8.f);
 
 	SetSKillName(L"Player_skill_walkfire");
+
+	SetSkillTime(8);
 }
 
 CWalkFire::~CWalkFire()

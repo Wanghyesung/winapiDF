@@ -42,6 +42,8 @@ CRandomFire::CRandomFire() :
 	CTexture* m_pRadomFireMotion = CResMgr::GetInst()->LoadTextur(L"Radomfire_0", L"..\\OutPut\\bin_release\\Content\\Texture\\randomfire1.bmp");
 	GetAnimator()->CreateAnimation(L"Radomfire0", m_pRadomFireMotion, Vec2(0.f, 0.f), Vec2(273.f, 261.f), Vec2(273.f, 0.f), Vec2(0.f, 0.f), 0.1f, 5);
 	//회전시켜서 offset값 바꾸기
+
+	SetSkillTime(7);
 }
 
 CRandomFire::~CRandomFire()

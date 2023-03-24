@@ -38,6 +38,8 @@ public:
 
 	void InitState(SKILL_STATE _tSkill);
 
+	float GetCurSKillTime(SKILL_STATE _eSkill);
+
 private:
 	//키를 입력받고 입력된 키에 해당하는 스킬이 사용 가능한 스킬인지 확인
 	bool IsPossibleSkill(SKILL_STATE _eSkill);

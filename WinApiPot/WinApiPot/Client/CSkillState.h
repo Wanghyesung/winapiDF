@@ -29,6 +29,8 @@ private:
 	vector<UINT> m_vecAttackFrame;//내가 공격할 프레임을 모아둔 벡터
 	vector<UINT> m_vecOtherColl;//공격할 몬스터 colliderID를 보관하는 벡터
 
+	int m_iSkillTime;//내 스킬 쿨타임
+
 public:
 	virtual void Skillupdate() = 0;
 	virtual void update() {}
@@ -62,7 +64,12 @@ protected:
 
 protected:
 	void SetAttInfo(const tAttackInfo& _tAtt) { m_tAtt = _tAtt; }
+
+	//해당 프레임상태에서만 공격할 수 있게
 	void SetAttackOn(bool _b) { m_bOnAttack = _b; }
+
+	//내 쿨타임 시간
+	void SetSkillTime(int _iSkillTime) { m_iSkillTime = _iSkillTime; }
 
 public:
 	bool IsAttackOn() { return m_bOnAttack; }

@@ -31,6 +31,8 @@ CKick::CKick() :
 	tAtt.m_fAttUpperAcc = -600.f;
 
 	SetAttInfo(tAtt);
+
+	SetSkillTime(4);
 }
 
 CKick::~CKick()

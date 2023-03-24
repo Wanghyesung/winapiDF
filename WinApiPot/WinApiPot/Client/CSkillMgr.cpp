@@ -28,7 +28,6 @@
 
 #include "CInterfaceMgr.h"
 
-#define MAX_SKILLTIME 5.f;
 
 CSkillMgr::CSkillMgr() :
 	m_eCurStkllState(SKILL_STATE::END),
@@ -160,9 +159,12 @@ void CSkillMgr::skillKey_update()
 
 void CSkillMgr::SetSkillTimeMax(SKILL_STATE _eSkill)
 {
+	//스킬 쿨타임 최대로
 	map<SKILL_STATE, float>::iterator iter = m_mapSkill.find(_eSkill);
 
-	iter->second = m_fMaxSkillTime;
+	CSkillState* pSkill = m_pPlayer->GetSkill()->FindSkillState(_eSkill);
+
+	iter->second = pSkill->m_iSkillTime;
 }
 
 
@@ -200,6 +202,17 @@ void CSkillMgr::InitState(SKILL_STATE _tSkill)
 	m_pPlayer->m_pFSM->GetCurState()->Exit();
 	m_pPlayer->playerCurState = PLAYER_STATE::IDLE;
 	pSkill->enter();
+}
+
+float CSkillMgr::GetCurSKillTime(SKILL_STATE _eSkill)
+{
+	map<SKILL_STATE, float>::iterator iter = m_mapSkill.find(_eSkill);
+
+	if (iter == m_mapSkill.end())
+		return 0;
+	
+	
+	return iter->second;
 }
 
 void CSkillMgr::reducedMp(SKILL_STATE _tSkill)

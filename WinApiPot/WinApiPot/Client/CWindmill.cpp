@@ -34,6 +34,8 @@ CWindmill::CWindmill() :
 	tAtt.m_fAttUpperRcnt = -30.f;
 
 	SetAttInfo(tAtt);
+
+	SetSkillTime(5);
 }
 
 CWindmill::~CWindmill()

@@ -10,6 +10,7 @@
 #include "CHP.h"
 #include "CMP.h"
 
+#include "CSkillMgr.h"
 #include "CInventoryMgr.h"
 #include "CInventory.h"
 
@@ -18,6 +19,8 @@ CInterFace::CInterFace():
 	m_pInterFaceTex(nullptr),
 	m_vecItem{},
 	m_vecSKillTex{},
+	m_vecCoolDownTex{},
+	m_vecKeyTex{},
 	m_vItemStartPos(Vec2(150.f, 655.f)),
 	m_vItemEndPos(Vec2(520.f, 693.f)),
 	m_vItemStep(Vec2(62.f, 38.f))
@@ -28,13 +31,35 @@ CInterFace::CInterFace():
 	SetScale(Vec2(1280.f, 100.f));
 
 	m_vecSKillTex.resize(5);
+	m_vecCoolDownTex.resize(5);
 	m_vecItem.resize(6);
+	m_vecKeyTex.resize(12);
 
+	//스킬 이미지
 	m_vecSKillTex[0] = CResMgr::GetInst()->LoadTextur(L"Kick", L"..\\OutPut\\bin_release\\Content\\SKill\\Kick.bmp");
 	m_vecSKillTex[1] = CResMgr::GetInst()->LoadTextur(L"MachKick", L"..\\OutPut\\bin_release\\Content\\SKill\\MachKick.bmp");
 	m_vecSKillTex[2] = CResMgr::GetInst()->LoadTextur(L"Windmill", L"..\\OutPut\\bin_release\\Content\\SKill\\Windmill.bmp");
 	m_vecSKillTex[3] = CResMgr::GetInst()->LoadTextur(L"RandFire", L"..\\OutPut\\bin_release\\Content\\SKill\\RandomFire.bmp");
 	m_vecSKillTex[4] = CResMgr::GetInst()->LoadTextur(L"WalkFire", L"..\\OutPut\\bin_release\\Content\\SKill\\WalkFire.bmp");
+
+	m_vecCoolDownTex[0] = CResMgr::GetInst()->LoadTextur(L"Kick_", L"..\\OutPut\\bin_release\\Content\\SKill\\Kick_.bmp");
+	m_vecCoolDownTex[1] = CResMgr::GetInst()->LoadTextur(L"MachKick_", L"..\\OutPut\\bin_release\\Content\\SKill\\MachKick_.bmp");
+	m_vecCoolDownTex[2] = CResMgr::GetInst()->LoadTextur(L"Windmill_", L"..\\OutPut\\bin_release\\Content\\SKill\\Windmill_.bmp");
+	m_vecCoolDownTex[3] = CResMgr::GetInst()->LoadTextur(L"RandFire_", L"..\\OutPut\\bin_release\\Content\\SKill\\RandomFire_.bmp");
+	m_vecCoolDownTex[4] = CResMgr::GetInst()->LoadTextur(L"WalkFire_", L"..\\OutPut\\bin_release\\Content\\SKill\\WalkFire_.bmp");
+
+
+	m_vecNumber.resize(9);
+	//자식 오브젝트 추가
+	for (int i = 0; i < 9; ++i)
+	{
+		wstring strNum = std::to_wstring(i + 1);
+		m_vecNumber[i] = CResMgr::GetInst()->LoadTextur(L"Number" + strNum, L"..\\OutPut\\bin_release\\Content\\Item\\" + strNum + L".bmp");
+	}
+
+	//스킬 키랑 아이템1~6번째 텍스쳐 가져오기
+	//m_vecKeyTex[0] = CResMgr::GetInst()->LoadTextur()
+
 }
 
 CInterFace::~CInterFace()
@@ -217,6 +242,7 @@ void CInterFace::changeItemIndex(CItem* _pItem, CItem* _pOtehr)
 	_pItem->SetPos(_pOtehr->m_tItemInfo.m_vPos);
 }
 
+
 CItem* CInterFace::getItemThisIndex(int _iIndex)
 {
 	for (int i = 0; i < m_vecItem.size(); ++i)
@@ -269,6 +295,7 @@ void CInterFace::render(HDC _dc)
 {
 	Vec2 vPos = GetFinalPos();
 
+	//인터페이스 먼저 그리고
 	TransparentBlt(_dc,
 		(int)vPos.x, (int)vPos.y,
 		m_pInterFaceTex->Width(), m_pInterFaceTex->Height(),
@@ -277,23 +304,61 @@ void CInterFace::render(HDC _dc)
 		m_pInterFaceTex->Width(), m_pInterFaceTex->Height(),
 		RGB(0, 0, 0));
 
-	
+	skillRender(_dc);
+	keyRender(_dc);
+
+
+	CUI::render(_dc);
+
+}
+
+void CInterFace::keyRender(HDC _dc)
+{
+
+}
+
+void CInterFace::skillRender(HDC _dc)
+{
 	// 760 655
 	Vec2 vStartPos = Vec2(758.f, 655.f);//스킬 아이콘 보여지는 구간
 	for (int i = 0; i < 5; ++i)
 	{
 		//여기에 스킬 아이콘 그리기
-		TransparentBlt(_dc,
-			vStartPos.x,vStartPos.y,
-			m_vItemStep.x,m_vItemStep.y,
-			m_vecSKillTex[i]->GetDC(),
-			0, 0,
-			m_vecSKillTex[i]->Width(), m_vecSKillTex[i]->Height(),
-			RGB(255, 255, 255));
+		//여기서 스킬 쿨타임 가져오기
+		float iSkillTime = CSkillMgr::GetInst()->GetCurSKillTime((SKILL_STATE)i);
+		//스킬 쿨타임이 0이면
+		if (iSkillTime <= 0.f)
+		{
+			TransparentBlt(_dc,
+				vStartPos.x, vStartPos.y,
+				m_vItemStep.x, m_vItemStep.y,
+				m_vecSKillTex[i]->GetDC(),
+				0, 0,
+				m_vecSKillTex[i]->Width(), m_vecSKillTex[i]->Height(),
+				RGB(255, 255, 255));
+		}
+		else
+		{
+			TransparentBlt(_dc,
+				vStartPos.x, vStartPos.y,
+				m_vItemStep.x, m_vItemStep.y,
+				m_vecCoolDownTex[i]->GetDC(),
+				0, 0,
+				m_vecCoolDownTex[i]->Width(), m_vecCoolDownTex[i]->Height(),
+				RGB(255, 255, 255));
 
+
+			TransparentBlt(_dc,
+				vStartPos.x + 26, vStartPos.y + 10,
+				10, 20,
+				m_vecNumber[(int)iSkillTime]->GetDC(),
+				//시작지점 좌표부터 가져올 이미지 크기
+				0, 0,
+				m_vecNumber[(int)iSkillTime]->Width(), m_vecNumber[(int)iSkillTime]->Height(),
+				RGB(255, 255, 255));
+		}
+		//다음 이미지 위치 잡기
 		vStartPos.x += m_vItemStep.x;
 	}
-
-	CUI::render(_dc);
-
 }
+

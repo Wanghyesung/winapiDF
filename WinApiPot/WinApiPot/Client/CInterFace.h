@@ -21,6 +21,8 @@ private:
     CTexture* m_pInterFaceTex;
 
     vector<CTexture*> m_vecSKillTex;
+    vector<CTexture*> m_vecCoolDownTex;
+    vector<CTexture*> m_vecKeyTex;
     //내 인터페이스 아이템들
     vector<CItem*> m_vecItem;
     //아이템 1번~5번째 칸 위치 아이템 1칸씩 범위
@@ -28,6 +30,8 @@ private:
     Vec2 m_vItemEndPos;
     Vec2 m_vItemStep;
    
+    //숫자 이미지 벡터
+    vector<CTexture*> m_vecNumber;
 
 public:
     virtual void MouseOn();//UI위에 마우스 올라왔을 떄 
@@ -53,6 +57,10 @@ private:
     //아이템 찾기
     CItem* getItemThisIndex(int _iIndex);
     void changeItemIndex(CItem* _pItem, CItem* _pOtehr);
+
+    //렌더링
+    void keyRender(HDC _dc);
+    void skillRender(HDC _dc);
 
 private:
     friend class CInterfaceMgr;

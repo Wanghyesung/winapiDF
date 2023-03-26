@@ -20,7 +20,7 @@ CInterFace::CInterFace():
 	m_vecItem{},
 	m_vecSKillTex{},
 	m_vecCoolDownTex{},
-	m_vecKeyTex{},
+	m_vecKeyValue{},
 	m_vItemStartPos(Vec2(150.f, 655.f)),
 	m_vItemEndPos(Vec2(520.f, 693.f)),
 	m_vItemStep(Vec2(62.f, 38.f))
@@ -33,7 +33,9 @@ CInterFace::CInterFace():
 	m_vecSKillTex.resize(5);
 	m_vecCoolDownTex.resize(5);
 	m_vecItem.resize(6);
-	m_vecKeyTex.resize(12);
+
+	//내 인터페이스 키 입력값
+	m_vecKeyValue = { L"1",L"2" ,L"3" ,L"4" ,L"5" ,L"6" ,L"z" ,L"s" ,L"d" ,L"f" ,L"t" };
 
 	//스킬 이미지
 	m_vecSKillTex[0] = CResMgr::GetInst()->LoadTextur(L"Kick", L"..\\OutPut\\bin_release\\Content\\SKill\\Kick.bmp");
@@ -56,9 +58,6 @@ CInterFace::CInterFace():
 		wstring strNum = std::to_wstring(i + 1);
 		m_vecNumber[i] = CResMgr::GetInst()->LoadTextur(L"Number" + strNum, L"..\\OutPut\\bin_release\\Content\\Item\\" + strNum + L".bmp");
 	}
-
-	//스킬 키랑 아이템1~6번째 텍스쳐 가져오기
-	//m_vecKeyTex[0] = CResMgr::GetInst()->LoadTextur()
 
 }
 
@@ -305,15 +304,48 @@ void CInterFace::render(HDC _dc)
 		RGB(0, 0, 0));
 
 	skillRender(_dc);
-	keyRender(_dc);
-
 
 	CUI::render(_dc);
+
+	//아이템이 그려지고 그 위체 키값이 그려지게
+	keyRender(_dc);
 
 }
 
 void CInterFace::keyRender(HDC _dc)
 {
+	Vec2 vStartPos = m_vItemStartPos;
+	for (int i = 0; i < 6; ++i)
+	{
+		CTexture* pNumTex = CKeyMgr::GetInst()->GetKeyTex(m_vecKeyValue[i]);
+
+		TransparentBlt(_dc,
+			vStartPos.x + 5, vStartPos.y,
+			pNumTex->Width()*1.5, pNumTex->Height()*1.5,
+			pNumTex->GetDC(),
+			0, 0,
+			pNumTex->Width(), pNumTex->Height(),
+			RGB(255, 255, 255));
+
+		vStartPos.x += m_vItemStep.x;
+	}
+	//스킬 그릴 시작 위치
+	vStartPos = Vec2(758.f, 655.f);
+	
+	for (int i = 6; i < 11; ++i)
+	{
+		CTexture* pNumTex = CKeyMgr::GetInst()->GetKeyTex(m_vecKeyValue[i]);
+
+		TransparentBlt(_dc,
+			vStartPos.x - 10, vStartPos.y+ 1,
+			pNumTex->Width() * 1.7, pNumTex->Height() * 1.6,
+			pNumTex->GetDC(),
+			0, 0,
+			pNumTex->Width(), pNumTex->Height(),
+			RGB(255, 255, 255));
+
+		vStartPos.x += m_vItemStep.x;
+	}
 
 }
 

@@ -1,5 +1,7 @@
 #pragma once
 
+class CTexture;
+
 enum class KEY_STATE
 {
 	TAP,//지금 눌렀을 때
@@ -51,11 +53,13 @@ private:
 	vector<KeyInfo> m_vecKey;//벡터 안에 키 상태값들을 넣기
 	Vec2			m_vCurMousePos;
 	
+	vector<CTexture*> m_vecKeyTex;
 
 public:
 	void init();
 	void update();
 
+	CTexture* GetKeyTex(const wstring& _strKey);
 
 	Vec2	  GetMousePos() {return m_vCurMousePos;}
 	KEY_STATE GetKeyState(KEY _eKey) { return m_vecKey[(int)_eKey].eState; }

@@ -22,7 +22,7 @@ private:
 
     vector<CTexture*> m_vecSKillTex;
     vector<CTexture*> m_vecCoolDownTex;
-    vector<CTexture*> m_vecKeyTex;
+    vector<wstring> m_vecKeyValue;
     //내 인터페이스 아이템들
     vector<CItem*> m_vecItem;
     //아이템 1번~5번째 칸 위치 아이템 1칸씩 범위

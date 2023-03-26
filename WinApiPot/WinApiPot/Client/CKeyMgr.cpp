@@ -4,6 +4,8 @@
 #include "CCore.h"
 #include "CTimeMgr.h"
 
+#include "CResMgr.h"
+
 int g_arrKey[(int)KEY::LAST] =
 {
 	VK_LEFT,
@@ -52,9 +54,11 @@ int g_arrKey[(int)KEY::LAST] =
 
 
 
-CKeyMgr::CKeyMgr()
+CKeyMgr::CKeyMgr():
+	m_vecKeyTex{}
 {
-
+	//1 2 3 4 5 6 z s d f t
+	m_vecKeyTex.resize(11);
 }
 CKeyMgr::~CKeyMgr()
 {
@@ -69,6 +73,24 @@ void CKeyMgr::init()
 	{
 		m_vecKey.push_back(KeyInfo{KEY_STATE::NONE , false });
 	}
+
+
+	//키 텍스쳐 관련 초기화
+	for (UINT i = 0; i < 6; ++i)
+	{
+		wstring strNum = std::to_wstring(i + 1);
+		m_vecKeyTex[i] = CResMgr::GetInst()->LoadTextur(L"KeyNum" + strNum, L"..\\OutPut\\bin_release\\Content\\Key\\" + strNum + L".bmp");
+	}
+
+	//내 인터페이스에 키입력 순서
+	wstring strKey[5] = {L"z", L"s" , L"d" , L"f" , L"t"};
+	
+	for (UINT i = 0; i < 5; ++i)
+	{
+		CTexture* pTex = CResMgr::GetInst()->LoadTextur(L"KeyNum" + strKey[i], L"..\\OutPut\\bin_release\\Content\\Key\\" + strKey[i] + L".bmp");
+		m_vecKeyTex[6 + i] = pTex;
+	}
+
 }
 
 void CKeyMgr::update()
@@ -135,4 +157,16 @@ void CKeyMgr::update()
 			}
 		}
 	}
+}
+
+CTexture* CKeyMgr::GetKeyTex(const wstring& _strKey)
+{
+	CTexture* pTex = CResMgr::GetInst()->FindTexture(L"KeyNum" + _strKey);
+
+	if (pTex != nullptr)
+	{
+		return pTex;
+	}
+
+	return nullptr;
 }

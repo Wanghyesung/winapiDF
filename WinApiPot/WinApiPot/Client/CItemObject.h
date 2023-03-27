@@ -17,6 +17,8 @@ private:
 
 	CItem* m_pItem;
 
+	bool m_bOnMap;
+
 private:
 	void setItemObj(ITEM_TYPE _eItemType);
 

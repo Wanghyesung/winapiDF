@@ -9,6 +9,7 @@ enum class MON_TYPE
 	LORD,
 	DRAGON,
 	BLUE_DRAGON,
+	BROWN_DRAGON
 };
 
 

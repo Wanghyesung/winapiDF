@@ -305,6 +305,12 @@
     <Filter Include="Engine\03.Manager\CItemMgr">
       <UniqueIdentifier>{0360ff02-49e2-4454-ade9-637abf549bbe}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Engine\05.CObject\CMonster\CBrownDragon">
+      <UniqueIdentifier>{35096f57-60ba-4f74-af5d-9f5533ff61cd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\04.CScene\CSceneSky\CSceneTowersecond">
+      <UniqueIdentifier>{042ed7c5-07c9-4582-91ee-a9d7b1c88ebc}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="pch.h" />
@@ -614,6 +620,9 @@
     <ClInclude Include="CItemMgr.h">
       <Filter>Engine\03.Manager\CItemMgr</Filter>
     </ClInclude>
+    <ClInclude Include="CBrDragon.h">
+      <Filter>Engine\05.CObject\CMonster\CBrownDragon</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Client.rc">
@@ -914,6 +923,9 @@
     </ClCompile>
     <ClCompile Include="CItemMgr.cpp">
       <Filter>Engine\03.Manager\CItemMgr</Filter>
+    </ClCompile>
+    <ClCompile Include="CBrDragon.cpp">
+      <Filter>Engine\05.CObject\CMonster\CBrownDragon</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

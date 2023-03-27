@@ -10,6 +10,7 @@
 #include "CObject.h"
 #include "CMonster.h"
 
+#include "CBrDragon.h"
 #include "CInterFace.h"
 #include "CMonFactory.h"
 #include "CMonInterface.h"
@@ -60,7 +61,7 @@ void CSceneTowerFirst::Init()
 	CSkillMgr::GetInst()->init(m_eType);
 
 	CStoneBox* pStone = new CStoneBox;
-	pStone->SetPos(Vec2(400.f, 700.f));
+	pStone->SetPos(Vec2(400.f, 600.f));
 	pStone->GetCollider()->SetScale(Vec2(50.f, 50.f));
 	AddObject(pStone, GROUP_TYPE::STONE_BOX);
 	
@@ -85,7 +86,23 @@ void CSceneTowerFirst::Init()
 	//AddObject(pLordInterface, GROUP_TYPE::UI);
 	//AddObject(pLord, GROUP_TYPE::MONSTER);
 
-	//
+	CMonster* pBDragon1 = CMonFactory::CraeteMonster(MON_TYPE::BLUE_DRAGON, Vec2(500.f, 500.f), m_eType);
+	pBDragon1->SetName(L"bDragon1");
+	CMonInterface* brdragonInterface2 = new CMonInterface(pBDragon1->GetName());
+	brdragonInterface2->SetScale(Vec2(626, 29));
+	brdragonInterface2->SetPos(Vec2(40, 20));
+	AddObject(brdragonInterface2, GROUP_TYPE::UI);
+	AddObject(pBDragon1, GROUP_TYPE::MONSTER);
+	
+	
+	CMonster* pBDragon2 = CMonFactory::CraeteMonster(MON_TYPE::BLUE_DRAGON, Vec2(1000.f, 500.f), m_eType);
+	pBDragon2->SetName(L"brDragon2");
+	CMonInterface* brdragonInterface1 = new CMonInterface(pBDragon2->GetName());
+	brdragonInterface1->SetScale(Vec2(626, 29));
+	brdragonInterface1->SetPos(Vec2(40, 20));
+	AddObject(brdragonInterface1, GROUP_TYPE::UI);
+	AddObject(pBDragon2, GROUP_TYPE::MONSTER);
+
 	//방향 먼저 잡기
 	CGate* pGate = new CGate(L"up");
 	pGate->SetPos(Vec2(500.f, 365.f));
@@ -133,6 +150,7 @@ void CSceneTowerFirst::Enter()
 	CSkillMgr::GetInst()->SetPlayer((CPlayer*)GetPlayerObj());
 
 	CColliderMgr::GetInst()->ChekGroup(GROUP_TYPE::PLAYER, GROUP_TYPE::STONE_BOX);
+	CColliderMgr::GetInst()->ChekGroup(GROUP_TYPE::PLAYER, GROUP_TYPE::ITEM);
 	CColliderMgr::GetInst()->ChekGroup(GROUP_TYPE::BULLET, GROUP_TYPE::STONE_BOX);
 	CColliderMgr::GetInst()->ChekGroup(GROUP_TYPE::SKILL, GROUP_TYPE::STONE_BOX);
 	CColliderMgr::GetInst()->ChekGroup(GROUP_TYPE::PLAYER, GROUP_TYPE::STONE_PILLAR);

@@ -152,6 +152,7 @@
     <ClInclude Include="CAttackObject.h" />
     <ClInclude Include="CAttackState.h" />
     <ClInclude Include="CBlueDragon.h" />
+    <ClInclude Include="CBrDragon.h" />
     <ClInclude Include="CBullet.h" />
     <ClInclude Include="CCameraMgr.h" />
     <ClInclude Include="CCollider.h" />
@@ -257,6 +258,7 @@
     <ClCompile Include="CAttackObject.cpp" />
     <ClCompile Include="CAttackState.cpp" />
     <ClCompile Include="CBlueDragon.cpp" />
+    <ClCompile Include="CBrDragon.cpp" />
     <ClCompile Include="CBullet.cpp" />
     <ClCompile Include="CCameraMgr.cpp" />
     <ClCompile Include="CCollider.cpp" />

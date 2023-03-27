@@ -142,6 +142,7 @@ void CMonster::update_skillTime()
 
 void CMonster::set_attackobj(SCENE_TYPE _eSceneType)
 {
+	//몬스터 공격 오브젝트 미리 생성
 	m_pAttackObj = new CAttackObject;
 	m_pAttackObj->m_pOwner = this;
 	SceneMgr::GetInst()->FindScene(_eSceneType)->AddObject(m_pAttackObj, GROUP_TYPE::MONSTER_SKILL);

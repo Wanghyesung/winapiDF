@@ -15,6 +15,7 @@
 #include "CMPItem.h"
 
 CItemObject::CItemObject():
+	m_bOnMap(true),
 	m_pItemTex(nullptr),
 	m_eItemType(ITEM_TYPE::NONE),
 	m_pItem(nullptr)
@@ -28,7 +29,9 @@ CItemObject::CItemObject():
 
 CItemObject::~CItemObject()
 {
-
+	//캐릭터가 안먹고 맵에 남아있다면
+	if (m_pItem != nullptr && m_bOnMap)
+		delete m_pItem;
 }
 
 void CItemObject::update()
@@ -98,6 +101,7 @@ void CItemObject::OnColliderEnter(CCollider* _pOther)
 	{
 		CItemMgr::GetInst()->GetItemObejct(m_pItem);
 
+		m_bOnMap = false;
 		DeleteObject(this);
 	}
 }

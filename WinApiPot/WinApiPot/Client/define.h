@@ -58,6 +58,7 @@ enum class GROUP_TYPE
 	CRYSTAL,
 	GATE,
 	PLAYER,
+	ITEM,
 	WALL,
 	SKILL,
 	MONSTER,
@@ -110,6 +111,7 @@ enum class EVENT_TYPE
 	END,
 };
 
+
 enum class SKILL_STATE
 {
 	UPPER_KICK,
@@ -126,6 +128,14 @@ enum class ATTACK_TYPE
 	UPPER,
 	DOWN,
 	NORMAL
+};
+
+enum class ITEM_TYPE
+{
+	HPITEM,
+	MPITEM,
+
+	NONE = 3,
 };
 
 

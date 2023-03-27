@@ -39,9 +39,9 @@ void CPlayerHit::update()
 		return;
 	}
 
-	if (iCurFrame == MAX_HIT_FRAME)
+	if (iCurFrame == 1)
 	{
-		pPlayer->GetAnimator()->GetCurAnimation()->SetFram(MAX_HIT_FRAME);
+		pPlayer->GetAnimator()->GetCurAnimation()->SetFram(1);
 		
 	}
 	else

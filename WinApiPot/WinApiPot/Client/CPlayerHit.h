@@ -19,7 +19,6 @@ public:
 
 public:
     bool IsHit() { return m_bHit; }
-private:
 
 
 

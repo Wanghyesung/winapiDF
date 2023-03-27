@@ -95,6 +95,12 @@
 #include "C:\Users\wangh\source\tem\WinApiPot\WinApiPot\Client\CItem.cpp"
 
 
+#include "C:\Users\wangh\source\tem\WinApiPot\WinApiPot\Client\CItemMgr.cpp"
+
+
+#include "C:\Users\wangh\source\tem\WinApiPot\WinApiPot\Client\CItemObject.cpp"
+
+
 #include "C:\Users\wangh\source\tem\WinApiPot\WinApiPot\Client\CKeyMgr.cpp"
 
 

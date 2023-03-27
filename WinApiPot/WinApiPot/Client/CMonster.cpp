@@ -17,6 +17,7 @@
 #include "CSceneMgr.h"
 #include "CScene.h"
 #include "CInterfaceMgr.h"
+#include "CItemMgr.h"
 
 
 CMonster::CMonster() :
@@ -77,7 +78,7 @@ void CMonster::hit(CCollider* _pOther, const tAttackInfo& _tAtt)
 	m_tHitInfo.m_fHitUpperRcnt = _tAtt.m_fAttUpperRcnt;
 
 	if (_pOther->GetObj()->GetTag() == GROUP_TYPE::SKILL
-		&& m_tMonInfo.m_iHp != 0)
+		&& m_tMonInfo.m_iHp > 0)
 	{
 		float fDir = GetCollider()->GetFinalPos().x - _pOther->GetFinalPos().x;
 		if (fDir > 0.f)
@@ -113,8 +114,12 @@ void CMonster::hit(CCollider* _pOther, const tAttackInfo& _tAtt)
 
 		
 		m_tMonInfo.m_iHp-= _tAtt.m_fAttackDamage;
-		if (m_tMonInfo.m_iHp <= 0)
-			m_tMonInfo.m_iHp = 0;
+		if (m_tMonInfo.m_iHp <= 0.f)
+		{
+			m_tMonInfo.m_iHp = 0.f;
+			//아이템 생성
+			CItemMgr::GetInst()->CreateItem(GetPos());
+		}	
 		update_MonInterFace();
 	}
 }

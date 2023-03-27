@@ -1,5 +1,6 @@
 #pragma once
 #include "CPlayerState.h"
+
 class CPlayerJumpDown :
     public CPlayerState
 {

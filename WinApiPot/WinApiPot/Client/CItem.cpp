@@ -20,6 +20,7 @@ CItem::CItem() :
 	m_iItemCount(0),
 	m_iWidth(0),
 	m_iHeight(0),
+	m_eItemType(ITEM_TYPE::NONE),
 	m_vecNumber{}
 {
 	//1~9

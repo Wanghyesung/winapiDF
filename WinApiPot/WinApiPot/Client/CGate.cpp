@@ -21,7 +21,8 @@ CGate::CGate(const wstring& _strDir) :
 	SetTag(GROUP_TYPE::GATE);
 
 	CreateCollider();
-
+	GetCollider()->SetOffSet(Vec2(-10.f, 20.f));
+		
 	wstring strPath = L"..\\OutPut\\bin_release\\Content\\Object\\";
 	wstring strName = L"gate_" + _strDir;
 	wstring strResult = strPath + strName + L".bmp";
@@ -30,6 +31,7 @@ CGate::CGate(const wstring& _strDir) :
 	//gate + 방향 문
 	CTex = CResMgr::GetInst()->LoadTextur(strResult, strResult);
 	CTexDoor = CResMgr::GetInst()->LoadTextur(strDoorResult,strDoorResult);
+	CUpStairs = CResMgr::GetInst()->LoadTextur(L"upstairs", L"..\\OutPut\\bin_release\\Content\\Object\\upstairs.bmp");
 }
 
 CGate::~CGate()
@@ -42,16 +44,30 @@ void CGate::update()
 	
 	//if (!m_bActive)
 	//	return;
-	//
-	//const vector<CObject*>& MonVec = SceneMgr::GetInst()->GetCurSCene()->GetGroupObject(GROUP_TYPE::MONSTER);
-	//if (MonVec.size() == 0)
-	//	m_bActive = false;
+	
+	const vector<CObject*>& MonVec = SceneMgr::GetInst()->GetCurSCene()->GetGroupObject(GROUP_TYPE::MONSTER);
+	if (MonVec.size() == 0)
+		m_bActive = false;
 }
 
 void CGate::render(HDC _dc)
 {
 	Vec2 vPos = GetPos();
 	vPos = CCameraMgr::GetInst()->GetRenderPos(vPos);
+
+	//위에 계단 먼저 그리기
+	TransparentBlt(_dc,
+		(int)(vPos.x - CUpStairs->Width() / 2.f + 100.f),
+		(int)(vPos.y - CUpStairs->Height() / 2.f - 130.f),
+		(int)(CUpStairs->Width()),
+		(int)(CUpStairs->Height()),
+		CUpStairs->GetDC(),
+		(int)0,
+		(int)0,
+		(int)(CUpStairs->Width()),
+		(int)(CUpStairs->Height()),
+		RGB(0, 0, 0));
+
 
 	TransparentBlt(_dc,
 		(int)(vPos.x - CTex->Width() / 2.f),
@@ -79,6 +95,9 @@ void CGate::render(HDC _dc)
 			(int)(CTexDoor->Height()),
 			RGB(0, 0, 0));
 	}
+
+	
+
 	component_render(_dc);
 }
 

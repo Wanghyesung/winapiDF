@@ -20,6 +20,7 @@
 
 #include "CHPItem.h"
 #include "CMPItem.h"
+#include "CItemObject.h"
 
 CSceneWest::CSceneWest():
 	m_eType(SCENE_TYPE::WEST_COAST)
@@ -52,7 +53,7 @@ void CSceneWest::Init()
 	//배경정보 담고 만들기
 	tBackGround tInfo = {};
 	tInfo.fRightWidth = m_pBackGround->Width();
-	tInfo.fBottomHeight = m_pBackGround->Height();
+	tInfo.fBottomHeight = m_pBackGround->Height() - 95.f;
 	tInfo.fLeftWidth = GetStartDrawPoint().x;
 	tInfo.fTopHeight = GetStartDrawPoint().y;
 	SetBackGroundInfo(tInfo);
@@ -69,7 +70,7 @@ void CSceneWest::Init()
 	
 	AddObject(pInven, GROUP_TYPE::UI);
 
-	CObject* pObj = CreatePlayer(Vec2(500.f, 650.f));
+	CObject* pObj = CreatePlayer(Vec2(450.f, 650.f));
 	AddObject(pObj, GROUP_TYPE::PLAYER);
 	RegisterPlayer(pObj);
 	CSkillMgr::GetInst()->SetPlayer((CPlayer*)GetPlayerObj());
@@ -83,6 +84,15 @@ void CSceneWest::Init()
 	pPortal_1->SetNextScene(SCENE_TYPE::FIRST_DUNGEON);
 	//포탈 크기는 고정으로 생성자에서 만듬
 	AddObject(pPortal_1, GROUP_TYPE::PORTAL);
+
+
+	CPortal* pPortal_2 = new CPortal;
+	pPortal_2->SetName(L"Port_Porta2");
+	pPortal_2->SetPos(Vec2(20.f, 650.f));
+	pPortal_2->GetCollider()->SetScale(Vec2(50.f, 400.f));
+	pPortal_2->SetNextScene(SCENE_TYPE::START_SCENE);
+	//포탈 크기는 고정으로 생성자에서 만듬
+	AddObject(pPortal_2, GROUP_TYPE::PORTAL);
 
 }
 

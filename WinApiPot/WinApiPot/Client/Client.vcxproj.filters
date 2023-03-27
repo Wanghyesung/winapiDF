@@ -299,6 +299,12 @@
     <Filter Include="Engine\05.CObject\CUI\CItem\CMPItem">
       <UniqueIdentifier>{8afecf30-c6f8-49fb-aa0f-d00f5cd720d8}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Engine\05.CObject\CUI\CItem\CItemObject">
+      <UniqueIdentifier>{340b4411-2d04-49c2-9601-2704f3fb3aba}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\03.Manager\CItemMgr">
+      <UniqueIdentifier>{0360ff02-49e2-4454-ade9-637abf549bbe}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="pch.h" />
@@ -602,6 +608,12 @@
     <ClInclude Include="CMPItem.h">
       <Filter>Engine\05.CObject\CUI\CItem\CMPItem</Filter>
     </ClInclude>
+    <ClInclude Include="CItemObject.h">
+      <Filter>Engine\05.CObject\CUI\CItem\CItemObject</Filter>
+    </ClInclude>
+    <ClInclude Include="CItemMgr.h">
+      <Filter>Engine\03.Manager\CItemMgr</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Client.rc">
@@ -896,6 +908,12 @@
     </ClCompile>
     <ClCompile Include="CMPItem.cpp">
       <Filter>Engine\05.CObject\CUI\CItem\CMPItem</Filter>
+    </ClCompile>
+    <ClCompile Include="CItemObject.cpp">
+      <Filter>Engine\05.CObject\CUI\CItem\CItemObject</Filter>
+    </ClCompile>
+    <ClCompile Include="CItemMgr.cpp">
+      <Filter>Engine\03.Manager\CItemMgr</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

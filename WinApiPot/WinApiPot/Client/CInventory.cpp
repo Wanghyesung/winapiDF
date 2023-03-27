@@ -105,7 +105,10 @@ void CInventory::AddItem(CItem* _pItem)
 	}
 	else
 	{
-		++_pItem->m_iItemCount;
+		//원래 있는 내 아이템
+		CItem* pItem = FindItem(_pItem->GetItemInfo().m_strName);
+		++pItem->m_iItemCount;
+		DeleteObject(_pItem);
 	}
 
 }

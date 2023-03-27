@@ -7,7 +7,6 @@ public:
     CPlayerIdle();
     virtual ~CPlayerIdle();
 
-private:
    
 public:
     virtual void update();

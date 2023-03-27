@@ -14,6 +14,7 @@ private:
 
     CTexture* CTex;
     CTexture* CTexDoor;
+    CTexture* CUpStairs;
 
     //비활성화되면 문렌더 X
     bool m_bActive;

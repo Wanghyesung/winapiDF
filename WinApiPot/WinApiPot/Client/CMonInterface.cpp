@@ -83,7 +83,7 @@ void CMonInterface::changeValue(float _fHpValue)
 	{
 		float fValue = ((100.f - _fHpValue) / 100.f * fFullValue);
 		pHP->SetMinusHp(fValue);
-		if (fValue >= fFullValue)
+		if (0.f >= _fHpValue)
 		{
 			CInterfaceMgr::GetInst()->deleteInterface(m_strMonName);
 		}

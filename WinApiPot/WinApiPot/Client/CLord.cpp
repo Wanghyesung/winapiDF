@@ -270,7 +270,7 @@ void CLord::OnCollision(CCollider* _pOther)
 			hit(pSkill->GetCollider(), pSkill->GetAttInfo());
 		}
 
-		if (tMonInfo.m_iHp == 0)
+		if (tMonInfo.m_iHp <= 0.f)
 		{
 			ChangeAIState(GetAI(), MONSTER_STATE::DEAD);
 		}

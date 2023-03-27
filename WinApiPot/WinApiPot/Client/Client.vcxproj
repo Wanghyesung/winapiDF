@@ -178,6 +178,8 @@
     <ClInclude Include="CInventory.h" />
     <ClInclude Include="CInventoryMgr.h" />
     <ClInclude Include="CItem.h" />
+    <ClInclude Include="CItemMgr.h" />
+    <ClInclude Include="CItemObject.h" />
     <ClInclude Include="CKeyMgr.h" />
     <ClInclude Include="CKick.h" />
     <ClInclude Include="Client.h" />
@@ -281,6 +283,8 @@
     <ClCompile Include="CInventory.cpp" />
     <ClCompile Include="CInventoryMgr.cpp" />
     <ClCompile Include="CItem.cpp" />
+    <ClCompile Include="CItemMgr.cpp" />
+    <ClCompile Include="CItemObject.cpp" />
     <ClCompile Include="CKeyMgr.cpp" />
     <ClCompile Include="CKick.cpp" />
     <ClCompile Include="CLord.cpp" />

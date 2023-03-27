@@ -17,8 +17,11 @@ CHPItem::CHPItem():
 {
 	m_pItemTex = CResMgr::GetInst()->LoadTextur(L"HPItem", L"..\\OutPut\\bin_release\\Content\\Item\\HPItem.bmp");
 
+	m_eItemType = ITEM_TYPE::HPITEM;
+
 	//아이템 이미지 크기
 	SetScale(Vec2(28.f, 28.f));
+
 
 	SetItemName(L"HPItem");
 

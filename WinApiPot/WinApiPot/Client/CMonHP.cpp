@@ -12,6 +12,7 @@ CMonHP::CMonHP():
 	m_pHPTex = CResMgr::GetInst()->LoadTextur(L"MonHp", L"..\\OutPut\\bin_release\\Content\\Interface\\MonHP.bmp");
 
 	SetScale(Vec2(597.f, 9.f));
+
 }
 
 CMonHP::~CMonHP()

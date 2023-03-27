@@ -38,12 +38,12 @@ void CPlayerHitUpper::update()
 	if (!pPlayer->GetGravity()->IsGetGravity())
 	{
 		m_fCurTime += fDT;
-		pPlayer->GetAnimator()->GetCurAnimation()->SetFram(HIT_MAX_FRAME);
+		pPlayer->GetAnimator()->GetCurAnimation()->SetFram(4);
 	}
 
-	else if (iFrame == HiT_AIR )
+	else if (iFrame == 3 )
 	{
-		pPlayer->GetAnimator()->GetCurAnimation()->SetFram(HiT_AIR);
+		pPlayer->GetAnimator()->GetCurAnimation()->SetFram(3);
 	}
 
 	if (m_fCurTime >= m_fDonwTime)
@@ -73,7 +73,7 @@ void CPlayerHitUpper::Enter()
 	CPlayer* pPlayer = GetFSM()->GetPlayer();
 	if (pPlayer->playerPrevState == PLAYER_STATE::UPPER_HIT)
 	{
-		pPlayer->GetAnimator()->GetCurAnimation()->SetFram(HIT_START);
+		pPlayer->GetAnimator()->GetCurAnimation()->SetFram(2);
 	}
 
 }

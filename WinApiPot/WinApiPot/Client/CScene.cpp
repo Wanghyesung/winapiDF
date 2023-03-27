@@ -51,6 +51,7 @@ void CScene::render(HDC _dc)
 			}
 			else
 			{
+				//delete하기 전에 내 벡터에서 지우기
 				iter = m_arrObj[i].erase(iter);
 			}
 		}

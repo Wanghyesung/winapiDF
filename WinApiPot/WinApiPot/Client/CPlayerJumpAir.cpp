@@ -19,6 +19,7 @@ CPlayerJumpAir::CPlayerJumpAir():
 
 CPlayerJumpAir::~CPlayerJumpAir()
 {
+	int a = 10;
 }
 
 void CPlayerJumpAir::update()

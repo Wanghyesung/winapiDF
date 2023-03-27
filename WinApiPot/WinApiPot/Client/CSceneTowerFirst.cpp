@@ -40,22 +40,20 @@ CSceneTowerFirst::~CSceneTowerFirst()
 
 void CSceneTowerFirst::Init()
 {
-	CTexture* m_pBackGround = CResMgr::GetInst()->LoadTextur(L"dungeon_first", L"..\\OutPut\\bin_release\\Content\\Tile\\tile2.bmp");
+	CTexture* m_pBackGround = CResMgr::GetInst()->LoadTextur(L"dungeon_first", L"..\\OutPut\\bin_release\\Content\\Tile\\tile_1.bmp");
 	SetBackGround(m_pBackGround);
 
 	//배경정보 담고 만들기
 	tBackGround tInfo = {};
 	tInfo.fRightWidth = m_pBackGround->Width();
-	tInfo.fBottomHeight = m_pBackGround->Height() - 110;
+	tInfo.fBottomHeight = m_pBackGround->Height() - 180;
 	tInfo.fLeftWidth = GetStartDrawPoint().x + 40;
 	tInfo.fTopHeight = GetStartDrawPoint().y;
 	SetBackGroundInfo(tInfo);
 	//플레이어 인터페이스는 씬 바꿀때 삭제X
 	
-	
 
-
-	CObject* pObj = CreatePlayer(Vec2(300.f, 650.f));
+	CObject* pObj = CreatePlayer(Vec2(300.f, 450.f));
 	AddObject(pObj, GROUP_TYPE::PLAYER);
 	RegisterPlayer(pObj);
 	CSkillMgr::GetInst()->SetPlayer((CPlayer*)GetPlayerObj());
@@ -79,22 +77,22 @@ void CSceneTowerFirst::Init()
 	pSpinner->GetCollider()->SetScale(Vec2(50.f, 110.f));
 	AddObject(pSpinner, GROUP_TYPE::SPINNER);
 
-	CMonster* pLord = CMonFactory::CraeteMonster(MON_TYPE::LORD, Vec2(1200.f, 580.f), m_eType);
-	pLord->SetName(L"Lord");
-	CMonInterface* pLordInterface = new CMonInterface(pLord->GetName(),true);
-	pLordInterface->SetScale(Vec2(626, 29));
-	pLordInterface->SetPos(Vec2(40, 20));
-	AddObject(pLordInterface, GROUP_TYPE::UI);
-	AddObject(pLord, GROUP_TYPE::MONSTER);
+	//CMonster* pLord = CMonFactory::CraeteMonster(MON_TYPE::LORD, Vec2(1200.f, 580.f), m_eType);
+	//pLord->SetName(L"Lord");
+	//CMonInterface* pLordInterface = new CMonInterface(pLord->GetName(),true);
+	//pLordInterface->SetScale(Vec2(626, 29));
+	//pLordInterface->SetPos(Vec2(40, 20));
+	//AddObject(pLordInterface, GROUP_TYPE::UI);
+	//AddObject(pLord, GROUP_TYPE::MONSTER);
 
 	//
-	////방향 먼저 잡기
-	//CGate* pGate = new CGate(L"right");
-	//pGate->SetPos(Vec2(1200.f, 400.f));
-	//pGate->GetCollider()->SetScale(Vec2(70.f, 70.f));
-	//pGate->SetNextScene(SCENE_TYPE::WEST_COAST);
-	//AddObject(pGate, GROUP_TYPE::GATE);
-	//
+	//방향 먼저 잡기
+	CGate* pGate = new CGate(L"up");
+	pGate->SetPos(Vec2(500.f, 365.f));
+	pGate->GetCollider()->SetScale(Vec2(70.f, 70.f));
+	pGate->SetNextScene(SCENE_TYPE::WEST_COAST);
+	AddObject(pGate, GROUP_TYPE::GATE);
+	
 	////크기는 생성장에서
 	//CCrystalPillar* pCryStal = new CCrystalPillar;
 	//pCryStal->SetPos(Vec2(500.f, 500.f));

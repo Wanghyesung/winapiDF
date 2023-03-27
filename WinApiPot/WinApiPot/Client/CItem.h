@@ -3,7 +3,7 @@
 
 class CInventory;
 class CInterFace;
-
+class CItemMgr;
 
 class CItem :
     public CUI
@@ -26,6 +26,8 @@ private:
     vector<CTexture*> m_vecNumber;
 
 protected:
+    ITEM_TYPE m_eItemType;
+
     UINT m_iItemCount;
 
     bool m_bIsInterfacePos;
@@ -76,6 +78,7 @@ private:
     void SetItemScale(Vec2 _vScale);
 
 
+    friend class CItemMgr;
     friend class CInventory;
     friend class CInterFace;
 };

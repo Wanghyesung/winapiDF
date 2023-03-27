@@ -13,6 +13,8 @@ CMPItem::CMPItem()
 {
 	m_pItemTex = CResMgr::GetInst()->LoadTextur(L"MPItem", L"..\\OutPut\\bin_release\\Content\\Item\\MPItem.bmp");
 
+	m_eItemType = ITEM_TYPE::MPITEM;
+
 	//아이템 이미지 크기
 	SetScale(Vec2(28.f, 28.f));
 

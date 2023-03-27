@@ -63,7 +63,7 @@ CInterFace::CInterFace():
 
 CInterFace::~CInterFace()
 {
-	int a = 10;
+	
 }
 
 void CInterFace::update()
@@ -78,28 +78,44 @@ void CInterFace::update()
 	}
 	else if (KEY_TAP(KEY::KEY2))
 	{
-
+		if (m_vecItem[1] != nullptr)
+		{
+			m_vecItem[1]->UseItem();
+		}
 	}
 
 	else if (KEY_TAP(KEY::KEY3))
 	{
-
+		if (m_vecItem[2] != nullptr)
+		{
+			m_vecItem[2]->UseItem();
+		}
 	}
 
 	else if (KEY_TAP(KEY::KEY4))
 	{
-
+		if (m_vecItem[3] != nullptr)
+		{
+			m_vecItem[3]->UseItem();
+		}
 	}
 
 	else if (KEY_TAP(KEY::KEY5))
 	{
-
+		if (m_vecItem[4] != nullptr)
+		{
+			m_vecItem[4]->UseItem();
+		}
 	}
 
 	else if (KEY_TAP(KEY::KEY6))
 	{
-
+		if (m_vecItem[5] != nullptr)
+		{
+			m_vecItem[5]->UseItem();
+		}
 	}
+
 	CUI::update();
 
 }

@@ -90,13 +90,13 @@ void CTraceState::update()
 
 	if (isJump)//점프중이라면
 	{
-		vPos = GetMonster()->GetCollider()->GetFinalPos();
-		vTargetPos = m_pTarget->GetJumPos(); //점프할 떄 착지 지점
+		vPos = GetMonster()->GetPos();
+		vTargetPos = m_pTarget->GetJumPos() + m_pTarget->GetCollider()->GetOffSetPos(); //점프할 떄 착지 지점
 	}
 
 	else
 	{
-		vPos = GetMonster()->GetCollider()->GetFinalPos();//내 지점
+		vPos = GetMonster()->GetPos();  //내 지점
 		vTargetPos = m_pTarget->GetCollider()->GetFinalPos(); // 상대 지점
 	}
 

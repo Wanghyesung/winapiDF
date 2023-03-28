@@ -72,7 +72,7 @@ void CExclusiveTrace::update()
 	if (isJump)//점프중이라면
 	{
 		vPos = GetMonster()->GetPos();
-		vTargetPos = m_pTarget->GetJumPos(); //점프할 떄 착지 지점
+		vTargetPos = m_pTarget->GetJumPos() + m_pTarget->GetCollider()->GetOffSetPos(); //점프할 떄 착지 지점
 	}
 
 	else

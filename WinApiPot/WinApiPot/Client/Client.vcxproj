@@ -248,6 +248,11 @@
     <ClInclude Include="pch.h" />
     <ClInclude Include="Resource.h" />
     <ClInclude Include="CSceneMgr.h" />
+    <ClInclude Include="SceneBoss.h" />
+    <ClInclude Include="SceneTower5.h" />
+    <ClInclude Include="SceneTower_2.h" />
+    <ClInclude Include="SceneTower_3.h" />
+    <ClInclude Include="SceneTower_4.h" />
     <ClInclude Include="struct.h" />
     <ClInclude Include="targetver.h" />
   </ItemGroup>
@@ -349,6 +354,11 @@
     <ClCompile Include="Header.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="CSceneMgr.cpp" />
+    <ClCompile Include="SceneBoss.cpp" />
+    <ClCompile Include="SceneTower5.cpp" />
+    <ClCompile Include="SceneTower_2.cpp" />
+    <ClCompile Include="SceneTower_3.cpp" />
+    <ClCompile Include="SceneTower_4.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Client.rc" />

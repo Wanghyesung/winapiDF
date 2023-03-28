@@ -183,6 +183,10 @@ bool CSkillMgr::IsPossibleSkill(SKILL_STATE _tSkill)
 	if (m_pPlayer->m_tPlayerInfo.m_fMP < pSkill->GetMP())
 		return false;
 
+	if (m_pPlayer->playerCurState == PLAYER_STATE::HIT || 
+		m_pPlayer->playerCurState == PLAYER_STATE::UPPER_HIT)
+		return false;
+
 	//스킬 사용
 	if (iter->second == 0.f)
 	{

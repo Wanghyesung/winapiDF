@@ -58,17 +58,7 @@ void CSceneWest::Init()
 	tInfo.fTopHeight = GetStartDrawPoint().y;
 	SetBackGroundInfo(tInfo);
 	//플레이어 인터페이스는 씬 바꿀때 삭제X
-	CreateInterFace();
 	
-
-	//static
-	CInventory* pInven = new CInventory;
-	CHPItem* pItemHP = new CHPItem;
-	pInven->AddItem(pItemHP);
-	CMPItem* pItemMP = new CMPItem;
-	pInven->AddItem(pItemMP);
-	
-	AddObject(pInven, GROUP_TYPE::UI);
 
 	CObject* pObj = CreatePlayer(Vec2(450.f, 650.f));
 	AddObject(pObj, GROUP_TYPE::PLAYER);

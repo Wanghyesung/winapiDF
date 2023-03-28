@@ -308,8 +308,20 @@
     <Filter Include="Engine\05.CObject\CMonster\CBrownDragon">
       <UniqueIdentifier>{35096f57-60ba-4f74-af5d-9f5533ff61cd}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Engine\04.CScene\CSceneSky\CSceneTowersecond">
+    <Filter Include="Engine\04.CScene\CSceneSky\CSceneTower_3">
+      <UniqueIdentifier>{d786e486-da14-4617-be2b-c8120794cef5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\04.CScene\CSceneSky\CSceneTower_2">
       <UniqueIdentifier>{042ed7c5-07c9-4582-91ee-a9d7b1c88ebc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\04.CScene\CSceneSky\CSceneTower4">
+      <UniqueIdentifier>{fcac14ef-adbc-4b33-a672-50a147b15fca}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\04.CScene\CSceneSky\SceneTower5">
+      <UniqueIdentifier>{f38dbd99-a80a-4935-9733-d36c9bc492f5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\04.CScene\CSceneBoss">
+      <UniqueIdentifier>{d0ecc7aa-4b19-401f-acbf-fc9a3fcbd839}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -557,9 +569,6 @@
     <ClInclude Include="CSceneWest.h">
       <Filter>Engine\04.CScene\CSceneWest</Filter>
     </ClInclude>
-    <ClInclude Include="CSceneTowerFirst.h">
-      <Filter>Engine\04.CScene\CSceneSky</Filter>
-    </ClInclude>
     <ClInclude Include="CScene.h">
       <Filter>Engine\04.CScene</Filter>
     </ClInclude>
@@ -622,6 +631,24 @@
     </ClInclude>
     <ClInclude Include="CBrDragon.h">
       <Filter>Engine\05.CObject\CMonster\CBrownDragon</Filter>
+    </ClInclude>
+    <ClInclude Include="CSceneTowerFirst.h">
+      <Filter>Engine\04.CScene\CSceneSky</Filter>
+    </ClInclude>
+    <ClInclude Include="SceneTower_2.h">
+      <Filter>Engine\04.CScene\CSceneSky\CSceneTower_2</Filter>
+    </ClInclude>
+    <ClInclude Include="SceneTower_3.h">
+      <Filter>Engine\04.CScene\CSceneSky\CSceneTower_3</Filter>
+    </ClInclude>
+    <ClInclude Include="SceneTower_4.h">
+      <Filter>Engine\04.CScene\CSceneSky\CSceneTower4</Filter>
+    </ClInclude>
+    <ClInclude Include="SceneTower5.h">
+      <Filter>Engine\04.CScene\CSceneSky\SceneTower5</Filter>
+    </ClInclude>
+    <ClInclude Include="SceneBoss.h">
+      <Filter>Engine\04.CScene\CSceneBoss</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -858,9 +885,6 @@
     <ClCompile Include="CSceneWest.cpp">
       <Filter>Engine\04.CScene\CSceneWest</Filter>
     </ClCompile>
-    <ClCompile Include="CSceneTowerFirst.cpp">
-      <Filter>Engine\04.CScene\CSceneSky</Filter>
-    </ClCompile>
     <ClCompile Include="CScene.cpp">
       <Filter>Engine\04.CScene</Filter>
     </ClCompile>
@@ -926,6 +950,24 @@
     </ClCompile>
     <ClCompile Include="CBrDragon.cpp">
       <Filter>Engine\05.CObject\CMonster\CBrownDragon</Filter>
+    </ClCompile>
+    <ClCompile Include="CSceneTowerFirst.cpp">
+      <Filter>Engine\04.CScene\CSceneSky</Filter>
+    </ClCompile>
+    <ClCompile Include="SceneTower_2.cpp">
+      <Filter>Engine\04.CScene\CSceneSky\CSceneTower_2</Filter>
+    </ClCompile>
+    <ClCompile Include="SceneTower_3.cpp">
+      <Filter>Engine\04.CScene\CSceneSky\CSceneTower_3</Filter>
+    </ClCompile>
+    <ClCompile Include="SceneTower_4.cpp">
+      <Filter>Engine\04.CScene\CSceneSky\CSceneTower4</Filter>
+    </ClCompile>
+    <ClCompile Include="SceneTower5.cpp">
+      <Filter>Engine\04.CScene\CSceneSky\SceneTower5</Filter>
+    </ClCompile>
+    <ClCompile Include="SceneBoss.cpp">
+      <Filter>Engine\04.CScene\CSceneBoss</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

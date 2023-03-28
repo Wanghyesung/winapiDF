@@ -289,3 +289,18 @@
 
 #include "C:\Users\wangh\source\tem\WinApiPot\WinApiPot\Client\CSceneMgr.cpp"
 
+
+#include "C:\Users\wangh\source\tem\WinApiPot\WinApiPot\Client\SceneBoss.cpp"
+
+
+#include "C:\Users\wangh\source\tem\WinApiPot\WinApiPot\Client\SceneTower5.cpp"
+
+
+#include "C:\Users\wangh\source\tem\WinApiPot\WinApiPot\Client\SceneTower_2.cpp"
+
+
+#include "C:\Users\wangh\source\tem\WinApiPot\WinApiPot\Client\SceneTower_3.cpp"
+
+
+#include "C:\Users\wangh\source\tem\WinApiPot\WinApiPot\Client\SceneTower_4.cpp"
+

@@ -8,6 +8,11 @@
 #include "CSceneBack.h"
 #include "CSceneWest.h"
 #include "CSceneTowerFirst.h"
+#include "SceneTower_2.h"
+#include "SceneTower_3.h"
+#include "SceneTower_4.h"
+#include "SceneTower5.h"
+#include "SceneBoss.h"
 
 #include "CInterfaceMgr.h"
 
@@ -48,7 +53,11 @@ void SceneMgr::init()
 	m_arrScene[(UINT)SCENE_TYPE::SERIA_SCENE] = new CSeriaScene;
 	m_arrScene[(UINT)SCENE_TYPE::WEST_COAST] = new CSceneWest;
 	m_arrScene[(UINT)SCENE_TYPE::FIRST_DUNGEON] = new CSceneTowerFirst;
-
+	m_arrScene[(UINT)SCENE_TYPE::DUNGEON_2] = new  SceneTower_2;
+	m_arrScene[(UINT)SCENE_TYPE::DUNGEON_3] = new  SceneTower_3;
+	m_arrScene[(UINT)SCENE_TYPE::DUNGEON_4] = new SceneTower_4;
+	m_arrScene[(UINT)SCENE_TYPE::DUNGEON_5] = new SceneTower5;
+	m_arrScene[(UINT)SCENE_TYPE::DUNGEON_BOSS] = new SceneBoss;
 
 	for (UINT i = 0; i < (UINT)SCENE_TYPE::END; ++i)
 	{
@@ -57,7 +66,7 @@ void SceneMgr::init()
 		m_arrScene[i]->Init();
 	}
 
-	m_pCurrScene = m_arrScene[(UINT)SCENE_TYPE::WEST_COAST];//현재 씬 넣어주고
+	m_pCurrScene = m_arrScene[(UINT)SCENE_TYPE::DUNGEON_5];//현재 씬 넣어주고
 	m_pCurrScene->Enter();
 }
 

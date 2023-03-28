@@ -28,6 +28,11 @@
 #include "CDragonObj.h"
 #include "CThunder.h"
 
+#include "CInventoryMgr.h"
+#include "CInventory.h"
+#include "CHPItem.h"
+#include "CMPItem.h"
+
 CSceneTowerFirst::CSceneTowerFirst():
 	m_eType(SCENE_TYPE::FIRST_DUNGEON)
 {
@@ -54,14 +59,17 @@ void CSceneTowerFirst::Init()
 	//플레이어 인터페이스는 씬 바꿀때 삭제X
 	
 
+
 	CObject* pObj = CreatePlayer(Vec2(300.f, 450.f));
 	AddObject(pObj, GROUP_TYPE::PLAYER);
 	RegisterPlayer(pObj);
 	CSkillMgr::GetInst()->SetPlayer((CPlayer*)GetPlayerObj());
 	CSkillMgr::GetInst()->init(m_eType);
 
+
+
 	CStoneBox* pStone = new CStoneBox;
-	pStone->SetPos(Vec2(400.f, 600.f));
+	pStone->SetPos(Vec2(150.f, 450.f));
 	pStone->GetCollider()->SetScale(Vec2(50.f, 50.f));
 	AddObject(pStone, GROUP_TYPE::STONE_BOX);
 	
@@ -72,11 +80,11 @@ void CSceneTowerFirst::Init()
 	//AddObject(pPillar, GROUP_TYPE::STONE_PILLAR);
 	//
 	//
-	CSpinner* pSpinner = new CSpinner;
-	pSpinner->SetPos(Vec2(1000.f, 700.f));
-	pSpinner->GetCollider()->SetOffSet(Vec2(0.f, 50.f));
-	pSpinner->GetCollider()->SetScale(Vec2(50.f, 110.f));
-	AddObject(pSpinner, GROUP_TYPE::SPINNER);
+	//CSpinner* pSpinner = new CSpinner;
+	//pSpinner->SetPos(Vec2(1000.f, 700.f));
+	//pSpinner->GetCollider()->SetOffSet(Vec2(0.f, 50.f));
+	//pSpinner->GetCollider()->SetScale(Vec2(50.f, 110.f));
+	//AddObject(pSpinner, GROUP_TYPE::SPINNER);
 
 	//CMonster* pLord = CMonFactory::CraeteMonster(MON_TYPE::LORD, Vec2(1200.f, 580.f), m_eType);
 	//pLord->SetName(L"Lord");
@@ -96,7 +104,7 @@ void CSceneTowerFirst::Init()
 	
 	
 	CMonster* pBDragon2 = CMonFactory::CraeteMonster(MON_TYPE::BLUE_DRAGON, Vec2(1000.f, 500.f), m_eType);
-	pBDragon2->SetName(L"brDragon2");
+	pBDragon2->SetName(L"bDragon2");
 	CMonInterface* brdragonInterface1 = new CMonInterface(pBDragon2->GetName());
 	brdragonInterface1->SetScale(Vec2(626, 29));
 	brdragonInterface1->SetPos(Vec2(40, 20));
@@ -107,7 +115,7 @@ void CSceneTowerFirst::Init()
 	CGate* pGate = new CGate(L"up");
 	pGate->SetPos(Vec2(500.f, 365.f));
 	pGate->GetCollider()->SetScale(Vec2(70.f, 70.f));
-	pGate->SetNextScene(SCENE_TYPE::WEST_COAST);
+	pGate->SetNextScene(SCENE_TYPE::DUNGEON_2);
 	AddObject(pGate, GROUP_TYPE::GATE);
 	
 	////크기는 생성장에서
@@ -145,12 +153,15 @@ void CSceneTowerFirst::update()
 
 void CSceneTowerFirst::Enter()
 {
-	CCameraMgr::GetInst()->SetTargetObj((CPlayer*)GetPlayerObj());
+	CCameraMgr::GetInst()->SetTargetObj((CPlayer*)GetPlayerObj()); //vResolution / 2.f
 	CCameraMgr::GetInst()->init();
+	//현재 씬에 스킬 초기화
 	CSkillMgr::GetInst()->SetPlayer((CPlayer*)GetPlayerObj());
+
 
 	CColliderMgr::GetInst()->ChekGroup(GROUP_TYPE::PLAYER, GROUP_TYPE::STONE_BOX);
 	CColliderMgr::GetInst()->ChekGroup(GROUP_TYPE::PLAYER, GROUP_TYPE::ITEM);
+	CColliderMgr::GetInst()->ChekGroup(GROUP_TYPE::PLAYER, GROUP_TYPE::GATE);
 	CColliderMgr::GetInst()->ChekGroup(GROUP_TYPE::BULLET, GROUP_TYPE::STONE_BOX);
 	CColliderMgr::GetInst()->ChekGroup(GROUP_TYPE::SKILL, GROUP_TYPE::STONE_BOX);
 	CColliderMgr::GetInst()->ChekGroup(GROUP_TYPE::PLAYER, GROUP_TYPE::STONE_PILLAR);

@@ -33,6 +33,16 @@ void CTexture::Load(const wstring& _strRelativePath)
 }
 
 
+COLORREF CTexture::GetPixel(int x, int y)
+{
+	return ::GetPixel(m_dc, x, y);
+}
+
+void CTexture::SetPixle(int x, int y, COLORREF _color)
+{
+	::SetPixel(m_dc, x, y, _color);
+}
+
 void CTexture::Create(UINT _iWidth, UINT _iHeight)
 {
 	HDC mainDc = CCore::GetInst()->GetMainDC();

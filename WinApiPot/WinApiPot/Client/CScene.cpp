@@ -88,7 +88,6 @@ void CScene::finalupdate()
 
 void CScene::backgroundrender(HDC _dc, CTexture* _pTex, Vec2 _vStartPos)
 {
-	CTexture* m_pBackGround = _pTex;
 	Vec2 StartRenderPos = CCameraMgr::GetInst()->GetRenderPos(_vStartPos); //배경 이미지를 그릴 좌상단 시작점
 
 	BitBlt(_dc,

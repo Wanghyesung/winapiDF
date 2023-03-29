@@ -22,6 +22,8 @@
 #include "CMPItem.h"
 #include "CItemObject.h"
 
+#include "CTemWall.h"
+
 CSceneWest::CSceneWest():
 	m_eType(SCENE_TYPE::WEST_COAST)
 {
@@ -66,6 +68,20 @@ void CSceneWest::Init()
 	CSkillMgr::GetInst()->SetPlayer((CPlayer*)GetPlayerObj());
 	CSkillMgr::GetInst()->init(m_eType);
 
+	CreateInterFace();
+
+	CInventory* pInven = new CInventory;
+	CHPItem* pItemHP = new CHPItem;
+	pInven->AddItem(pItemHP);
+	CMPItem* pItemMP = new CMPItem;
+	pInven->AddItem(pItemMP);
+
+	AddObject(pInven, GROUP_TYPE::UI);
+
+	CTemWall* pTemWall = new CTemWall;
+	pTemWall->SetPos(Vec2(1232.f, 160.f));
+	pTemWall->GetCollider()->SetScale(Vec2(2464.f, 600.f));
+	AddObject(pTemWall, GROUP_TYPE::WALL);
 
 	CPortal* pPortal_1 = new CPortal;
 	pPortal_1->SetName(L"Port_Portal");
@@ -97,6 +113,7 @@ void CSceneWest::Enter()
 
 
 	CColliderMgr::GetInst()->ChekGroup(GROUP_TYPE::PLAYER, GROUP_TYPE::PORTAL);
+	CColliderMgr::GetInst()->ChekGroup(GROUP_TYPE::PLAYER, GROUP_TYPE::WALL);
 }
 
 void CSceneWest::Exit()

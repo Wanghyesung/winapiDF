@@ -43,7 +43,6 @@ void CWall::OnColliderEnter(CCollider* _pOther)
 		Vec2 vPlayerScale = _pOther->GetScale(); //크기
 		Vec2 vPlayerPosition = pOther->GetPos();
 
-		
 
 		//jumpos.y + 
 		Vec2 vPos = GetCollider()->GetFinalPos();//내 위치

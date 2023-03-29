@@ -14,6 +14,11 @@ private:
     BITMAP m_bitInfo;//비트맵 정보
     
 public:
+    //픽셀 전달
+    COLORREF GetPixel(int x, int y);
+    void SetPixle(int x, int y, COLORREF _color);
+
+public:
     void Create(UINT _iWidth, UINT _iHeight);//만들어진 텍스쳐의 
     void Load(const wstring& _strFilePath);//경로 가져오기 ResMgr에서 경로를 가져오기
 

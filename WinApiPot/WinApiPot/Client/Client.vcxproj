@@ -230,6 +230,7 @@
     <ClInclude Include="CStandOffAttack.h" />
     <ClInclude Include="CState.h" />
     <ClInclude Include="CStoneBox.h" />
+    <ClInclude Include="CTemWall.h" />
     <ClInclude Include="CTexture.h" />
     <ClInclude Include="CThunder.h" />
     <ClInclude Include="CThunderDown.h" />
@@ -240,6 +241,7 @@
     <ClInclude Include="CUltimateState.h" />
     <ClInclude Include="CWalkFire.h" />
     <ClInclude Include="CWall.h" />
+    <ClInclude Include="CWallPixle.h" />
     <ClInclude Include="CWindmill.h" />
     <ClInclude Include="define.h" />
     <ClInclude Include="framework.h" />
@@ -340,6 +342,7 @@
     <ClCompile Include="CStandOffAttack.cpp" />
     <ClCompile Include="CState.cpp" />
     <ClCompile Include="CStoneBox.cpp" />
+    <ClCompile Include="CTemWall.cpp" />
     <ClCompile Include="CTexture.cpp" />
     <ClCompile Include="CThunder.cpp" />
     <ClCompile Include="CThunderDown.cpp" />
@@ -350,6 +353,7 @@
     <ClCompile Include="CUltimateState.cpp" />
     <ClCompile Include="CWalkFire.cpp" />
     <ClCompile Include="CWall.cpp" />
+    <ClCompile Include="CWallPixle.cpp" />
     <ClCompile Include="CWindmill.cpp" />
     <ClCompile Include="Header.cpp" />
     <ClCompile Include="main.cpp" />

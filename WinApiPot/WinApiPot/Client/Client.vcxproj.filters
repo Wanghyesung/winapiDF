@@ -323,6 +323,9 @@
     <Filter Include="Engine\04.CScene\CSceneBoss">
       <UniqueIdentifier>{d0ecc7aa-4b19-401f-acbf-fc9a3fcbd839}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Engine\05.CObject\WallPixle">
+      <UniqueIdentifier>{cc855214-37d8-47b8-a17d-1ddfe21bb1d6}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="pch.h" />
@@ -650,6 +653,12 @@
     <ClInclude Include="SceneBoss.h">
       <Filter>Engine\04.CScene\CSceneBoss</Filter>
     </ClInclude>
+    <ClInclude Include="CWallPixle.h">
+      <Filter>Engine\05.CObject\WallPixle</Filter>
+    </ClInclude>
+    <ClInclude Include="CTemWall.h">
+      <Filter>Engine\05.CObject\CWall</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Client.rc">
@@ -968,6 +977,12 @@
     </ClCompile>
     <ClCompile Include="SceneBoss.cpp">
       <Filter>Engine\04.CScene\CSceneBoss</Filter>
+    </ClCompile>
+    <ClCompile Include="CWallPixle.cpp">
+      <Filter>Engine\05.CObject\WallPixle</Filter>
+    </ClCompile>
+    <ClCompile Include="CTemWall.cpp">
+      <Filter>Engine\05.CObject\CWall</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

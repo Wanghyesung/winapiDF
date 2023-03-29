@@ -39,7 +39,7 @@ void CPlayerWalk::update()
 	{
 		iCurDirX = 1;
 		pPlayer->SetPlayerDirX(iCurDirX);
-		pRigidy->AddForce(Vec2(200.f, 0.f));
+		pRigidy->AddForce(Vec2(200.f, -0.f));
 	}
 	else if (KEY_AWAY(KEY::RIGHT))
 	{

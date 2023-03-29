@@ -14,6 +14,7 @@
 #include "CUIMgr.h"
 #include "CInterfaceMgr.h"
 #include "CInventoryMgr.h"
+#include "CCoinMgr.h"
 
 
 CCore::CCore():
@@ -66,6 +67,7 @@ int CCore::init(HWND _hWnd, POINT _pt)
 	CKeyMgr::GetInst()->init();
 	CPathMgr::GetInst()->init();
 	//CCameraMgr::GetInst()->init();
+	CCoinMgr::GetInst()->init();
 	SceneMgr::GetInst()->init();
 
 	return S_OK;
@@ -92,6 +94,7 @@ void CCore::progress()
 
 	SceneMgr::GetInst()->render(m_memDC);
 	CInterfaceMgr::GetInst()->TargetRender(m_memDC);
+	CCoinMgr::GetInst()->render(m_memDC);
 	CCameraMgr::GetInst()->render(m_memDC);
 
 	//그린 값들을 내 메인 Dc에 그려주기

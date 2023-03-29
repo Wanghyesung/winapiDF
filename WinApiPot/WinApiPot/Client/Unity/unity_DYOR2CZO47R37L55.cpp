@@ -26,6 +26,9 @@
 #include "C:\Users\wangh\source\tem\WinApiPot\WinApiPot\Client\CCameraMgr.cpp"
 
 
+#include "C:\Users\wangh\source\tem\WinApiPot\WinApiPot\Client\CCoinMgr.cpp"
+
+
 #include "C:\Users\wangh\source\tem\WinApiPot\WinApiPot\Client\CCollider.cpp"
 
 

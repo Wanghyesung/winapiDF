@@ -64,15 +64,15 @@ void SceneTower5::Init()
 	CSkillMgr::GetInst()->SetPlayer((CPlayer*)GetPlayerObj());
 	CSkillMgr::GetInst()->init(m_eType);
 
-	//CreateInterFace();
-	//
-	//CInventory* pInven = new CInventory;
-	//CHPItem* pItemHP = new CHPItem;
-	//pInven->AddItem(pItemHP);
-	//CMPItem* pItemMP = new CMPItem;
-	//pInven->AddItem(pItemMP);
-	//
-	//AddObject(pInven, GROUP_TYPE::UI);
+	CreateInterFace();
+	
+	CInventory* pInven = new CInventory;
+	CHPItem* pItemHP = new CHPItem;
+	pInven->AddItem(pItemHP);
+	CMPItem* pItemMP = new CMPItem;
+	pInven->AddItem(pItemMP);
+	
+	AddObject(pInven, GROUP_TYPE::UI);
 
 	CSpinner* pSpinner = new CSpinner;
 	pSpinner->SetPos(Vec2(900.f, 500.f));
@@ -132,7 +132,7 @@ void SceneTower5::Enter()
 	CCameraMgr::GetInst()->init();
 	//현재 씬에 스킬 초기화
 	CSkillMgr::GetInst()->SetPlayer((CPlayer*)GetPlayerObj());
-	//CInventoryMgr::GetInst()->init();
+	CInventoryMgr::GetInst()->init();
 
 	CColliderMgr::GetInst()->ChekGroup(GROUP_TYPE::PLAYER, GROUP_TYPE::STONE_BOX);
 	CColliderMgr::GetInst()->ChekGroup(GROUP_TYPE::PLAYER, GROUP_TYPE::ITEM);

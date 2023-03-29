@@ -66,7 +66,7 @@ void SceneMgr::init()
 		m_arrScene[i]->Init();
 	}
 
-	m_pCurrScene = m_arrScene[(UINT)SCENE_TYPE::WEST_COAST];//현재 씬 넣어주고
+	m_pCurrScene = m_arrScene[(UINT)SCENE_TYPE::DUNGEON_5];//현재 씬 넣어주고
 	m_pCurrScene->Enter();
 }
 

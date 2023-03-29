@@ -326,6 +326,9 @@
     <Filter Include="Engine\05.CObject\WallPixle">
       <UniqueIdentifier>{cc855214-37d8-47b8-a17d-1ddfe21bb1d6}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Engine\03.Manager\CCoinMgr">
+      <UniqueIdentifier>{121c12c6-7726-421e-aa1f-d8270f0a2a00}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="pch.h" />
@@ -659,6 +662,9 @@
     <ClInclude Include="CTemWall.h">
       <Filter>Engine\05.CObject\CWall</Filter>
     </ClInclude>
+    <ClInclude Include="CCoinMgr.h">
+      <Filter>Engine\03.Manager\CCoinMgr</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Client.rc">
@@ -983,6 +989,9 @@
     </ClCompile>
     <ClCompile Include="CTemWall.cpp">
       <Filter>Engine\05.CObject\CWall</Filter>
+    </ClCompile>
+    <ClCompile Include="CCoinMgr.cpp">
+      <Filter>Engine\03.Manager\CCoinMgr</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

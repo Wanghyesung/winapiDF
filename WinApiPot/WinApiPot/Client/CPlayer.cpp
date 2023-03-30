@@ -333,9 +333,15 @@ void CPlayer::updateState()
 		m_pFSM->GetCurState()->SetCurFrame(iCurFram);
 	}
 	break;
-	case PLAYER_STATE::SKILL:
-		break;
+	
 	case PLAYER_STATE::DEAD:
+	{
+		strMotion = L"Player_Hit";
+		strMotion += strDir;
+		pAninmaotr->Play(strMotion, false);
+		int iCurFram = pAninmaotr->GetCurAnimation()->GetCurFrame();
+		m_pFSM->GetCurState()->SetCurFrame(iCurFram);
+	}
 		break;
 
 	}
@@ -488,10 +494,13 @@ void CPlayer::HitPlayer(CCollider* _pOther, const tAttackInfo& _tAttInfo)
 	break;
 	}
 
-	
 	m_tPlayerInfo.m_fHP -= _tAttInfo.m_fAttackDamage;
 	if (m_tPlayerInfo.m_fHP <= 0.f)
+	{
 		m_tPlayerInfo.m_fHP = 0.f;
+		ChangeFSMState(m_pFSM, PLAYER_STATE::DEAD);
+	}
+	
 }
 
 
@@ -537,11 +546,6 @@ void CPlayer::OnColliderEnter(CCollider* _pOther)
 			HitPlayer(_pOther, pSpinner->GetAttInfo());
 		}
 	}
-
-	//if (m_tPlayerInfo.m_fHP == 0)
-	//{
-	//	ChangeFSMState(m_pFSM, PLAYER_STATE::DEAD);
-	//}
 
 }
 

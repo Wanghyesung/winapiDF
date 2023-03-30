@@ -158,6 +158,9 @@
 #include "C:\Users\wangh\source\tem\WinApiPot\WinApiPot\Client\CPlayerAttackDown.cpp"
 
 
+#include "C:\Users\wangh\source\tem\WinApiPot\WinApiPot\Client\CPlayerDead.cpp"
+
+
 #include "C:\Users\wangh\source\tem\WinApiPot\WinApiPot\Client\CPlayerHit.cpp"
 
 

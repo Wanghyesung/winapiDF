@@ -82,6 +82,7 @@ void CCore::progress()
 
 	CSkillMgr::GetInst()->update();
 	SceneMgr::GetInst()->update();
+	CCoinMgr::GetInst()->update();
 
 	CColliderMgr::GetInst()->update();
 	CCameraMgr::GetInst()->update();

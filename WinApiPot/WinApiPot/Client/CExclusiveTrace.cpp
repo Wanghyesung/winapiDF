@@ -57,7 +57,20 @@ void CExclusiveTrace::update()
 	if (GetMonster()->IsDead())
 		return;
 
-	m_pTarget = (CPlayer*)SceneMgr::GetInst()->GetCurSCene()->GetPlayerObj();
+	vector<CObject*> vecPlayer = SceneMgr::GetInst()->GetCurSCene()->GetGroupObject(GROUP_TYPE::PLAYER);
+	
+	if (vecPlayer.size() == 0)
+		return;
+	else
+	{
+		m_pTarget = (CPlayer*)vecPlayer[0];
+	}
+	//ав╬З╢ы╦И return
+	//if (m_pTarget == nullptr)
+	//	return;
+	//else if (m_pTarget->IsDead())
+	//	return;
+	
 
 	tMonInfo monInfo = GetMonster()->GetMonInfo();
 	tAttackInfo tMonAttackInfo = GetMonster()->GetAttackInfo();

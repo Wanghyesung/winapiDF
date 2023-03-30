@@ -200,6 +200,7 @@
     <ClInclude Include="CPlayer.h" />
     <ClInclude Include="CPlayerAttack.h" />
     <ClInclude Include="CPlayerAttackDown.h" />
+    <ClInclude Include="CPlayerDead.h" />
     <ClInclude Include="CPlayerHit.h" />
     <ClInclude Include="CPlayerHitUpper.h" />
     <ClInclude Include="CPlayerIdle.h" />
@@ -313,6 +314,7 @@
     <ClCompile Include="CPlayer.cpp" />
     <ClCompile Include="CPlayerAttack.cpp" />
     <ClCompile Include="CPlayerAttackDown.cpp" />
+    <ClCompile Include="CPlayerDead.cpp" />
     <ClCompile Include="CPlayerHit.cpp" />
     <ClCompile Include="CPlayerHitUpper.cpp" />
     <ClCompile Include="CPlayerIdle.cpp" />

@@ -24,6 +24,7 @@
 #include "CPlayerSliding.h"
 #include "CPlayerHit.h"
 #include "CPlayerHitUpper.h"
+#include "CPlayerDead.h"
 
 void ChangeAIState(AI* _pAI, MONSTER_STATE _eMonState)
 {
@@ -99,6 +100,7 @@ CPlayer* CreatePlayer(Vec2 _vPos)
 	pFSM->AddState(new CPlayerSliding);
 	pFSM->AddState(new CPlayerHit);
 	pFSM->AddState(new CPlayerHitUpper);
+	pFSM->AddState(new CPlayerDead);
 	player->CreateFSM(pFSM);
 
 	tPlayerInfo tPlayerInfo = {};

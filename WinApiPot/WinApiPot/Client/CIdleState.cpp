@@ -37,7 +37,14 @@ void CIdleState::update()
 	//	GetAI()->ChangeState(m_eNextState);
 	//}
 
-	m_pTarget = (CPlayer*)(SceneMgr::GetInst()->GetCurSCene()->GetPlayerObj());
+	vector<CObject*> vecPlayer = SceneMgr::GetInst()->GetCurSCene()->GetGroupObject(GROUP_TYPE::PLAYER);
+
+	if (vecPlayer.size() == 0)
+		return;
+	else
+	{
+		m_pTarget = (CPlayer*)vecPlayer[0];
+	}
 
 	bool isJump = m_pTarget->GetGravity()->IsGetGravity();//중력을 받고있는지 먼저 검사 = 점프중인지
 

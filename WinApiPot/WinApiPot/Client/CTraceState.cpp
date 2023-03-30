@@ -77,7 +77,13 @@ void CTraceState::update()
 	if (GetMonster()->IsDead())
 		return;
 
-	m_pTarget = (CPlayer*)SceneMgr::GetInst()->GetCurSCene()->GetPlayerObj();
+	vector<CObject*> vecPlayer = SceneMgr::GetInst()->GetCurSCene()->GetGroupObject(GROUP_TYPE::PLAYER);
+	if (vecPlayer.size() == 0)
+		return;
+	else
+	{
+		m_pTarget = (CPlayer*)vecPlayer[0];
+	}
 
 	tMonInfo& monInfo = GetMonster()->GetMonInfo();
 	tAttackInfo attackInfo = GetMonster()->GetAttackInfo();

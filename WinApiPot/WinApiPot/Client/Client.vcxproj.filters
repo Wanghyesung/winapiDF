@@ -329,6 +329,9 @@
     <Filter Include="Engine\03.Manager\CCoinMgr">
       <UniqueIdentifier>{121c12c6-7726-421e-aa1f-d8270f0a2a00}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Engine\08.Module\CPlayerFSM\CPlayerState\CPlayerDead">
+      <UniqueIdentifier>{2691dc3d-7d93-4eb9-8eba-9104e3e95236}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="pch.h" />
@@ -665,6 +668,9 @@
     <ClInclude Include="CCoinMgr.h">
       <Filter>Engine\03.Manager\CCoinMgr</Filter>
     </ClInclude>
+    <ClInclude Include="CPlayerDead.h">
+      <Filter>Engine\08.Module\CPlayerFSM\CPlayerState\CPlayerDead</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Client.rc">
@@ -992,6 +998,9 @@
     </ClCompile>
     <ClCompile Include="CCoinMgr.cpp">
       <Filter>Engine\03.Manager\CCoinMgr</Filter>
+    </ClCompile>
+    <ClCompile Include="CPlayerDead.cpp">
+      <Filter>Engine\08.Module\CPlayerFSM\CPlayerState\CPlayerDead</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

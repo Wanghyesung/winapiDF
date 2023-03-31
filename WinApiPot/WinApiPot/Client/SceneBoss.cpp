@@ -27,6 +27,8 @@
 #include "CHPItem.h"
 #include "CInventoryMgr.h"
 
+#include "CTemWall.h"
+
 SceneBoss::SceneBoss():
 	m_eType(SCENE_TYPE::DUNGEON_BOSS)
 {
@@ -63,7 +65,10 @@ void SceneBoss::Init()
 	CSkillMgr::GetInst()->SetPlayer((CPlayer*)GetPlayerObj());
 	CSkillMgr::GetInst()->init(m_eType);
 
-	
+	CTemWall* pTemWall = new CTemWall;
+	pTemWall->SetPos(Vec2(672.f, 110.f));
+	pTemWall->GetCollider()->SetScale(Vec2(1344.f, 600.f));
+	AddObject(pTemWall, GROUP_TYPE::WALL);
 
 	CDragonObj* pStone2 = new CDragonObj;
 	pStone2->SetPos(Vec2(30.f, 500.f));
@@ -151,6 +156,7 @@ void SceneBoss::Enter()
 	CColliderMgr::GetInst()->ChekGroup(GROUP_TYPE::PLAYER, GROUP_TYPE::STONE_BOX);
 	CColliderMgr::GetInst()->ChekGroup(GROUP_TYPE::PLAYER, GROUP_TYPE::ITEM);
 	CColliderMgr::GetInst()->ChekGroup(GROUP_TYPE::PLAYER, GROUP_TYPE::GATE);
+	CColliderMgr::GetInst()->ChekGroup(GROUP_TYPE::PLAYER, GROUP_TYPE::WALL);
 	CColliderMgr::GetInst()->ChekGroup(GROUP_TYPE::BULLET, GROUP_TYPE::STONE_BOX);
 	CColliderMgr::GetInst()->ChekGroup(GROUP_TYPE::SKILL, GROUP_TYPE::STONE_BOX);
 	CColliderMgr::GetInst()->ChekGroup(GROUP_TYPE::PLAYER, GROUP_TYPE::STONE_PILLAR);

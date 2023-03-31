@@ -70,15 +70,15 @@ void CSceneWest::Init()
 	CSkillMgr::GetInst()->SetPlayer((CPlayer*)GetPlayerObj());
 	CSkillMgr::GetInst()->init(m_eType);
 
-	//CreateInterFace();
-	//
-	//CInventory* pInven = new CInventory;
-	//CHPItem* pItemHP = new CHPItem;
-	//pInven->AddItem(pItemHP);
-	//CMPItem* pItemMP = new CMPItem;
-	//pInven->AddItem(pItemMP);
-	//
-	//AddObject(pInven, GROUP_TYPE::UI);
+	CreateInterFace();
+	
+	CInventory* pInven = new CInventory;
+	CHPItem* pItemHP = new CHPItem;
+	pInven->AddItem(pItemHP);
+	CMPItem* pItemMP = new CMPItem;
+	pInven->AddItem(pItemMP);
+	
+	AddObject(pInven, GROUP_TYPE::UI);
 
 	CTemWall* pTemWall = new CTemWall;
 	pTemWall->SetPos(Vec2(1232.f, 160.f));
@@ -112,7 +112,7 @@ void CSceneWest::Enter()
 	//현재 씬에 스킬 초기화
 	CSkillMgr::GetInst()->SetPlayer((CPlayer*)GetPlayerObj());
 
-	//CInventoryMgr::GetInst()->init();
+	CInventoryMgr::GetInst()->init();
 
 
 	CColliderMgr::GetInst()->ChekGroup(GROUP_TYPE::PLAYER, GROUP_TYPE::PORTAL);

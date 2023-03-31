@@ -28,6 +28,8 @@
 #include "CDragonObj.h"
 #include "CThunder.h"
 
+#include "CTemWall.h"
+
 #include "CInventoryMgr.h"
 #include "CInventory.h"
 #include "CHPItem.h"
@@ -58,6 +60,11 @@ void CSceneTowerFirst::Init()
 	SetBackGroundInfo(tInfo);
 	//플레이어 인터페이스는 씬 바꿀때 삭제X
 	
+	//1344 790
+	CTemWall* pTemWall = new CTemWall;
+	pTemWall->SetPos(Vec2(672.f, 110.f));
+	pTemWall->GetCollider()->SetScale(Vec2(1344.f, 600.f));
+	AddObject(pTemWall, GROUP_TYPE::WALL);
 
 
 	CObject* pObj = CreatePlayer(Vec2(300.f, 450.f));
@@ -65,7 +72,6 @@ void CSceneTowerFirst::Init()
 	RegisterPlayer(pObj);
 	CSkillMgr::GetInst()->SetPlayer((CPlayer*)GetPlayerObj());
 	CSkillMgr::GetInst()->init(m_eType);
-
 
 
 	CStoneBox* pStone = new CStoneBox;
@@ -162,6 +168,8 @@ void CSceneTowerFirst::Enter()
 	CColliderMgr::GetInst()->ChekGroup(GROUP_TYPE::PLAYER, GROUP_TYPE::STONE_BOX);
 	CColliderMgr::GetInst()->ChekGroup(GROUP_TYPE::PLAYER, GROUP_TYPE::ITEM);
 	CColliderMgr::GetInst()->ChekGroup(GROUP_TYPE::PLAYER, GROUP_TYPE::GATE);
+	CColliderMgr::GetInst()->ChekGroup(GROUP_TYPE::PLAYER, GROUP_TYPE::WALL);
+	CColliderMgr::GetInst()->ChekGroup(GROUP_TYPE::MONSTER, GROUP_TYPE::WALL);
 	CColliderMgr::GetInst()->ChekGroup(GROUP_TYPE::BULLET, GROUP_TYPE::STONE_BOX);
 	CColliderMgr::GetInst()->ChekGroup(GROUP_TYPE::SKILL, GROUP_TYPE::STONE_BOX);
 	CColliderMgr::GetInst()->ChekGroup(GROUP_TYPE::PLAYER, GROUP_TYPE::STONE_PILLAR);

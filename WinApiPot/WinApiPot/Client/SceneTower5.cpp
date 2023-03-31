@@ -27,6 +27,8 @@
 #include "CHPItem.h"
 #include "CInventoryMgr.h"
 
+#include "CTemWall.h"
+
 SceneTower5::SceneTower5():
 	m_eType(SCENE_TYPE::DUNGEON_5)
 {
@@ -64,15 +66,21 @@ void SceneTower5::Init()
 	CSkillMgr::GetInst()->SetPlayer((CPlayer*)GetPlayerObj());
 	CSkillMgr::GetInst()->init(m_eType);
 
-	CreateInterFace();
-	
-	CInventory* pInven = new CInventory;
-	CHPItem* pItemHP = new CHPItem;
-	pInven->AddItem(pItemHP);
-	CMPItem* pItemMP = new CMPItem;
-	pInven->AddItem(pItemMP);
-	
-	AddObject(pInven, GROUP_TYPE::UI);
+
+	CTemWall* pTemWall = new CTemWall;
+	pTemWall->SetPos(Vec2(672.f, 110.f));
+	pTemWall->GetCollider()->SetScale(Vec2(1344.f, 600.f));
+	AddObject(pTemWall, GROUP_TYPE::WALL);
+
+	//CreateInterFace();
+	//
+	//CInventory* pInven = new CInventory;
+	//CHPItem* pItemHP = new CHPItem;
+	//pInven->AddItem(pItemHP);
+	//CMPItem* pItemMP = new CMPItem;
+	//pInven->AddItem(pItemMP);
+	//
+	//AddObject(pInven, GROUP_TYPE::UI);
 
 	CSpinner* pSpinner = new CSpinner;
 	pSpinner->SetPos(Vec2(900.f, 500.f));
@@ -132,11 +140,12 @@ void SceneTower5::Enter()
 	CCameraMgr::GetInst()->init();
 	//현재 씬에 스킬 초기화
 	CSkillMgr::GetInst()->SetPlayer((CPlayer*)GetPlayerObj());
-	CInventoryMgr::GetInst()->init();
+	//CInventoryMgr::GetInst()->init();
 
 	CColliderMgr::GetInst()->ChekGroup(GROUP_TYPE::PLAYER, GROUP_TYPE::STONE_BOX);
 	CColliderMgr::GetInst()->ChekGroup(GROUP_TYPE::PLAYER, GROUP_TYPE::ITEM);
 	CColliderMgr::GetInst()->ChekGroup(GROUP_TYPE::PLAYER, GROUP_TYPE::GATE);
+	CColliderMgr::GetInst()->ChekGroup(GROUP_TYPE::PLAYER, GROUP_TYPE::WALL);
 	CColliderMgr::GetInst()->ChekGroup(GROUP_TYPE::BULLET, GROUP_TYPE::STONE_BOX);
 	CColliderMgr::GetInst()->ChekGroup(GROUP_TYPE::SKILL, GROUP_TYPE::STONE_BOX);
 	CColliderMgr::GetInst()->ChekGroup(GROUP_TYPE::PLAYER, GROUP_TYPE::STONE_PILLAR);

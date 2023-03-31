@@ -8,6 +8,7 @@ class CBullet;
 class CFSM;
 class CHPItem;
 class CMPItem;
+class CCoinMgr;
 
 struct tPlayerInfo
 {
@@ -49,6 +50,9 @@ private:
     float m_fCurTime;
     float m_fRunTime;
     bool m_bIsOnDobuleKey;
+
+    //Á×¾ú´ÂÁö
+    static bool m_bActive;
 
     float m_fCurAccTime;
     float m_fAccTime;
@@ -105,6 +109,9 @@ private:
     PLAYER_STATE GetPrevState() { return playerPrevState; }
     void SetPrevState(PLAYER_STATE _eState) { playerPrevState = _eState; }
 
+    void resetvalue();
+
+
 
     friend class CBullet;
     friend class CFSM;
@@ -113,5 +120,6 @@ private:
     friend class CSkillMgr;
     friend class CHPItem;
     friend class CMPItem;
+    friend class CCoinMgr;
 };
 

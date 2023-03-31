@@ -82,7 +82,7 @@ void CSkillMgr::initSkill(SCENE_TYPE _eSceneType)
 
 void CSkillMgr::update()
 {
-	if (m_pPlayer == nullptr)
+	if (m_pPlayer == nullptr || !m_pPlayer->m_bActive)
 		return;
 
 	map<SKILL_STATE, float>::iterator iter = m_mapSkill.begin();

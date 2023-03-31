@@ -39,6 +39,7 @@ UINT CPlayer::m_iPrePushKey = -1;
 UINT CPlayer::m_iCurPushKey = ((UINT)KEY::LAST);
 int CPlayer::m_iDirX = 1;
 int CPlayer::m_iDirY = 1;
+bool CPlayer::m_bActive = true;
 
 CPlayer::CPlayer() :
 	playerCurState(PLAYER_STATE::IDLE),
@@ -172,6 +173,10 @@ void CPlayer::CreateFSM(CFSM* _pFSM)
 
 void CPlayer::update()
 {
+	//죽었으면 return
+	if (!m_bActive)
+		return;
+
 	//인터페이스에 체력 마나 표시
 	update_InterFace();
 
@@ -678,4 +683,10 @@ void CPlayer::update_InterFace()
 		}
 	}
 	CInterfaceMgr::GetInst()->ChangeInterFaceValue(m_tPlayerInfo.m_fHP, m_tPlayerInfo.m_fMP);
+}
+
+void CPlayer::resetvalue()
+{
+	m_tPlayerInfo.m_fHP = 100.f;
+	m_tPlayerInfo.m_fMP = 100.f;
 }

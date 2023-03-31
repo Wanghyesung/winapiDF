@@ -25,7 +25,7 @@ void CGravity::finalupdate()
 	if (m_bAttive)//공중상태이면
 	{
 		//여기서 finaljumpos와 같다면 점프 해제 && 처음 시작한 점프 위치와 똑같지 않아야함
-		bool IsSame = abs(m_pOwner->GetJumPos().x - m_pOwner->GetFinalJumPos().x) < 0.8f  &&
+		bool IsSame = abs(m_pOwner->GetJumPos().x) - abs(m_pOwner->GetFinalJumPos().x) < 1.5f  &&
 			m_pOwner->GetJumPos().y - m_pOwner->GetFinalJumPos().y <= 0.f;
 		if (IsSame)
 		{

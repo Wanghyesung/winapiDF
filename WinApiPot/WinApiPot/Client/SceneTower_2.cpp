@@ -126,7 +126,7 @@ void SceneTower_2::Enter()
 
 void SceneTower_2::Exit()
 {
-
+	CColliderMgr::GetInst()->Reset();
 }
 
 

@@ -114,4 +114,8 @@ void CInterfaceMgr::SetTargetMon(const wstring& _strName)
 	{
 		m_pTargetMon = pTarget;
 	}
+	else
+	{
+		m_pTargetMon = nullptr;
+	}
 }

@@ -194,7 +194,10 @@ void CRigidBody::move()
 void CRigidBody::IsOutRangeMap()
 {
 	tBackGround tMapInfo = SceneMgr::GetInst()->GetCurSCene()->GetBackGroundInfo();
+	//Vec2 vfinalPos = m_pOwner->GetCollider()->GetFinalPos();
 	Vec2 vPos = m_pOwner->GetPos();
+	//Vec2 vCollOffsetPos = m_pOwner->GetCollider()->GetOffSetPos();
+
 	Vec2 vVelocity = GetVelocity();
 
 
@@ -231,8 +234,17 @@ void CRigidBody::IsOutRangeMap()
 		{
 			Vec2 vJumPos = m_pOwner->GetJumPos();
 			//x쪽만 막는다 y쪽으로는 점프 가능하게 할것임 하지만 중력값을 뺀 y움직임은 막아줘야함
-			m_pOwner->SetJumPos(Vec2(vJumPos.x, vJumPos.y + m_vNgravityPos - 3));
-			vPos.y += -vVelocity.y * fDT;
+
+			if (vPos.y >= (float)tMapInfo.fBottomHeight)
+			{
+				vPos.y = (float)tMapInfo.fBottomHeight;
+				m_pOwner->SetJumPos(Vec2(vJumPos.x, (float)tMapInfo.fBottomHeight));
+			}
+			else
+			{
+				vPos.y = (float)tMapInfo.fTopHeight;
+				m_pOwner->SetJumPos(Vec2(vJumPos.x, (float)tMapInfo.fTopHeight));
+			}
 		}
 		else
 		{
@@ -246,9 +258,10 @@ void CRigidBody::IsOutRangeMap()
 			}
 		}
 	}
-	
+
 	m_pOwner->SetPos(vPos);
 }
+
 
 
 

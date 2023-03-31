@@ -9,6 +9,7 @@
 
 #include "CInterFace.h"
 #include "CInterfaceMgr.h"
+#include "CCoinMgr.h"
 
 //시작 18.5 177  끝 243 273
    //step = 32.5 32.5
@@ -230,8 +231,22 @@ void CInventory::render(HDC _dc)
 		m_pInvenTex->Width(), m_pInvenTex->Height(),
 		RGB(255, 255, 255));
 
-	//인터페이스에 아이템이 있다면 render
+	//코인 개수 render
+	UINT iCoinCount = CCoinMgr::GetInst()->GetCoinCount();
+	//50 322
+	wstring strNum = std::to_wstring(iCoinCount);
+	CTexture* pCoinCnt = CResMgr::GetInst()->FindTexture(L"coin" + strNum);
 
+	TransparentBlt(_dc,
+		50, 310,
+		pCoinCnt->Width(), pCoinCnt->Height(),
+		pCoinCnt->GetDC(),
+		//시작지점 좌표부터 가져올 이미지 크기
+		0, 0,
+		pCoinCnt->Width(), pCoinCnt->Height(),
+		RGB(0, 0, 0));
+
+	//아이템들은 childUI에서
 	CUI::render(_dc);
 }
 

@@ -28,6 +28,11 @@
 #include "CMonInterface.h"
 #include "CHP.h"
 
+#include "CInventoryMgr.h"
+#include "CInventory.h"
+#include "CHPItem.h"
+#include "CMPItem.h"
+
 CScene_Start::CScene_Start():
 	m_eType(SCENE_TYPE::START_SCENE)
 {
@@ -72,37 +77,48 @@ void CScene_Start::Init()
 	//플레이어 인터페이스는 씬 바꿀때 삭제X
 	
 
-	CObject* pObj = CreatePlayer(Vec2(2500.f, 550.f));
+	CObject* pObj = CreatePlayer(Vec2(500.f, 550.f));
 	AddObject(pObj, GROUP_TYPE::PLAYER);
 	RegisterPlayer(pObj);
-
 	CSkillMgr::GetInst()->SetPlayer((CPlayer*)GetPlayerObj());
 	CSkillMgr::GetInst()->init(m_eType);
 
-	CMonster* pMon = CMonFactory::CraeteMonster(MON_TYPE::DRAGON, Vec2(1050.f, 580.f),m_eType);
-	pMon->SetName(L"CDragon_1");
-	//내 몬스터 인터페이스에 내 몬스터 이름 넣기
-	CMonInterface* dragonInterface = new CMonInterface(pMon->GetName());
-	dragonInterface->SetScale(Vec2(626, 29));
-	dragonInterface->SetPos(Vec2(40, 20));
-	AddObject(dragonInterface, GROUP_TYPE::UI);
-	AddObject(pMon, GROUP_TYPE::MONSTER);
+	//CreateInterFace();
+	//
+	//CInventory* pInven = new CInventory;
+	//CHPItem* pItemHP = new CHPItem;
+	//pInven->AddItem(pItemHP);
+	//CMPItem* pItemMP = new CMPItem;
+	//pInven->AddItem(pItemMP);
+	//
+	//AddObject(pInven, GROUP_TYPE::UI);
+
 	
-	CMonster* pBlue = CMonFactory::CraeteMonster(MON_TYPE::BLUE_DRAGON, Vec2(1400.f, 580.f), m_eType);
-	pBlue->SetName(L"BlueDragon_1");
-	CMonInterface* bdragonInterface = new CMonInterface(pBlue->GetName());
-	bdragonInterface->SetScale(Vec2(626, 29));
-	bdragonInterface->SetPos(Vec2(40, 20));
-	AddObject(bdragonInterface, GROUP_TYPE::UI);
-	AddObject(pBlue, GROUP_TYPE::MONSTER);
-	
-	CMonster* pBlue2 = CMonFactory::CraeteMonster(MON_TYPE::BLUE_DRAGON, Vec2(1200.f, 580.f), m_eType);
-	pBlue2->SetName(L"BlueDragon_2");
-	CMonInterface* bdragonInterface2 = new CMonInterface(pBlue2->GetName());
-	bdragonInterface2->SetScale(Vec2(626, 29));
-	bdragonInterface2->SetPos(Vec2(40, 20));
-	AddObject(bdragonInterface2, GROUP_TYPE::UI);
-	AddObject(pBlue2, GROUP_TYPE::MONSTER);
+
+	//CMonster* pMon = CMonFactory::CraeteMonster(MON_TYPE::DRAGON, Vec2(1050.f, 580.f),m_eType);
+	//pMon->SetName(L"CDragon_1");
+	////내 몬스터 인터페이스에 내 몬스터 이름 넣기
+	//CMonInterface* dragonInterface = new CMonInterface(pMon->GetName());
+	//dragonInterface->SetScale(Vec2(626, 29));
+	//dragonInterface->SetPos(Vec2(40, 20));
+	//AddObject(dragonInterface, GROUP_TYPE::UI);
+	//AddObject(pMon, GROUP_TYPE::MONSTER);
+	//
+	//CMonster* pBlue = CMonFactory::CraeteMonster(MON_TYPE::BLUE_DRAGON, Vec2(1400.f, 580.f), m_eType);
+	//pBlue->SetName(L"BlueDragon_1");
+	//CMonInterface* bdragonInterface = new CMonInterface(pBlue->GetName());
+	//bdragonInterface->SetScale(Vec2(626, 29));
+	//bdragonInterface->SetPos(Vec2(40, 20));
+	//AddObject(bdragonInterface, GROUP_TYPE::UI);
+	//AddObject(pBlue, GROUP_TYPE::MONSTER);
+	//
+	//CMonster* pBlue2 = CMonFactory::CraeteMonster(MON_TYPE::BLUE_DRAGON, Vec2(1200.f, 580.f), m_eType);
+	//pBlue2->SetName(L"BlueDragon_2");
+	//CMonInterface* bdragonInterface2 = new CMonInterface(pBlue2->GetName());
+	//bdragonInterface2->SetScale(Vec2(626, 29));
+	//bdragonInterface2->SetPos(Vec2(40, 20));
+	//AddObject(bdragonInterface2, GROUP_TYPE::UI);
+	//AddObject(pBlue2, GROUP_TYPE::MONSTER);
 
 	CWall* pWall_2 = new CWall;
 	pWall_2->SetName(L"Wall_2");
@@ -149,7 +165,7 @@ void CScene_Start::Enter()
 	CCameraMgr::GetInst()->init();
 	CSkillMgr::GetInst()->SetPlayer((CPlayer*)GetPlayerObj());
 	
-	
+	//CInventoryMgr::GetInst()->init();
 
 
 	CColliderMgr::GetInst()->ChekGroup(GROUP_TYPE::PLAYER, GROUP_TYPE::MONSTER);

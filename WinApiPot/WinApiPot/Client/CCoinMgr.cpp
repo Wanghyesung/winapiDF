@@ -5,9 +5,19 @@
 #include "CResMgr.h"
 #include "CKeyMgr.h"
 
+#include "CObject.h"
+#include "CPlayer.h"
+
 #include "CCore.h"
 #include "CTexture.h"
 
+#include "CCameraMgr.h"
+#include "CSkillMgr.h"
+
+#include "CSceneMgr.h"
+#include "CScene.h"
+
+#include "CInterfaceMgr.h"
 
 CCoinMgr::CCoinMgr():
 	m_bIsDead(false),
@@ -92,6 +102,25 @@ void CCoinMgr::update()
 	{
 		Resurrection();
 	}
+
+	if (m_fResTime < 0.f)
+	{
+		m_bIsDead = false;
+		m_fResTime = 9.99f;
+		CObject* pPlayer = SceneMgr::GetInst()->GetCurSCene()->GetPlayerObj();
+		((CPlayer*)pPlayer)->m_bActive = true;
+		((CPlayer*)pPlayer)->resetvalue();
+		CInterfaceMgr::GetInst()->SetTargetMon(L"NULL");
+		ChangeScene(SCENE_TYPE::WEST_COAST);
+	}
+}
+
+void CCoinMgr::StartUpdate(Vec2 _vDeadPos)
+{
+	m_bIsDead = true; 
+	m_vResPos = _vDeadPos; 
+	CObject* pPlayer = SceneMgr::GetInst()->GetCurSCene()->GetPlayerObj();
+	((CPlayer*)pPlayer)->m_bActive = false;
 }
 
 void CCoinMgr::Resurrection()
@@ -101,7 +130,14 @@ void CCoinMgr::Resurrection()
 
 	m_iCoinCount -= 1;
 
-	//CreatePlayer()
+	//죽은지점에서 피 100으로 부활
+	CObject* pPlayer = SceneMgr::GetInst()->GetCurSCene()->GetPlayerObj();
+	((CPlayer*)pPlayer)->m_bActive = true;
+	((CPlayer*)pPlayer)->resetvalue();
+
+	pPlayer->SetPos(m_vResPos);
+
+	m_fResTime = 9.99f;
 	m_bIsDead = false;
 
 }

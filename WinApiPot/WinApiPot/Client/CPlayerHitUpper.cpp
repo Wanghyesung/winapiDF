@@ -58,6 +58,7 @@ void CPlayerHitUpper::Exit()
 {
 	m_fCurTime = 0.f;
 	CPlayerState::Exit();
+	InitZeroFrame();
 	GetFSM()->GetPlayer()->GetAnimator()->GetCurAnimation()->SetFram(0);
 }
 

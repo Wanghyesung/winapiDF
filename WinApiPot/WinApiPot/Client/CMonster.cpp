@@ -55,7 +55,6 @@ void CMonster::update()
 
 void CMonster::render(HDC _dc)
 {
-	
 
 	component_render(_dc);
 }

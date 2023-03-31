@@ -13,8 +13,10 @@ public:
 	void update();
 
 
-	void StartUpdate(Vec2 _vDeadPos) { m_bIsDead = true; m_vResPos = _vDeadPos; }
+	void StartUpdate(Vec2 _vDeadPos);
 	void Resurrection();
+
+	const UINT& GetCoinCount() { return m_iCoinCount; }
 
 private:
 	//부활가능시간

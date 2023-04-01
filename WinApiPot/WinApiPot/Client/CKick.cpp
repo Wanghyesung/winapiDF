@@ -57,19 +57,18 @@ void CKick::Skillupdate()
 	if (iDir > 0)
 	{
 		GetCollider()->SetOffSet(Vec2(fFinalPos, m_vCollOffSet.y));
-		strSkillName += L"right";
+		m_strSkillName = strSkillName + L"right";
 	}
 	else
 	{
 		GetCollider()->SetOffSet(Vec2(fFinalPos, m_vCollOffSet.y));
-		strSkillName += L"left";
+		m_strSkillName = strSkillName = L"left";
 	}
 
 
 
-	if (pAnim->FindAnimation(strSkillName)->IsFinish())
+	if (pAnim->FindAnimation(m_strSkillName)->IsFinish())
 	{
-		pAnim->FindAnimation(strSkillName)->SetFram(0);
 		exit();
 		return;
 	}
@@ -93,6 +92,7 @@ void CKick::init()
 
 void CKick::exit()
 {
+	GetSkill()->GetPlayer()->GetAnimator()->FindAnimation(m_strSkillName)->SetFram(0);
 	CSkillState::exit();
 	m_iAttackFrame = -1;
 }

@@ -15,7 +15,7 @@ private:
 
     int m_iAttackFrame;
 
-    
+    wstring m_strSkillName;
 
 public:
     virtual void Skillupdate();

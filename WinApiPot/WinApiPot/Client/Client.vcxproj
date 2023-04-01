@@ -185,6 +185,8 @@
     <ClInclude Include="CKeyMgr.h" />
     <ClInclude Include="CKick.h" />
     <ClInclude Include="CKnight.h" />
+    <ClInclude Include="CKnightAttack.h" />
+    <ClInclude Include="CKnightTrace.h" />
     <ClInclude Include="Client.h" />
     <ClInclude Include="CLord.h" />
     <ClInclude Include="CMachKick.h" />
@@ -233,6 +235,7 @@
     <ClInclude Include="CStandOffAttack.h" />
     <ClInclude Include="CState.h" />
     <ClInclude Include="CStoneBox.h" />
+    <ClInclude Include="CStoneState.h" />
     <ClInclude Include="CTemWall.h" />
     <ClInclude Include="CTexture.h" />
     <ClInclude Include="CThunder.h" />
@@ -301,6 +304,8 @@
     <ClCompile Include="CKeyMgr.cpp" />
     <ClCompile Include="CKick.cpp" />
     <ClCompile Include="CKnight.cpp" />
+    <ClCompile Include="CKnightAttack.cpp" />
+    <ClCompile Include="CKnightTrace.cpp" />
     <ClCompile Include="CLord.cpp" />
     <ClCompile Include="CMachKick.cpp" />
     <ClCompile Include="CMonFactory.cpp" />
@@ -348,6 +353,7 @@
     <ClCompile Include="CStandOffAttack.cpp" />
     <ClCompile Include="CState.cpp" />
     <ClCompile Include="CStoneBox.cpp" />
+    <ClCompile Include="CStoneState.cpp" />
     <ClCompile Include="CTemWall.cpp" />
     <ClCompile Include="CTexture.cpp" />
     <ClCompile Include="CThunder.cpp" />

@@ -71,8 +71,11 @@ void CAttackObject::SetColActive(bool _b)
 const tAttackInfo& CAttackObject::GetAttInfo()
 {
 	vector<tMonSkill>& vecSkill = m_pOwner->GetVecSkill();
-	//스킬 벡터에 몇번째 스킬인지
-	return vecSkill[m_iCurAttackIndex].m_MonAttackInfo;
+	if (vecSkill.size() != 0)
+	{
+		//스킬 벡터에 몇번째 스킬인지
+		return vecSkill[m_iCurAttackIndex].m_MonAttackInfo;
+	}
 }
 
 void CAttackObject::SetAttackRange(float _fXRange, Vec2 _vCollScale)

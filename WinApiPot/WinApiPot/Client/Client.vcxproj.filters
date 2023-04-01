@@ -335,6 +335,18 @@
     <Filter Include="Engine\05.CObject\CMonster\CKnight">
       <UniqueIdentifier>{56d1e89f-6b0a-489a-a97d-48b4ab68b3cd}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Engine\08.Module\State\CKnightState">
+      <UniqueIdentifier>{031c9ae9-f1e2-4d91-8a8e-5cf50c60c9ab}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\08.Module\State\CKnightState\Attack">
+      <UniqueIdentifier>{e0722b0b-a026-4697-8737-27edf2f5bef0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\08.Module\State\CKnightState\Trace">
+      <UniqueIdentifier>{2377a40f-c17f-4f92-ad28-469e181303a5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\08.Module\State\CKnightState\Stone">
+      <UniqueIdentifier>{d6d9ef98-33dc-45d0-a2d7-4f109b785973}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="pch.h" />
@@ -677,6 +689,13 @@
     <ClInclude Include="CKnight.h">
       <Filter>Engine\05.CObject\CMonster\CKnight</Filter>
     </ClInclude>
+    <ClInclude Include="CStoneState.h">
+      <Filter>Engine\08.Module\State\CKnightState\Stone</Filter>
+    </ClInclude>
+    <ClInclude Include="CKnightTrace.h">
+      <Filter>Engine\08.Module\State\CKnightState\Trace</Filter>
+    </ClInclude>
+    <ClInclude Include="CKnightAttack.h" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Client.rc">
@@ -1011,5 +1030,12 @@
     <ClCompile Include="CKnight.cpp">
       <Filter>Engine\05.CObject\CMonster\CKnight</Filter>
     </ClCompile>
+    <ClCompile Include="CStoneState.cpp">
+      <Filter>Engine\08.Module\State\CKnightState\Stone</Filter>
+    </ClCompile>
+    <ClCompile Include="CKnightTrace.cpp">
+      <Filter>Engine\08.Module\State\CKnightState\Trace</Filter>
+    </ClCompile>
+    <ClCompile Include="CKnightAttack.cpp" />
   </ItemGroup>
 </Project>

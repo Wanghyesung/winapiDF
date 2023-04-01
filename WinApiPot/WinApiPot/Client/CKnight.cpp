@@ -62,7 +62,7 @@ void CKnight::init_skill()
 	tAttackInfo1.m_fAttRcnt = 50.f;
 	tAttackInfo1.m_fAttUpperRcnt = -60.f;
 	tAttackInfo1.m_fAttRigidityTime = 0.5f;
-	tKnight_Attack tAttack1 = {Vec2(40.f,40.f),Vec2(20.f,0.f),2,3,5,tAttackInfo1};
+	tKnight_Attack tAttack1 = {Vec2(40.f,40.f),Vec2(20.f,0.f),Vec2(40.f,40.f),2,3,5.f, 5.f,tAttackInfo1};
 	m_hashMonSkill.insert(make_pair(L"Knight_noraml1_attack", tAttack1));
 
 
@@ -72,9 +72,10 @@ void CKnight::init_skill()
 	tAttackInfo2.m_fAttRcnt = 70.f;
 	tAttackInfo2.m_fAttUpperRcnt = -60.f;
 	tAttackInfo2.m_fAttRigidityTime = 0.5f;
-	tKnight_Attack tAttack2 = { Vec2(60.f,30.f),Vec2(20.f,0.f),2,3,8,tAttackInfo2 };
+	tKnight_Attack tAttack2 = { Vec2(60.f,30.f),Vec2(20.f,0.f),Vec2(60.f,30.f),2,3, 8.f, 8.f, tAttackInfo2 };
 	m_hashMonSkill.insert(make_pair(L"Knight_noraml2_attack", tAttack2));
 }
+
 
 void CKnight::update()
 {
@@ -91,7 +92,10 @@ void CKnight::update()
 		{
 			tAttck.m_fSkillTime -= fDT;
 			if (tAttck.m_fSkillTime < 0.f)
+			{
 				tAttck.m_fSkillTime = 0.f;
+			}
+				
 		}
 	}
 

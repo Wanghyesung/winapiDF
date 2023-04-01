@@ -73,11 +73,11 @@ void CRandomFire::Skillupdate()
 	{
 		m_fCurTime = 0.f;
 		pAnim->FindAnimation(strSkillName)->AddAccTime(0.1f);
+		GetAnimator()->FindAnimation(L"Radomfire0")->AddAccTime(0.1f);
 	}
 
 	if (pAnim->FindAnimation(strSkillName)->IsFinish())
 	{
-		pAnim->FindAnimation(strSkillName)->SetFram(0);
 		exit();
 		return;
 	}
@@ -101,7 +101,10 @@ void CRandomFire::init()
 
 void CRandomFire::exit()
 {
+	//난사 임펙트 애니메이션
 	GetAnimator()->SetRepeat(false);
+	//캐릭터
+	GetSkill()->GetPlayer()->GetAnimator()->FindAnimation(GetSkillName())->SetFram(0);
 	CSkillState::exit();
 	m_iAttackFrame = -1;
 }

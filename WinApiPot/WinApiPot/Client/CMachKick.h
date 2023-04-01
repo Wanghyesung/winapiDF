@@ -13,6 +13,7 @@ private:
     Vec2 m_vCollOffSet;
 
     int m_iAttackFrame;
+    wstring m_strSkillName;
 
 public:
     virtual void Skillupdate();

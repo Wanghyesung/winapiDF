@@ -54,7 +54,8 @@ void CThunderDown::render(HDC _dc)
 
 void CThunderDown::update()
 {
-	if (m_pOwner == nullptr)
+	//번개나올 때 몬스터 죽으면 오류
+	if (m_pOwner == nullptr || m_pOwner->IsActiv())
 	{
 		DeleteObject(this);
 		return;

@@ -55,7 +55,6 @@ void CWindmill::Skillupdate()
 
 	if (pAnim->FindAnimation(strSkillName)->IsFinish())
 	{
-		pAnim->FindAnimation(strSkillName)->SetFram(0);
 		exit();
 		return;
 	}
@@ -79,6 +78,7 @@ void CWindmill::init()
 
 void CWindmill::exit()
 {
+	GetSkill()->GetPlayer()->GetAnimator()->FindAnimation(GetSkillName())->SetFram(0);
 	CSkillState::exit();
 	m_iAttackFrame = -1;
 }

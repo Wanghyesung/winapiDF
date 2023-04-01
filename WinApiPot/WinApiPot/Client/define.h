@@ -92,6 +92,7 @@ enum class PEN_TYPE
 
 enum class MONSTER_STATE
 {
+	STONE,
 	IDLE,
 	PATROL, //¼øÂû
 	TRACE,
@@ -105,6 +106,17 @@ enum class MONSTER_STATE
 	END
 };
 
+enum class MONSTER_ATTACK_TYPE
+{
+	NORMAL,
+	NORMAL2,
+	NORMAL3,
+	SKILL1,
+	SKILL2,
+	SKILL3,
+	END = 6
+};
+
 enum class EVENT_TYPE
 {
 	CREATE_OBJECT,
@@ -112,7 +124,6 @@ enum class EVENT_TYPE
 	SCENE_CHANGE,
 	CHANGE_AI_STATE,
 	CHANGE_FSM_STATE,
-
 	END,
 };
 

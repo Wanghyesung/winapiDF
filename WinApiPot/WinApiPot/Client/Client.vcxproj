@@ -184,6 +184,7 @@
     <ClInclude Include="CItemObject.h" />
     <ClInclude Include="CKeyMgr.h" />
     <ClInclude Include="CKick.h" />
+    <ClInclude Include="CKnight.h" />
     <ClInclude Include="Client.h" />
     <ClInclude Include="CLord.h" />
     <ClInclude Include="CMachKick.h" />
@@ -299,6 +300,7 @@
     <ClCompile Include="CItemObject.cpp" />
     <ClCompile Include="CKeyMgr.cpp" />
     <ClCompile Include="CKick.cpp" />
+    <ClCompile Include="CKnight.cpp" />
     <ClCompile Include="CLord.cpp" />
     <ClCompile Include="CMachKick.cpp" />
     <ClCompile Include="CMonFactory.cpp" />

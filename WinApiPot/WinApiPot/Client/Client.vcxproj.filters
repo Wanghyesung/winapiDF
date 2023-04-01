@@ -332,6 +332,9 @@
     <Filter Include="Engine\08.Module\CPlayerFSM\CPlayerState\CPlayerDead">
       <UniqueIdentifier>{2691dc3d-7d93-4eb9-8eba-9104e3e95236}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Engine\05.CObject\CMonster\CKnight">
+      <UniqueIdentifier>{56d1e89f-6b0a-489a-a97d-48b4ab68b3cd}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="pch.h" />
@@ -671,6 +674,9 @@
     <ClInclude Include="CPlayerDead.h">
       <Filter>Engine\08.Module\CPlayerFSM\CPlayerState\CPlayerDead</Filter>
     </ClInclude>
+    <ClInclude Include="CKnight.h">
+      <Filter>Engine\05.CObject\CMonster\CKnight</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Client.rc">
@@ -1001,6 +1007,9 @@
     </ClCompile>
     <ClCompile Include="CPlayerDead.cpp">
       <Filter>Engine\08.Module\CPlayerFSM\CPlayerState\CPlayerDead</Filter>
+    </ClCompile>
+    <ClCompile Include="CKnight.cpp">
+      <Filter>Engine\05.CObject\CMonster\CKnight</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

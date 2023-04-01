@@ -27,15 +27,6 @@ CIdleState::~CIdleState()
 
 void CIdleState::update()
 {	
-	//m_fCurTime += fDT;
-
-	//¼øÂûÀ» ÇÔ
-	//if (m_fCurTime >= 5.f)
-	//{
-	//	exit();
-	//	m_eNextState = MONSTER_STATE::PATROL;
-	//	GetAI()->ChangeState(m_eNextState);
-	//}
 
 	vector<CObject*> vecPlayer = SceneMgr::GetInst()->GetCurSCene()->GetGroupObject(GROUP_TYPE::PLAYER);
 

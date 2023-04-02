@@ -42,9 +42,17 @@ void CStoneState::update()
 
 	Vec2 vDiff = vPlayerPos - vPos;
 
-	if (vDiff.Length() <= tMInfo.m_fnavigationScope)
+	int iFrame = pMon->GetAnimator()->GetCurAnimation()->GetCurFrame();
+
+	if (iFrame == -1)
 	{
 		ChangeAIState(GetAI(), MONSTER_STATE::IDLE);
 	}
+
+	//if (vDiff.Length() <= tMInfo.m_fnavigationScope)
+	//{
+	//	ChangeAIState(GetAI(), MONSTER_STATE::IDLE);
+	//}
+	
 
 }

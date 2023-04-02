@@ -44,13 +44,12 @@ void CKnightTrace::update()
 {
 	CMonster* pMon = GetMonster();
 	tMonInfo& tMInfo = pMon->GetMonInfo();
+	tAttackInfo tMAttInfo = pMon->GetAttackInfo();
 
 	CObject* pPlayer = SceneMgr::GetInst()->GetCurSCene()->GetPlayerObj();
 
 	Vec2 vPos = pMon->GetPos();
 	Vec2 vPlayerPos = pPlayer->GetPos();
-
-	Vec2 vDiff = (vPlayerPos - vPos);//길이값 
 
 	bool isJump = pPlayer->GetGravity()->IsGetGravity();
 
@@ -67,6 +66,8 @@ void CKnightTrace::update()
 		vPlayerPos = pPlayer->GetCollider()->GetFinalPos(); // 상대 지점
 	}
 
+	Vec2 vDiff = (vPlayerPos - vPos);//길이값 
+
 	int iDir = 0;//방향값
 	vDiff.x > 0 ? iDir = 1 : iDir = -1;
 	SetDir(iDir);
@@ -78,13 +79,16 @@ void CKnightTrace::update()
 		return;
 	}
 
-	else if (check_skill())
+	else if (Vec2(abs(vDiff.x), abs(vDiff.y)) <= tMAttInfo.m_fAttackRange)
 	{
-		return;
+		if (check_skill())
+			return;
 	}
-	
-	vDiff.NormalRize();
-	GetMonster()->GetRigidBody()->AddForce(vDiff * tMInfo.m_fspeed);
+	else
+	{
+		vDiff.NormalRize();
+		GetMonster()->GetRigidBody()->AddForce(vDiff * tMInfo.m_fspeed);
+	}
 	
 }
 
@@ -98,7 +102,7 @@ bool CKnightTrace::check_skill()
 		if (iter->second.m_fSkillTime == 0.f)
 		{
 			ChangeAIState(GetAI(), MONSTER_STATE::ATTACK);
-			((CKnightAttack*)GetAI()->GetCurState())->SetAttackName(iter->first);
+			((CKnightAttack*)GetAI()->GetState(MONSTER_STATE::ATTACK))->SetAttackName(iter->first);
 			return true;
 		}
 	}

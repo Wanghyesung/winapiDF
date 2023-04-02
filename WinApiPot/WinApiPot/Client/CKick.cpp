@@ -62,7 +62,7 @@ void CKick::Skillupdate()
 	else
 	{
 		GetCollider()->SetOffSet(Vec2(fFinalPos, m_vCollOffSet.y));
-		m_strSkillName = strSkillName = L"left";
+		m_strSkillName = strSkillName + L"left";
 	}
 
 

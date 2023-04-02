@@ -24,6 +24,12 @@
 #include "CHitUpper.h"
 #include "CDeadState.h"
 
+
+//³ªÀÌÆ®
+#include "CStoneState.h"
+#include "CKnightAttack.h"
+#include "CKnightTrace.h"
+
 CMonster* CMonFactory::CraeteMonster(MON_TYPE _monType, Vec2 _vPos, SCENE_TYPE _eSceneType)
 {
 	CMonster* pMon = nullptr;
@@ -252,7 +258,7 @@ CMonster* CMonFactory::CraeteMonster(MON_TYPE _monType, Vec2 _vPos, SCENE_TYPE _
 
 	case MON_TYPE::KNIGHT_RED:
 	{
-		pMon = new CBrDragon;
+		pMon = new CKnight;
 		pMon->SetTag(GROUP_TYPE::MONSTER);
 		pMon->SetPos(_vPos);
 		//pMon->SetScale(Vec2(50.f, 50.f));
@@ -281,7 +287,14 @@ CMonster* CMonFactory::CraeteMonster(MON_TYPE _monType, Vec2 _vPos, SCENE_TYPE _
 		pMon->GetRigidBody()->SetMass(1.f);
 
 		AI* pAI = new AI;
-		
+		pAI->AddState(new CStoneState);
+		pAI->AddState(new CIdleState);
+		pAI->AddState(new CKnightTrace);
+		pAI->AddState(new CKnightAttack);
+		pAI->AddState(new CHitState);
+		pAI->AddState(new CHitUpper);
+		pAI->AddState(new CDeadState);
+
 		pAI->SetCurState(MONSTER_STATE::STONE);
 		pMon->SetAI(pAI);
 	}

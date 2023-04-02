@@ -12,11 +12,17 @@
 #include "CMonster.h"
 #include "CPlayer.h"
 
+#include "CKnight.h"
 #include "CAttackObject.h"
+
+#include "CSceneMgr.h"
+#include "CPlayer.h"
+#include "CScene.h"
 
 CKnightAttack::CKnightAttack():
 	CState(MONSTER_STATE::ATTACK),
-	m_strAttackName(L"")
+	m_tNightAttackInfo{},
+	m_iAttackCount(0)
 {
 }
 
@@ -31,6 +37,7 @@ void CKnightAttack::SetAttackName(const wstring& _strName)
 	CKnight* pMon = (CKnight*)GetMonster();
 	tKnight_Attack& tAtt = pMon->m_hashMonSkill[m_strAttackName];
 	tAtt.m_fSkillTime = tAtt.m_fSkillMaxTime;
+	m_tNightAttackInfo = pMon->m_hashMonSkill[m_strAttackName];
 }
 
 void CKnightAttack::update()
@@ -40,24 +47,55 @@ void CKnightAttack::update()
 
 	CAttackObject* pAttackObj = pMon->GetSKillObj();
 
+	Vec2 vPos = pMon->GetPos();
+	Vec2 vPlayerPos;
+
 	int m_iFrame = pMon->GetAnimator()->GetCurAnimation()->GetCurFrame();
 
-	//스킬 오브젝트 수정하기
-	//tAtt.m_iStartAttackFrame;
-	//pAttackObj->SetColActive(true);
-	//
-	//tAtt.m_iEndAttackFrame;
-	//pAttackObj->SetColActive(false);
+	if (m_iFrame == -1)
+	{
+		ChangeAIState(GetAI(), MONSTER_STATE::IDLE);
+		return;
+	}
+
+	if (m_iFrame == tAtt.m_iStartAttackFrame && m_iAttackCount<1)
+	{
+		++m_iAttackCount;
+		pAttackObj->SetColActive(true);
+		pAttackObj->SetAttInfo(m_tNightAttackInfo.m_tAttackInfo);
+		pAttackObj->SetAttackRange(tAtt.m_vOffset.x, tAtt.m_vAttackSacle);
+	}
+	else if (m_iFrame == tAtt.m_iEndAttackFrame)
+	{
+		pAttackObj->SetColActive(false);
+	}
 
 }
 
 void CKnightAttack::enter()
 {
+	CKnight* pMon = (CKnight*)GetMonster();
 
+	Vec2 vPos = pMon->GetPos();
+	Vec2 vPlayerPos;
+
+	vector<CObject*> vecPlayer = SceneMgr::GetInst()->GetCurSCene()->GetGroupObject(GROUP_TYPE::PLAYER);
+	if (vecPlayer.size() == 0)
+		return;
+	else
+	{
+		vPlayerPos = vecPlayer[0]->GetPos();
+	}
+	Vec2 vDiff = (vPlayerPos - vPos);//길이값 
+
+	int iDir = 0;//방향값
+	vDiff.x > 0 ? iDir = 1 : iDir = -1;
+	SetDir(iDir);
 }
 
 void CKnightAttack::exit()
 {
+	m_iAttackCount = 0;
 	m_strAttackName = L"";
 	GetMonster()->GetAnimator()->GetCurAnimation()->SetFram(0);
 	CState::exit();

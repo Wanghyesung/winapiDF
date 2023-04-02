@@ -7,6 +7,10 @@
 #include "CObject.h"
 #include "CPlayer.h"
 
+#include "CMonster.h"
+#include "CMonFactory.h"
+#include "CMonInterface.h"
+
 #include "CSkillMgr.h"
 #include "CColliderMgr.h"
 #include "CCameraMgr.h"
@@ -70,6 +74,16 @@ void CSceneWest::Init()
 	CSkillMgr::GetInst()->SetPlayer((CPlayer*)GetPlayerObj());
 	CSkillMgr::GetInst()->init(m_eType);
 
+	CMonster* pMon = CMonFactory::CraeteMonster(MON_TYPE::KNIGHT_RED, Vec2(900.f, 650.f), m_eType);
+	pMon->SetName(L"Knight_1");
+	//내 몬스터 인터페이스에 내 몬스터 이름 넣기
+	CMonInterface* dragonInterface = new CMonInterface(pMon->GetName());
+	dragonInterface->SetScale(Vec2(626, 29));
+	dragonInterface->SetPos(Vec2(40, 20));
+	AddObject(dragonInterface, GROUP_TYPE::UI);
+	AddObject(pMon, GROUP_TYPE::MONSTER);
+
+
 	CreateInterFace();
 	
 	CInventory* pInven = new CInventory;
@@ -114,7 +128,9 @@ void CSceneWest::Enter()
 
 	CInventoryMgr::GetInst()->init();
 
-
+	CColliderMgr::GetInst()->ChekGroup(GROUP_TYPE::PLAYER, GROUP_TYPE::MONSTER_SKILL);
+	CColliderMgr::GetInst()->ChekGroup(GROUP_TYPE::BULLET, GROUP_TYPE::MONSTER);
+	CColliderMgr::GetInst()->ChekGroup(GROUP_TYPE::SKILL, GROUP_TYPE::MONSTER);
 	CColliderMgr::GetInst()->ChekGroup(GROUP_TYPE::PLAYER, GROUP_TYPE::PORTAL);
 	CColliderMgr::GetInst()->ChekGroup(GROUP_TYPE::PLAYER, GROUP_TYPE::WALL);
 	

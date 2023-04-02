@@ -9,7 +9,8 @@
 CAttackObject::CAttackObject() :
 	m_pOwner(nullptr),
 	m_fAttackRange(50.f),
-	m_iCurAttackIndex(0)
+	m_iCurAttackIndex(0),
+	m_tAttackInfo{}
 {
 	SetName(L"MonAttackObject");
 	SetTag(GROUP_TYPE::MONSTER_SKILL);
@@ -75,6 +76,11 @@ const tAttackInfo& CAttackObject::GetAttInfo()
 	{
 		//스킬 벡터에 몇번째 스킬인지
 		return vecSkill[m_iCurAttackIndex].m_MonAttackInfo;
+	}
+
+	else
+	{
+		return m_tAttackInfo;
 	}
 }
 

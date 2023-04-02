@@ -18,6 +18,7 @@ private:
     UINT    m_iCurAttackIndex;
     //내 크기
     //공격 범위 
+    tAttackInfo m_tAttackInfo;
 
 public:
     void Skill_update();
@@ -29,8 +30,9 @@ public:
 
 public:
     const tAttackInfo& GetAttInfo();
+    void SetAttInfo(const tAttackInfo& _tAtt) { m_tAttackInfo = _tAtt; }
 
-private:
+public:
     void SetAttackRange(float _fXRange, Vec2 _vCollScale);
 
 public:

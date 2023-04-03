@@ -7,6 +7,8 @@ public:
 	CStoneState();
 	virtual ~CStoneState();
 
+private:
+	bool m_bStart;
 
 public:
 	virtual void enter();

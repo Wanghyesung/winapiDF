@@ -84,15 +84,15 @@ void CSceneWest::Init()
 	AddObject(pMon, GROUP_TYPE::MONSTER);
 
 
-	CreateInterFace();
-	
-	CInventory* pInven = new CInventory;
-	CHPItem* pItemHP = new CHPItem;
-	pInven->AddItem(pItemHP);
-	CMPItem* pItemMP = new CMPItem;
-	pInven->AddItem(pItemMP);
-	
-	AddObject(pInven, GROUP_TYPE::UI);
+	//CreateInterFace();
+	//
+	//CInventory* pInven = new CInventory;
+	//CHPItem* pItemHP = new CHPItem;
+	//pInven->AddItem(pItemHP);
+	//CMPItem* pItemMP = new CMPItem;
+	//pInven->AddItem(pItemMP);
+	//
+	//AddObject(pInven, GROUP_TYPE::UI);
 
 	CTemWall* pTemWall = new CTemWall;
 	pTemWall->SetPos(Vec2(1232.f, 160.f));
@@ -117,6 +117,8 @@ void CSceneWest::Init()
 	//포탈 크기는 고정으로 생성자에서 만듬
 	AddObject(pPortal_2, GROUP_TYPE::PORTAL);
 
+
+
 }
 
 void CSceneWest::Enter()
@@ -126,7 +128,7 @@ void CSceneWest::Enter()
 	//현재 씬에 스킬 초기화
 	CSkillMgr::GetInst()->SetPlayer((CPlayer*)GetPlayerObj());
 
-	CInventoryMgr::GetInst()->init();
+	//CInventoryMgr::GetInst()->init();
 
 	CColliderMgr::GetInst()->ChekGroup(GROUP_TYPE::PLAYER, GROUP_TYPE::MONSTER_SKILL);
 	CColliderMgr::GetInst()->ChekGroup(GROUP_TYPE::BULLET, GROUP_TYPE::MONSTER);

@@ -231,6 +231,8 @@
     <ClInclude Include="CSkill.h" />
     <ClInclude Include="CSkillMgr.h" />
     <ClInclude Include="CSkillState.h" />
+    <ClInclude Include="CSound.h" />
+    <ClInclude Include="CSoundMgr.h" />
     <ClInclude Include="CSpinner.h" />
     <ClInclude Include="CStandOffAttack.h" />
     <ClInclude Include="CState.h" />
@@ -349,6 +351,8 @@
     <ClCompile Include="CSkill.cpp" />
     <ClCompile Include="CSkillMgr.cpp" />
     <ClCompile Include="CSkillState.cpp" />
+    <ClCompile Include="CSound.cpp" />
+    <ClCompile Include="CSoundMgr.cpp" />
     <ClCompile Include="CSpinner.cpp" />
     <ClCompile Include="CStandOffAttack.cpp" />
     <ClCompile Include="CState.cpp" />

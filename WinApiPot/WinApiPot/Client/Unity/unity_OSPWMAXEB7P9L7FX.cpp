@@ -251,6 +251,12 @@
 #include "C:\Users\wangh\source\tem\WinApiPot\WinApiPot\Client\CSkillState.cpp"
 
 
+#include "C:\Users\wangh\source\tem\WinApiPot\WinApiPot\Client\CSound.cpp"
+
+
+#include "C:\Users\wangh\source\tem\WinApiPot\WinApiPot\Client\CSoundMgr.cpp"
+
+
 #include "C:\Users\wangh\source\tem\WinApiPot\WinApiPot\Client\CSpinner.cpp"
 
 

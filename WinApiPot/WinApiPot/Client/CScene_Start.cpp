@@ -134,12 +134,12 @@ void CScene_Start::Init()
 	pWall_1->GetCollider()->SetColliderInfo();//충졸체 크기 정보 저장
 	AddObject(pWall_1, GROUP_TYPE::WALL);
 
-	CPortal* pPortal_1 = new CPortal;
-	pPortal_1->SetName(L"Port_Portal");
-	pPortal_1->SetPos(Vec2(1260.f, 960.f));
-	pPortal_1->SetNextScene(SCENE_TYPE::SCENE_PORT);
-	//포탈 크기는 고정으로 생성자에서 만듬
-	AddObject(pPortal_1, GROUP_TYPE::PORTAL);
+	//CPortal* pPortal_1 = new CPortal;
+	//pPortal_1->SetName(L"Port_Portal");
+	//pPortal_1->SetPos(Vec2(1260.f, 960.f));
+	//pPortal_1->SetNextScene(SCENE_TYPE::SCENE_PORT);
+	////포탈 크기는 고정으로 생성자에서 만듬
+	//AddObject(pPortal_1, GROUP_TYPE::PORTAL);
 
 	CPortal* pPortal_2 = new CPortal;
 	pPortal_2->SetName(L"Back_Street_Portal");

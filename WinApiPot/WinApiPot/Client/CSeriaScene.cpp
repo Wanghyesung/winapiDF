@@ -12,6 +12,18 @@
 #include "CSkillMgr.h"
 #include "CColliderMgr.h"
 
+#include "CPortal.h"
+#include "CTemWall.h"
+
+#include "CMPItem.h"
+#include "CHPItem.h"
+#include "CInventory.h"
+#include "CInventoryMgr.h"
+
+#include "CCollider.h"
+
+#include "CSound.h"
+
 CSeriaScene::CSeriaScene():
 	m_eType(SCENE_TYPE::SERIA_SCENE)
 {
@@ -41,30 +53,61 @@ void CSeriaScene::Init()
 
 	tBackGround tInfo = {};
 	tInfo.fRightWidth = pBackGround->Width();
-	tInfo.fBottomHeight = pBackGround->Height();
+	tInfo.fBottomHeight = pBackGround->Height()-90;
 	tInfo.fLeftWidth = GetStartDrawPoint().x;
 	tInfo.fTopHeight = GetStartDrawPoint().y;
 
 	SetBackGroundInfo(tInfo);
 
+	//사운드
+	//CSound* pSeriaSound
+	//	= CResMgr::GetInst()->LoadSound(L"MainTheme", L"..\\Resources\\Sound\\BGTheme.wav");
+	//pSeriaSound->Play(true);
 
-	CPlayer* pObj = CreatePlayer(Vec2(700.f, 550.f));
-	//pObj->SetName(L"Player");
-	//pObj->SetPos(Vec2(620.f, 380.f));
-	//pObj->SetScale(Vec2(50.f, 50.f));
+	CObject* pObj = CreatePlayer(Vec2(450.f, 650.f));
 	AddObject(pObj, GROUP_TYPE::PLAYER);
+	RegisterPlayer(pObj);
+	CSkillMgr::GetInst()->SetPlayer((CPlayer*)GetPlayerObj());
+	CSkillMgr::GetInst()->init(m_eType);
+
+	CreateInterFace();
+
+	CInventory* pInven = new CInventory;
+	CHPItem* pItemHP = new CHPItem;
+	pInven->AddItem(pItemHP);
+	CMPItem* pItemMP = new CMPItem;
+	pInven->AddItem(pItemMP);
+
+	AddObject(pInven, GROUP_TYPE::UI);
 
 	RegisterPlayer(pObj);
-	CCameraMgr::GetInst()->SetTargetObj(pObj); //vResolution / 2.f
+
+	CPortal* pPortal_1 = new CPortal;
+	pPortal_1->SetName(L"Start_Portal");
+	pPortal_1->SetPos(Vec2(800.f, 850.f));
+	pPortal_1->GetCollider()->SetScale(Vec2(140.f, 50.f));
+	pPortal_1->SetNextScene(SCENE_TYPE::START_SCENE);
+	//포탈 크기는 고정으로 생성자에서 만듬
+	AddObject(pPortal_1, GROUP_TYPE::PORTAL);
+
+	CTemWall* pTemWall = new CTemWall;
+	pTemWall->SetPos(Vec2(800.f, 250.f));
+	pTemWall->GetCollider()->SetScale(Vec2(1600.f, 600.f));
+	AddObject(pTemWall, GROUP_TYPE::WALL);
 
 }
 
 void CSeriaScene::Enter()
 {
-	
+	CCameraMgr::GetInst()->SetTargetObj((CPlayer*)GetPlayerObj()); //vResolution / 2.f
+	CCameraMgr::GetInst()->init();
+	//현재 씬에 스킬 초기화
 	CSkillMgr::GetInst()->SetPlayer((CPlayer*)GetPlayerObj());
-	CSkillMgr::GetInst()->init(m_eType);
 
+	CInventoryMgr::GetInst()->init();
+
+	CColliderMgr::GetInst()->ChekGroup(GROUP_TYPE::PORTAL, GROUP_TYPE::PLAYER);
+	CColliderMgr::GetInst()->ChekGroup(GROUP_TYPE::WALL, GROUP_TYPE::PLAYER);
 }
 
 void CSeriaScene::Exit()

@@ -15,6 +15,7 @@
 #include "CInterfaceMgr.h"
 #include "CInventoryMgr.h"
 #include "CCoinMgr.h"
+#include "CSoundMgr.h"
 
 
 CCore::CCore():
@@ -65,6 +66,7 @@ int CCore::init(HWND _hWnd, POINT _pt)
 	//이중 버퍼 구조를 다 만들고 이제 mgr객체들을 초기화해줌
 	CTimeMgr::GetInst()->init();
 	CKeyMgr::GetInst()->init();
+	CSoundMgr::GetInst()->Initialize();
 	CPathMgr::GetInst()->init();
 	//CCameraMgr::GetInst()->init();
 	CCoinMgr::GetInst()->init();

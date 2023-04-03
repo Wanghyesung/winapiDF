@@ -11,7 +11,8 @@
 
 
 CStoneState::CStoneState():
-	CState(MONSTER_STATE::STONE)
+	CState(MONSTER_STATE::STONE),
+	m_bStart(false)
 {
 
 }
@@ -38,9 +39,22 @@ void CStoneState::update()
 	tMonInfo& tMInfo = pMon->GetMonInfo();
 
 	Vec2 vPos = pMon->GetPos();
-	Vec2 vPlayerPos = SceneMgr::GetInst()->GetCurSCene()->GetPlayerObj()->GetPos();
+	Vec2 vPlayerPos;
+	vector<CObject*> vecPlayer = SceneMgr::GetInst()->GetCurSCene()->GetGroupObject(GROUP_TYPE::PLAYER);
+	if (vecPlayer.size() == 0)
+		return;
+	else
+	{
+		vPlayerPos = vecPlayer[0]->GetPos();
+	}
 
 	Vec2 vDiff = vPlayerPos - vPos;
+
+	if (tMInfo.m_fnavigationScope >= vDiff.Length())
+		m_bStart = true;
+	
+	if(!m_bStart)
+		GetMonster()->GetAnimator()->GetCurAnimation()->SetFram(0);
 
 	int iFrame = pMon->GetAnimator()->GetCurAnimation()->GetCurFrame();
 

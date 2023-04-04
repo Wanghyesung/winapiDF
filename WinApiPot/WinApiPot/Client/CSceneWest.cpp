@@ -74,7 +74,7 @@ void CSceneWest::Init()
 	CSkillMgr::GetInst()->SetPlayer((CPlayer*)GetPlayerObj());
 	CSkillMgr::GetInst()->init(m_eType);
 
-	CMonster* pMon = CMonFactory::CraeteMonster(MON_TYPE::KNIGHT_RED, Vec2(900.f, 650.f), m_eType);
+	CMonster* pMon = CMonFactory::CraeteMonster(MON_TYPE::KNIGHT_BROWN, Vec2(900.f, 650.f), m_eType);
 	pMon->SetName(L"Knight_1");
 	//내 몬스터 인터페이스에 내 몬스터 이름 넣기
 	CMonInterface* dragonInterface = new CMonInterface(pMon->GetName());
@@ -96,7 +96,7 @@ void CSceneWest::Init()
 
 	CTemWall* pTemWall = new CTemWall;
 	pTemWall->SetPos(Vec2(1232.f, 160.f));
-	pTemWall->GetCollider()->SetScale(Vec2(2464.f, 600.f));
+	pTemWall->GetCollider()->SetScale(Vec2(2764.f, 600.f));
 	AddObject(pTemWall, GROUP_TYPE::WALL);
 
 

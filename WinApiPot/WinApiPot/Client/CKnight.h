@@ -29,6 +29,8 @@ private:
 
     unordered_map<wstring, tKnight_Attack> m_hashMonSkill;
 
+    //이름에 따라 몬스터 색 변경
+    wstring m_strTexName;
 public:
     virtual void update();
     virtual void render(HDC _dc);
@@ -41,6 +43,9 @@ private:
     void update_state();
 
     void init_skill();
+    //텍스쳐, 애니메이션 초기화
+    void init(const wstring& _strName);
+
 public:
     virtual void OnColliderEnter(CCollider* _pOther);
     virtual void OnColliderExit(CCollider* _pOther);
@@ -49,5 +54,6 @@ public:
 
     friend class CKnightTrace;
     friend class CKnightAttack;
+    friend class CMonFactory;
 };
 

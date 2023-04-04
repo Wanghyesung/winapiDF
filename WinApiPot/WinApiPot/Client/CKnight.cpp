@@ -23,39 +23,9 @@
 
 #include "CAttackObject.h"
 
-CKnight::CKnight()
-{
-	CreateCollider();
-	GetCollider()->SetScale(Vec2(70.f, 90.f));
-	GetCollider()->SetOffSet(Vec2(0.f, 0.f));
-
-	CreateGravity();
-
-	CreateAnimator();
-
-	CTexture* pTexRight = CResMgr::GetInst()->LoadTextur(L"Knight_right", L"..\\OutPut\\bin_release\\Content\\Texture\\Knight_right.bmp");
-	CTexture* pTexLeft = CResMgr::GetInst()->LoadTextur(L"Knight_left", L"..\\OutPut\\bin_release\\Content\\Texture\\Knight_left.bmp");
-
-	GetAnimator()->CreateAnimation(L"Knight_idle_right",pTexRight,Vec2(0.f,0.f),Vec2(250.f,150.f), Vec2(250.f,0.f),Vec2(0.f,0.f),0.1f,1);
-	GetAnimator()->CreateAnimation(L"Knight_walk_right", pTexRight, Vec2(0.f, 150.f), Vec2(250.f, 150.f), Vec2(250.f, 0.f), Vec2(0.f, 0.f), 0.1f, 6);
-	GetAnimator()->CreateAnimation(L"Knight_normal1_attack_right", pTexRight, Vec2(0.f, 300.f), Vec2(250.f, 150.f), Vec2(250.f, 0.f), Vec2(0.f, 0.f), 0.2f, 5);
-	GetAnimator()->CreateAnimation(L"Knight_normal2_attack_right", pTexRight, Vec2(0.f, 450.f), Vec2(250.f, 150.f), Vec2(250.f, 0.f), Vec2(0.f, 0.f), 0.2f, 6);
-	GetAnimator()->CreateAnimation(L"Knight_hit_right", pTexRight, Vec2(0.f, 600.f), Vec2(250.f, 150.f), Vec2(250.f, 0.f), Vec2(0.f, 0.f), 0.1f, 5);
-	GetAnimator()->CreateAnimation(L"Knight_defense_right", pTexRight, Vec2(0.f, 750.f), Vec2(250.f, 150.f), Vec2(250.f, 0.f), Vec2(0.f, 0.f), 0.1f, 3);
-	GetAnimator()->CreateAnimation(L"Knight_start_right", pTexRight, Vec2(0.f, 900.f), Vec2(250.f, 150.f), Vec2(250.f, 0.f), Vec2(0.f, 0.f), 0.2f, 10);
-
-	GetAnimator()->CreateAnimation(L"Knight_idle_left", pTexLeft, Vec2(2250.f, 0.f), Vec2(250.f, 150.f), Vec2(-250.f, 0.f), Vec2(0.f, 0.f), 0.1f, 1);
-	GetAnimator()->CreateAnimation(L"Knight_walk_left", pTexLeft, Vec2(2250.f, 150.f), Vec2(250.f, 150.f), Vec2(-250.f, 0.f), Vec2(0.f, 0.f), 0.1f, 6);
-	GetAnimator()->CreateAnimation(L"Knight_normal1_attack_left", pTexLeft, Vec2(2250.f, 300.f), Vec2(250.f, 150.f), Vec2(-250.f, 0.f), Vec2(0.f, 0.f), 0.2f, 5);
-	GetAnimator()->CreateAnimation(L"Knight_normal2_attack_left", pTexLeft, Vec2(2250.f, 450.f), Vec2(250.f, 150.f), Vec2(-250.f, 0.f), Vec2(0.f, 0.f), 0.2f, 6);
-	GetAnimator()->CreateAnimation(L"Knight_hit_left", pTexLeft, Vec2(2250.f, 600.f), Vec2(250.f, 150.f), Vec2(-250.f, 0.f), Vec2(0.f, 0.f), 0.1f, 5);
-	GetAnimator()->CreateAnimation(L"Knight_defense_left", pTexLeft, Vec2(2250.f, 750.f), Vec2(250.f, 150.f), Vec2(-250.f, 0.f), Vec2(0.f, 0.f), 0.1f, 3);
-	GetAnimator()->CreateAnimation(L"Knight_start_left", pTexLeft, Vec2(2250.f, 900.f), Vec2(250.f, 150.f), Vec2(-250.f, 0.f), Vec2(0.f, 0.f), 0.2f, 10);
-
-	init_skill();
-
-	GetAnimator()->Play(L"Knight_start_right", false);
-	
+CKnight::CKnight():
+	m_strTexName(L"Knight")//기본 이미지
+{	
 }
 
 CKnight::~CKnight()
@@ -72,8 +42,8 @@ void CKnight::init_skill()
 	tAttackInfo1.m_fAttRcnt = 50.f;
 	tAttackInfo1.m_fAttUpperRcnt = -60.f;
 	tAttackInfo1.m_fAttRigidityTime = 0.5f;
-	tKnight_Attack tAttack1 = {Vec2(40.f,40.f),Vec2(60.f,0.f),Vec2(50.f,50.f),2,3,5.f, 5.f,tAttackInfo1};
-	m_hashMonSkill.insert(make_pair(L"Knight_normal1_attack", tAttack1));
+	tKnight_Attack tAttack1 = {Vec2(50.f,50.f),Vec2(60.f,0.f),Vec2(50.f,50.f),2,3,5.f, 5.f,tAttackInfo1};
+	m_hashMonSkill.insert(make_pair(m_strTexName + L"_normal1_attack", tAttack1));
 
 
 	tAttackInfo tAttackInfo2 = {};
@@ -82,8 +52,53 @@ void CKnight::init_skill()
 	tAttackInfo2.m_fAttRcnt = 70.f;
 	tAttackInfo2.m_fAttUpperRcnt = -60.f;
 	tAttackInfo2.m_fAttRigidityTime = 0.5f;
-	tKnight_Attack tAttack2 = { Vec2(60.f,30.f),Vec2(60.f,0.f),Vec2(80.f,30.f),2,3, 8.f, 8.f, tAttackInfo2 };
-	m_hashMonSkill.insert(make_pair(L"Knight_normal2_attack", tAttack2));
+	tKnight_Attack tAttack2 = { Vec2(75.f,50.f),Vec2(60.f,0.f),Vec2(80.f,30.f),2,3, 8.f, 8.f, tAttackInfo2 };
+	m_hashMonSkill.insert(make_pair(m_strTexName + L"_normal2_attack", tAttack2));
+}
+
+void CKnight::init(const wstring& _strName)
+{
+	m_strTexName = _strName;
+	float fSizeX;
+	if (m_strTexName == L"Knight")
+		fSizeX = 250.f;
+	else
+		fSizeX = 300.f;
+
+	CreateCollider();
+	GetCollider()->SetScale(Vec2(70.f, 90.f));
+	GetCollider()->SetOffSet(Vec2(0.f, 0.f));
+
+	CreateGravity();
+
+	CreateAnimator();
+
+	CTexture* pTexRight = CResMgr::GetInst()->LoadTextur(m_strTexName + L"_right", L"..\\OutPut\\bin_release\\Content\\Texture\\" + m_strTexName + L"_right.bmp");
+	CTexture* pTexLeft = CResMgr::GetInst()->LoadTextur(m_strTexName + L"_left", L"..\\OutPut\\bin_release\\Content\\Texture\\" + m_strTexName + L"_left.bmp");
+	CTexture* pTexStart = CResMgr::GetInst()->LoadTextur(m_strTexName + L"_Start", L"..\\OutPut\\bin_release\\Content\\Texture\\" + m_strTexName + L"_start.bmp");
+
+	GetAnimator()->CreateAnimation(m_strTexName + L"_idle_right", pTexRight, Vec2(0.f, 0.f), Vec2(fSizeX, 150.f), Vec2(fSizeX, 0.f), Vec2(0.f, 0.f), 0.1f, 1);
+	GetAnimator()->CreateAnimation(m_strTexName + L"_walk_right", pTexRight, Vec2(0.f, 150.f), Vec2(fSizeX, 150.f), Vec2(fSizeX, 0.f), Vec2(0.f, 0.f), 0.1f, 6);
+	GetAnimator()->CreateAnimation(m_strTexName + L"_normal1_attack_right", pTexRight, Vec2(0.f, 300.f), Vec2(fSizeX, 150.f), Vec2(fSizeX, 0.f), Vec2(0.f, 0.f), 0.2f, 5);
+	GetAnimator()->CreateAnimation(m_strTexName + L"_normal2_attack_right", pTexRight, Vec2(0.f, 450.f), Vec2(fSizeX, 150.f), Vec2(fSizeX, 0.f), Vec2(0.f, 0.f), 0.2f, 6);
+	GetAnimator()->CreateAnimation(m_strTexName + L"_hit_right", pTexRight, Vec2(0.f, 600.f), Vec2(fSizeX, 150.f), Vec2(fSizeX, 0.f), Vec2(0.f, 0.f), 0.1f, 5);
+	GetAnimator()->CreateAnimation(m_strTexName + L"_defense_right", pTexRight, Vec2(0.f, 750.f), Vec2(fSizeX, 150.f), Vec2(fSizeX, 0.f), Vec2(0.f, 0.f), 0.1f, 3);
+	//GetAnimator()->CreateAnimation(L"Knight_start_right", pTexRight, Vec2(0.f, 900.f), Vec2(250.f, 150.f), Vec2(250.f, 0.f), Vec2(0.f, 0.f), 0.2f, 10);
+
+	GetAnimator()->CreateAnimation(m_strTexName + L"_idle_left", pTexLeft, Vec2(fSizeX * 9, 0.f), Vec2(fSizeX, 150.f), Vec2(-fSizeX, 0.f), Vec2(0.f, 0.f), 0.1f, 1);
+	GetAnimator()->CreateAnimation(m_strTexName + L"_walk_left", pTexLeft, Vec2(fSizeX * 9, 150.f), Vec2(fSizeX, 150.f), Vec2(-fSizeX, 0.f), Vec2(0.f, 0.f), 0.1f, 6);
+	GetAnimator()->CreateAnimation(m_strTexName + L"_normal1_attack_left", pTexLeft, Vec2(fSizeX * 9, 300.f), Vec2(fSizeX, 150.f), Vec2(-fSizeX, 0.f), Vec2(0.f, 0.f), 0.2f, 5);
+	GetAnimator()->CreateAnimation(m_strTexName + L"_normal2_attack_left", pTexLeft, Vec2(fSizeX * 9, 450.f), Vec2(fSizeX, 150.f), Vec2(-fSizeX, 0.f), Vec2(0.f, 0.f), 0.2f, 6);
+	GetAnimator()->CreateAnimation(m_strTexName + L"_hit_left", pTexLeft, Vec2(fSizeX * 9, 600.f), Vec2(fSizeX, 150.f), Vec2(-fSizeX, 0.f), Vec2(0.f, 0.f), 0.1f, 5);
+	GetAnimator()->CreateAnimation(m_strTexName + L"_defense_left", pTexLeft, Vec2(fSizeX * 9, 750.f), Vec2(fSizeX, 150.f), Vec2(-fSizeX, 0.f), Vec2(0.f, 0.f), 0.1f, 3);
+	//GetAnimator()->CreateAnimation(L"Knight_start_left", pTexLeft, Vec2(2250.f, 900.f), Vec2(250.f, 150.f), Vec2(-250.f, 0.f), Vec2(0.f, 0.f), 0.2f, 10);
+
+	GetAnimator()->CreateAnimation(m_strTexName + L"_start", pTexStart, Vec2(0.f, 0.f), Vec2(fSizeX, 150.f), Vec2(fSizeX, 0.f), Vec2(0.f, 0.f), 0.15f, 10);
+	GetAnimator()->FindAnimation(m_strTexName + L"_start")->Create(pTexStart, Vec2(0.f, 150.f), Vec2(fSizeX, 150.f), Vec2(fSizeX, 0.f), Vec2(0.f, 0.f), 0.15f, 2);
+
+	init_skill();
+
+	GetAnimator()->Play(m_strTexName + L"_start", false);
 }
 
 
@@ -164,20 +179,20 @@ void CKnight::update_state()
 	{
 	case MONSTER_STATE::STONE:
 	{
-		strMotion = L"Knight_start" + sDir;
+		strMotion = m_strTexName + L"_start";
 		pAnim->Play(strMotion, false);
 	}
 	break;
 
 	case MONSTER_STATE::IDLE:
 	{
-		strMotion = L"Knight_idle" + sDir;
+		strMotion = m_strTexName + L"_idle" + sDir;
 		pAnim->Play(strMotion, true);
 	}
 	break;
 	case MONSTER_STATE::TRACE:
 	{
-		strMotion = L"Knight_walk" + sDir;
+		strMotion = m_strTexName + L"_walk" + sDir;
 		pAnim->Play(strMotion, true);
 	}
 	break;
@@ -190,13 +205,13 @@ void CKnight::update_state()
 	break;
 	case MONSTER_STATE::DEFENSE:
 	{
-		strMotion = L"Knight_defense" + sDir;
+		strMotion = m_strTexName + L"_defense" + sDir;
 		pAnim->Play(strMotion, false);
 	}
 	break;
 	case MONSTER_STATE::HIT:
 	{
-		strMotion = L"Knight_hit";
+		strMotion = m_strTexName + L"_hit";
 		strMotion += sDir;
 		pAnim->Play(strMotion, false);
 		int iFrame = GetAnimator()->GetCurAnimation()->GetCurFrame();
@@ -205,7 +220,7 @@ void CKnight::update_state()
 	break;
 	case MONSTER_STATE::UPPER_HIT:
 	{
-		strMotion = L"Knight_hit";
+		strMotion = m_strTexName + L"_hit";
 		strMotion += sDir;
 		pAnim->Play(strMotion, false);
 		int iFrame = GetAnimator()->GetCurAnimation()->GetCurFrame();
@@ -214,7 +229,7 @@ void CKnight::update_state()
 	break;
 	case MONSTER_STATE::DEAD:
 	{
-		strMotion = L"Knight_hit";
+		strMotion = m_strTexName + L"_hit";
 		strMotion += sDir;
 		pAnim->Play(strMotion, false);
 		SetActiv(false);//비활성화 (공격 관통하게)

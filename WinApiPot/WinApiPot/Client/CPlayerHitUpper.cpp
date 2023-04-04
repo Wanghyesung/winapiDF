@@ -41,7 +41,7 @@ void CPlayerHitUpper::update()
 		pPlayer->GetAnimator()->GetCurAnimation()->SetFram(4);
 	}
 
-	else if (iFrame == 3 )
+	else if (iFrame == 3)
 	{
 		pPlayer->GetAnimator()->GetCurAnimation()->SetFram(3);
 	}

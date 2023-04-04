@@ -26,7 +26,7 @@ CThunderDown::CThunderDown():
 	pTex = CResMgr::GetInst()->LoadTextur(L"Thunder_down", L"..\\OutPut\\bin_release\\Content\\emfact\\Thunder_down.bmp");
 
 	CreateCollider();
-	GetCollider()->SetScale(Vec2(0.f,100.f));
+	GetCollider()->SetScale(Vec2(130.f,100.f));
 	GetCollider()->SetOffSet(Vec2(0.f, 150.f));
 
 	CreateAnimator();
@@ -55,7 +55,7 @@ void CThunderDown::render(HDC _dc)
 void CThunderDown::update()
 {
 	//번개나올 때 몬스터 죽으면 오류
-	if (m_pOwner == nullptr || m_pOwner->IsActiv())
+	if (m_pOwner == nullptr || !m_pOwner->IsActiv())
 	{
 		DeleteObject(this);
 		return;

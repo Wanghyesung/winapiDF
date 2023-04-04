@@ -92,7 +92,7 @@ void CSeriaScene::Init()
 
 	CTemWall* pTemWall = new CTemWall;
 	pTemWall->SetPos(Vec2(800.f, 250.f));
-	pTemWall->GetCollider()->SetScale(Vec2(1600.f, 600.f));
+	pTemWall->GetCollider()->SetScale(Vec2(1800.f, 600.f));
 	AddObject(pTemWall, GROUP_TYPE::WALL);
 
 }

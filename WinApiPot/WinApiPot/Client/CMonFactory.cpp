@@ -69,7 +69,7 @@ CMonster* CMonFactory::CraeteMonster(MON_TYPE _monType, Vec2 _vPos, SCENE_TYPE _
 		//몬스터 공격
 		tAttackInfo tAttackInfo = {};
 		tAttackInfo.m_fAttackRange = Vec2(50.f, 20.f);
-		tAttackInfo.m_fAttackDamage = 10.f;
+	
 		pMon->SetAttackInfo(tAttackInfo);
 
 
@@ -124,7 +124,6 @@ CMonster* CMonFactory::CraeteMonster(MON_TYPE _monType, Vec2 _vPos, SCENE_TYPE _
 		//몬스터 공격
 		tAttackInfo tAttackInfo = {};
 		tAttackInfo.m_fAttackRange = Vec2(50.f, 20.f);
-		tAttackInfo.m_fAttackDamage = 10.f;
 		pMon->SetAttackInfo(tAttackInfo);
 
 
@@ -259,6 +258,7 @@ CMonster* CMonFactory::CraeteMonster(MON_TYPE _monType, Vec2 _vPos, SCENE_TYPE _
 	case MON_TYPE::KNIGHT_RED:
 	{
 		pMon = new CKnight;
+		((CKnight*)pMon)->init(L"Knight");
 		pMon->SetTag(GROUP_TYPE::MONSTER);
 		pMon->SetPos(_vPos);
 		//pMon->SetScale(Vec2(50.f, 50.f));
@@ -268,7 +268,7 @@ CMonster* CMonFactory::CraeteMonster(MON_TYPE _monType, Vec2 _vPos, SCENE_TYPE _
 		tMonInfo info = {};
 		info.m_fnavigationScope = 400.f;
 		info.m_iHp = 100;
-		info.m_fspeed = 140.f;
+		info.m_fspeed = 200.f;
 		pMon->SettMonInfo(info);
 
 		tHitInfo tHitInfo = {};
@@ -279,7 +279,6 @@ CMonster* CMonFactory::CraeteMonster(MON_TYPE _monType, Vec2 _vPos, SCENE_TYPE _
 		//몬스터 공격
 		tAttackInfo tAttackInfo = {};
 		tAttackInfo.m_fAttackRange = Vec2(50.f, 20.f);
-		tAttackInfo.m_fAttackDamage = 10.f;
 		pMon->SetAttackInfo(tAttackInfo);
 
 
@@ -300,6 +299,51 @@ CMonster* CMonFactory::CraeteMonster(MON_TYPE _monType, Vec2 _vPos, SCENE_TYPE _
 	}
 	break;
 
+	case MON_TYPE::KNIGHT_BROWN:
+	{
+		pMon = new CKnight;
+		((CKnight*)pMon)->init(L"Knight2");
+		pMon->SetTag(GROUP_TYPE::MONSTER);
+		pMon->SetPos(_vPos);
+		//pMon->SetScale(Vec2(50.f, 50.f));
+
+		pMon->set_attackobj(_eSceneType);
+
+		tMonInfo info = {};
+		info.m_fnavigationScope = 400.f;
+		info.m_iHp = 100;
+		info.m_fspeed = 140.f;
+		pMon->SettMonInfo(info);
+
+		tHitInfo tHitInfo = {};
+		tHitInfo.m_iMaxHitFrame = 5;
+		pMon->SetHitInfo(tHitInfo);
+
+
+		//몬스터 공격
+		tAttackInfo tAttackInfo = {};
+		tAttackInfo.m_fAttackRange = Vec2(50.f, 20.f);
+		
+		pMon->SetAttackInfo(tAttackInfo);
+
+
+		pMon->CreateRigidBody();
+		pMon->GetRigidBody()->SetMass(1.f);
+
+		AI* pAI = new AI;
+		pAI->AddState(new CStoneState);
+		pAI->AddState(new CIdleState);
+		pAI->AddState(new CKnightTrace);
+		pAI->AddState(new CKnightAttack);
+		pAI->AddState(new CHitState);
+		pAI->AddState(new CHitUpper);
+		pAI->AddState(new CDeadState);
+
+		pAI->SetCurState(MONSTER_STATE::STONE);
+		pMon->SetAI(pAI);
+
+	}
+	break;
 	}
 
 

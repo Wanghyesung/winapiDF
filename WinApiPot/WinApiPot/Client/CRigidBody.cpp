@@ -65,6 +65,9 @@ void CRigidBody::finalupdate()
 		m_vVelocity += m_vAccel * fDT;
 
 		Vec2 vNor = -m_vVelocity;
+		if (vNor.IsZero())
+			return;
+
 		vNor.NormalRize();
 		Vec2 vFric = vNor * m_fFricCoeff * fDT; //마찰력 적용
 

@@ -223,6 +223,7 @@
     <ClInclude Include="CRigidBody.h" />
     <ClInclude Include="CScene.h" />
     <ClInclude Include="CSceneBack.h" />
+    <ClInclude Include="CSceneLog.h" />
     <ClInclude Include="CSceneTowerFirst.h" />
     <ClInclude Include="CSceneWest.h" />
     <ClInclude Include="CScene_Start.h" />
@@ -343,6 +344,7 @@
     <ClCompile Include="CRigidBody.cpp" />
     <ClCompile Include="CScene.cpp" />
     <ClCompile Include="CSceneBack.cpp" />
+    <ClCompile Include="CSceneLog.cpp" />
     <ClCompile Include="CSceneTowerFirst.cpp" />
     <ClCompile Include="CSceneWest.cpp" />
     <ClCompile Include="CScene_Start.cpp" />

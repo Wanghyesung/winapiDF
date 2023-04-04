@@ -353,6 +353,9 @@
     <Filter Include="Engine\03.Manager\SoundMgr">
       <UniqueIdentifier>{67e49d42-2146-4467-9501-88880adf0609}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Engine\04.CScene\CSceneLog">
+      <UniqueIdentifier>{b6d7dd37-005a-401f-a7fa-19544677b59d}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="pch.h" />
@@ -599,9 +602,6 @@
     <ClInclude Include="CSceneWest.h">
       <Filter>Engine\04.CScene\CSceneWest</Filter>
     </ClInclude>
-    <ClInclude Include="CScene.h">
-      <Filter>Engine\04.CScene</Filter>
-    </ClInclude>
     <ClInclude Include="CStoneBox.h">
       <Filter>Engine\05.CObject\SkyTowerObj\stonebox</Filter>
     </ClInclude>
@@ -701,12 +701,20 @@
     <ClInclude Include="CKnightTrace.h">
       <Filter>Engine\08.Module\State\CKnightState\Trace</Filter>
     </ClInclude>
-    <ClInclude Include="CKnightAttack.h" />
     <ClInclude Include="CSound.h">
       <Filter>Engine\06.Resource\CSound</Filter>
     </ClInclude>
     <ClInclude Include="CSoundMgr.h">
       <Filter>Engine\03.Manager\SoundMgr</Filter>
+    </ClInclude>
+    <ClInclude Include="CSceneLog.h">
+      <Filter>Engine\04.CScene\CSceneLog</Filter>
+    </ClInclude>
+    <ClInclude Include="CScene.h">
+      <Filter>Engine\04.CScene</Filter>
+    </ClInclude>
+    <ClInclude Include="CKnightAttack.h">
+      <Filter>Engine\08.Module\State\CKnightState\Attack</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -943,9 +951,6 @@
     <ClCompile Include="CSceneWest.cpp">
       <Filter>Engine\04.CScene\CSceneWest</Filter>
     </ClCompile>
-    <ClCompile Include="CScene.cpp">
-      <Filter>Engine\04.CScene</Filter>
-    </ClCompile>
     <ClCompile Include="CStoneBox.cpp">
       <Filter>Engine\05.CObject\SkyTowerObj\stonebox</Filter>
     </ClCompile>
@@ -1048,12 +1053,20 @@
     <ClCompile Include="CKnightTrace.cpp">
       <Filter>Engine\08.Module\State\CKnightState\Trace</Filter>
     </ClCompile>
-    <ClCompile Include="CKnightAttack.cpp" />
     <ClCompile Include="CSound.cpp">
       <Filter>Engine\06.Resource\CSound</Filter>
     </ClCompile>
     <ClCompile Include="CSoundMgr.cpp">
       <Filter>Engine\03.Manager\SoundMgr</Filter>
+    </ClCompile>
+    <ClCompile Include="CSceneLog.cpp">
+      <Filter>Engine\04.CScene\CSceneLog</Filter>
+    </ClCompile>
+    <ClCompile Include="CScene.cpp">
+      <Filter>Engine\04.CScene</Filter>
+    </ClCompile>
+    <ClCompile Include="CKnightAttack.cpp">
+      <Filter>Engine\08.Module\State\CKnightState\Attack</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

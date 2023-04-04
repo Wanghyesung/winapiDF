@@ -11,27 +11,33 @@
 #include "CSceneMgr.h"
 #include "CScene.h"
 
-CGate::CGate(const wstring& _strDir) :
+CGate::CGate(const wstring& _strDir, bool _bIsBoss) :
 	m_strDir(_strDir),
 	CTex(nullptr),
 	CTexDoor(nullptr),
 	m_eNextScene(SCENE_TYPE::END),
-	m_bActive(true)
+	m_bActive(true),
+	m_strBoss(L"")
 {
 	SetTag(GROUP_TYPE::GATE);
 
 	CreateCollider();
 	GetCollider()->SetOffSet(Vec2(-10.f, 20.f));
-		
+	
+	if (_bIsBoss)
+	{
+		m_strBoss = L"boss_";
+	}
+
 	wstring strPath = L"..\\OutPut\\bin_release\\Content\\Object\\";
-	wstring strName = L"gate_" + _strDir;
+	wstring strName = L"gate_" + m_strBoss + _strDir;
 	wstring strResult = strPath + strName + L".bmp";
 	wstring strDoorResult = strPath + strName + L"_door.bmp";
 
 	//gate + ¹æÇâ ¹®
 	CTex = CResMgr::GetInst()->LoadTextur(strResult, strResult);
 	CTexDoor = CResMgr::GetInst()->LoadTextur(strDoorResult,strDoorResult);
-	CUpStairs = CResMgr::GetInst()->LoadTextur(L"upstairs", L"..\\OutPut\\bin_release\\Content\\Object\\upstairs.bmp");
+	CUpStairs = CResMgr::GetInst()->LoadTextur(L"upstairs" + m_strBoss, L"..\\OutPut\\bin_release\\Content\\Object\\upstairs_" + m_strBoss+ L".bmp");
 }
 
 CGate::~CGate()

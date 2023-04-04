@@ -64,7 +64,7 @@ public:
 	{
 		m_vLookAt = _vLook;
 		m_fSpeed = ((m_vLookAt - m_vPreLookAt).Length() / m_fTime);
-		m_fAccTime = 0;
+		//m_fAccTime = 0;
 	}
 
 public:

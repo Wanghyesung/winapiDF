@@ -4,6 +4,7 @@
 #include "CScene.h"
 #include "CScene_Start.h"
 
+#include "CSceneLog.h"
 #include "CSeriaScene.h"
 #include "CSceneBack.h"
 #include "CSceneWest.h"
@@ -47,6 +48,7 @@ CScene* SceneMgr::FindScene(SCENE_TYPE _eSceneType)
 void SceneMgr::init()
 {
 	//씬 배열에 만든 씬들 넣기
+	m_arrScene[(UINT)SCENE_TYPE::LOGO_SCENE] = new CSceneLog;
 	m_arrScene[(UINT)SCENE_TYPE::START_SCENE] = new CScene_Start;
 	//m_arrScene[(UINT)SCENE_TYPE::START_SCENE]->SetName(L"Start Scene");
 	m_arrScene[(UINT)SCENE_TYPE::SCENE_BACKSTREET] = new CSceneBack;
@@ -66,7 +68,7 @@ void SceneMgr::init()
 		m_arrScene[i]->Init();
 	}
 
-	m_pCurrScene = m_arrScene[(UINT)SCENE_TYPE::WEST_COAST];//현재 씬 넣어주고
+	m_pCurrScene = m_arrScene[(UINT)SCENE_TYPE::LOGO_SCENE];//현재 씬 넣어주고
 	m_pCurrScene->Enter();
 }
 
@@ -85,8 +87,7 @@ void SceneMgr::update()
 
 void SceneMgr::ChangeScene(SCENE_TYPE _eNext)
 {
-	//플레이어만 가져오기
-	//vector<CObject*> vecPlayer = m_pCurrScene->GetGroupObject(GROUP_TYPE::PLAYER);
+	//인벤토리, 인터페이스 객체 다른씬으로 옮기기
 	m_pCurrScene->Exit();
 	CInterFace* pInter = CInterfaceMgr::GetInst()->Exit();
 	CInventory* pInven = CInventoryMgr::GetInst()->Exit();

@@ -25,7 +25,8 @@
 #include "CSound.h"
 
 CSeriaScene::CSeriaScene():
-	m_eType(SCENE_TYPE::SERIA_SCENE)
+	m_eType(SCENE_TYPE::SERIA_SCENE),
+	m_pBackSound(nullptr)
 {
 
 }
@@ -59,12 +60,10 @@ void CSeriaScene::Init()
 
 	SetBackGroundInfo(tInfo);
 
-	//사운드
-	//CSound* pSeriaSound
-	//	= CResMgr::GetInst()->LoadSound(L"MainTheme", L"..\\Resources\\Sound\\BGTheme.wav");
-	//pSeriaSound->Play(true);
+	m_pBackSound
+		= CResMgr::GetInst()->LoadSound(L"seria", L"..\\OutPut\\bin_release\\Content\\Sound\\seria.wav");
 
-	CObject* pObj = CreatePlayer(Vec2(450.f, 650.f));
+	CObject* pObj = CreatePlayer(Vec2(550.f, 650.f));
 	AddObject(pObj, GROUP_TYPE::PLAYER);
 	RegisterPlayer(pObj);
 	CSkillMgr::GetInst()->SetPlayer((CPlayer*)GetPlayerObj());
@@ -99,6 +98,9 @@ void CSeriaScene::Init()
 
 void CSeriaScene::Enter()
 {
+	//사운드
+	m_pBackSound->Play(true);
+
 	CCameraMgr::GetInst()->SetTargetObj((CPlayer*)GetPlayerObj()); //vResolution / 2.f
 	CCameraMgr::GetInst()->init();
 	//현재 씬에 스킬 초기화
@@ -112,6 +114,8 @@ void CSeriaScene::Enter()
 
 void CSeriaScene::Exit()
 {
+	m_pBackSound->Stop(true);
+
 	DeleteGroup(GROUP_TYPE::SKILL);
 
 	CColliderMgr::GetInst()->Reset();

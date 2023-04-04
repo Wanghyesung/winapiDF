@@ -4,13 +4,14 @@ class CGate :
     public CObject
 {
 public:
-    CGate(const wstring& _strDir);
+    CGate(const wstring& _strDir, bool _bIsBoss);
     virtual ~CGate();
 
 private:
     //¿Ãµø 
     SCENE_TYPE m_eNextScene;
     wstring m_strDir;
+    wstring m_strBoss;
 
     CTexture* CTex;
     CTexture* CTexDoor;

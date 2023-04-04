@@ -122,7 +122,7 @@ void SceneTower5::Init()
 	
 
 	//방향 먼저 잡기
-	CGate* pGate = new CGate(L"up");
+	CGate* pGate = new CGate(L"up", true);
 	pGate->SetPos(Vec2(500.f, 365.f));
 	pGate->GetCollider()->SetScale(Vec2(70.f, 70.f));
 	pGate->SetNextScene(SCENE_TYPE::DUNGEON_BOSS);

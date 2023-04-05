@@ -35,6 +35,8 @@
 #include "CHPItem.h"
 #include "CMPItem.h"
 
+#include "CSound.h"
+
 CSceneTowerFirst::CSceneTowerFirst():
 	m_eType(SCENE_TYPE::FIRST_DUNGEON)
 {
@@ -60,6 +62,9 @@ void CSceneTowerFirst::Init()
 	SetBackGroundInfo(tInfo);
 	//플레이어 인터페이스는 씬 바꿀때 삭제X
 	
+	m_pBackSound
+		= CResMgr::GetInst()->LoadSound(L"draconian_tower", L"..\\OutPut\\bin_release\\Content\\Sound\\draconian_tower.wav");
+
 	//1344 790
 	CTemWall* pTemWall = new CTemWall;
 	pTemWall->SetPos(Vec2(672.f, 110.f));
@@ -159,6 +164,8 @@ void CSceneTowerFirst::update()
 
 void CSceneTowerFirst::Enter()
 {
+	m_pBackSound->Play(true);
+
 	CCameraMgr::GetInst()->SetTargetObj((CPlayer*)GetPlayerObj()); //vResolution / 2.f
 	CCameraMgr::GetInst()->init();
 	//현재 씬에 스킬 초기화
@@ -180,10 +187,13 @@ void CSceneTowerFirst::Enter()
 	CColliderMgr::GetInst()->ChekGroup(GROUP_TYPE::PLAYER, GROUP_TYPE::MONSTER_SKILL);
 	CColliderMgr::GetInst()->ChekGroup(GROUP_TYPE::BULLET, GROUP_TYPE::MONSTER);
 	CColliderMgr::GetInst()->ChekGroup(GROUP_TYPE::SKILL, GROUP_TYPE::MONSTER);
+	//CColliderMgr::GetInst()->ChekGroup(GROUP_TYPE::MONSTER, GROUP_TYPE::MONSTER);
 }
 
 void CSceneTowerFirst::Exit()
 {
+	m_pBackSound->Stop(true);
+
 	CColliderMgr::GetInst()->Reset();
 }
 

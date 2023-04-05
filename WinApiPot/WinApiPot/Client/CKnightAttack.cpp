@@ -19,6 +19,8 @@
 #include "CPlayer.h"
 #include "CScene.h"
 
+#include "CSound.h"
+
 CKnightAttack::CKnightAttack():
 	CState(MONSTER_STATE::ATTACK),
 	m_tNightAttackInfo{},
@@ -74,6 +76,8 @@ void CKnightAttack::update()
 
 void CKnightAttack::enter()
 {
+	GetAnimSound()->Play(false);
+
 	CKnight* pMon = (CKnight*)GetMonster();
 
 	Vec2 vPos = pMon->GetPos();

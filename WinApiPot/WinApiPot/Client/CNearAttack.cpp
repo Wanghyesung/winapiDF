@@ -6,6 +6,8 @@
 #include "CMonster.h"
 #include "CAttackObject.h"
 
+#include "CSound.h"
+
 CNearAttack::CNearAttack():
 	CState(MONSTER_STATE::ATTACK),
 	m_iAttackCount(0),
@@ -46,7 +48,7 @@ void CNearAttack::update()
 
 void CNearAttack::enter()
 {
-	
+	GetAnimSound()->Play(false);
 }
 
 void CNearAttack::exit()

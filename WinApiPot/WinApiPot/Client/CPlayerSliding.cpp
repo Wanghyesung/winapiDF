@@ -9,11 +9,13 @@
 
 #include "CRigidBody.h"
 
+#include "CSound.h"
 
 CPlayerSliding::CPlayerSliding():
 	CPlayerState(PLAYER_STATE::ATTACK_SLIDING),
 	m_bSliding(false)
 {
+	SetAnimSound(L"gn_sliding");
 }
 
 CPlayerSliding::~CPlayerSliding()
@@ -43,6 +45,7 @@ void CPlayerSliding::update()
 
 void CPlayerSliding::Exit()
 {
+	GetAnimSound()->Stop(true);
 	m_bSliding = false;
 	CPlayerState::Exit();
 	GetFSM()->GetPlayer()->GetAnimator()->GetCurAnimation()->SetFram(0);
@@ -50,5 +53,6 @@ void CPlayerSliding::Exit()
 
 void CPlayerSliding::Enter()
 {
+	GetAnimSound()->Play(false);
 	GetFSM()->GetPlayer()->GetRigidBody()->SetAccel(true);
 }

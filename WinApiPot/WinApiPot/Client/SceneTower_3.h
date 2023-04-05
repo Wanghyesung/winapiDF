@@ -1,5 +1,8 @@
 #pragma once
 #include "CScene.h"
+
+class CSound;
+
 class SceneTower_3 :
     public CScene
 {
@@ -18,6 +21,6 @@ public:
 private:
 	SCENE_TYPE m_eType;
 
-
+	CSound* m_pBackSound;
 };
 

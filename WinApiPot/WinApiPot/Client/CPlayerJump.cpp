@@ -11,11 +11,12 @@
 #include "CPlayer.h"
 #include "CKeyMgr.h"
 
+#include "CSound.h"
 
 CPlayerJump::CPlayerJump():
 	CPlayerState(PLAYER_STATE::JUMP)
 {
-
+	SetAnimSound(L"gn_jump");
 }
 
 CPlayerJump::~CPlayerJump()
@@ -85,11 +86,12 @@ void CPlayerJump::update()
 
 void CPlayerJump::Enter()
 {
-
+	GetAnimSound()->Play(false);
 }
 
 void CPlayerJump::Exit()
 {
+	GetAnimSound()->Stop(true);
 	CPlayerState::Exit();
 	InitZeroFrame();
 	GetFSM()->GetPlayer()->GetAnimator()->GetCurAnimation()->SetFram(0);

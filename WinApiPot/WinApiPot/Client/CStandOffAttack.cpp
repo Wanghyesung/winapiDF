@@ -8,6 +8,8 @@
 #include "CThunder.h"
 #include "CLord.h"
 
+#include "CSound.h"
+
 CStandOffAttack::CStandOffAttack():
 	CState(MONSTER_STATE::ATTACK_STAND),
 	m_iAttackCount(0)
@@ -31,6 +33,8 @@ void CStandOffAttack::update()
 			assert(pThunder);
 
 		CreateObject(pThunder,GROUP_TYPE::MONSTER_SKILL);
+
+		GetAnimSound()->Play(true);
 	}
 
 	else if (iFrame == -1)
@@ -38,12 +42,15 @@ void CStandOffAttack::update()
 		ChangeAIState(GetAI(), MONSTER_STATE::IDLE);
 	}
 	
+	else
+	{
+		GetAnimSound()->Stop(true);
+	}
 }
 
 
 void CStandOffAttack::enter()
 {
-
 
 }
 

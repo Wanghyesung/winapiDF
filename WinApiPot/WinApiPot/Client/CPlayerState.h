@@ -1,6 +1,7 @@
 #pragma once
 
 class CFSM;
+class CSound;
 
 class CPlayerState
 {
@@ -23,12 +24,17 @@ public:
 
 	CFSM* GetFSM() { return m_pOwner; }
 
+protected:
+	void SetAnimSound(const wstring& _strPath);
+	CSound* GetAnimSound() { return m_pSound; }
+
 private:
 	PLAYER_STATE m_ePlayerState;
 	CFSM* m_pOwner;
 
 	int m_iCurFrame;
 
+	CSound* m_pSound;
 
 	friend class CFSM;
 };

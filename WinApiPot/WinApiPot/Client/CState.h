@@ -1,6 +1,8 @@
 #pragma once
 class AI;
 class CMonster;
+class CSound;
+
 
 class CState
 {
@@ -11,6 +13,8 @@ public:
 private:
 	AI* m_AI;
 	MONSTER_STATE m_eMonState;
+
+	CSound* m_pAnimSound;
 
 	int m_iDir;
 
@@ -26,6 +30,10 @@ public:
 	virtual void enter() = 0;
 	virtual void exit();
 	virtual void update() = 0;
+
+public:
+	void SetAnimSound(const wstring& _strPath);
+	CSound* GetAnimSound() { return m_pAnimSound; }
 
 	friend class AI;
 };

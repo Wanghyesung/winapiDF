@@ -36,6 +36,8 @@ CWindmill::CWindmill() :
 	SetAttInfo(tAtt);
 
 	SetSkillTime(5);
+
+	SetAnimSound(L"gn_windmill");
 }
 
 CWindmill::~CWindmill()

@@ -14,6 +14,8 @@
 #include "CSceneMgr.h"
 #include "CScene.h"
 
+#include "CResMgr.h"
+#include "CSound.h"
 
 CSkillState::CSkillState(SKILL_STATE _eSkill) :
 	m_eSkillState(_eSkill),
@@ -37,6 +39,8 @@ CSkillState::~CSkillState()
 
 void CSkillState::exit()
 {
+	m_pSound->Stop(true);
+
 	//내 충돌체 모아둔 벡터 초기화
 	m_vecOtherColl.clear();
 	//내 스킬 쿨타임 최대로
@@ -51,10 +55,17 @@ void CSkillState::exit()
 
 void CSkillState::enter()
 {
+	m_pSound->Play(false);
 	//대충 크게 잡아서 100
 	m_vecOtherColl.resize(130,-1);
 	GetCollider()->SetActive(true);
 	
+}
+
+void CSkillState::SetAnimSound(const wstring& _strPath)
+{
+	m_pSound
+		= CResMgr::GetInst()->LoadSound(_strPath, L"..\\OutPut\\bin_release\\Content\\Sound\\" + _strPath + L".wav");
 }
 
 

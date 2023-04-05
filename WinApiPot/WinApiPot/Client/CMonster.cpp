@@ -161,6 +161,36 @@ void CMonster::OnColliderExit(CCollider* _pOther)
 
 void CMonster::OnCollision(CCollider* _pOther)
 {
+	if (_pOther->GetObj()->GetTag() == GROUP_TYPE::MONSTER)
+	{
+		Vec2 vFinalPos = GetCollider()->GetFinalPos();
+		Vec2 vScale = GetCollider()->GetScale();
+
+		Vec2 vOtherPos = _pOther->GetFinalPos();
+		Vec2 vOtherScale = _pOther->GetScale();
+		
+		float fLenX = abs(vFinalPos.x - vOtherPos.x);
+		float fLenY = abs(vFinalPos.y - vOtherPos.y);
+
+		float fValueX = ((vScale.x + vOtherScale.x) / 2.f) - fLenX;
+		float fValueY = ((vScale.y + vOtherScale.y) / 2.f) - fLenY;
+		
+		int iDir = 0;
+		if (fValueX <= fValueY)
+		{
+			(vFinalPos.x - vOtherPos.x) > 0 ? iDir = 1 : iDir = -1;
+			vOtherPos.x -= iDir * fValueX;
+		}
+		else
+		{
+			(vFinalPos.y - vOtherPos.y) > 0 ? iDir = 1 : iDir = -1;
+			vOtherPos.y -= iDir * fValueY;
+		}
+
+		
+		SetPos(vOtherPos);
+
+	}
 
 }
 

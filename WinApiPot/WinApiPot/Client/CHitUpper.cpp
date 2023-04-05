@@ -13,6 +13,7 @@
 
 #include "CTimeMgr.h"
 
+#include "CSound.h"
 
 #define LASTHITMOTION 2
 #define HITMOTION 1
@@ -31,6 +32,8 @@ CHitUpper::~CHitUpper()
 
 void CHitUpper::enter()
 {
+	GetAnimSound()->Play(false);
+
 	if (GetAI()->GetPreState()->GetType() == GetType())
 	{
 		GetMonster()->GetAnimator()->GetCurAnimation()->SetFram(HITMOTION);
@@ -68,7 +71,7 @@ void CHitUpper::update()
 
 	if (pMon->GetGravity()->IsGetGravity())
 	{
-		pMon->GetAnimator()->GetCurAnimation()->SetFram(HITMOTION+1);
+		pMon->GetAnimator()->GetCurAnimation()->SetFram(LASTHITMOTION);
 	}
 
 	else if (m_iHitAnimFrame == tHit.m_iMaxHitFrame - 1)

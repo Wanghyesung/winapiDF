@@ -9,6 +9,7 @@
 #include "CRigidBody.h"
 #include "CTimeMgr.h"
 #include "CPlayerAttack.h"
+#include "CSound.h"
 
 #define MAX_HIT_FRAME 1
 
@@ -17,6 +18,7 @@ CPlayerHit::CPlayerHit() :
 	m_fCurTime(0.f)
 {
 
+	SetAnimSound(L"gn_dmg");
 }
 
 CPlayerHit::~CPlayerHit()
@@ -55,6 +57,7 @@ void CPlayerHit::update()
 void CPlayerHit::Enter()
 {
 	//내 속도 0으로 초기화
+	GetAnimSound()->Play(false);
 	GetFSM()->GetPlayer()->GetRigidBody()->SetVelocity(Vec2(0.f, 0.f));
 	GetFSM()->GetPlayer()->GetRigidBody()->SetAccel(false);
 
@@ -68,6 +71,7 @@ void CPlayerHit::Enter()
 
 void CPlayerHit::Exit()
 {
+	GetAnimSound()->Stop(true);
 	m_fCurTime = 0.f;
 	CPlayerState::Exit();
 	InitZeroFrame();

@@ -33,6 +33,8 @@
 #include "CThunder.h"
 #include "CThunderDown.h"
 
+#include "CSound.h"
+
 tPlayerInfo CPlayer::m_tPlayerInfo = {};
 UINT CPlayer::m_iKeyStack = 0;
 UINT CPlayer::m_iPrePushKey = -1;
@@ -428,6 +430,11 @@ void CPlayer::CreateBullet(CPlayer* _pPlayer, ATTACK_TYPE _eAttType)
 {
 	CBullet* pBullet = new CBullet(_pPlayer, _eAttType);
 	CreateObject(pBullet, GROUP_TYPE::BULLET);
+
+	//»ç¿îµå
+
+	CSound* pShotSound = CResMgr::GetInst()->LoadSound(L"wrevolvera_01", L"..\\OutPut\\bin_release\\Content\\Sound\\wrevolvera_01.wav");
+	pShotSound->Play(false);
 }
 
 bool CPlayer::IsSameJumLoc(CCollider* _pOther, CCollider* _pThis)

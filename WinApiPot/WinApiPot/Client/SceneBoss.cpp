@@ -29,6 +29,8 @@
 
 #include "CTemWall.h"
 
+#include "CSound.h"
+
 SceneBoss::SceneBoss():
 	m_eType(SCENE_TYPE::DUNGEON_BOSS)
 {
@@ -59,6 +61,9 @@ void SceneBoss::Init()
 	tInfo.fTopHeight = GetStartDrawPoint().y;
 	SetBackGroundInfo(tInfo);
 
+	m_pBackSound
+		= CResMgr::GetInst()->LoadSound(L"boss_", L"..\\OutPut\\bin_release\\Content\\Sound\\boss.wav");
+
 	CObject* pObj = CreatePlayer(Vec2(300.f, 450.f));
 	AddObject(pObj, GROUP_TYPE::PLAYER);
 	RegisterPlayer(pObj);
@@ -67,7 +72,7 @@ void SceneBoss::Init()
 
 	CTemWall* pTemWall = new CTemWall;
 	pTemWall->SetPos(Vec2(672.f, 110.f));
-	pTemWall->GetCollider()->SetScale(Vec2(1344.f, 600.f));
+	pTemWall->GetCollider()->SetScale(Vec2(1644.f, 600.f));
 	AddObject(pTemWall, GROUP_TYPE::WALL);
 
 	CDragonObj* pStone2 = new CDragonObj;
@@ -147,6 +152,8 @@ void SceneBoss::update()
 
 void SceneBoss::Enter()
 {
+	m_pBackSound->Play(true);
+
 	CCameraMgr::GetInst()->SetTargetObj((CPlayer*)GetPlayerObj()); //vResolution / 2.f
 	CCameraMgr::GetInst()->init();
 	//현재 씬에 스킬 초기화
@@ -171,6 +178,8 @@ void SceneBoss::Enter()
 
 void SceneBoss::Exit()
 {
+	m_pBackSound->Stop(true);
+
 	CColliderMgr::GetInst()->Reset();
 }
 

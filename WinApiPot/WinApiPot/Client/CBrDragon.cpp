@@ -210,6 +210,8 @@ void CBrDragon::OnColliderExit(CCollider* _pOther)
 
 void CBrDragon::OnCollision(CCollider* _pOther)
 {
+	//CMonster::OnCollision(_pOther);
+
 	tMonInfo& tMonInfo = GetMonInfo();
 	CObject* pobj = _pOther->GetObj();
 

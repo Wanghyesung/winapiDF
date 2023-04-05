@@ -4,7 +4,7 @@
 class CSkill;
 class CCollider;
 class CSkillMgr;
-
+class CSound;
 
 
 class CSkillState : public CObject
@@ -31,6 +31,7 @@ private:
 
 	int m_iSkillTime;//내 스킬 쿨타임
 
+	CSound* m_pSound;
 public:
 	virtual void Skillupdate() = 0;
 	virtual void update() {}
@@ -73,6 +74,10 @@ protected:
 
 public:
 	bool IsAttackOn() { return m_bOnAttack; }
+
+protected:
+	void SetAnimSound(const wstring& _strPath);
+	CSound* GetAnimSound() { return m_pSound; }
 
 public:
 	virtual void OnColliderEnter(CCollider* _pOther) {};

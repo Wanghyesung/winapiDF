@@ -12,6 +12,8 @@
 #include "CGravity.h"
 #include "CPlayerAttack.h"
 
+#include "CSound.h"
+
 #define HIT_MAX_FRAME 4
 #define HiT_AIR 3
 #define HIT_START 2
@@ -21,6 +23,7 @@ CPlayerHitUpper::CPlayerHitUpper() :
 	CPlayerState(PLAYER_STATE::UPPER_HIT),
 	m_fDonwTime(0.8f)
 {
+	SetAnimSound(L"gn_dmg");
 }
 
 CPlayerHitUpper::~CPlayerHitUpper()
@@ -56,6 +59,7 @@ void CPlayerHitUpper::update()
 
 void CPlayerHitUpper::Exit()
 {
+	GetAnimSound()->Stop(true);
 	m_fCurTime = 0.f;
 	CPlayerState::Exit();
 	InitZeroFrame();
@@ -64,6 +68,7 @@ void CPlayerHitUpper::Exit()
 
 void CPlayerHitUpper::Enter()
 {
+	GetAnimSound()->Play(false);
 	PLAYER_STATE prevState = GetFSM()->GetPlayer()->GetPrevState();
 	if (prevState == PLAYER_STATE::ATTACK ||
 		prevState == PLAYER_STATE::ATTACK_DOWN)

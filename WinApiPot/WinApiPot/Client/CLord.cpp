@@ -25,6 +25,9 @@
 #include "CInterfaceMgr.h"
 #include "CMonInterface.h"
 
+#include "CSound.h"
+#include "CResMgr.h"
+
 CLord::CLord():
 	m_eMonState(MONSTER_STATE::IDLE),
 	m_fUltimateTime(20.f),
@@ -254,6 +257,8 @@ void CLord::OnColliderExit(CCollider* _pOther)
 
 void CLord::OnCollision(CCollider* _pOther)
 {
+	//CMonster::OnCollision(_pOther);
+
 	tMonInfo& tMonInfo = GetMonInfo();
 	CObject* pobj = _pOther->GetObj();
 

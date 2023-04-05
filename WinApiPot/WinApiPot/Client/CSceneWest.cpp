@@ -30,6 +30,8 @@
 
 #include "CPillar.h"
 
+#include "CSound.h"
+
 CSceneWest::CSceneWest():
 	m_eType(SCENE_TYPE::WEST_COAST)
 {
@@ -67,6 +69,8 @@ void CSceneWest::Init()
 	SetBackGroundInfo(tInfo);
 	//플레이어 인터페이스는 씬 바꿀때 삭제X
 	
+	m_pBackSound
+		= CResMgr::GetInst()->LoadSound(L"town", L"..\\OutPut\\bin_release\\Content\\Sound\\town.wav");
 
 	CObject* pObj = CreatePlayer(Vec2(450.f, 650.f));
 	AddObject(pObj, GROUP_TYPE::PLAYER);
@@ -83,6 +87,14 @@ void CSceneWest::Init()
 	AddObject(dragonInterface, GROUP_TYPE::UI);
 	AddObject(pMon, GROUP_TYPE::MONSTER);
 
+	//CMonster* pMon = CMonFactory::CraeteMonster(MON_TYPE::DRAGON, Vec2(1050.f, 580.f), m_eType);
+	//pMon->SetName(L"CDragon_1");
+	////내 몬스터 인터페이스에 내 몬스터 이름 넣기
+	//CMonInterface* dragonInterface = new CMonInterface(pMon->GetName());
+	//dragonInterface->SetScale(Vec2(626, 29));
+	//dragonInterface->SetPos(Vec2(40, 20));
+	//AddObject(dragonInterface, GROUP_TYPE::UI);
+	//AddObject(pMon, GROUP_TYPE::MONSTER);
 
 	//CreateInterFace();
 	//
@@ -123,6 +135,8 @@ void CSceneWest::Init()
 
 void CSceneWest::Enter()
 {
+	m_pBackSound->Play(true);
+
 	CCameraMgr::GetInst()->SetTargetObj((CPlayer*)GetPlayerObj()); //vResolution / 2.f
 	CCameraMgr::GetInst()->init();
 	//현재 씬에 스킬 초기화
@@ -140,6 +154,7 @@ void CSceneWest::Enter()
 
 void CSceneWest::Exit()
 {
+	m_pBackSound->Stop(false);
 	CColliderMgr::GetInst()->Reset();
 }
 

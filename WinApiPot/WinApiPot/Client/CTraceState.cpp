@@ -19,6 +19,7 @@
 #include "CCollider.h"
 
 
+
 CTraceState::CTraceState():
 	CState(MONSTER_STATE::TRACE),
 	m_pTarget(nullptr)
@@ -162,5 +163,5 @@ void CTraceState::exit()
 
 void CTraceState::enter()
 {
-
+	
 }

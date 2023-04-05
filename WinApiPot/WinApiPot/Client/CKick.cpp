@@ -11,6 +11,8 @@
 #include "CObject.h"
 #include "CPlayer.h"
 
+#include "CSound.h"
+
 #define FIRST_ATTACK 1
 
 CKick::CKick() :
@@ -33,6 +35,9 @@ CKick::CKick() :
 	SetAttInfo(tAtt);
 
 	SetSkillTime(4);
+
+	//스킬 사운드
+	SetAnimSound(L"gn_kick");
 }
 
 CKick::~CKick()
@@ -95,6 +100,11 @@ void CKick::exit()
 	GetSkill()->GetPlayer()->GetAnimator()->FindAnimation(m_strSkillName)->SetFram(0);
 	CSkillState::exit();
 	m_iAttackFrame = -1;
+}
+
+void CKick::enter()
+{
+	CSkillState::enter();
 }
 
 void CKick::OnColliderEnter(CCollider* _pOther)

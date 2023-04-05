@@ -79,10 +79,23 @@ CMonster* CMonFactory::CraeteMonster(MON_TYPE _monType, Vec2 _vPos, SCENE_TYPE _
 		AI* pAI = new AI;
 		pAI->AddState(new CIdleState);
 		pAI->AddState(new CTraceState);
-		pAI->AddState(new CNearAttack);
-		pAI->AddState(new CHitState);
-		pAI->AddState(new CHitUpper);
-		pAI->AddState(new CDeadState);
+
+		CNearAttack* pAtt = new CNearAttack;
+		pAtt->SetAnimSound(L"drgm_atk");
+		pAI->AddState(pAtt);
+
+		CHitState* pHit = new CHitState;
+		pHit->SetAnimSound(L"drgm_dmg");
+		pAI->AddState(pHit);
+
+		CHitUpper* pHitUp = new CHitUpper;
+		pHitUp->SetAnimSound(L"drgm_dmg");
+		pAI->AddState(pHitUp);
+
+		CDeadState* pDead = new CDeadState;
+		pDead->SetAnimSound(L"drgm_die");
+		pAI->AddState(pDead);
+
 		pAI->AddState(new CDefenseState);
 		pAI->SetCurState(MONSTER_STATE::IDLE);
 		pMon->SetAI(pAI);
@@ -133,10 +146,21 @@ CMonster* CMonFactory::CraeteMonster(MON_TYPE _monType, Vec2 _vPos, SCENE_TYPE _
 		AI* pAI = new AI;
 		pAI->AddState(new CIdleState);
 		pAI->AddState(new CTraceState);
-		pAI->AddState(new CNearAttack);
-		pAI->AddState(new CHitState);
-		pAI->AddState(new CHitUpper);
-		pAI->AddState(new CDeadState);
+		CNearAttack* pAtt = new CNearAttack;
+		pAtt->SetAnimSound(L"drgm_atk");
+		pAI->AddState(pAtt);
+
+		CHitState* pHit = new CHitState;
+		pHit->SetAnimSound(L"drgm_dmg");
+		pAI->AddState(pHit);
+
+		CHitUpper* pHitUp = new CHitUpper;
+		pHitUp->SetAnimSound(L"drgm_dmg");
+		pAI->AddState(pHitUp);
+
+		CDeadState* pDead = new CDeadState;
+		pDead->SetAnimSound(L"drgm_die");
+		pAI->AddState(pDead);
 		pAI->SetCurState(MONSTER_STATE::IDLE);
 		pMon->SetAI(pAI);
 	}
@@ -195,10 +219,21 @@ CMonster* CMonFactory::CraeteMonster(MON_TYPE _monType, Vec2 _vPos, SCENE_TYPE _
 		AI* pAI = new AI;
 		pAI->AddState(new CIdleState);
 		pAI->AddState(new CTraceState);
-		pAI->AddState(new CNearAttack);
-		pAI->AddState(new CStandOffAttack);
+
+	  	CNearAttack* pAtt = new CNearAttack;
+		pAtt->SetAnimSound(L"zieg_laser");
+		pAI->AddState(pAtt);
+
+		CStandOffAttack* pStand = new CStandOffAttack;
+		pStand->SetAnimSound(L"zieg_spark");
+		pAI->AddState(pStand);
+
 		pAI->AddState(new CUltimateState);
-		pAI->AddState(new CDeadState);
+
+		CDeadState* pDead = new CDeadState;
+		pDead->SetAnimSound(L"zieg_die");
+		pAI->AddState(pDead);
+
 		pAI->SetCurState(MONSTER_STATE::IDLE);
 		pMon->SetAI(pAI);
 	}
@@ -244,11 +279,22 @@ CMonster* CMonFactory::CraeteMonster(MON_TYPE _monType, Vec2 _vPos, SCENE_TYPE _
 		AI* pAI = new AI;
 		pAI->AddState(new CIdleState);
 		pAI->AddState(new CExclusiveTrace);
-		pAI->AddState(new CAttackState);
 
-		pAI->AddState(new CHitState);
-		pAI->AddState(new CHitUpper);
-		pAI->AddState(new CDeadState);
+		CAttackState* pAtt = new CAttackState;
+		pAtt->SetAnimSound(L"fdrg_fire");
+		pAI->AddState(pAtt);
+
+        CHitState* pHit	= new CHitState;
+		pHit->SetAnimSound(L"fdrg_dmg");
+		pAI->AddState(pHit);
+
+		CHitUpper* pHitUp = new CHitUpper;
+		pHitUp->SetAnimSound(L"fdrg_dmg");
+		pAI->AddState(pHitUp);
+
+		CDeadState* pDead = new CDeadState;
+		pDead->SetAnimSound(L"fdrg_die");
+		pAI->AddState(pDead);
 
 		pAI->SetCurState(MONSTER_STATE::IDLE);
 		pMon->SetAI(pAI);
@@ -289,10 +335,22 @@ CMonster* CMonFactory::CraeteMonster(MON_TYPE _monType, Vec2 _vPos, SCENE_TYPE _
 		pAI->AddState(new CStoneState);
 		pAI->AddState(new CIdleState);
 		pAI->AddState(new CKnightTrace);
-		pAI->AddState(new CKnightAttack);
-		pAI->AddState(new CHitState);
-		pAI->AddState(new CHitUpper);
-		pAI->AddState(new CDeadState);
+
+		CKnightAttack* pKnightAtt = new CKnightAttack;
+		pKnightAtt->SetAnimSound(L"hunt_atk");
+		pAI->AddState(pKnightAtt);
+
+		CHitState* pHit = new CHitState;
+		pHit->SetAnimSound(L"hunt_comm");
+		pAI->AddState(pHit);
+
+		CHitUpper* pHitUp = new CHitUpper;
+		pHitUp->SetAnimSound(L"hunt_comm");
+		pAI->AddState(pHitUp);
+
+		CDeadState* pDead = new CDeadState;
+		pDead->SetAnimSound(L"hunt_die");
+		pAI->AddState(pDead);
 
 		pAI->SetCurState(MONSTER_STATE::STONE);
 		pMon->SetAI(pAI);
@@ -334,10 +392,22 @@ CMonster* CMonFactory::CraeteMonster(MON_TYPE _monType, Vec2 _vPos, SCENE_TYPE _
 		pAI->AddState(new CStoneState);
 		pAI->AddState(new CIdleState);
 		pAI->AddState(new CKnightTrace);
-		pAI->AddState(new CKnightAttack);
-		pAI->AddState(new CHitState);
-		pAI->AddState(new CHitUpper);
-		pAI->AddState(new CDeadState);
+
+		CKnightAttack* pKnightAtt = new CKnightAttack;
+		pKnightAtt->SetAnimSound(L"hunt_atk");
+		pAI->AddState(pKnightAtt);
+
+		CHitState* pHit = new CHitState;
+		pHit->SetAnimSound(L"hunt_comm");
+		pAI->AddState(pHit);
+
+		CHitUpper* pHitUp = new CHitUpper;
+		pHitUp->SetAnimSound(L"hunt_comm");
+		pAI->AddState(pHitUp);
+
+		CDeadState* pDead = new CDeadState;
+		pDead->SetAnimSound(L"hunt_die");
+		pAI->AddState(pDead);
 
 		pAI->SetCurState(MONSTER_STATE::STONE);
 		pMon->SetAI(pAI);

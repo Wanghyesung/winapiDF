@@ -44,6 +44,8 @@ CRandomFire::CRandomFire() :
 	//회전시켜서 offset값 바꾸기
 
 	SetSkillTime(7);
+
+	SetAnimSound(L"gn_rshot");
 }
 
 CRandomFire::~CRandomFire()

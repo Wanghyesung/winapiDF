@@ -6,6 +6,8 @@
 #include "CAnimation.h"
 #include "CAnimator.h"
 
+#include "CSound.h"
+
 CDeadState::CDeadState():
 	CState(MONSTER_STATE::DEAD),
 	m_iCurFrame(0)
@@ -29,7 +31,7 @@ void CDeadState::update()
 
 void CDeadState::enter()
 {
-
+	GetAnimSound()->Play(false);
 }
 
 void CDeadState::exit()

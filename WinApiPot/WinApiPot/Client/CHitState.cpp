@@ -9,6 +9,7 @@
 #include "CTimeMgr.h"
 #include "CRigidBody.h"
 
+#include "CSound.h"
 
 CHitState::CHitState():
 	CState(MONSTER_STATE::HIT),
@@ -55,6 +56,8 @@ void CHitState::update()
 
 void CHitState::enter()
 {
+	GetAnimSound()->Play(false);
+
 	GetMonster()->GetAnimator()->GetCurAnimation()->SetFram(0);
 
 	m_iHitAnimFrame = 0;

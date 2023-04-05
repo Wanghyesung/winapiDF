@@ -90,6 +90,7 @@ void SceneMgr::ChangeScene(SCENE_TYPE _eNext)
 	//인벤토리, 인터페이스 객체 다른씬으로 옮기기
 	m_pCurrScene->Exit();
 	CInterFace* pInter = CInterfaceMgr::GetInst()->Exit();
+	CInterfaceMgr::GetInst()->SetTargetMon(L"");
 	CInventory* pInven = CInventoryMgr::GetInst()->Exit();
 
 	m_pCurrScene = m_arrScene[(UINT)_eNext];

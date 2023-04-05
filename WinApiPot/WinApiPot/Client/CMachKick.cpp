@@ -31,6 +31,8 @@ CMachKick::CMachKick() :
 	SetAttInfo(tAtt);
 	
 	SetSkillTime(5);
+
+	SetAnimSound(L"gn_mach");
 }
 
 CMachKick::~CMachKick()

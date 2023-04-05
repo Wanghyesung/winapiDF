@@ -270,6 +270,8 @@ void CKnight::OnColliderExit(CCollider* _pOther)
 
 void CKnight::OnCollision(CCollider* _pOther)
 {
+	//CMonster::OnCollision(_pOther);
+
 	tMonInfo& tMonInfo = GetMonInfo();
 	CObject* pobj = _pOther->GetObj();
 

@@ -28,6 +28,8 @@ CWalkFire::CWalkFire():
 	SetSKillName(L"Player_skill_walkfire");
 
 	SetSkillTime(8);
+
+	SetAnimSound(L"gn_mvshot");
 }
 
 CWalkFire::~CWalkFire()

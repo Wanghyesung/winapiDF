@@ -251,6 +251,8 @@ void CBlueDragon::OnColliderExit(CCollider* _pOther)
 };
 void CBlueDragon::OnCollision(CCollider* _pOther)
 {
+	//CMonster::OnCollision(_pOther);
+
 	tMonInfo& tMonInfo = GetMonInfo();
 	CObject* pobj = _pOther->GetObj();
 

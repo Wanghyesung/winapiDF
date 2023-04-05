@@ -20,6 +20,8 @@
 
 #include "CFireBall.h"
 
+#include "CSound.h"
+
 CAttackState::CAttackState():
 	CState(MONSTER_STATE::ATTACK),
 	m_iAttCount(0),
@@ -35,7 +37,7 @@ CAttackState::~CAttackState()
 
 void CAttackState::enter()
 {
-	
+	GetAnimSound()->Play(false);
 }
 
 void CAttackState::exit()

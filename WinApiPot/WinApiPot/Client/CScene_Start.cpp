@@ -33,6 +33,8 @@
 #include "CHPItem.h"
 #include "CMPItem.h"
 
+#include "CSound.h"
+
 CScene_Start::CScene_Start():
 	m_eType(SCENE_TYPE::START_SCENE)
 {
@@ -76,6 +78,8 @@ void CScene_Start::Init()
 	SetBackGroundInfo(tInfo);
 	//플레이어 인터페이스는 씬 바꿀때 삭제X
 	
+	m_pBackSound
+		= CResMgr::GetInst()->LoadSound(L"hendonmyre", L"..\\OutPut\\bin_release\\Content\\Sound\\hendonmyre.wav");
 
 	CObject* pObj = CreatePlayer(Vec2(500.f, 550.f));
 	AddObject(pObj, GROUP_TYPE::PLAYER);
@@ -160,6 +164,7 @@ void CScene_Start::Init()
 
 void CScene_Start::Enter()
 {
+	m_pBackSound->Play(true);
 	//매니져 클레스에 현재 플레이어로 세티d
 	CCameraMgr::GetInst()->SetTargetObj((CPlayer*)GetPlayerObj()); 
 	CCameraMgr::GetInst()->init();
@@ -180,7 +185,7 @@ void CScene_Start::Enter()
 
 void CScene_Start::Exit()
 {
-
+	m_pBackSound->Stop(true);
 	CColliderMgr::GetInst()->Reset();
 }
 

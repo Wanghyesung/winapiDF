@@ -194,6 +194,8 @@ void CDragon::OnColliderExit(CCollider* _pOther)
 };
 void CDragon::OnCollision(CCollider* _pOther)
 {
+	//CMonster::OnCollision(_pOther);
+
 	tMonInfo& tMonInfo = GetMonInfo();
 	CObject* pobj = _pOther->GetObj();
 	

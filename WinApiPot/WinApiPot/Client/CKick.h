@@ -21,6 +21,7 @@ public:
     virtual void Skillupdate();
     virtual void init();
     virtual void exit();
+    virtual void enter();
 
 public:
     virtual void OnColliderEnter(CCollider* _pOther);

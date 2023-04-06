@@ -107,8 +107,21 @@ void CRandomFire::exit()
 	GetAnimator()->SetRepeat(false);
 	//Ä³¸¯ÅÍ
 	GetSkill()->GetPlayer()->GetAnimator()->FindAnimation(GetSkillName())->SetFram(0);
+	GetAnimator()->FindAnimation(L"Radomfire0")->SetFram(0);
 	CSkillState::exit();
 	m_iAttackFrame = -1;
+}
+
+void CRandomFire::render(HDC _dc)
+{
+	if(GetCollider()->IsActive())
+		component_render(_dc);
+}
+
+void CRandomFire::finalupdate()
+{
+	if (GetCollider()->IsActive())
+		CObject::finalupdate();
 }
 
 void CRandomFire::OnColliderEnter(CCollider* _pOther)

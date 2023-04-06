@@ -21,6 +21,8 @@ public:
     virtual void Skillupdate();
     virtual void init();
     virtual void exit();
+    virtual void render(HDC _dc);
+    virtual void finalupdate();
 
 public:
     virtual void OnColliderEnter(CCollider* _pOther);

@@ -16,6 +16,7 @@
 #include "CRandomFire.h"
 #include "CWalkFire.h"
 #include "CMachKick.h"
+#include "CLaser.h"
 
 #include "CFSM.h"
 #include "CPlayerState.h"
@@ -76,6 +77,11 @@ void CSkillMgr::initSkill(SCENE_TYPE _eSceneType)
 	CWalkFire* pWalkFire = new CWalkFire;
 	m_pPlayer->m_pSkill->AddSkill(pWalkFire);
 	SceneMgr::GetInst()->FindScene(_eSceneType)->AddObject(pWalkFire, GROUP_TYPE::SKILL);
+
+	//laser
+	CLaser* pLaser = new CLaser;
+	m_pPlayer->m_pSkill->AddSkill(pLaser);
+	SceneMgr::GetInst()->FindScene(_eSceneType)->AddObject(pLaser, GROUP_TYPE::SKILL);
 }
 
 
@@ -147,6 +153,11 @@ void CSkillMgr::skillKey_update()
 	{
 		m_eCurStkllState = SKILL_STATE::WALK_FIRE;
 	}
+
+	else if (KEY_TAP(KEY::W))
+	{
+		m_eCurStkllState = SKILL_STATE::LASER;
+	}
 	
 
 	if(!IsPossibleSkill(m_eCurStkllState))//사용가능한 스킬인지
@@ -184,7 +195,8 @@ bool CSkillMgr::IsPossibleSkill(SKILL_STATE _tSkill)
 		return false;
 
 	if (m_pPlayer->playerCurState == PLAYER_STATE::HIT || 
-		m_pPlayer->playerCurState == PLAYER_STATE::UPPER_HIT)
+		m_pPlayer->playerCurState == PLAYER_STATE::UPPER_HIT ||
+		m_pPlayer->playerCurState == PLAYER_STATE::ATTACK_SLIDING)
 		return false;
 
 	//스킬 사용

@@ -356,6 +356,9 @@
     <Filter Include="Engine\04.CScene\CSceneLog">
       <UniqueIdentifier>{b6d7dd37-005a-401f-a7fa-19544677b59d}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Engine\07.Component\CSkill\SkillState\Laser">
+      <UniqueIdentifier>{f0781cf5-89b3-4f41-a3cb-83cf0fbdcf07}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="pch.h" />
@@ -716,6 +719,9 @@
     <ClInclude Include="CKnightAttack.h">
       <Filter>Engine\08.Module\State\CKnightState\Attack</Filter>
     </ClInclude>
+    <ClInclude Include="CLaser.h">
+      <Filter>Engine\07.Component\CSkill\SkillState\Laser</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Client.rc">
@@ -1067,6 +1073,9 @@
     </ClCompile>
     <ClCompile Include="CKnightAttack.cpp">
       <Filter>Engine\08.Module\State\CKnightState\Attack</Filter>
+    </ClCompile>
+    <ClCompile Include="CLaser.cpp">
+      <Filter>Engine\07.Component\CSkill\SkillState\Laser</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

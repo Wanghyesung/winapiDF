@@ -71,6 +71,14 @@ void CAnimator::PlayMulti(const wstring& _strMainName, const wstring& _strOtherN
 	m_bRepeat = _bRepeat;//연속재생
 }
 
+void CAnimator::Stop(const wstring& _strName)
+{
+	CAnimation* pAnim = FindAnimation(_strName);
+	pAnim->m_bFinish = true;
+	pAnim->m_iCurFrm = -1;
+	pAnim->m_fAccTime = 0.f;
+}
+
 
 
 

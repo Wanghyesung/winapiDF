@@ -39,8 +39,12 @@ CSkillState::~CSkillState()
 
 void CSkillState::exit()
 {
-	m_pSound->Stop(true);
+	if (m_pSound != nullptr)
+	{
+		m_pSound->Stop(true);
+	}
 
+	m_iFrm = 0;
 	//내 충돌체 모아둔 벡터 초기화
 	m_vecOtherColl.clear();
 	//내 스킬 쿨타임 최대로
@@ -55,7 +59,10 @@ void CSkillState::exit()
 
 void CSkillState::enter()
 {
-	m_pSound->Play(false);
+	if (m_pSound != nullptr)
+	{
+		m_pSound->Play(false);
+	}
 	//대충 크게 잡아서 100
 	m_vecOtherColl.resize(130,-1);
 	GetCollider()->SetActive(true);

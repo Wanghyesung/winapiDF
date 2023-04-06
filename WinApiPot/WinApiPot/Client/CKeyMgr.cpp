@@ -57,8 +57,8 @@ int g_arrKey[(int)KEY::LAST] =
 CKeyMgr::CKeyMgr():
 	m_vecKeyTex{}
 {
-	//1 2 3 4 5 6 z s d f t
-	m_vecKeyTex.resize(11);
+	//1 2 3 4 5 6 z s d f t w
+	m_vecKeyTex.resize(12);
 }
 CKeyMgr::~CKeyMgr()
 {
@@ -83,9 +83,9 @@ void CKeyMgr::init()
 	}
 
 	//내 인터페이스에 키입력 순서
-	wstring strKey[5] = {L"z", L"s" , L"d" , L"f" , L"t"};
+	wstring strKey[6] = {L"z", L"s" , L"d" , L"f" , L"t", L"w"};
 	
-	for (UINT i = 0; i < 5; ++i)
+	for (UINT i = 0; i < 6; ++i)
 	{
 		CTexture* pTex = CResMgr::GetInst()->LoadTextur(L"KeyNum" + strKey[i], L"..\\OutPut\\bin_release\\Content\\Key\\" + strKey[i] + L".bmp");
 		m_vecKeyTex[6 + i] = pTex;

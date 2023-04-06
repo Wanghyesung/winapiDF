@@ -187,6 +187,7 @@
     <ClInclude Include="CKnight.h" />
     <ClInclude Include="CKnightAttack.h" />
     <ClInclude Include="CKnightTrace.h" />
+    <ClInclude Include="CLaser.h" />
     <ClInclude Include="Client.h" />
     <ClInclude Include="CLord.h" />
     <ClInclude Include="CMachKick.h" />
@@ -309,6 +310,7 @@
     <ClCompile Include="CKnight.cpp" />
     <ClCompile Include="CKnightAttack.cpp" />
     <ClCompile Include="CKnightTrace.cpp" />
+    <ClCompile Include="CLaser.cpp" />
     <ClCompile Include="CLord.cpp" />
     <ClCompile Include="CMachKick.cpp" />
     <ClCompile Include="CMonFactory.cpp" />

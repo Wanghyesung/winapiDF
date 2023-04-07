@@ -104,6 +104,9 @@ void CBlueDragon::update()
 		m_fCurTime += fDT;//방어시간
 	}
 
+	//상태에따라 애니메이션 재생
+	update_state();
+
 	//내 FSM업데이트
 	if (pAI != nullptr)
 	{
@@ -117,8 +120,7 @@ void CBlueDragon::update()
 		pMonSkill->Skill_update();
 	}
 
-	//상태에따라 애니메이션 재생
-	update_state();
+	
 }
 
 
@@ -209,6 +211,7 @@ void CBlueDragon::update_state()
 		pAnim->Play(strMotion, false);
 		int iFrame = GetAnimator()->GetCurAnimation()->GetCurFrame();
 		((CHitUpper*)GetAI()->GetState(MONSTER_STATE::UPPER_HIT))->SetAnimFrame(iFrame);
+		((CHitUpper*)GetAI()->GetState(MONSTER_STATE::UPPER_HIT))->SetAnimName(strMotion);
 	}
 		break;
 	case MONSTER_STATE::DEAD:

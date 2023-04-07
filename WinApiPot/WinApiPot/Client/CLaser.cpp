@@ -14,8 +14,9 @@
 
 CLaser::CLaser():
 	CSkillState(SKILL_STATE::LASER),
-	m_fOffSet(500.f),
+	m_fOffSet(410.f),
 	m_iAttackFrame(-1),
+	m_iAttackCount(1),
 	m_bStart(false)
 {
 	//플레이어 애니메이션 이름
@@ -28,7 +29,8 @@ CLaser::CLaser():
 	tAtt.m_fAttackDamage = 70.f;
 	tAtt.m_fAttRcnt = 200.f;
 	tAtt.m_fAttRigidityTime = 1.3f;
-	tAtt.m_fAttUpperRcnt = -80.f;
+	tAtt.m_fAttUpperRcnt = -200.f;
+	tAtt.m_fAttUpperAcc = -600.f;
 
 	SetAttInfo(tAtt);
 
@@ -51,41 +53,30 @@ CLaser::~CLaser()
 
 void CLaser::Skillupdate()
 {
-
 	CPlayer* pPlayer = GetSkill()->GetPlayer();
-	Vec2 pPlayerPos = pPlayer->GetPos();
-	//SetPos(pPlayerPos);
 
-	int iDir = pPlayer->GetPlayerDirX();
-
-	float fFinalPos = m_vCollOffSet.x + iDir * m_fOffSet;
-	SetPos(pPlayerPos + (Vec2(fFinalPos, m_vCollOffSet.y)));
-
-	wstring strSkillName = GetSkillName();
-	wstring strDir = iDir > 0 ? L"right" : L"left";
-
-	m_strSkillName = strSkillName + strDir;
-	m_strLaserName = L"Laser_" + strDir;
-	
-	CAnimator* pPlayerAnim = pPlayer->GetAnimator();
-	CAnimator* pAnim = GetAnimator();
 	int iFrame = GetCurFram();
-	if (iFrame >= 5)
+
+	if (iFrame == 3)
 	{
-		pAnim->Play(m_strLaserName, false);
 		m_bStart = true;
-		if (pAnim->GetCurAnimation()->GetCurFrame() < 7 &&
-			!pAnim->GetCurAnimation()->IsFinish())
+		GetAnimator()->Play(m_strLaserName,false);
+	}
+
+	else if (iFrame >= 5)
+	{
+		if (!GetAnimator()->GetCurAnimation()->IsFinish())
 		{
-			pPlayerAnim->FindAnimation(m_strSkillName)->SetFram(5);
+			pPlayer->GetAnimator()->GetCurAnimation()->SetFram(5);
 		}
 	}
 
-	if (pPlayerAnim->FindAnimation(m_strSkillName)->IsFinish())
+	if (iFrame == -1)
 	{
 		exit();
 		return;
 	}
+
 }
 
 void CLaser::init()
@@ -93,12 +84,12 @@ void CLaser::init()
 	CreateCollider();
 	GetCollider()->SetActive(false);
 
-	AddAttackFrame(4);
-
+	for (int i = 4; i <= 7; ++i)
+	{
+		AddAttackFrame(i);
+	}
 	m_vCollSize = Vec2(730.f, 60.f);
-	m_vCollOffSet = Vec2(-20.f, 30.f);
 	GetCollider()->SetScale(m_vCollSize);
-	GetCollider()->SetOffSet(m_vCollOffSet);
 }
 
 void CLaser::exit()
@@ -109,32 +100,49 @@ void CLaser::exit()
 	//레이저
 	GetAnimator()->FindAnimation(m_strLaserName)->SetFram(0);
 
-	CSkillState::exit();
-	m_iAttackFrame = -1;
 	m_bStart = false;
+
+	CSkillState::exit();
 }
 
 void CLaser::enter()
 {
-	//GetAnimator()->FindAnimation(L"Laser_right")->SetFram(0);
-
 	CSkillState::enter();
+
+	CPlayer* pPlayer = GetSkill()->GetPlayer();
+	int iDir = pPlayer->GetPlayerDirX();
+
+	Vec2 vPlayerPos = pPlayer->GetPos();
+	if (iDir > 0)
+	{
+		m_strSkillName = L"Player_skill_laser_right";
+		m_strLaserName = L"Laser_right";
+		m_vCollOffSet = Vec2(75.f, 0.f);
+		SetPos(vPlayerPos + Vec2(m_fOffSet * iDir, 15.f));
+	}
+	else
+	{
+		m_strSkillName = L"Player_skill_laser_left";
+		m_strLaserName = L"Laser_left";
+		m_vCollOffSet = Vec2(-75.f, 0.f);
+		SetPos(vPlayerPos + Vec2((m_fOffSet + 40) * iDir, 15.f));
+	}
+
+	GetCollider()->SetOffSet(m_vCollOffSet);
+
+	
 }
 
 void CLaser::render(HDC _dc)
 {
-	if (m_bStart)
-	{
+	if(m_bStart)
 		component_render(_dc);
-	}
 }
 
 void CLaser::finalupdate()
-{
+{	
 	if (m_bStart)
-	{
-		CObject::finalupdate();
-	}
+		CObject::finalupdate();	
 }
 
 void CLaser::OnColliderEnter(CCollider* _pOther)
@@ -152,18 +160,24 @@ void CLaser::OnCollision(CCollider* _pOther)
 	if (_pOther->GetObj()->GetTag() == GROUP_TYPE::MONSTER ||
 		_pOther->GetObj()->GetTag() == GROUP_TYPE::STONE_BOX)
 	{
+		if (m_bStart == false)
+			return;
+
 		const vector<UINT> vecFrame = GetAttackFrame();
 		//상대방 콜리이더 ID를 vec에 저장
 		vector<UINT>& vecColl = GetOtherCollVec();
-		int iCurFrame = GetCurFram();
+
+		//내 레이져 기준 애니메이션
+		int iCurFrame = GetAnimator()->GetCurAnimation()->GetCurFrame();
 
 		//드래곤 오브젝트 딜
 		for (int i = 0; i < vecFrame.size(); ++i)
 		{
-			//콜라이더ID에 해당하는 벡터의 값이 내 프레임과 달라야지 딜
-			if (vecFrame[i] == iCurFrame && vecColl[_pOther->GetID()] != iCurFrame)
+			//콜라이더ID에 해당하는 벡터의 값이 내 어택수랑 달라야함
+			//내가 지정한 프레임과 똑같아야 딜
+			if (vecFrame[i] == iCurFrame && vecColl[_pOther->GetID()] != m_iAttackCount)
 			{
-				vecColl[_pOther->GetID()] = iCurFrame;
+				vecColl[_pOther->GetID()] = m_iAttackCount;
 				SetAttackOn(true);
 				break;
 			}

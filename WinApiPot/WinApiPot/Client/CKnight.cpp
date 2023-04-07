@@ -130,6 +130,9 @@ void CKnight::update()
 		}
 	}
 
+	//내 애니메이션 실행하고 업데이트
+	update_state();
+
 	//FSM업데이트
 	AI* pAI = GetAI();
 	if (pAI != nullptr)
@@ -143,7 +146,7 @@ void CKnight::update()
 		pMonSkill->Skill_update();
 	}
 
-	update_state();
+	
 }
 
 void CKnight::render(HDC _dc)
@@ -225,6 +228,7 @@ void CKnight::update_state()
 		pAnim->Play(strMotion, false);
 		int iFrame = GetAnimator()->GetCurAnimation()->GetCurFrame();
 		((CHitUpper*)GetAI()->GetState(MONSTER_STATE::UPPER_HIT))->SetAnimFrame(iFrame);
+		((CHitUpper*)GetAI()->GetState(MONSTER_STATE::UPPER_HIT))->SetAnimName(strMotion);
 	}
 	break;
 	case MONSTER_STATE::DEAD:

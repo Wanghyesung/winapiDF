@@ -125,7 +125,7 @@ void CKick::OnCollision(CCollider* _pOther)
 		const vector<UINT>& vecFrame = GetAttackFrame();
 		vector<UINT>& vecColl = GetOtherCollVec();
 
-		int a = sizeof(vecColl);
+		//int a = sizeof(vecColl);
 
 		int iCurFrame = GetCurFram();
 

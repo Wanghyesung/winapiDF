@@ -94,10 +94,7 @@ void CLord::update()
 	AI* pAI = GetAI();
 	MONSTER_STATE eMonState = pAI->GetCurState()->GetType();
 
-	if (pAI != nullptr)
-	{
-		pAI->update();
-	}
+	
 	if (m_fUltimateCurTime >= m_fUltimateTime && eMonState == MONSTER_STATE::TRACE)
 	{
 		m_fUltimateCurTime = 0.f;
@@ -111,6 +108,12 @@ void CLord::update()
 		m_fUltimateCurTime += fDT;
 	}
 
+	update_state();
+
+	if (pAI != nullptr)
+	{
+		pAI->update();
+	}
 
 	CAttackObject* pMonSkill = GetSKillObj();
 	if (pMonSkill->GetCollider()->IsActive())
@@ -118,7 +121,7 @@ void CLord::update()
 		pMonSkill->Skill_update();
 	}
 
-	update_state();
+
 }
 
 void CLord::update_state()

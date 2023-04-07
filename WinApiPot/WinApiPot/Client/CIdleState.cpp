@@ -76,6 +76,6 @@ void CIdleState::enter()
 
 void CIdleState::exit()
 {
-	CState::exit();
 	GetMonster()->GetAnimator()->GetCurAnimation()->SetFram(0);
+	CState::exit();
 }

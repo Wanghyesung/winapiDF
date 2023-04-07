@@ -59,7 +59,6 @@ void CPlayerHitUpper::update()
 
 void CPlayerHitUpper::Exit()
 {
-	GetAnimSound()->Stop(true);
 	m_fCurTime = 0.f;
 	CPlayerState::Exit();
 	InitZeroFrame();

@@ -19,6 +19,7 @@ private:
 
     //발사 시작
     bool m_bStart;
+    UINT m_iAttackCount;
 public:
     virtual void Skillupdate();
     virtual void init();

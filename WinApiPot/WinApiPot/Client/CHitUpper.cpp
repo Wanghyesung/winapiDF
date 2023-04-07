@@ -20,7 +20,8 @@
 
 CHitUpper::CHitUpper():
 	CState(MONSTER_STATE::UPPER_HIT),
-	m_fDownTime(1.5f)
+	m_fDownTime(1.5f),
+	m_strMotionName(L"")
 {
 
 }
@@ -36,7 +37,7 @@ void CHitUpper::enter()
 
 	if (GetAI()->GetPreState()->GetType() == GetType())
 	{
-		GetMonster()->GetAnimator()->GetCurAnimation()->SetFram(HITMOTION);
+		GetMonster()->GetAnimator()->FindAnimation(m_strMotionName)->SetFram(HITMOTION);
 	}
 
 	m_fCurTime = 0.f;
@@ -55,6 +56,7 @@ void CHitUpper::exit()
 {
 	CState::exit();
 	m_iHitAnimFrame = 0;
+	m_fCurTime = 0.f;
 	GetMonster()->GetAnimator()->GetCurAnimation()->SetFram(0);
 }
 
@@ -69,15 +71,17 @@ void CHitUpper::update()
 		pMon->GetAnimator()->GetCurAnimation()->SetFram(tHit.m_iMaxHitFrame-1);
 	}*/
 
+	//collider체크가 씬이 끝나고 실행되기 때문에 지금 현재 플레이 중인 애니메이션은 idle일거임
 	if (pMon->GetGravity()->IsGetGravity())
 	{
-		pMon->GetAnimator()->GetCurAnimation()->SetFram(LASTHITMOTION);
+		pMon->GetAnimator()->FindAnimation(m_strMotionName)->SetFram(LASTHITMOTION);
 	}
 
+	//누어있는 모션 나오게
 	else if (m_iHitAnimFrame == tHit.m_iMaxHitFrame - 1)
 	{
 		m_fCurTime += fDT;
-		pMon->GetAnimator()->GetCurAnimation()->SetFram(tHit.m_iMaxHitFrame - 1);
+		pMon->GetAnimator()->FindAnimation(m_strMotionName)->SetFram(tHit.m_iMaxHitFrame - 1);
 	}
 
 	

@@ -9,6 +9,7 @@ private:
 
 	float m_fDownTime;
 
+	wstring m_strMotionName;
 public:
 	CHitUpper();
 	virtual ~CHitUpper();
@@ -16,6 +17,7 @@ public:
 public:
 	void SetAnimFrame(int _iCurFrame) { m_iHitAnimFrame = _iCurFrame; }
 
+	void SetAnimName(const wstring& _strName) { m_strMotionName = _strName; }
 public:
 	virtual void enter(); 
 	virtual void exit(); 

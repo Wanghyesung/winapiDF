@@ -30,7 +30,6 @@ public:
 	void Play(const wstring& _strName, bool _bRepeat, CSkillState* _pCurSkill);
 	void PlayMulti(const wstring& _strMainName, const wstring& _strOtherName, bool _bRepeat);
 	
-	void Stop(const wstring& _strName);
 
 	void SetRepeat(bool _b) { m_bRepeat = _b; }
 

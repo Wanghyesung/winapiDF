@@ -75,12 +75,14 @@ void CDragon::update()
 		return;
 	}
 
+	update_state();
+
 	if (GetAI() != nullptr)
 	{
 		GetAI()->update();
 	}
 
-	update_state();
+	
 
 	//CMonster::update();
 }
@@ -142,6 +144,7 @@ void CDragon::update_state()
 		GetAnimator()->Play(sMtion, false);
 		int iFrame = GetAnimator()->GetCurAnimation()->GetCurFrame();
 		((CHitUpper*)GetAI()->GetState(MONSTER_STATE::UPPER_HIT))->SetAnimFrame(iFrame);
+		((CHitUpper*)GetAI()->GetState(MONSTER_STATE::UPPER_HIT))->SetAnimName(sMtion);
 	}
 	break;
 

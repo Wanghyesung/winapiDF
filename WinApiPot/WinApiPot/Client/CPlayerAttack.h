@@ -1,7 +1,8 @@
 #pragma once
 
-#include "CPlayerAttackDown.h"
 #include "CPlayerState.h"
+#include "CPlayerAttackDown.h"
+
 
 class CPlayerAttack :
     public CPlayerState

@@ -20,10 +20,9 @@
 #include "CInventoryMgr.h"
 
 SceneMgr::SceneMgr():
-	m_pCurrScene(nullptr),
-	m_arrScene{}
+	m_pCurrScene(nullptr)
 {
-
+	
 }
 
 SceneMgr::~SceneMgr()

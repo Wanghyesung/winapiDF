@@ -1,8 +1,8 @@
 #pragma once
 
-
 class CPlayerState;
 class CPlayer;
+
 class CFSM
 {
 public:

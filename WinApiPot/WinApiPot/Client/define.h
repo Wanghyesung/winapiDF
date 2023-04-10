@@ -46,9 +46,8 @@ enum class SCENE_TYPE
 	DUNGEON_BOSS,
 	SCENE_BACKSTREET,//µ‘∞Ò∏Ò
 	SCENE_BAR,//¡÷¡°
-	SCENE_PORT,
 
-	END = 14,
+	END = 13,
 };
 
 

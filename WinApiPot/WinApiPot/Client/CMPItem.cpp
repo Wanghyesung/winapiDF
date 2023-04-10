@@ -9,6 +9,10 @@
 
 #include "CInterfaceMgr.h"
 
+#include "CSceneMgr.h"
+#include "CScene.h"
+#include "CPlayer.h"
+
 CMPItem::CMPItem()
 {
 	m_pItemTex = CResMgr::GetInst()->LoadTextur(L"MPItem", L"..\\OutPut\\bin_release\\Content\\Item\\MPItem.bmp");
@@ -59,6 +63,25 @@ void CMPItem::finalupdate()
 
 void CMPItem::UseItem()
 {
+	CPlayer* pPlayer = (CPlayer*)SceneMgr::GetInst()->GetCurSCene()->GetPlayerObj();
+
+	if (pPlayer != nullptr)
+	{
+		if (pPlayer->m_tPlayerInfo.m_fMP > 0.f && pPlayer->m_tPlayerInfo.m_fMP < 100.f)
+		{
+			pPlayer->m_tPlayerInfo.m_fMP += 30.f;
+			if (pPlayer->m_tPlayerInfo.m_fMP >= 100.f)
+				pPlayer->m_tPlayerInfo.m_fMP = 100.f;
+
+			--m_iItemCount;
+		}
+	}
+
+
+	if (m_iItemCount == 0)
+	{
+		deleteItem();
+	}
 }
 
 void CMPItem::MouseOn()

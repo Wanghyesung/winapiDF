@@ -1,4 +1,5 @@
 #pragma once
+#include "CFSM.h"
 
 class CFSM;
 class CSound;

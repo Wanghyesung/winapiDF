@@ -11,7 +11,7 @@
 #include "CPlayerAttack.h"
 #include "CSound.h"
 
-#define MAX_HIT_FRAME 1
+
 
 CPlayerHit::CPlayerHit() :
 	CPlayerState(PLAYER_STATE::HIT),

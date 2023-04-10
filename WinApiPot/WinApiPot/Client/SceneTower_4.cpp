@@ -79,7 +79,7 @@ void SceneTower_4::Init()
 
 	CMonster* pBrDragon1 = CMonFactory::CraeteMonster(MON_TYPE::BROWN_DRAGON, Vec2(500.f, 500.f), m_eType);
 	pBrDragon1->SetName(L"brDragon_4_1");
-	CMonInterface* brdragonInterface2 = new CMonInterface(pBrDragon1->GetName());
+	CMonInterface* brdragonInterface2 = new CMonInterface(pBrDragon1->GetName(),44);
 	brdragonInterface2->SetScale(Vec2(626, 29));
 	brdragonInterface2->SetPos(Vec2(40, 20));
 	AddObject(brdragonInterface2, GROUP_TYPE::UI);
@@ -88,7 +88,7 @@ void SceneTower_4::Init()
 	CMonster* pDragon1 = CMonFactory::CraeteMonster(MON_TYPE::DRAGON, Vec2(500.f, 550.f), m_eType);
 	pDragon1->SetName(L"CDragon_4_1");
 	//내 몬스터 인터페이스에 내 몬스터 이름 넣기
-	CMonInterface* dragonInterface1 = new CMonInterface(pDragon1->GetName());
+	CMonInterface* dragonInterface1 = new CMonInterface(pDragon1->GetName(),15);
 	dragonInterface1->SetScale(Vec2(626, 29));
 	dragonInterface1->SetPos(Vec2(40, 20));
 	AddObject(dragonInterface1, GROUP_TYPE::UI);
@@ -97,7 +97,7 @@ void SceneTower_4::Init()
 	CMonster* pMon = CMonFactory::CraeteMonster(MON_TYPE::DRAGON, Vec2(800.f, 440.f), m_eType);
 	pMon->SetName(L"CDragon_4_2");
 	//내 몬스터 인터페이스에 내 몬스터 이름 넣기
-	CMonInterface* dragonInterface = new CMonInterface(pMon->GetName());
+	CMonInterface* dragonInterface = new CMonInterface(pMon->GetName(),15);
 	dragonInterface->SetScale(Vec2(626, 29));
 	dragonInterface->SetPos(Vec2(40, 20));
 	AddObject(dragonInterface, GROUP_TYPE::UI);

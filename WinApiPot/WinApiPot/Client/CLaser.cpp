@@ -42,8 +42,8 @@ CLaser::CLaser():
 	//내 스킬 애니메이션 이름
 	CreateAnimator();
 	GetAnimator()->SetRBG(0, 0, 0);
-	GetAnimator()->CreateAnimation(L"Laser_right", pLaserTexRight, Vec2(0.f, 0.f), Vec2(730.f, 250.f), Vec2(0.f, 250.f), Vec2(0.f, 0.f), 0.1f, 9);
-	GetAnimator()->CreateAnimation(L"Laser_left", pLaserTexLeft, Vec2(0.f, 0.f), Vec2(730.f, 250.f), Vec2(0.f, 250.f), Vec2(0.f, 0.f), 0.1f, 9);
+	GetAnimator()->CreateAnimation(L"Laser_right", pLaserTexRight, Vec2(0.f, 0.f), Vec2(730.f, 250.f), Vec2(0.f, 250.f), Vec2(0.f, 0.f), 0.11f, 9);
+	GetAnimator()->CreateAnimation(L"Laser_left", pLaserTexLeft, Vec2(0.f, 0.f), Vec2(730.f, 250.f), Vec2(0.f, 250.f), Vec2(0.f, 0.f), 0.11f, 9);
 }
 
 CLaser::~CLaser()
@@ -57,24 +57,27 @@ void CLaser::Skillupdate()
 
 	int iFrame = GetCurFram();
 
-	if (iFrame == 3)
-	{
-		m_bStart = true;
-		GetAnimator()->Play(m_strLaserName,false);
-	}
-
-	else if (iFrame >= 5)
-	{
-		if (!GetAnimator()->GetCurAnimation()->IsFinish())
-		{
-			pPlayer->GetAnimator()->GetCurAnimation()->SetFram(5);
-		}
-	}
-
 	if (iFrame == -1)
 	{
 		exit();
 		return;
+	}
+
+	if (iFrame >= 3)
+	{
+		m_bStart = true;
+		GetAnimator()->Play(m_strLaserName, false);
+	}
+
+	if (iFrame >= 5)
+	{
+		int iLaserFrame = GetAnimator()->FindAnimation(m_strLaserName)->GetCurFrame();
+		if (iLaserFrame == -1)
+			return;
+		if (iLaserFrame <= 3)
+		{
+			pPlayer->GetAnimator()->FindAnimation(m_strSkillName)->SetFram(5);
+		}
 	}
 
 }
@@ -88,7 +91,7 @@ void CLaser::init()
 	{
 		AddAttackFrame(i);
 	}
-	m_vCollSize = Vec2(730.f, 60.f);
+	m_vCollSize = Vec2(640.f, 60.f);
 	GetCollider()->SetScale(m_vCollSize);
 }
 
@@ -117,14 +120,14 @@ void CLaser::enter()
 	{
 		m_strSkillName = L"Player_skill_laser_right";
 		m_strLaserName = L"Laser_right";
-		m_vCollOffSet = Vec2(75.f, 0.f);
+		m_vCollOffSet = Vec2(45.f, 0.f);
 		SetPos(vPlayerPos + Vec2(m_fOffSet * iDir, 15.f));
 	}
 	else
 	{
 		m_strSkillName = L"Player_skill_laser_left";
 		m_strLaserName = L"Laser_left";
-		m_vCollOffSet = Vec2(-75.f, 0.f);
+		m_vCollOffSet = Vec2(-45.f, 0.f);
 		SetPos(vPlayerPos + Vec2((m_fOffSet + 40) * iDir, 15.f));
 	}
 

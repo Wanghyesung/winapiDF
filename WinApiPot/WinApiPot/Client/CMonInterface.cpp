@@ -9,7 +9,7 @@
 
 
 
-CMonInterface::CMonInterface(const wstring& _strMonName, bool _bIsBoss):
+CMonInterface::CMonInterface(const wstring& _strMonName, UINT _MonNum, bool _bIsBoss):
 	m_strMonName(_strMonName)
 {
 	//네임은 동적할당하고 다음에 설정
@@ -37,7 +37,8 @@ CMonInterface::CMonInterface(const wstring& _strMonName, bool _bIsBoss):
 		SetScale(Vec2(626.f, 29.f));
 	}
 
-
+	//몬스터 이미지bmp이름
+	m_iMonTexNum = _MonNum;
 	m_pDleTex = CResMgr::GetInst()->LoadTextur(L"MonHp", L"..\\OutPut\\bin_release\\Content\\Interface\\DeleteMon.bmp");
 }
 
@@ -94,6 +95,8 @@ void CMonInterface::renderHp(HDC _dc)
 {
 	Vec2 vPos = GetFinalPos();
 	
+
+	//인터페이스
 	TransparentBlt(_dc,
 		(int)vPos.x, (int)vPos.y,
 		m_pInterfaceTex->Width(), m_pInterfaceTex->Height(),
@@ -101,6 +104,20 @@ void CMonInterface::renderHp(HDC _dc)
 		0, 0,
 		m_pInterfaceTex->Width(), m_pInterfaceTex->Height(),
 		RGB(255, 255, 255));
+
+	//몬스터 이미지
+	wstring strNum = std::to_wstring(m_iMonTexNum);
+	CTexture* pMonInterface =
+		CResMgr::GetInst()->LoadTextur(strNum, L"..\\OutPut\\bin_release\\Content\\MonIterface\\" + strNum + L".bmp");
+
+	TransparentBlt(_dc,
+		(int)vPos.x + 3, (int)vPos.y + 3,
+		pMonInterface->Width(), pMonInterface->Height(),
+		pMonInterface->GetDC(),
+		0, 0,
+		pMonInterface->Width(), pMonInterface->Height(),
+		RGB(0, 0, 0));
+
 
 	//CUI::render(_dc);
 

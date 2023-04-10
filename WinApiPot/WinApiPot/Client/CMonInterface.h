@@ -7,7 +7,7 @@ class CMonInterface :
     public CUI
 {
 public:
-    CMonInterface(const wstring& _strMonName, bool _bIsBoss = false);
+    CMonInterface(const wstring& _strMonName, UINT _MonNum, bool _bIsBoss = false);
     virtual ~CMonInterface();
 
 private:
@@ -16,6 +16,9 @@ private:
 
     wstring m_strMonName;//내 몬스터 이름
     bool    m_bActiv;
+
+    //파일에서 가져올 몬스터 이미지이름
+    UINT m_iMonTexNum;
 
 public:
     virtual void render(HDC _dc) {};

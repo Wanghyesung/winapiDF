@@ -73,7 +73,7 @@ void CKnightTrace::update()
 	SetDir(iDir);
 
 	
-	if (vDiff.Length() > tMInfo.m_fnavigationScope)
+	if (vDiff.Length() > tMInfo.m_fnavigationScope * 1.1f)
 	{
 		ChangeAIState(GetAI(), MONSTER_STATE::IDLE);
 		return;

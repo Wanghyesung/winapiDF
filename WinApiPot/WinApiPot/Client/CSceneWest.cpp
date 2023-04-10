@@ -81,7 +81,7 @@ void CSceneWest::Init()
 	CMonster* pMon = CMonFactory::CraeteMonster(MON_TYPE::KNIGHT_BROWN, Vec2(900.f, 650.f), m_eType);
 	pMon->SetName(L"Knight_1");
 	//내 몬스터 인터페이스에 내 몬스터 이름 넣기
-	CMonInterface* dragonInterface = new CMonInterface(pMon->GetName());
+	CMonInterface* dragonInterface = new CMonInterface(pMon->GetName(), 96);
 	dragonInterface->SetScale(Vec2(626, 29));
 	dragonInterface->SetPos(Vec2(40, 20));
 	AddObject(dragonInterface, GROUP_TYPE::UI);

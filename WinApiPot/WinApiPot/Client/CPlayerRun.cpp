@@ -11,6 +11,7 @@
 #include "CAnimation.h"
 #include "CAnimator.h"
 
+
 CPlayerRun::CPlayerRun():
 	CPlayerState(PLAYER_STATE::RUN)
 {

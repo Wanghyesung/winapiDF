@@ -61,7 +61,7 @@ void CIdleState::update()
 	vDiff.x >= 0 ? SetDir(1) : SetDir(-1);
 
 	//내 지저과 플레이어 지점의 거리가 지정해준 길이보다 짧아진 경우
-	if ((vDiff.NormalRize() * monInfo.m_fnavigationScope).Length() >= (vTargetPos - vPos).Length())
+	if ((vDiff.NormalRize() * monInfo.m_fnavigationScope).Length() > (vTargetPos - vPos).Length())
 	{
 		m_eNextState = MONSTER_STATE::TRACE;
 		ChangeAIState(GetAI(), MONSTER_STATE::TRACE);//내 소유주인 AI객체를 넘겨줌 (이거 이벤트 매니저 만들어야함) 전역함수로 설정하고 이벤트 매니저한테 벡터에 넣기

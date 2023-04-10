@@ -1,5 +1,7 @@
 #pragma once
 #include "CState.h"
+#include "CKnight.h"
+
 class CKnightAttack :
     public CState
 {

@@ -8,7 +8,8 @@
 #include "CSound.h"
 
 CPlayerState::CPlayerState(PLAYER_STATE ePlayerState) :
-	m_ePlayerState(ePlayerState)
+	m_ePlayerState(ePlayerState),
+	m_pOwner(nullptr)
 {
 
 }

@@ -9,6 +9,18 @@ struct tMonInfo
     float m_fnavigationScope;
 };
 
+struct tNew_Attack
+{
+    //공격 오브젝트 크기, 생성될 위치, 공격범위, 공격시잘될 프레임 , 끝날 프레임, 스킬 시간, 최대 시간, 공격정보(데미지 ...)
+    Vec2 m_vAttackSacle;
+    Vec2 m_vOffset;
+    Vec2 m_vAttackRange;
+    UINT m_iStartAttackFrame;
+    UINT m_iEndAttackFrame;
+    float m_fSkillTime;
+    float m_fSkillMaxTime;
+    tAttackInfo m_tAttackInfo;
+};
 
 enum class eMonsterAttackType
 {

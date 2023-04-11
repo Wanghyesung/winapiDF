@@ -95,7 +95,7 @@ void CKnightTrace::update()
 bool CKnightTrace::check_skill()
 {
 	CKnight* pMon = (CKnight*)GetMonster();
-	unordered_map<wstring, tKnight_Attack>::iterator iter = pMon->m_hashMonSkill.begin();
+	unordered_map<wstring, tNew_Attack>::iterator iter = pMon->m_hashMonSkill.begin();
 
 	for (; iter != pMon->m_hashMonSkill.end(); ++iter)
 	{

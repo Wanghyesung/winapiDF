@@ -24,7 +24,9 @@
 #include "CAttackObject.h"
 
 CKnight::CKnight():
-	m_strTexName(L"Knight")//기본 이미지
+	m_strTexName(L"Knight"),//기본 이미지
+	m_vTexScale(Vec2(0.f,0.f)),
+	m_vTexOffset(Vec2(0.f,0.f))
 {	
 }
 
@@ -42,7 +44,7 @@ void CKnight::init_skill()
 	tAttackInfo1.m_fAttRcnt = 50.f;
 	tAttackInfo1.m_fAttUpperRcnt = -60.f;
 	tAttackInfo1.m_fAttRigidityTime = 0.5f;
-	tKnight_Attack tAttack1 = {Vec2(50.f,50.f),Vec2(60.f,0.f),Vec2(50.f,50.f),2,3,5.f, 5.f,tAttackInfo1};
+	tNew_Attack tAttack1 = {Vec2(50.f,50.f),Vec2(60.f,0.f),Vec2(50.f,50.f),2,3,5.f, 5.f,tAttackInfo1};
 	m_hashMonSkill.insert(make_pair(m_strTexName + L"_normal1_attack", tAttack1));
 
 
@@ -52,18 +54,18 @@ void CKnight::init_skill()
 	tAttackInfo2.m_fAttRcnt = 70.f;
 	tAttackInfo2.m_fAttUpperRcnt = -60.f;
 	tAttackInfo2.m_fAttRigidityTime = 0.5f;
-	tKnight_Attack tAttack2 = { Vec2(75.f,50.f),Vec2(60.f,0.f),Vec2(80.f,30.f),2,3, 8.f, 8.f, tAttackInfo2 };
+	tNew_Attack tAttack2 = { Vec2(75.f,50.f),Vec2(60.f,0.f),Vec2(80.f,30.f),2,3, 8.f, 8.f, tAttackInfo2 };
 	m_hashMonSkill.insert(make_pair(m_strTexName + L"_normal2_attack", tAttack2));
 }
 
 void CKnight::init(const wstring& _strName)
 {
 	m_strTexName = _strName;
-	float fSizeX;
-	if (m_strTexName == L"Knight")
-		fSizeX = 250.f;
-	else
-		fSizeX = 300.f;
+	//float fSizeX;
+	//if (m_strTexName == L"Knight")
+	//	fSizeX = 250.f;
+	//else 
+	//	fSizeX = 300.f;
 
 	CreateCollider();
 	GetCollider()->SetScale(Vec2(70.f, 90.f));
@@ -77,24 +79,26 @@ void CKnight::init(const wstring& _strName)
 	CTexture* pTexLeft = CResMgr::GetInst()->LoadTextur(m_strTexName + L"_left", L"..\\OutPut\\bin_release\\Content\\Texture\\" + m_strTexName + L"_left.bmp");
 	CTexture* pTexStart = CResMgr::GetInst()->LoadTextur(m_strTexName + L"_Start", L"..\\OutPut\\bin_release\\Content\\Texture\\" + m_strTexName + L"_start.bmp");
 
-	GetAnimator()->CreateAnimation(m_strTexName + L"_idle_right", pTexRight, Vec2(0.f, 0.f), Vec2(fSizeX, 150.f), Vec2(fSizeX, 0.f), Vec2(0.f, 0.f), 0.1f, 1);
-	GetAnimator()->CreateAnimation(m_strTexName + L"_walk_right", pTexRight, Vec2(0.f, 150.f), Vec2(fSizeX, 150.f), Vec2(fSizeX, 0.f), Vec2(0.f, 0.f), 0.1f, 6);
-	GetAnimator()->CreateAnimation(m_strTexName + L"_normal1_attack_right", pTexRight, Vec2(0.f, 300.f), Vec2(fSizeX, 150.f), Vec2(fSizeX, 0.f), Vec2(0.f, 0.f), 0.2f, 5);
-	GetAnimator()->CreateAnimation(m_strTexName + L"_normal2_attack_right", pTexRight, Vec2(0.f, 450.f), Vec2(fSizeX, 150.f), Vec2(fSizeX, 0.f), Vec2(0.f, 0.f), 0.2f, 6);
-	GetAnimator()->CreateAnimation(m_strTexName + L"_hit_right", pTexRight, Vec2(0.f, 600.f), Vec2(fSizeX, 150.f), Vec2(fSizeX, 0.f), Vec2(0.f, 0.f), 0.1f, 5);
-	GetAnimator()->CreateAnimation(m_strTexName + L"_defense_right", pTexRight, Vec2(0.f, 750.f), Vec2(fSizeX, 150.f), Vec2(fSizeX, 0.f), Vec2(0.f, 0.f), 0.1f, 3);
+	GetAnimator()->CreateAnimation(m_strTexName + L"_start", pTexStart, Vec2(0.f, 0.f), Vec2(m_vTexScale.x, m_vTexScale.y), Vec2(m_vTexScale.x, 0.f), m_vTexOffset, 0.15f, 10);
+	GetAnimator()->FindAnimation(m_strTexName + L"_start")->Create(pTexStart, Vec2(0.f, m_vTexScale.y), Vec2(m_vTexScale.x, m_vTexScale.y), Vec2(m_vTexScale.x, 0.f), m_vTexOffset, 0.15f, 2);
+
+	GetAnimator()->CreateAnimation(m_strTexName + L"_idle_right", pTexRight, Vec2(0.f, 0.f), Vec2(m_vTexScale.x, m_vTexScale.y), Vec2(m_vTexScale.x, 0.f), m_vTexOffset, 0.1f, 1);
+	GetAnimator()->CreateAnimation(m_strTexName + L"_walk_right", pTexRight, Vec2(0.f, m_vTexScale.y), Vec2(m_vTexScale.x, m_vTexScale.y), Vec2(m_vTexScale.x, 0.f), m_vTexOffset, 0.1f, 6);
+	GetAnimator()->CreateAnimation(m_strTexName + L"_normal1_attack_right", pTexRight, Vec2(0.f, m_vTexScale.y * 2), Vec2(m_vTexScale.x, m_vTexScale.y), Vec2(m_vTexScale.x, 0.f), m_vTexOffset, 0.2f, 5);
+	GetAnimator()->CreateAnimation(m_strTexName + L"_normal2_attack_right", pTexRight, Vec2(0.f, m_vTexScale.y * 3), Vec2(m_vTexScale.x, m_vTexScale.y), Vec2(m_vTexScale.x, 0.f), m_vTexOffset, 0.2f, 6);
+	GetAnimator()->CreateAnimation(m_strTexName + L"_hit_right", pTexRight, Vec2(0.f, m_vTexScale.y * 4), Vec2(m_vTexScale.x, m_vTexScale.y), Vec2(m_vTexScale.x, 0.f), m_vTexOffset, 0.1f, 5);
+	GetAnimator()->CreateAnimation(m_strTexName + L"_defense_right", pTexRight, Vec2(0.f, m_vTexScale.y * 5), Vec2(m_vTexScale.x, m_vTexScale.y), Vec2(m_vTexScale.x, 0.f), m_vTexOffset, 0.1f, 3);
 	//GetAnimator()->CreateAnimation(L"Knight_start_right", pTexRight, Vec2(0.f, 900.f), Vec2(250.f, 150.f), Vec2(250.f, 0.f), Vec2(0.f, 0.f), 0.2f, 10);
 
-	GetAnimator()->CreateAnimation(m_strTexName + L"_idle_left", pTexLeft, Vec2(fSizeX * 9, 0.f), Vec2(fSizeX, 150.f), Vec2(-fSizeX, 0.f), Vec2(0.f, 0.f), 0.1f, 1);
-	GetAnimator()->CreateAnimation(m_strTexName + L"_walk_left", pTexLeft, Vec2(fSizeX * 9, 150.f), Vec2(fSizeX, 150.f), Vec2(-fSizeX, 0.f), Vec2(0.f, 0.f), 0.1f, 6);
-	GetAnimator()->CreateAnimation(m_strTexName + L"_normal1_attack_left", pTexLeft, Vec2(fSizeX * 9, 300.f), Vec2(fSizeX, 150.f), Vec2(-fSizeX, 0.f), Vec2(0.f, 0.f), 0.2f, 5);
-	GetAnimator()->CreateAnimation(m_strTexName + L"_normal2_attack_left", pTexLeft, Vec2(fSizeX * 9, 450.f), Vec2(fSizeX, 150.f), Vec2(-fSizeX, 0.f), Vec2(0.f, 0.f), 0.2f, 6);
-	GetAnimator()->CreateAnimation(m_strTexName + L"_hit_left", pTexLeft, Vec2(fSizeX * 9, 600.f), Vec2(fSizeX, 150.f), Vec2(-fSizeX, 0.f), Vec2(0.f, 0.f), 0.1f, 5);
-	GetAnimator()->CreateAnimation(m_strTexName + L"_defense_left", pTexLeft, Vec2(fSizeX * 9, 750.f), Vec2(fSizeX, 150.f), Vec2(-fSizeX, 0.f), Vec2(0.f, 0.f), 0.1f, 3);
+	m_vTexOffset.x *= -1;
+	GetAnimator()->CreateAnimation(m_strTexName + L"_idle_left", pTexLeft, Vec2(m_vTexScale.x * 9, 0.f), Vec2(m_vTexScale.x, m_vTexScale.y), Vec2(-m_vTexScale.x, 0.f), m_vTexOffset, 0.1f, 1);
+	GetAnimator()->CreateAnimation(m_strTexName + L"_walk_left", pTexLeft, Vec2(m_vTexScale.x * 9, m_vTexScale.y), Vec2(m_vTexScale.x, m_vTexScale.y), Vec2(-m_vTexScale.x, 0.f), m_vTexOffset, 0.1f, 6);
+	GetAnimator()->CreateAnimation(m_strTexName + L"_normal1_attack_left", pTexLeft, Vec2(m_vTexScale.x * 9, m_vTexScale.y * 2), Vec2(m_vTexScale.x, m_vTexScale.y), Vec2(-m_vTexScale.x, 0.f), m_vTexOffset, 0.2f, 5);
+	GetAnimator()->CreateAnimation(m_strTexName + L"_normal2_attack_left", pTexLeft, Vec2(m_vTexScale.x * 9, m_vTexScale.y * 3), Vec2(m_vTexScale.x, m_vTexScale.y), Vec2(-m_vTexScale.x, 0.f), m_vTexOffset, 0.2f, 6);
+	GetAnimator()->CreateAnimation(m_strTexName + L"_hit_left", pTexLeft, Vec2(m_vTexScale.x * 9, m_vTexScale.y * 4), Vec2(m_vTexScale.x, m_vTexScale.y), Vec2(-m_vTexScale.x, 0.f), m_vTexOffset, 0.1f, 5);
+	GetAnimator()->CreateAnimation(m_strTexName + L"_defense_left", pTexLeft, Vec2(m_vTexScale.x * 9, m_vTexScale.y * 5), Vec2(m_vTexScale.x, m_vTexScale.y), Vec2(-m_vTexScale.x, 0.f), m_vTexOffset, 0.1f, 3);
 	//GetAnimator()->CreateAnimation(L"Knight_start_left", pTexLeft, Vec2(2250.f, 900.f), Vec2(250.f, 150.f), Vec2(-250.f, 0.f), Vec2(0.f, 0.f), 0.2f, 10);
 
-	GetAnimator()->CreateAnimation(m_strTexName + L"_start", pTexStart, Vec2(0.f, 0.f), Vec2(fSizeX, 150.f), Vec2(fSizeX, 0.f), Vec2(0.f, 0.f), 0.15f, 10);
-	GetAnimator()->FindAnimation(m_strTexName + L"_start")->Create(pTexStart, Vec2(0.f, 150.f), Vec2(fSizeX, 150.f), Vec2(fSizeX, 0.f), Vec2(0.f, 0.f), 0.15f, 2);
 
 	init_skill();
 
@@ -110,7 +114,7 @@ void CKnight::update()
 		return;
 	}
 
-	unordered_map<wstring, tKnight_Attack>::iterator iter = m_hashMonSkill.begin();
+	unordered_map<wstring, tNew_Attack>::iterator iter = m_hashMonSkill.begin();
 	
 	//스킬 쿨타임 감소
 	for (; iter != m_hashMonSkill.end(); ++iter)
@@ -118,7 +122,7 @@ void CKnight::update()
 		if (m_eMonState == MONSTER_STATE::ATTACK)
 			break;
 
-		tKnight_Attack& tAttck = iter->second;
+		tNew_Attack& tAttck = iter->second;
 		if (tAttck.m_fSkillTime != 0.f)
 		{
 			tAttck.m_fSkillTime -= fDT;

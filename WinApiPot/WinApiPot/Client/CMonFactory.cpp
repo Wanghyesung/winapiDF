@@ -304,6 +304,7 @@ CMonster* CMonFactory::CraeteMonster(MON_TYPE _monType, Vec2 _vPos, SCENE_TYPE _
 	case MON_TYPE::KNIGHT_RED:
 	{
 		pMon = new CKnight;
+		((CKnight*)pMon)->setTexScale(Vec2(250.f, 150.f));
 		((CKnight*)pMon)->init(L"Knight");
 		pMon->SetTag(GROUP_TYPE::MONSTER);
 		pMon->SetPos(_vPos);
@@ -360,6 +361,7 @@ CMonster* CMonFactory::CraeteMonster(MON_TYPE _monType, Vec2 _vPos, SCENE_TYPE _
 	case MON_TYPE::KNIGHT_BROWN:
 	{
 		pMon = new CKnight;
+		((CKnight*)pMon)->setTexScale(Vec2(300.f, 150.f));
 		((CKnight*)pMon)->init(L"Knight2");
 		pMon->SetTag(GROUP_TYPE::MONSTER);
 		pMon->SetPos(_vPos);
@@ -382,6 +384,66 @@ CMonster* CMonFactory::CraeteMonster(MON_TYPE _monType, Vec2 _vPos, SCENE_TYPE _
 		tAttackInfo tAttackInfo = {};
 		tAttackInfo.m_fAttackRange = Vec2(50.f, 20.f);
 		
+		pMon->SetAttackInfo(tAttackInfo);
+
+
+		pMon->CreateRigidBody();
+		pMon->GetRigidBody()->SetMass(1.f);
+
+		AI* pAI = new AI;
+		pAI->AddState(new CStoneState);
+		pAI->AddState(new CIdleState);
+		pAI->AddState(new CKnightTrace);
+
+		CKnightAttack* pKnightAtt = new CKnightAttack;
+		pKnightAtt->SetAnimSound(L"hunt_atk");
+		pAI->AddState(pKnightAtt);
+
+		CHitState* pHit = new CHitState;
+		pHit->SetAnimSound(L"hunt_comm");
+		pAI->AddState(pHit);
+
+		CHitUpper* pHitUp = new CHitUpper;
+		pHitUp->SetAnimSound(L"hunt_comm");
+		pAI->AddState(pHitUp);
+
+		CDeadState* pDead = new CDeadState;
+		pDead->SetAnimSound(L"hunt_die");
+		pAI->AddState(pDead);
+
+		pAI->SetCurState(MONSTER_STATE::STONE);
+		pMon->SetAI(pAI);
+
+	}
+	break;
+
+	case MON_TYPE::KNIGHT_GREEN:
+	{
+		pMon = new CKnight;
+		((CKnight*)pMon)->setTexScale(Vec2(300.f, 200.f));
+		((CKnight*)pMon)->setTexOffset(Vec2(10.f, -40.f));
+		((CKnight*)pMon)->init(L"Knight3");
+		pMon->SetTag(GROUP_TYPE::MONSTER);
+		pMon->SetPos(_vPos);
+		//pMon->SetScale(Vec2(50.f, 50.f));
+
+		pMon->set_attackobj(_eSceneType);
+
+		tMonInfo info = {};
+		info.m_fnavigationScope = 500.f;
+		info.m_iHp = 100;
+		info.m_fspeed = 170.f;
+		pMon->SettMonInfo(info);
+
+		tHitInfo tHitInfo = {};
+		tHitInfo.m_iMaxHitFrame = 5;
+		pMon->SetHitInfo(tHitInfo);
+
+
+		//몬스터 공격
+		tAttackInfo tAttackInfo = {};
+		tAttackInfo.m_fAttackRange = Vec2(50.f, 20.f);
+
 		pMon->SetAttackInfo(tAttackInfo);
 
 

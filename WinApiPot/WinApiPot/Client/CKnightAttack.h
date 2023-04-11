@@ -11,7 +11,7 @@ public:
 
 private:
 	wstring m_strAttackName;
-	tKnight_Attack m_tNightAttackInfo;
+	tNew_Attack m_tNightAttackInfo;
 
 	UINT m_iAttackCount;
 

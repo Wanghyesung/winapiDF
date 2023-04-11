@@ -37,7 +37,7 @@ void CKnightAttack::SetAttackName(const wstring& _strName)
 {
 	m_strAttackName = _strName;
 	CKnight* pMon = (CKnight*)GetMonster();
-	tKnight_Attack& tAtt = pMon->m_hashMonSkill[m_strAttackName];
+	tNew_Attack& tAtt = pMon->m_hashMonSkill[m_strAttackName];
 	tAtt.m_fSkillTime = tAtt.m_fSkillMaxTime;
 	m_tNightAttackInfo = pMon->m_hashMonSkill[m_strAttackName];
 }
@@ -45,7 +45,7 @@ void CKnightAttack::SetAttackName(const wstring& _strName)
 void CKnightAttack::update()
 {
 	CKnight* pMon = (CKnight*)GetMonster();
-	tKnight_Attack& tAtt = pMon->m_hashMonSkill[m_strAttackName];
+	tNew_Attack& tAtt = pMon->m_hashMonSkill[m_strAttackName];
 
 	CAttackObject* pAttackObj = pMon->GetSKillObj();
 

@@ -115,53 +115,7 @@ void CStoneBox::OnColliderEnter(CCollider* _pOther)
 
 void CStoneBox::OnColliderExit(CCollider* _pOther)
 {
-	//CObject* pObj = _pOther->GetObj();
-	//
-	//if (pObj->GetTag() == GROUP_TYPE::PLAYER)
-	//{
-	//	CPlayer* pPlayer = dynamic_cast<CPlayer*>(pObj);
-	//	Vec2 vOtherPos = _pOther->GetFinalPos();
-	//	Vec2 vPos = GetCollider()->GetFinalPos();
-	//
-	//	Vec2 vOtherScale = _pOther->GetScale();
-	//	Vec2 vScale = GetCollider()->GetScale();
-	//
-	//	Vec2 vNor = (vOtherPos - vPos).NormalRize();
-	//	Vec2 vVel = pPlayer->GetRigidBody()->GetVelocity();
-	//
-	//	if (pPlayer->GetGravity()->IsGetGravity())
-	//	{
-	//		vOtherPos = pPlayer->GetPos();
-	//	}
-	//
-	//	//πÊ«‚
-	//	//350 -409
-	//	int DirX = (vOtherPos - vPos).x;
-	//	int DirY = (vOtherPos - vPos).y;
-	//
-	//	int iDirX = DirX < 1 ? -1 : 1;
-	//	int iDirY = DirY < 1 ? -1 : 1;
-	//
-	//	//±Ê¿Ã
-	//	float fLenX = abs(vPos.x - vOtherPos.x);
-	//	float fLenY = abs(vPos.y - vOtherPos.y);
-	//
-	//	float fValueX = (vScale.x / 2.f + vOtherScale.x / 2.f) - fLenX; //∞„ƒ£æÁ
-	//	float fValueY = (vScale.y / 2.f + vOtherScale.y / 2.f) - fLenY; //∞„ƒ£æÁ
-	//
-	//	Vec2 vAddPlayerPos;
-	//	if (vVel.IsZero())
-	//	{
-	//		vAddPlayerPos = vNor;
-	//	}
-	//	else
-	//	{
-	//		vAddPlayerPos = -vVel * 1.0f + vNor;
-	//	}
-	//
-	//
-	//	pPlayer->SetPos(pPlayer->GetPos() + vAddPlayerPos);
-	//}
+	
 }
 
 void CStoneBox::OnCollision(CCollider* _pOther)

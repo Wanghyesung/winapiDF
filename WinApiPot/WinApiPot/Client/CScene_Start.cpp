@@ -107,15 +107,24 @@ void CScene_Start::Init()
 	//AddObject(dragonInterface, GROUP_TYPE::UI);
 	//AddObject(pMon, GROUP_TYPE::MONSTER);
 
-	CMonster* pMon = CMonFactory::CraeteMonster(MON_TYPE::KNIGHT_GREEN, Vec2(900.f, 650.f), m_eType);
-	pMon->SetName(L"Knight3");
+	//CMonster* pMon = CMonFactory::CraeteMonster(MON_TYPE::KNIGHT_GREEN, Vec2(900.f, 650.f), m_eType);
+	//pMon->SetName(L"Knight3");
+	////내 몬스터 인터페이스에 내 몬스터 이름 넣기
+	//CMonInterface* dragonInterface = new CMonInterface(pMon->GetName(), 97); //몬스터 인터페이스는 중복 안되게 해야하기때문에 1추가
+	//dragonInterface->SetScale(Vec2(626, 29));
+	//dragonInterface->SetPos(Vec2(40, 20));
+	//AddObject(dragonInterface, GROUP_TYPE::UI);
+	//AddObject(pMon, GROUP_TYPE::MONSTER);
+	
+	CMonster* pMon = CMonFactory::CraeteMonster(MON_TYPE::NAIAS, Vec2(900.f, 650.f), m_eType);
+	pMon->SetName(L"Naias1");
 	//내 몬스터 인터페이스에 내 몬스터 이름 넣기
-	CMonInterface* dragonInterface = new CMonInterface(pMon->GetName(), 97); //몬스터 인터페이스는 중복 안되게 해야하기때문에 1추가
+	CMonInterface* dragonInterface = new CMonInterface(pMon->GetName(), 68); //몬스터 인터페이스는 중복 안되게 해야하기때문에 1추가
 	dragonInterface->SetScale(Vec2(626, 29));
 	dragonInterface->SetPos(Vec2(40, 20));
 	AddObject(dragonInterface, GROUP_TYPE::UI);
 	AddObject(pMon, GROUP_TYPE::MONSTER);
-	 
+
 	//CMonster* pMon = CMonFactory::CraeteMonster(MON_TYPE::DRAGON, Vec2(1050.f, 580.f),m_eType);
 	//pMon->SetName(L"CDragon_1");
 	////내 몬스터 인터페이스에 내 몬스터 이름 넣기

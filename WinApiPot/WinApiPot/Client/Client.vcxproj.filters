@@ -335,18 +335,6 @@
     <Filter Include="Engine\05.CObject\CMonster\CKnight">
       <UniqueIdentifier>{56d1e89f-6b0a-489a-a97d-48b4ab68b3cd}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Engine\08.Module\State\CKnightState">
-      <UniqueIdentifier>{031c9ae9-f1e2-4d91-8a8e-5cf50c60c9ab}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Engine\08.Module\State\CKnightState\Attack">
-      <UniqueIdentifier>{e0722b0b-a026-4697-8737-27edf2f5bef0}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Engine\08.Module\State\CKnightState\Trace">
-      <UniqueIdentifier>{2377a40f-c17f-4f92-ad28-469e181303a5}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Engine\08.Module\State\CKnightState\Stone">
-      <UniqueIdentifier>{d6d9ef98-33dc-45d0-a2d7-4f109b785973}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Engine\06.Resource\CSound">
       <UniqueIdentifier>{8faea308-5f3e-41ca-98b3-e18e0b6fa7d4}</UniqueIdentifier>
     </Filter>
@@ -358,6 +346,30 @@
     </Filter>
     <Filter Include="Engine\07.Component\CSkill\SkillState\Laser">
       <UniqueIdentifier>{f0781cf5-89b3-4f41-a3cb-83cf0fbdcf07}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\05.CObject\CMonster\CNaias">
+      <UniqueIdentifier>{46e82c20-675a-406d-bf98-fb17b5060da1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\08.Module\State\CNaiasState">
+      <UniqueIdentifier>{6b0bd3c3-e9ca-461a-8f54-f82fdf07a499}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\08.Module\State\CNewState">
+      <UniqueIdentifier>{031c9ae9-f1e2-4d91-8a8e-5cf50c60c9ab}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\08.Module\State\CNewState\Attack">
+      <UniqueIdentifier>{e0722b0b-a026-4697-8737-27edf2f5bef0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\08.Module\State\CNewState\Trace">
+      <UniqueIdentifier>{2377a40f-c17f-4f92-ad28-469e181303a5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\08.Module\State\CNewState\Stone">
+      <UniqueIdentifier>{d6d9ef98-33dc-45d0-a2d7-4f109b785973}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\08.Module\State\CNaiasState\Attack">
+      <UniqueIdentifier>{5d2ff41e-36b1-4ccb-9582-35cfebe9a4d4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\08.Module\State\CNaiasState\Trace">
+      <UniqueIdentifier>{2940de50-579c-4a66-b73f-21dac31756f9}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -699,10 +711,10 @@
       <Filter>Engine\05.CObject\CMonster\CKnight</Filter>
     </ClInclude>
     <ClInclude Include="CStoneState.h">
-      <Filter>Engine\08.Module\State\CKnightState\Stone</Filter>
+      <Filter>Engine\08.Module\State\CNewState\Stone</Filter>
     </ClInclude>
     <ClInclude Include="CKnightTrace.h">
-      <Filter>Engine\08.Module\State\CKnightState\Trace</Filter>
+      <Filter>Engine\08.Module\State\CNewState\Trace</Filter>
     </ClInclude>
     <ClInclude Include="CSound.h">
       <Filter>Engine\06.Resource\CSound</Filter>
@@ -717,10 +729,19 @@
       <Filter>Engine\04.CScene</Filter>
     </ClInclude>
     <ClInclude Include="CKnightAttack.h">
-      <Filter>Engine\08.Module\State\CKnightState\Attack</Filter>
+      <Filter>Engine\08.Module\State\CNewState\Attack</Filter>
     </ClInclude>
     <ClInclude Include="CLaser.h">
       <Filter>Engine\07.Component\CSkill\SkillState\Laser</Filter>
+    </ClInclude>
+    <ClInclude Include="CNaias.h">
+      <Filter>Engine\05.CObject\CMonster\CNaias</Filter>
+    </ClInclude>
+    <ClInclude Include="CNaiasAttack.h">
+      <Filter>Engine\08.Module\State\CNaiasState\Attack</Filter>
+    </ClInclude>
+    <ClInclude Include="CNaiasTrace.h">
+      <Filter>Engine\08.Module\State\CNaiasState\Trace</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -1054,10 +1075,10 @@
       <Filter>Engine\05.CObject\CMonster\CKnight</Filter>
     </ClCompile>
     <ClCompile Include="CStoneState.cpp">
-      <Filter>Engine\08.Module\State\CKnightState\Stone</Filter>
+      <Filter>Engine\08.Module\State\CNewState\Stone</Filter>
     </ClCompile>
     <ClCompile Include="CKnightTrace.cpp">
-      <Filter>Engine\08.Module\State\CKnightState\Trace</Filter>
+      <Filter>Engine\08.Module\State\CNewState\Trace</Filter>
     </ClCompile>
     <ClCompile Include="CSound.cpp">
       <Filter>Engine\06.Resource\CSound</Filter>
@@ -1072,10 +1093,19 @@
       <Filter>Engine\04.CScene</Filter>
     </ClCompile>
     <ClCompile Include="CKnightAttack.cpp">
-      <Filter>Engine\08.Module\State\CKnightState\Attack</Filter>
+      <Filter>Engine\08.Module\State\CNewState\Attack</Filter>
     </ClCompile>
     <ClCompile Include="CLaser.cpp">
       <Filter>Engine\07.Component\CSkill\SkillState\Laser</Filter>
+    </ClCompile>
+    <ClCompile Include="CNaias.cpp">
+      <Filter>Engine\05.CObject\CMonster\CNaias</Filter>
+    </ClCompile>
+    <ClCompile Include="CNaiasAttack.cpp">
+      <Filter>Engine\08.Module\State\CNaiasState\Attack</Filter>
+    </ClCompile>
+    <ClCompile Include="CNaiasTrace.cpp">
+      <Filter>Engine\08.Module\State\CNaiasState\Trace</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

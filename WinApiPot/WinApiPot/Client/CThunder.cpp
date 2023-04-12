@@ -102,6 +102,7 @@ void CThunder::OnCollision(CCollider* _pOther)
 		int iFrame = GetAnimator()->GetCurAnimation()->GetCurFrame();
 		if (m_iFrame != iFrame)
 		{
+			//한 프레임당 한번씩만 맞게
 			m_bAttackOn = true;
 			m_iFrame = iFrame;
 		}

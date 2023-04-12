@@ -52,6 +52,8 @@ private:
 	float m_fEndRangeX;
 	float m_fEndRangeY;
 
+	bool m_bStop;
+
 public:
 	void SetTarget(Vec2 _v) { m_vLookAt = _v; }
 	void SetTargetObj(CObject* _pObj) { m_pTargetObj = _pObj; }
@@ -67,6 +69,7 @@ public:
 		//m_fAccTime = 0;
 	}
 
+
 public:
 	void SetIsPassX(bool _b) { m_bIsPassX = _b; }
 	void SetIsPassY(bool _b) { m_bIsPassY = _b; }
@@ -74,6 +77,8 @@ public:
 	void SetEndRangeX(float _fX){m_fEndRangeX = _fX;}
 
 	void SetEndRangeY(float _fY){m_fEndRangeY = _fY;}
+
+	void Stop(bool _b) { m_bStop = _b; }
 
 public:
 	Vec2 GetRenderPos(Vec2 _vObjPos) { return _vObjPos - m_vDiff; }

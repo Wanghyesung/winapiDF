@@ -199,8 +199,8 @@ void CPlayer::update()
 
 	else if (m_pFSM != nullptr)
 	{
-		m_pFSM->update();
 		updateState();
+		m_pFSM->update();
 	}
 
 }
@@ -527,6 +527,11 @@ void CPlayer::HitPlayer(CCollider* _pOther, const tAttackInfo& _tAttInfo)
 
 void CPlayer::OnColliderEnter(CCollider* _pOther)
 {
+	//if (_pOther->GetObj()->GetTag() == GROUP_TYPE::WALL)
+	//{
+	//	CCameraMgr::GetInst()->Stop(true);
+	//}
+
 	CObject* pObj = _pOther->GetObj();
 
 	if (pObj->GetTag() == GROUP_TYPE::MONSTER_SKILL
@@ -571,12 +576,20 @@ void CPlayer::OnColliderEnter(CCollider* _pOther)
 
 void CPlayer::OnColliderExit(CCollider* _pOther)
 {
-
+	//if (_pOther->GetObj()->GetTag() == GROUP_TYPE::WALL)
+	//{
+	//	CCameraMgr::GetInst()->Stop(false);
+	//}
 }
 
 void CPlayer::OnCollision(CCollider* _pOther)
 {
 	CObject* pObj = _pOther->GetObj();
+
+	//if (_pOther->GetObj()->GetTag() == GROUP_TYPE::WALL)
+	//{
+	//	CCameraMgr::GetInst()->Stop(true);
+	//}
 
 	if (pObj->GetTag() == GROUP_TYPE::MONSTER_SKILL
 		&& m_tPlayerInfo.m_fHP != 0)

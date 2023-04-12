@@ -14,6 +14,7 @@
 
 CTemWall::CTemWall()
 {
+	SetTag(GROUP_TYPE::WALL);
 	CreateCollider();
 }
 
@@ -67,12 +68,14 @@ void CTemWall::OnColliderEnter(CCollider* _pOther)
 				if (fValueX <= fValueY)
 				{
 					(vPos.x - vPlayerFinalPos.x) > 0 ? iDir = 1 : iDir = -1;
-					vPlayerJumPos.x -= iDir * fValueX;
+					//vPlayerJumPos.x -= iDir * fValueX;
+					vPlayerJumPos.x -= iDir * 1;
 				}
 				else
 				{
 					(vPos.y - vPlayerFinalPos.y) > 0 ? iDir = 1 : iDir = -1;
-					vPlayerJumPos.y -= iDir * fValueY;
+					//vPlayerJumPos.y -= iDir * fValueY;
+					vPlayerJumPos.y -= iDir * 1;
 				}
 
 				pObj->SetJumPos(vPlayerJumPos);
@@ -91,12 +94,14 @@ void CTemWall::OnColliderEnter(CCollider* _pOther)
 			if (fValueX <= fValueY)
 			{
 				(vPos.x - vPlayerFinalPos.x) > 0 ? iDir = 1 : iDir = -1;
-				vPlayerPos.x -= iDir * fValueX;
+				//vPlayerJumPos.x -= iDir * fValueX;
+				vPlayerJumPos.x -= iDir * 1;
 			}
 			else
 			{
 				(vPos.y - vPlayerFinalPos.y) > 0 ? iDir = 1 : iDir = -1;
-				vPlayerPos.y -= iDir * fValueY;
+				//vPlayerJumPos.y -= iDir * fValueY;
+				vPlayerJumPos.y -= iDir * 1;
 			}
 
 			pObj->SetPos(vPlayerPos);

@@ -21,6 +21,7 @@ CCameraMgr::CCameraMgr() :
 	m_fSpeed(0.f),
 	m_bIsPassX(false),
 	m_bIsPassY(false),
+	m_bStop(false),
 	m_pTargetObj(nullptr),
 	m_pVeilTex(nullptr)
 {
@@ -38,7 +39,9 @@ void CCameraMgr::update()
 
 	if (m_pTargetObj)
 	{
-		
+		/*if (m_bStop)
+			return;*/
+
 		if (m_pTargetObj->IsDead())
 		{
 			m_pTargetObj = nullptr;
@@ -166,6 +169,7 @@ void CCameraMgr::render(HDC _dc)
 		m_listCameEffect.pop_front();
 	}
 }
+
 
 void CCameraMgr::CalDiff()
 {

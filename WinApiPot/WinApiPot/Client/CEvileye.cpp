@@ -18,6 +18,8 @@
 #include "CDeadState.h"
 #include "CItemMgr.h"
 
+#include "CEvilLaser.h"
+
 CEvileye::CEvileye():
 	m_hashSkillTime{},
 	m_eMonState(MONSTER_STATE::IDLE),
@@ -27,7 +29,6 @@ CEvileye::CEvileye():
 	
 	CreateCollider();
 	GetCollider()->SetScale(Vec2(70.f, 90.f));
-	GetCollider()->SetOffSet(Vec2(0.f, 0.f));
 
 	CTexture* pTexRight = CResMgr::GetInst()->LoadTextur(L"evileye_right", L"..\\OutPut\\bin_release\\Content\\Texture\\evileye_right.bmp");
 	CTexture* pTexLeft = CResMgr::GetInst()->LoadTextur(L"evileye_left", L"..\\OutPut\\bin_release\\Content\\Texture\\evileye_left.bmp");
@@ -41,6 +42,8 @@ CEvileye::CEvileye():
 	GetAnimator()->CreateAnimation(L"evileye_hit_left", pTexLeft, Vec2(1200.f, 400.f), Vec2(200.f, 200.f), Vec2(-200.f, 0.f), Vec2(0.f, 0.f), 0.2f, 3);
 
 	GetAnimator()->Play(L"evileye_idle" + m_strMonDir, true);
+
+	init_skill();
 }
 
 CEvileye::~CEvileye()
@@ -149,6 +152,8 @@ void CEvileye::update_state()
 void CEvileye::SetDir(int _iDir)
 {
 	_iDir > 0 ? m_strMonDir = L"_right" : m_strMonDir = L"_left";
+
+	GetCollider()->SetOffSet(Vec2(_iDir * 20.f, 0.f));
 }
 
 void CEvileye::shotEye()
@@ -158,12 +163,15 @@ void CEvileye::shotEye()
 
 void CEvileye::createEye()
 {
-
+	
 }
 
 void CEvileye::createLaser()
 {
-
+	CEvilLaser* pLaser = new CEvilLaser;
+	pLaser->m_pOwner = this;
+	pLaser->m_strLaserDir = m_strMonDir;
+	CreateObject(pLaser, GROUP_TYPE::MONSTER_SKILL);
 }
 
 void CEvileye::render(HDC _dc)

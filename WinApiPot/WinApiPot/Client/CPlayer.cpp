@@ -32,6 +32,7 @@
 #include "CSpinner.h"
 #include "CThunder.h"
 #include "CThunderDown.h"
+#include "CEvilLaser.h"
 
 #include "CSound.h"
 
@@ -605,6 +606,14 @@ void CPlayer::OnCollision(CCollider* _pOther)
 			if (pThunder->IsAttackOn())
 			{
 				HitPlayer(_pOther, pThunder->GetAttackInfo());
+			}
+		}
+		else if (dynamic_cast<CEvilLaser*>(pObj))
+		{
+			CEvilLaser* pLaser = dynamic_cast<CEvilLaser*>(pObj);
+			if (pLaser->IsAttackOn())
+			{
+				HitPlayer(_pOther, pLaser->GetAttackInfo());
 			}
 		}
 	}

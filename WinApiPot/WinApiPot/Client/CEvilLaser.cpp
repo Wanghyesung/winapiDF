@@ -20,18 +20,17 @@ CEvilLaser::CEvilLaser():
 	SetTag(GROUP_TYPE::MONSTER_SKILL);
 
 	CreateCollider();
-	GetCollider()->SetScale(Vec2(900.f, 130.f));
-	GetCollider()->SetOffSet(Vec2(0.f,0.f));
+	GetCollider()->SetScale(Vec2(820.f, 50.f));
 
 	CTexture* pTex_right = CResMgr::GetInst()->LoadTextur(L"Evil_laser_right", L"..\\OutPut\\bin_release\\Content\\emfact\\monLaser_right.bmp");
 	CTexture* pTex_left = CResMgr::GetInst()->LoadTextur(L"Evil_laser_left", L"..\\OutPut\\bin_release\\Content\\emfact\\monLaser_left.bmp");
 
 	CreateAnimator();
-	GetAnimator()->CreateAnimation(L"Evil_laser_right", pTex_right, Vec2(0.f, 0.f), Vec2(900.f, 160.f), Vec2(0.f, 160.f), Vec2(0.f, 0.f), 0.1f, 4);
-	GetAnimator()->CreateAnimation(L"Evil_laser_left", pTex_left, Vec2(0.f, 0.f), Vec2(900.f, 160.f), Vec2(0.f, 160.f), Vec2(0.f, 0.f), 0.1f, 4);
+	GetAnimator()->CreateAnimation(L"Evil_laser_right", pTex_right, Vec2(0.f, 0.f), Vec2(900.f, 160.f), Vec2(0.f, 160.f), Vec2(0.f, 0.f), 0.15f, 4);
+	GetAnimator()->CreateAnimation(L"Evil_laser_left", pTex_left, Vec2(0.f, 0.f), Vec2(900.f, 160.f), Vec2(0.f, 160.f), Vec2(0.f, 0.f), 0.15f, 4);
 
 	m_tAtt.m_eAttType = ATTACK_TYPE::NORMAL;
-	m_tAtt.m_fAttackDamage = 15.f;
+	m_tAtt.m_fAttackDamage = 10.f;
 	m_tAtt.m_fAttRcnt = 50.f;
 	m_tAtt.m_fAttUpperRcnt = -60.f;
 	m_tAtt.m_fAttRigidityTime = 0.5f;
@@ -63,7 +62,8 @@ void CEvilLaser::update()
 	else
 		iDir = -1;
 
-	float fOffsetX = iDir * 400.f;
+	GetCollider()->SetOffSet(Vec2(iDir* 40.f, 0.f));
+	float fOffsetX = iDir * 450.f;
 	vEvilPos.x += fOffsetX;
 	SetPos(vEvilPos);
 
@@ -78,7 +78,29 @@ void CEvilLaser::update()
 
 void CEvilLaser::OnColliderEnter(CCollider* _pOther)
 {
+	CObject* pObj = _pOther->GetObj();
 
+	if (pObj->GetTag() == GROUP_TYPE::PLAYER)
+	{
+		if (pObj->GetGravity()->IsGetGravity())
+		{
+			if (!IsSameJumLoc(_pOther, GetCollider()))
+				return;
+		}
+
+		int iFrame = GetAnimator()->GetCurAnimation()->GetCurFrame();
+		if (m_iFrame != iFrame)
+		{
+			//한 프레임당 한번씩만 맞게
+			m_bAttackOn = true;
+			m_iFrame = iFrame;
+		}
+		else
+		{
+			m_bAttackOn = false;
+		}
+
+	}
 }
 
 void CEvilLaser::OnColliderExit(CCollider* _pOther)

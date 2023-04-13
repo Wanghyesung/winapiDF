@@ -32,7 +32,7 @@ void CEvileyeIdel::check_skill()
 
 	for (; iter != pEvil->m_hashSkillTime.end(); ++iter)
 	{
-		if (iter->second.m_fCurTime < 0.f)
+		if (iter->second.m_fCurTime == 0.f)
 		{
 			iter->second.m_fCurTime = iter->second.m_fMaxTime;
 			((CEvileyeAttack*)GetAI()->GetState(MONSTER_STATE::ATTACK))->setSkill(iter->first);
@@ -44,6 +44,15 @@ void CEvileyeIdel::check_skill()
 
 void CEvileyeIdel::update()
 {
+	vector<CObject*> vecPlayer = SceneMgr::GetInst()->GetCurSCene()->GetGroupObject(GROUP_TYPE::PLAYER);
+
+	if (vecPlayer.size() == 0)
+		return;
+	else
+	{
+		m_pTarget = (CPlayer*)vecPlayer[0];
+	}
+
 	CEvileye* pEvil = (CEvileye*)GetMonster();
 
 	const tAttackInfo& tAtt = pEvil->GetAttackInfo();
@@ -62,14 +71,7 @@ void CEvileyeIdel::update()
 
 void CEvileyeIdel::enter()
 {
-	vector<CObject*> vecPlayer = SceneMgr::GetInst()->GetCurSCene()->GetGroupObject(GROUP_TYPE::PLAYER);
-
-	if (vecPlayer.size() == 0)
-		return;
-	else
-	{
-		m_pTarget = (CPlayer*)vecPlayer[0];
-	}
+	
 }
 
 void CEvileyeIdel::exit()

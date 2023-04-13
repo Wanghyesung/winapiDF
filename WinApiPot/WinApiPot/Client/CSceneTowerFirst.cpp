@@ -11,6 +11,7 @@
 #include "CMonster.h"
 
 #include "CBrDragon.h"
+#include "CEvileye.h"
 #include "CInterFace.h"
 #include "CMonFactory.h"
 #include "CMonInterface.h"
@@ -78,6 +79,15 @@ void CSceneTowerFirst::Init()
 	CSkillMgr::GetInst()->SetPlayer((CPlayer*)GetPlayerObj());
 	CSkillMgr::GetInst()->init(m_eType);
 
+	CreateInterFace();
+
+	CInventory* pInven = new CInventory;
+	CHPItem* pItemHP = new CHPItem;
+	pInven->AddItem(pItemHP);
+	CMPItem* pItemMP = new CMPItem;
+	pInven->AddItem(pItemMP);
+
+	AddObject(pInven, GROUP_TYPE::UI);
 
 	CStoneBox* pStone = new CStoneBox;
 	pStone->SetPos(Vec2(150.f, 450.f));
@@ -114,13 +124,22 @@ void CSceneTowerFirst::Init()
 	//AddObject(pBDragon1, GROUP_TYPE::MONSTER);
 	
 	
-	CMonster* pBDragon2 = CMonFactory::CraeteMonster(MON_TYPE::EVILEYE, Vec2(200.f, 500.f), m_eType);
-	pBDragon2->SetName(L"evil_1");
-	CMonInterface* brdragonInterface1 = new CMonInterface(pBDragon2->GetName(), 99, true);
-	brdragonInterface1->SetScale(Vec2(626, 29));
-	brdragonInterface1->SetPos(Vec2(40, 20));
-	AddObject(brdragonInterface1, GROUP_TYPE::UI);
-	AddObject(pBDragon2, GROUP_TYPE::MONSTER);
+	//CMonster* pBDragon2 = CMonFactory::CraeteMonster(MON_TYPE::EVILEYE, Vec2(200.f, 500.f), m_eType);
+	//pBDragon2->SetName(L"evil_1");
+	//CMonInterface* brdragonInterface1 = new CMonInterface(pBDragon2->GetName(), 99, true);
+	//brdragonInterface1->SetScale(Vec2(626, 29));
+	//brdragonInterface1->SetPos(Vec2(40, 20));
+	//AddObject(brdragonInterface1, GROUP_TYPE::UI);
+	//AddObject(pBDragon2, GROUP_TYPE::MONSTER);
+
+	CMonster* pBDragon3 = CMonFactory::CraeteMonster(MON_TYPE::EVILEYE, Vec2(800.f, 500.f), m_eType);
+	pBDragon3->SetName(L"evil_2");
+	((CEvileye*)(pBDragon3))->SetDir(-1);
+	CMonInterface* brdragonInterface3 = new CMonInterface(pBDragon3->GetName(), 99, true);
+	brdragonInterface3->SetScale(Vec2(626, 29));
+	brdragonInterface3->SetPos(Vec2(40, 20));
+	AddObject(brdragonInterface3, GROUP_TYPE::UI);
+	AddObject(pBDragon3, GROUP_TYPE::MONSTER);
 
 	//방향 먼저 잡기
 	CGate* pGate = new CGate(L"up", false);
@@ -171,6 +190,7 @@ void CSceneTowerFirst::Enter()
 	//현재 씬에 스킬 초기화
 	CSkillMgr::GetInst()->SetPlayer((CPlayer*)GetPlayerObj());
 
+	CInventoryMgr::GetInst()->init();
 
 	CColliderMgr::GetInst()->ChekGroup(GROUP_TYPE::PLAYER, GROUP_TYPE::STONE_BOX);
 	CColliderMgr::GetInst()->ChekGroup(GROUP_TYPE::PLAYER, GROUP_TYPE::ITEM);

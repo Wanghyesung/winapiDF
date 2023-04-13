@@ -82,15 +82,15 @@ void CSeriaScene::Init()
 	CSkillMgr::GetInst()->SetPlayer((CPlayer*)GetPlayerObj());
 	CSkillMgr::GetInst()->init(m_eType);
 
-	CreateInterFace();
-
-	CInventory* pInven = new CInventory;
-	CHPItem* pItemHP = new CHPItem;
-	pInven->AddItem(pItemHP);
-	CMPItem* pItemMP = new CMPItem;
-	pInven->AddItem(pItemMP);
-
-	AddObject(pInven, GROUP_TYPE::UI);
+	//CreateInterFace();
+	//
+	//CInventory* pInven = new CInventory;
+	//CHPItem* pItemHP = new CHPItem;
+	//pInven->AddItem(pItemHP);
+	//CMPItem* pItemMP = new CMPItem;
+	//pInven->AddItem(pItemMP);
+	//
+	//AddObject(pInven, GROUP_TYPE::UI);
 
 	RegisterPlayer(pObj);
 
@@ -119,7 +119,7 @@ void CSeriaScene::Enter()
 	//현재 씬에 스킬 초기화
 	CSkillMgr::GetInst()->SetPlayer((CPlayer*)GetPlayerObj());
 
-	CInventoryMgr::GetInst()->init();
+	//CInventoryMgr::GetInst()->init();
 
 	CColliderMgr::GetInst()->ChekGroup(GROUP_TYPE::PORTAL, GROUP_TYPE::PLAYER);
 	CColliderMgr::GetInst()->ChekGroup(GROUP_TYPE::WALL, GROUP_TYPE::PLAYER);

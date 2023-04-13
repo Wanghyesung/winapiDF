@@ -150,6 +150,9 @@
     <ClInclude Include="AI.h" />
     <ClInclude Include="CAnimation.h" />
     <ClInclude Include="CAnimator.h" />
+    <ClInclude Include="CArdor.h" />
+    <ClInclude Include="CArdorAttack.h" />
+    <ClInclude Include="CArdorTrace.h" />
     <ClInclude Include="CAttackObject.h" />
     <ClInclude Include="CAttackState.h" />
     <ClInclude Include="CBlueDragon.h" />
@@ -276,6 +279,9 @@
     <ClCompile Include="AI.cpp" />
     <ClCompile Include="CAnimation.cpp" />
     <ClCompile Include="CAnimator.cpp" />
+    <ClCompile Include="CArdor.cpp" />
+    <ClCompile Include="CArdorAttack.cpp" />
+    <ClCompile Include="CArdorTrace.cpp" />
     <ClCompile Include="CAttackObject.cpp" />
     <ClCompile Include="CAttackState.cpp" />
     <ClCompile Include="CBlueDragon.cpp" />

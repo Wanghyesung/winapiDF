@@ -371,6 +371,18 @@
     <Filter Include="Engine\08.Module\State\CNaiasState\Trace">
       <UniqueIdentifier>{2940de50-579c-4a66-b73f-21dac31756f9}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Engine\08.Module\State\CArdorState">
+      <UniqueIdentifier>{2861782a-0af2-4372-a6b6-97782559be6b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\08.Module\State\CArdorState\Trace">
+      <UniqueIdentifier>{151388c7-9e46-4ed1-8229-646590171d91}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\08.Module\State\CArdorState\Attack">
+      <UniqueIdentifier>{259bc054-a71f-4c87-b8e8-94bdbc3d4c50}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\05.CObject\CMonster\CArdor">
+      <UniqueIdentifier>{14f07d5e-12c6-4929-b623-da4a0cb4eab9}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="pch.h" />
@@ -743,6 +755,15 @@
     <ClInclude Include="CNaiasTrace.h">
       <Filter>Engine\08.Module\State\CNaiasState\Trace</Filter>
     </ClInclude>
+    <ClInclude Include="CArdorAttack.h">
+      <Filter>Engine\08.Module\State\CArdorState\Attack</Filter>
+    </ClInclude>
+    <ClInclude Include="CArdorTrace.h">
+      <Filter>Engine\08.Module\State\CArdorState\Trace</Filter>
+    </ClInclude>
+    <ClInclude Include="CArdor.h">
+      <Filter>Engine\05.CObject\CMonster\CArdor</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Client.rc">
@@ -1106,6 +1127,15 @@
     </ClCompile>
     <ClCompile Include="CNaiasTrace.cpp">
       <Filter>Engine\08.Module\State\CNaiasState\Trace</Filter>
+    </ClCompile>
+    <ClCompile Include="CArdorAttack.cpp">
+      <Filter>Engine\08.Module\State\CArdorState\Attack</Filter>
+    </ClCompile>
+    <ClCompile Include="CArdorTrace.cpp">
+      <Filter>Engine\08.Module\State\CArdorState\Trace</Filter>
+    </ClCompile>
+    <ClCompile Include="CArdor.cpp">
+      <Filter>Engine\05.CObject\CMonster\CArdor</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

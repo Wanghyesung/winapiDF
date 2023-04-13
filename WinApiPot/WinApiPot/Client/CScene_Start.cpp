@@ -125,6 +125,15 @@ void CScene_Start::Init()
 	AddObject(dragonInterface, GROUP_TYPE::UI);
 	AddObject(pMon, GROUP_TYPE::MONSTER);
 
+	CMonster* pMon2 = CMonFactory::CraeteMonster(MON_TYPE::ARDOR, Vec2(700.f, 650.f), m_eType);
+	pMon2->SetName(L"Ardor1");
+	//내 몬스터 인터페이스에 내 몬스터 이름 넣기
+	CMonInterface* CArdorInface = new CMonInterface(pMon2->GetName(), 67); //몬스터 인터페이스는 중복 안되게 해야하기때문에 1추가
+	CArdorInface->SetScale(Vec2(626, 29));
+	CArdorInface->SetPos(Vec2(40, 20));
+	AddObject(CArdorInface, GROUP_TYPE::UI);
+	AddObject(pMon2, GROUP_TYPE::MONSTER);
+
 	//CMonster* pMon = CMonFactory::CraeteMonster(MON_TYPE::DRAGON, Vec2(1050.f, 580.f),m_eType);
 	//pMon->SetName(L"CDragon_1");
 	////내 몬스터 인터페이스에 내 몬스터 이름 넣기

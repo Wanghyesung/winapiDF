@@ -14,7 +14,7 @@ enum class MON_TYPE
 	BLUE_DRAGON,
 	BROWN_DRAGON,
 	NAIAS,
-	FIRE_MONSTER,
+	ARDOR,
 	EVL,
 };
 

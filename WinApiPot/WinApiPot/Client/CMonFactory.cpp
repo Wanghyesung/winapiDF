@@ -11,6 +11,7 @@
 #include "CKnight.h"
 #include "CLord.h"
 #include "CNaias.h"
+#include "CArdor.h"
 #include "AI.h"
 
 #include "CIdleState.h"
@@ -482,7 +483,6 @@ CMonster* CMonFactory::CraeteMonster(MON_TYPE _monType, Vec2 _vPos, SCENE_TYPE _
 	}
 	break;
 
-
 	case MON_TYPE::NAIAS:
 	{
 		pMon = new CNaias;
@@ -526,9 +526,65 @@ CMonster* CMonFactory::CraeteMonster(MON_TYPE _monType, Vec2 _vPos, SCENE_TYPE _
 		pHit->SetAnimSound(L"hunt_comm");
 		pAI->AddState(pHit);
 
-		CHitUpper* pHitUp = new CHitUpper;
+		/*CHitUpper* pHitUp = new CHitUpper;
 		pHitUp->SetAnimSound(L"hunt_comm");
-		pAI->AddState(pHitUp);
+		pAI->AddState(pHitUp);*/
+
+		CDeadState* pDead = new CDeadState;
+		pDead->SetAnimSound(L"hunt_die");
+		pAI->AddState(pDead);
+
+		pAI->SetCurState(MONSTER_STATE::IDLE);
+		pMon->SetAI(pAI);
+	}
+	break;
+
+	case MON_TYPE::ARDOR:
+	{
+		pMon = new CArdor;
+		pMon->SetTag(GROUP_TYPE::MONSTER);
+		pMon->SetPos(_vPos);
+		//pMon->SetScale(Vec2(50.f, 50.f));
+
+		pMon->set_attackobj(_eSceneType);
+
+		tMonInfo info = {};
+		info.m_fnavigationScope = 300.f;
+		info.m_iHp = 100;
+		info.m_fspeed = 140.f;
+		pMon->SettMonInfo(info);
+
+		tHitInfo tHitInfo = {};
+		tHitInfo.m_iMaxHitFrame = 7;
+		pMon->SetHitInfo(tHitInfo);
+
+
+		//몬스터 공격 범위
+		tAttackInfo tAttackInfo = {};
+		tAttackInfo.m_fAttackRange = Vec2(60.f, 40.f);
+
+		pMon->SetAttackInfo(tAttackInfo);
+
+
+		pMon->CreateRigidBody();
+		pMon->GetRigidBody()->SetMass(1.f);
+
+		AI* pAI = new AI;
+
+		pAI->AddState(new CIdleState);
+		pAI->AddState(new CNaiasTrace);
+
+		CNaiasAttack* pNaiasAttack = new CNaiasAttack;
+		pNaiasAttack->SetAnimSound(L"hunt_atk");
+		pAI->AddState(pNaiasAttack);
+
+		CHitState* pHit = new CHitState;
+		pHit->SetAnimSound(L"hunt_comm");
+		pAI->AddState(pHit);
+
+		/*CHitUpper* pHitUp = new CHitUpper;
+		pHitUp->SetAnimSound(L"hunt_comm");
+		pAI->AddState(pHitUp);*/
 
 		CDeadState* pDead = new CDeadState;
 		pDead->SetAnimSound(L"hunt_die");

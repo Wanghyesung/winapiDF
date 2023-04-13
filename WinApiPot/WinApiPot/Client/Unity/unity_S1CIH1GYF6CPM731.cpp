@@ -8,6 +8,15 @@
 #include "C:\Users\wangh\source\tem\WinApiPot\WinApiPot\Client\CAnimator.cpp"
 
 
+#include "C:\Users\wangh\source\tem\WinApiPot\WinApiPot\Client\CArdor.cpp"
+
+
+#include "C:\Users\wangh\source\tem\WinApiPot\WinApiPot\Client\CArdorAttack.cpp"
+
+
+#include "C:\Users\wangh\source\tem\WinApiPot\WinApiPot\Client\CArdorTrace.cpp"
+
+
 #include "C:\Users\wangh\source\tem\WinApiPot\WinApiPot\Client\CAttackObject.cpp"
 
 

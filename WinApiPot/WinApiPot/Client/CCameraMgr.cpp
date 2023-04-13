@@ -74,28 +74,28 @@ void CCameraMgr::update()
 			}
 		}
 	}
-	else
-	{
-		if (KEY_HOLD(KEY::DOWN))
-		{
-			m_vLookAt += Vec2(0.f, 500.f) * fDT;
-		}
-
-		if (KEY_HOLD(KEY::UP))
-		{
-			m_vLookAt -= Vec2(0.f, 500.f) * fDT;
-		}
-
-		if (KEY_HOLD(KEY::LEFT))
-		{
-			m_vLookAt -= Vec2(500.f, 0.f) * fDT;
-		}
-
-		if (KEY_HOLD(KEY::RIGHT))
-		{
-			m_vLookAt += Vec2(500.f, 0.f) * fDT;
-		}
-	}
+	//else
+	//{
+	//	if (KEY_HOLD(KEY::DOWN))
+	//	{
+	//		m_vLookAt += Vec2(0.f, 500.f) * fDT;
+	//	}
+	//
+	//	if (KEY_HOLD(KEY::UP))
+	//	{
+	//		m_vLookAt -= Vec2(0.f, 500.f) * fDT;
+	//	}
+	//
+	//	if (KEY_HOLD(KEY::LEFT))
+	//	{
+	//		m_vLookAt -= Vec2(500.f, 0.f) * fDT;
+	//	}
+	//
+	//	if (KEY_HOLD(KEY::RIGHT))
+	//	{
+	//		m_vLookAt += Vec2(500.f, 0.f) * fDT;
+	//	}
+	//}
 	
 	
 	CalDiff();//거리 값 구하기

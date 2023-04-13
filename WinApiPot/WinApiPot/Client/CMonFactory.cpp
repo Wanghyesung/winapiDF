@@ -12,6 +12,7 @@
 #include "CLord.h"
 #include "CNaias.h"
 #include "CArdor.h"
+#include "CEvileye.h"
 #include "AI.h"
 
 #include "CIdleState.h"
@@ -26,6 +27,9 @@
 #include "CHitUpper.h"
 #include "CDeadState.h"
 
+//이블아이
+#include "CEvileyeIdel.h"
+#include "CEvileyeAttack.h"
 
 //나이트
 #include "CStoneState.h"
@@ -577,6 +581,55 @@ CMonster* CMonFactory::CraeteMonster(MON_TYPE _monType, Vec2 _vPos, SCENE_TYPE _
 		CNaiasAttack* pNaiasAttack = new CNaiasAttack;
 		pNaiasAttack->SetAnimSound(L"hunt_atk");
 		pAI->AddState(pNaiasAttack);
+
+		CHitState* pHit = new CHitState;
+		pHit->SetAnimSound(L"hunt_comm");
+		pAI->AddState(pHit);
+
+		/*CHitUpper* pHitUp = new CHitUpper;
+		pHitUp->SetAnimSound(L"hunt_comm");
+		pAI->AddState(pHitUp);*/
+
+		CDeadState* pDead = new CDeadState;
+		pDead->SetAnimSound(L"hunt_die");
+		pAI->AddState(pDead);
+
+		pAI->SetCurState(MONSTER_STATE::IDLE);
+		pMon->SetAI(pAI);
+	}
+	break;
+	case MON_TYPE::EVILEYE:
+	{
+		pMon = new CEvileye;
+		//오른쪽 방향 이블아이
+		((CEvileye*)pMon)->SetDir(1);
+		pMon->SetTag(GROUP_TYPE::MONSTER);
+		pMon->SetPos(_vPos);
+
+		tMonInfo info = {};
+		info.m_iHp = 100;
+		pMon->SettMonInfo(info);
+
+		tHitInfo tHitInfo = {};
+		tHitInfo.m_iMaxHitFrame = 3;
+		pMon->SetHitInfo(tHitInfo);
+
+
+		//몬스터 공격 범위
+		tAttackInfo tAttackInfo = {};
+		tAttackInfo.m_fAttackRange = Vec2(900.f, 600.f);
+
+		pMon->SetAttackInfo(tAttackInfo);
+
+
+		pMon->CreateRigidBody();
+		pMon->GetRigidBody()->SetMass(1.f);
+
+		AI* pAI = new AI;
+
+		pAI->AddState(new CEvileyeIdel);
+
+		pAI->AddState(new CEvileyeAttack);
 
 		CHitState* pHit = new CHitState;
 		pHit->SetAnimSound(L"hunt_comm");

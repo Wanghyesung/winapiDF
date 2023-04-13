@@ -15,7 +15,7 @@ enum class MON_TYPE
 	BROWN_DRAGON,
 	NAIAS,
 	ARDOR,
-	EVL,
+	EVILEYE,
 };
 
 

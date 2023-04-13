@@ -114,9 +114,9 @@ void CSceneTowerFirst::Init()
 	//AddObject(pBDragon1, GROUP_TYPE::MONSTER);
 	
 	
-	CMonster* pBDragon2 = CMonFactory::CraeteMonster(MON_TYPE::BLUE_DRAGON, Vec2(1000.f, 500.f), m_eType);
-	pBDragon2->SetName(L"bDragon2");
-	CMonInterface* brdragonInterface1 = new CMonInterface(pBDragon2->GetName(),45);
+	CMonster* pBDragon2 = CMonFactory::CraeteMonster(MON_TYPE::EVILEYE, Vec2(200.f, 500.f), m_eType);
+	pBDragon2->SetName(L"evil_1");
+	CMonInterface* brdragonInterface1 = new CMonInterface(pBDragon2->GetName(), 99, true);
 	brdragonInterface1->SetScale(Vec2(626, 29));
 	brdragonInterface1->SetPos(Vec2(40, 20));
 	AddObject(brdragonInterface1, GROUP_TYPE::UI);

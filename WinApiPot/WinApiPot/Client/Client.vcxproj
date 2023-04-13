@@ -169,6 +169,10 @@
     <ClInclude Include="CDragon.h" />
     <ClInclude Include="CDragonObj.h" />
     <ClInclude Include="CEventMgr.h" />
+    <ClInclude Include="CEvileye.h" />
+    <ClInclude Include="CEvileyeAttack.h" />
+    <ClInclude Include="CEvileyeIdel.h" />
+    <ClInclude Include="CEvilLaser.h" />
     <ClInclude Include="CExclusiveTrace.h" />
     <ClInclude Include="CFireBall.h" />
     <ClInclude Include="CFSM.h" />
@@ -298,6 +302,10 @@
     <ClCompile Include="CDragon.cpp" />
     <ClCompile Include="CDragonObj.cpp" />
     <ClCompile Include="CEventMgr.cpp" />
+    <ClCompile Include="CEvileye.cpp" />
+    <ClCompile Include="CEvileyeAttack.cpp" />
+    <ClCompile Include="CEvileyeIdel.cpp" />
+    <ClCompile Include="CEvilLaser.cpp" />
     <ClCompile Include="CExclusiveTrace.cpp" />
     <ClCompile Include="CFireBall.cpp" />
     <ClCompile Include="CFSM.cpp" />

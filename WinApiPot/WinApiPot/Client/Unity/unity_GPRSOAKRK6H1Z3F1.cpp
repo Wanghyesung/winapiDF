@@ -65,6 +65,18 @@
 #include "C:\Users\wangh\source\tem\WinApiPot\WinApiPot\Client\CEventMgr.cpp"
 
 
+#include "C:\Users\wangh\source\tem\WinApiPot\WinApiPot\Client\CEvileye.cpp"
+
+
+#include "C:\Users\wangh\source\tem\WinApiPot\WinApiPot\Client\CEvileyeAttack.cpp"
+
+
+#include "C:\Users\wangh\source\tem\WinApiPot\WinApiPot\Client\CEvileyeIdel.cpp"
+
+
+#include "C:\Users\wangh\source\tem\WinApiPot\WinApiPot\Client\CEvilLaser.cpp"
+
+
 #include "C:\Users\wangh\source\tem\WinApiPot\WinApiPot\Client\CExclusiveTrace.cpp"
 
 

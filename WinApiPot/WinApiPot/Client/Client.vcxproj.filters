@@ -383,6 +383,27 @@
     <Filter Include="Engine\05.CObject\CMonster\CArdor">
       <UniqueIdentifier>{14f07d5e-12c6-4929-b623-da4a0cb4eab9}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Engine\05.CObject\CBoss\Lord">
+      <UniqueIdentifier>{1326f8db-c07a-4fbe-b5a1-63dad9f53e48}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\05.CObject\CBoss\Evileye">
+      <UniqueIdentifier>{e9cde727-eb0b-4154-8e1a-bd1547116c4f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\05.CObject\CBoss\Evileye\EvileyeIdle">
+      <UniqueIdentifier>{049d9685-6dbf-4c2d-80b7-947fe7d5c17e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\05.CObject\CBoss\Evileye\EvileyeAttack">
+      <UniqueIdentifier>{62d36f4a-6221-4ef2-8949-81adbcc8946a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\05.CObject\CBoss\Evileye\Laser">
+      <UniqueIdentifier>{24536336-bede-4ebf-bd49-6388e4e6b620}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\05.CObject\CBoss\Evileye\ShotEye">
+      <UniqueIdentifier>{b20f376a-9284-4b03-850a-91af1b6db467}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\05.CObject\CBoss\Evileye\CreateEey">
+      <UniqueIdentifier>{d850c1cb-f458-4440-81ba-6fab3eeefec3}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="pch.h" />
@@ -647,20 +668,11 @@
     <ClInclude Include="CDragonObj.h">
       <Filter>Engine\05.CObject\SkyTowerObj\dragonobj</Filter>
     </ClInclude>
-    <ClInclude Include="CLord.h">
-      <Filter>Engine\05.CObject\CBoss</Filter>
-    </ClInclude>
     <ClInclude Include="CNearAttack.h">
       <Filter>Engine\08.Module\State\CAttackState\Near</Filter>
     </ClInclude>
     <ClInclude Include="CStandOffAttack.h">
       <Filter>Engine\08.Module\State\BossAttackState\Standoff</Filter>
-    </ClInclude>
-    <ClInclude Include="CThunder.h">
-      <Filter>Engine\05.CObject\CBoss</Filter>
-    </ClInclude>
-    <ClInclude Include="CThunderDown.h">
-      <Filter>Engine\05.CObject\CBoss</Filter>
     </ClInclude>
     <ClInclude Include="CUltimateState.h">
       <Filter>Engine\08.Module\State\BossAttackState\UltimateState</Filter>
@@ -763,6 +775,27 @@
     </ClInclude>
     <ClInclude Include="CArdor.h">
       <Filter>Engine\05.CObject\CMonster\CArdor</Filter>
+    </ClInclude>
+    <ClInclude Include="CLord.h">
+      <Filter>Engine\05.CObject\CBoss\Lord</Filter>
+    </ClInclude>
+    <ClInclude Include="CThunder.h">
+      <Filter>Engine\05.CObject\CBoss\Lord</Filter>
+    </ClInclude>
+    <ClInclude Include="CThunderDown.h">
+      <Filter>Engine\05.CObject\CBoss\Lord</Filter>
+    </ClInclude>
+    <ClInclude Include="CEvileye.h">
+      <Filter>Engine\05.CObject\CBoss\Evileye</Filter>
+    </ClInclude>
+    <ClInclude Include="CEvileyeIdel.h">
+      <Filter>Engine\05.CObject\CBoss\Evileye\EvileyeIdle</Filter>
+    </ClInclude>
+    <ClInclude Include="CEvileyeAttack.h">
+      <Filter>Engine\05.CObject\CBoss\Evileye\EvileyeAttack</Filter>
+    </ClInclude>
+    <ClInclude Include="CEvilLaser.h">
+      <Filter>Engine\05.CObject\CBoss\Evileye\Laser</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -1020,20 +1053,11 @@
     <ClCompile Include="CMonFactory.cpp">
       <Filter>Engine\09.Factory</Filter>
     </ClCompile>
-    <ClCompile Include="CLord.cpp">
-      <Filter>Engine\05.CObject\CBoss</Filter>
-    </ClCompile>
     <ClCompile Include="CNearAttack.cpp">
       <Filter>Engine\08.Module\State\CAttackState\Near</Filter>
     </ClCompile>
     <ClCompile Include="CStandOffAttack.cpp">
       <Filter>Engine\08.Module\State\BossAttackState\Standoff</Filter>
-    </ClCompile>
-    <ClCompile Include="CThunder.cpp">
-      <Filter>Engine\05.CObject\CBoss</Filter>
-    </ClCompile>
-    <ClCompile Include="CThunderDown.cpp">
-      <Filter>Engine\05.CObject\CBoss</Filter>
     </ClCompile>
     <ClCompile Include="CUltimateState.cpp">
       <Filter>Engine\08.Module\State\BossAttackState\UltimateState</Filter>
@@ -1136,6 +1160,27 @@
     </ClCompile>
     <ClCompile Include="CArdor.cpp">
       <Filter>Engine\05.CObject\CMonster\CArdor</Filter>
+    </ClCompile>
+    <ClCompile Include="CLord.cpp">
+      <Filter>Engine\05.CObject\CBoss\Lord</Filter>
+    </ClCompile>
+    <ClCompile Include="CThunder.cpp">
+      <Filter>Engine\05.CObject\CBoss\Lord</Filter>
+    </ClCompile>
+    <ClCompile Include="CThunderDown.cpp">
+      <Filter>Engine\05.CObject\CBoss\Lord</Filter>
+    </ClCompile>
+    <ClCompile Include="CEvileye.cpp">
+      <Filter>Engine\05.CObject\CBoss\Evileye</Filter>
+    </ClCompile>
+    <ClCompile Include="CEvileyeIdel.cpp">
+      <Filter>Engine\05.CObject\CBoss\Evileye\EvileyeIdle</Filter>
+    </ClCompile>
+    <ClCompile Include="CEvileyeAttack.cpp">
+      <Filter>Engine\05.CObject\CBoss\Evileye\EvileyeAttack</Filter>
+    </ClCompile>
+    <ClCompile Include="CEvilLaser.cpp">
+      <Filter>Engine\05.CObject\CBoss\Evileye\Laser</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

@@ -19,11 +19,17 @@
 #include "CItemMgr.h"
 
 #include "CEvilLaser.h"
+#include "CShotEye.h"
+#include "CCreateEye.h"
+
+UINT CEvileye::m_iEvilCount = 0;
 
 CEvileye::CEvileye():
 	m_hashSkillTime{},
 	m_eMonState(MONSTER_STATE::IDLE),
-	m_strMonDir(L"_right")
+	m_strMonDir(L"_right"),
+	m_fCreateEyeTime(7.f),
+	m_fCurTime(7.f)
 {
 	CreateAnimator();
 	
@@ -42,6 +48,8 @@ CEvileye::CEvileye():
 	GetAnimator()->CreateAnimation(L"evileye_hit_left", pTexLeft, Vec2(1200.f, 400.f), Vec2(200.f, 200.f), Vec2(-200.f, 0.f), Vec2(0.f, 0.f), 0.2f, 3);
 
 	GetAnimator()->Play(L"evileye_idle" + m_strMonDir, true);
+
+	m_iEvilCount++;
 
 	init_skill();
 }
@@ -75,16 +83,16 @@ void CEvileye::update()
 void CEvileye::init_skill()
 {
 	tEvileyeSkill tSkill1;
-	tSkill1.m_fCurTime = 5.f;
-	tSkill1.m_fMaxTime = 5.f;
+	tSkill1.m_fCurTime = 5.f + m_iEvilCount;
+	tSkill1.m_fMaxTime = 5.f + m_iEvilCount;
 	tSkill1.m_iStartFrame = 3;
 	m_hashSkillTime.insert(make_pair((UINT)EVILSKILL::LASER, tSkill1));
-
-	//tEvileyeSkill tSkill2;
-	//tSkill2.m_fCurTime = 10.f;
-	//tSkill2.m_fMaxTime = 10.f;
-	//tSkill2.m_iStartFrame = 3;
-	//m_hashSkillTime.insert(make_pair((UINT)EVILSKILL::SHOT, tSkill2));
+	
+	tEvileyeSkill tSkill2;
+	tSkill2.m_fCurTime = 12.f + m_iEvilCount;
+	tSkill2.m_fMaxTime = 12.f + m_iEvilCount;
+	tSkill2.m_iStartFrame = 3;
+	m_hashSkillTime.insert(make_pair((UINT)EVILSKILL::SHOT, tSkill2));
 }
 
 void CEvileye::update_skilltime()
@@ -106,6 +114,9 @@ void CEvileye::update_skilltime()
 				iter->second.m_fCurTime = 0.f;
 		}
 	}
+
+	update_passive();
+
 }
 
 void CEvileye::update_state()
@@ -149,6 +160,22 @@ void CEvileye::update_state()
 	}
 }
 
+void CEvileye::update_passive()
+{
+	//패시브 스킬
+	if (m_eMonState == MONSTER_STATE::HIT ||
+		m_eMonState == MONSTER_STATE::ATTACK)
+		return;
+
+	m_fCurTime -= fDT;
+	if (m_fCurTime < 0.f)
+	{
+		m_fCurTime = m_fCreateEyeTime;
+		createEye();
+	}
+		
+}
+
 void CEvileye::SetDir(int _iDir)
 {
 	_iDir > 0 ? m_strMonDir = L"_right" : m_strMonDir = L"_left";
@@ -158,21 +185,48 @@ void CEvileye::SetDir(int _iDir)
 
 void CEvileye::shotEye()
 {
+	Vec2 vStartPos = Vec2(1.f, 0.5f);
+
+	for (int i = 1; i <= 5; ++i)
+	{
+		CShotEye* pEye = new CShotEye;
+		if (m_strMonDir == L"_right")
+			pEye->setDir(1);
+		else
+			pEye->setDir(-1);
+
+		pEye->m_pOwner = this;
+		pEye->m_strLaserDir = m_strMonDir;
+		pEye->init_pos(vStartPos);
+
+		CreateObject(pEye, GROUP_TYPE::MONSTER_SKILL);
+
+		vStartPos.y -= 0.25f;
+	}
 
 }
 
 void CEvileye::createEye()
 {
-	
+	CCreateEye* pEye = new CCreateEye;
+	pEye->init_pos();
+	CreateObject(pEye, GROUP_TYPE::MONSTER_SKILL);
 }
 
 void CEvileye::createLaser()
 {
 	CEvilLaser* pLaser = new CEvilLaser;
+	if (m_strMonDir == L"_right")
+		pLaser->setDir(1);
+	else
+		pLaser->setDir(-1);
+
 	pLaser->m_pOwner = this;
 	pLaser->m_strLaserDir = m_strMonDir;
+
 	CreateObject(pLaser, GROUP_TYPE::MONSTER_SKILL);
 }
+
 
 void CEvileye::render(HDC _dc)
 {

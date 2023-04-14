@@ -47,6 +47,9 @@
 #include "C:\Users\wangh\source\tem\WinApiPot\WinApiPot\Client\CCore.cpp"
 
 
+#include "C:\Users\wangh\source\tem\WinApiPot\WinApiPot\Client\CCreateEye.cpp"
+
+
 #include "C:\Users\wangh\source\tem\WinApiPot\WinApiPot\Client\CCrystalPillar.cpp"
 
 
@@ -243,6 +246,9 @@
 
 
 #include "C:\Users\wangh\source\tem\WinApiPot\WinApiPot\Client\CRandomFire.cpp"
+
+
+#include "C:\Users\wangh\source\tem\WinApiPot\WinApiPot\Client\CShotEye.cpp"
 
 
 #include "C:\Users\wangh\source\tem\WinApiPot\WinApiPot\Client\CRes.cpp"

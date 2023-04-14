@@ -33,6 +33,7 @@
 #include "CThunder.h"
 #include "CThunderDown.h"
 #include "CEvilLaser.h"
+#include "CShotEye.h"
 
 #include "CSound.h"
 
@@ -548,6 +549,12 @@ void CPlayer::OnColliderEnter(CCollider* _pOther)
 			CFireBall* pFire = dynamic_cast<CFireBall*>(pObj);
 			HitPlayer(_pOther, pFire->GetAttInfo());
 		}
+		else if(dynamic_cast<CShotEye*>(pObj))
+		{
+			CShotEye* pShot = dynamic_cast<CShotEye*>(pObj);
+			HitPlayer(_pOther, pShot->GetAttackInfo());
+		}
+
 		else if (dynamic_cast<CAttackObject*>(pObj))
 		{
 			CAttackObject* MonAttack = dynamic_cast<CAttackObject*>(pObj);

@@ -35,6 +35,7 @@ void CEvileyeIdel::check_skill()
 		if (iter->second.m_fCurTime == 0.f)
 		{
 			iter->second.m_fCurTime = iter->second.m_fMaxTime;
+			UINT i = iter->first;
 			((CEvileyeAttack*)GetAI()->GetState(MONSTER_STATE::ATTACK))->setSkill(iter->first);
 			ChangeAIState(GetAI(), MONSTER_STATE::ATTACK);
 			return;

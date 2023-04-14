@@ -19,7 +19,7 @@ public:
 	virtual void update();
 
 public:
-	void setSkill(UINT _eSkillNum) { m_eCurSkill = (EVILSKILL)m_eCurSkill; }
+	void setSkill(UINT _eSkillNum) { m_eCurSkill = (EVILSKILL)_eSkillNum; }
 	void start_skill();
 	
 

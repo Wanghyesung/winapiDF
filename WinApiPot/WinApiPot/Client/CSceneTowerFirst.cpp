@@ -115,13 +115,13 @@ void CSceneTowerFirst::Init()
 	//AddObject(pLordInterface, GROUP_TYPE::UI);
 	//AddObject(pLord, GROUP_TYPE::MONSTER);
 
-	//CMonster* pBDragon1 = CMonFactory::CraeteMonster(MON_TYPE::BLUE_DRAGON, Vec2(500.f, 500.f), m_eType);
-	//pBDragon1->SetName(L"bDragon1");
-	//CMonInterface* brdragonInterface2 = new CMonInterface(pBDragon1->GetName(),45);
-	//brdragonInterface2->SetScale(Vec2(626, 29));
-	//brdragonInterface2->SetPos(Vec2(40, 20));
-	//AddObject(brdragonInterface2, GROUP_TYPE::UI);
-	//AddObject(pBDragon1, GROUP_TYPE::MONSTER);
+	CMonster* pBDragon1 = CMonFactory::CraeteMonster(MON_TYPE::BLUE_DRAGON, Vec2(500.f, 500.f), m_eType);
+	pBDragon1->SetName(L"bDragon1");
+	CMonInterface* brdragonInterface2 = new CMonInterface(pBDragon1->GetName(),45);
+	brdragonInterface2->SetScale(Vec2(626, 29));
+	brdragonInterface2->SetPos(Vec2(40, 20));
+	AddObject(brdragonInterface2, GROUP_TYPE::UI);
+	AddObject(pBDragon1, GROUP_TYPE::MONSTER);
 	
 	
 	//CMonster* pBDragon2 = CMonFactory::CraeteMonster(MON_TYPE::EVILEYE, Vec2(200.f, 500.f), m_eType);
@@ -131,15 +131,15 @@ void CSceneTowerFirst::Init()
 	//brdragonInterface1->SetPos(Vec2(40, 20));
 	//AddObject(brdragonInterface1, GROUP_TYPE::UI);
 	//AddObject(pBDragon2, GROUP_TYPE::MONSTER);
-
-	CMonster* pBDragon3 = CMonFactory::CraeteMonster(MON_TYPE::EVILEYE, Vec2(800.f, 500.f), m_eType);
-	pBDragon3->SetName(L"evil_2");
-	((CEvileye*)(pBDragon3))->SetDir(-1);
-	CMonInterface* brdragonInterface3 = new CMonInterface(pBDragon3->GetName(), 99, true);
-	brdragonInterface3->SetScale(Vec2(626, 29));
-	brdragonInterface3->SetPos(Vec2(40, 20));
-	AddObject(brdragonInterface3, GROUP_TYPE::UI);
-	AddObject(pBDragon3, GROUP_TYPE::MONSTER);
+	//
+	//CMonster* pBDragon3 = CMonFactory::CraeteMonster(MON_TYPE::EVILEYE, Vec2(800.f, 500.f), m_eType);
+	//pBDragon3->SetName(L"evil_2");
+	//((CEvileye*)(pBDragon3))->SetDir(-1);
+	//CMonInterface* brdragonInterface3 = new CMonInterface(pBDragon3->GetName(), 99, true);
+	//brdragonInterface3->SetScale(Vec2(626, 29));
+	//brdragonInterface3->SetPos(Vec2(40, 20));
+	//AddObject(brdragonInterface3, GROUP_TYPE::UI);
+	//AddObject(pBDragon3, GROUP_TYPE::MONSTER);
 
 	//방향 먼저 잡기
 	CGate* pGate = new CGate(L"up", false);

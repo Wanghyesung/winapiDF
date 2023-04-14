@@ -163,6 +163,7 @@
     <ClInclude Include="CCollider.h" />
     <ClInclude Include="CColliderMgr.h" />
     <ClInclude Include="CCore.h" />
+    <ClInclude Include="CCreateEye.h" />
     <ClInclude Include="CCrystalPillar.h" />
     <ClInclude Include="CDeadState.h" />
     <ClInclude Include="CDefenseState.h" />
@@ -230,6 +231,7 @@
     <ClInclude Include="CPortal.h" />
     <ClInclude Include="CPunisher.h" />
     <ClInclude Include="CRandomFire.h" />
+    <ClInclude Include="CShotEye.h" />
     <ClInclude Include="CRes.h" />
     <ClInclude Include="CResMgr.h" />
     <ClInclude Include="CRigidBody.h" />
@@ -296,6 +298,7 @@
     <ClCompile Include="CCollider.cpp" />
     <ClCompile Include="CColliderMgr.cpp" />
     <ClCompile Include="CCore.cpp" />
+    <ClCompile Include="CCreateEye.cpp" />
     <ClCompile Include="CCrystalPillar.cpp" />
     <ClCompile Include="CDeadState.cpp" />
     <ClCompile Include="CDefenseState.cpp" />
@@ -362,6 +365,7 @@
     <ClCompile Include="CPortal.cpp" />
     <ClCompile Include="CPunisher.cpp" />
     <ClCompile Include="CRandomFire.cpp" />
+    <ClCompile Include="CShotEye.cpp" />
     <ClCompile Include="CRes.cpp" />
     <ClCompile Include="CResMgr.cpp" />
     <ClCompile Include="CRigidBody.cpp" />

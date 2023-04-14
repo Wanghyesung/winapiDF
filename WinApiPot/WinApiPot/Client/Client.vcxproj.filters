@@ -401,7 +401,7 @@
     <Filter Include="Engine\05.CObject\CBoss\Evileye\ShotEye">
       <UniqueIdentifier>{b20f376a-9284-4b03-850a-91af1b6db467}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Engine\05.CObject\CBoss\Evileye\CreateEey">
+    <Filter Include="Engine\05.CObject\CBoss\Evileye\CreateEye">
       <UniqueIdentifier>{d850c1cb-f458-4440-81ba-6fab3eeefec3}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
@@ -797,6 +797,12 @@
     <ClInclude Include="CEvilLaser.h">
       <Filter>Engine\05.CObject\CBoss\Evileye\Laser</Filter>
     </ClInclude>
+    <ClInclude Include="CShotEye.h">
+      <Filter>Engine\05.CObject\CBoss\Evileye\ShotEye</Filter>
+    </ClInclude>
+    <ClInclude Include="CCreateEye.h">
+      <Filter>Engine\05.CObject\CBoss\Evileye\CreateEye</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Client.rc">
@@ -1181,6 +1187,12 @@
     </ClCompile>
     <ClCompile Include="CEvilLaser.cpp">
       <Filter>Engine\05.CObject\CBoss\Evileye\Laser</Filter>
+    </ClCompile>
+    <ClCompile Include="CShotEye.cpp">
+      <Filter>Engine\05.CObject\CBoss\Evileye\ShotEye</Filter>
+    </ClCompile>
+    <ClCompile Include="CCreateEye.cpp">
+      <Filter>Engine\05.CObject\CBoss\Evileye\CreateEye</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

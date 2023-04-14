@@ -3,15 +3,15 @@
 
 class CEvileye;
 
-class CEvilLaser :
+class CShotEye :
     public CObject
 {
 public:
-    CEvilLaser();
-    virtual ~CEvilLaser();
+    CShotEye();
+    virtual ~CShotEye();
 
 private:
-    CObject* m_pOwner;
+    CEvileye* m_pOwner;
     wstring m_strLaserDir;
 
     tAttackInfo m_tAtt;
@@ -19,6 +19,12 @@ private:
     UINT m_iFrame;
 
     int m_iDir;
+    //날아갈 방향
+    Vec2 m_vLookAt;
+
+    float m_fDeleteTime;
+    float m_fCurTime;
+
 public:
     virtual void render(HDC _dc);
     virtual void update();//상속
@@ -26,6 +32,7 @@ public:
 public:
     const tAttackInfo& GetAttackInfo() { return m_tAtt; }
     bool IsAttackOn() { return m_bAttackOn; }
+
 public:
     virtual void OnColliderEnter(CCollider* _pOther);
     virtual void OnColliderExit(CCollider* _pOther);
@@ -33,11 +40,10 @@ public:
 
 private:
     bool IsSameJumLoc(CCollider* _pOther, CCollider* _pThis);
-    void setDir(int _iDir);
-
-    void set_DirUp();
+    void setDir(int _iDir) { m_iDir = _iDir; }
+    void init_pos(Vec2 _vPos);//생성될 위치 초기화
 
     friend class CEvileye;
-    friend class CCreateEye;
+
 };
 

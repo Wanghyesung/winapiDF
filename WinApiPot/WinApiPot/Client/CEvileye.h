@@ -26,13 +26,20 @@ public:
     virtual ~CEvileye();
 
 private:
+    //이블아이 소환 수
+    //소환 개체마다 시간 다르게 하기 위해
+    static UINT m_iEvilCount;
+
     unordered_map<UINT, tEvileyeSkill> m_hashSkillTime;
 
     MONSTER_STATE m_eMonState;
 
     //이블아이 왼쪽 오른쪽 고정으로
     wstring m_strMonDir;
-    
+
+    //눈 생성 시간, 현재 시간
+    float m_fCreateEyeTime;
+    float m_fCurTime;
 public:
     virtual void update();
     virtual void render(HDC _dc);
@@ -52,6 +59,7 @@ private:
     void init_skill();
     void update_skilltime();
     void update_state();
+    void update_passive();
 
     //눈 발사 
     void shotEye();

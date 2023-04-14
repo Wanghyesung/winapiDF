@@ -15,6 +15,7 @@
 CEvilLaser::CEvilLaser():
 	m_pOwner(nullptr),
 	m_bAttackOn(false),
+	m_iDir(0),
 	m_tAtt{}
 {
 	SetTag(GROUP_TYPE::MONSTER_SKILL);
@@ -24,10 +25,13 @@ CEvilLaser::CEvilLaser():
 
 	CTexture* pTex_right = CResMgr::GetInst()->LoadTextur(L"Evil_laser_right", L"..\\OutPut\\bin_release\\Content\\emfact\\monLaser_right.bmp");
 	CTexture* pTex_left = CResMgr::GetInst()->LoadTextur(L"Evil_laser_left", L"..\\OutPut\\bin_release\\Content\\emfact\\monLaser_left.bmp");
+	CTexture* pTex_up = CResMgr::GetInst()->LoadTextur(L"Evil_laser_up", L"..\\OutPut\\bin_release\\Content\\emfact\\monLaser_up.bmp");
 
 	CreateAnimator();
 	GetAnimator()->CreateAnimation(L"Evil_laser_right", pTex_right, Vec2(0.f, 0.f), Vec2(900.f, 160.f), Vec2(0.f, 160.f), Vec2(0.f, 0.f), 0.15f, 4);
 	GetAnimator()->CreateAnimation(L"Evil_laser_left", pTex_left, Vec2(0.f, 0.f), Vec2(900.f, 160.f), Vec2(0.f, 160.f), Vec2(0.f, 0.f), 0.15f, 4);
+	GetAnimator()->CreateAnimation(L"Evil_laser_up", pTex_up, Vec2(0.f, 0.f), Vec2(160.f, 900.f), Vec2(160.f, 0.f), Vec2(4.f, -410.f), 0.15f, 4);
+
 
 	m_tAtt.m_eAttType = ATTACK_TYPE::NORMAL;
 	m_tAtt.m_fAttackDamage = 10.f;
@@ -48,7 +52,7 @@ void CEvilLaser::render(HDC _dc)
 
 void CEvilLaser::update()
 {
-	if (m_pOwner == nullptr || !m_pOwner->IsActiv())
+	if (m_pOwner == nullptr)
 	{
 		DeleteObject(this);
 		return;
@@ -56,15 +60,16 @@ void CEvilLaser::update()
 
 	Vec2 vEvilPos = m_pOwner->GetPos();
 	
-	int iDir = 0;
-	if (m_strLaserDir == L"_right")
-		iDir = 1;
-	else
-		iDir = -1;
-
-	GetCollider()->SetOffSet(Vec2(iDir* 40.f, 0.f));
-	float fOffsetX = iDir * 450.f;
+	//int iDir = 0;
+	//if (m_strLaserDir == L"_right")
+	//	iDir = 1;
+	//else
+	//	iDir = -1;
+	
+	float fOffsetX = m_iDir * 450.f;
 	vEvilPos.x += fOffsetX;
+	//float fOffsetY = 1 * 450.f;
+	//vEvilPos.y -= fOffsetY;
 	SetPos(vEvilPos);
 
 	GetAnimator()->Play(L"Evil_laser" + m_strLaserDir, false);
@@ -151,4 +156,19 @@ bool CEvilLaser::IsSameJumLoc(CCollider* _pOther, CCollider* _pThis)
 	}
 
 	return true;
+}
+
+void CEvilLaser::setDir(int _iDir)
+{
+	m_iDir = _iDir;
+	GetCollider()->SetOffSet(Vec2(m_iDir * 40.f, 0.f));
+}
+
+void CEvilLaser::set_DirUp()
+{
+	GetCollider()->SetScale(Vec2(50.f, 820.f));
+	//위쪽으로
+	GetCollider()->SetOffSet(Vec2(0.f,-430.f));
+	m_strLaserDir = L"_up";
+	m_iDir = 0;
 }

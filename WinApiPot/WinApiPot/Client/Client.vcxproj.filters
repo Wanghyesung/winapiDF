@@ -404,6 +404,9 @@
     <Filter Include="Engine\05.CObject\CBoss\Evileye\CreateEye">
       <UniqueIdentifier>{d850c1cb-f458-4440-81ba-6fab3eeefec3}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Engine\04.CScene\CutScene">
+      <UniqueIdentifier>{3df4ef86-943a-4739-b508-b42eb62be8eb}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="pch.h" />
@@ -803,6 +806,9 @@
     <ClInclude Include="CCreateEye.h">
       <Filter>Engine\05.CObject\CBoss\Evileye\CreateEye</Filter>
     </ClInclude>
+    <ClInclude Include="CCutScene.h">
+      <Filter>Engine\04.CScene\CutScene</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Client.rc">
@@ -1193,6 +1199,9 @@
     </ClCompile>
     <ClCompile Include="CCreateEye.cpp">
       <Filter>Engine\05.CObject\CBoss\Evileye\CreateEye</Filter>
+    </ClCompile>
+    <ClCompile Include="CCutScene.cpp">
+      <Filter>Engine\04.CScene\CutScene</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

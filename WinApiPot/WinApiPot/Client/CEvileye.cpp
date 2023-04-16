@@ -42,10 +42,12 @@ CEvileye::CEvileye():
 	GetAnimator()->CreateAnimation(L"evileye_idle_right", pTexRight, Vec2(0.f, 0.f), Vec2(200.f, 200.f), Vec2(200.f, 0.f), Vec2(0.f, 0.f), 0.2f, 7);
 	GetAnimator()->CreateAnimation(L"evileye_skill_right", pTexRight, Vec2(0.f, 200.f), Vec2(200.f, 200.f), Vec2(200.f, 0.f), Vec2(0.f, 0.f), 0.2f, 7);
 	GetAnimator()->CreateAnimation(L"evileye_hit_right", pTexRight, Vec2(0.f, 400.f), Vec2(200.f, 200.f), Vec2(200.f, 0.f), Vec2(0.f, 0.f), 0.2f, 3);
-									
+	GetAnimator()->CreateAnimation(L"evileye_run_right", pTexRight, Vec2(0.f, 600.f), Vec2(200.f, 200.f), Vec2(200.f, 0.f), Vec2(0.f, 0.f), 0.2f, 3);
+
 	GetAnimator()->CreateAnimation(L"evileye_idle_left", pTexLeft, Vec2(1200.f, 0.f), Vec2(200.f, 200.f), Vec2(-200.f, 0.f), Vec2(0.f, 0.f), 0.2f, 7);
 	GetAnimator()->CreateAnimation(L"evileye_skill_left", pTexLeft, Vec2(1200.f, 200.f), Vec2(200.f, 200.f), Vec2(-200.f, 0.f), Vec2(0.f, 0.f), 0.2f, 7);
 	GetAnimator()->CreateAnimation(L"evileye_hit_left", pTexLeft, Vec2(1200.f, 400.f), Vec2(200.f, 200.f), Vec2(-200.f, 0.f), Vec2(0.f, 0.f), 0.2f, 3);
+	GetAnimator()->CreateAnimation(L"evileye_run_left", pTexLeft, Vec2(1200.f, 600.f), Vec2(200.f, 200.f), Vec2(-200.f, 0.f), Vec2(0.f, 0.f), 0.2f, 3);
 
 	GetAnimator()->Play(L"evileye_idle" + m_strMonDir, true);
 
@@ -130,6 +132,12 @@ void CEvileye::update_state()
 	case MONSTER_STATE::IDLE:
 	{
 		strMotion = L"evileye_idle" + m_strMonDir;
+		GetAnimator()->Play(strMotion, true);
+	}
+		break;
+	case MONSTER_STATE::TRACE:
+	{
+		strMotion = L"evileye_run" + m_strMonDir;
 		GetAnimator()->Play(strMotion, true);
 	}
 		break;

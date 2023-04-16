@@ -18,7 +18,7 @@ CMonInterface::CMonInterface(const wstring& _strMonName, UINT _MonNum, bool _bIs
 	{
 		CInterfaceMgr::GetInst()->AddMonInterface(_strMonName, this);
 		CMonHP* pHP = new CMonHP;
-		pHP->SetUIOffset(Vec2(32.f, 1.f));
+		pHP->SetUIOffset(Vec2(32.f, 2.f));
 		pHP->SetName(L"HP");
 		pHP->SetScale(Vec2(590.f, 33.f));
 		AddChildUI(pHP);

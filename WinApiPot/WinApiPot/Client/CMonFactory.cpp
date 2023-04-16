@@ -30,6 +30,7 @@
 //이블아이
 #include "CEvileyeIdel.h"
 #include "CEvileyeAttack.h"
+#include "CEvileyeTrace.h"
 
 //나이트
 #include "CStoneState.h"
@@ -608,6 +609,7 @@ CMonster* CMonFactory::CraeteMonster(MON_TYPE _monType, Vec2 _vPos, SCENE_TYPE _
 
 		tMonInfo info = {};
 		info.m_iHp = 100;
+		info.m_fspeed = 50.f;
 		pMon->SettMonInfo(info);
 
 		tHitInfo tHitInfo = {};
@@ -630,6 +632,8 @@ CMonster* CMonFactory::CraeteMonster(MON_TYPE _monType, Vec2 _vPos, SCENE_TYPE _
 		pAI->AddState(new CEvileyeIdel);
 
 		pAI->AddState(new CEvileyeAttack);
+
+		pAI->AddState(new CEvileyeTrace);
 
 		CHitState* pHit = new CHitState;
 		pHit->SetAnimSound(L"hunt_comm");

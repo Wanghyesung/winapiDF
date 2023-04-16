@@ -90,8 +90,16 @@ void CCreateEye::init_pos()
 	else
 	{
 		m_pTarget = (CPlayer*)vecPlayer[0];
-		SetPos(m_pTarget->GetCollider()->GetFinalPos());
 	}
+
+
+	if (m_pTarget->GetGravity()->IsGetGravity())
+	{
+		SetPos(m_pTarget->GetJumPos());
+	}
+
+	else
+		SetPos(m_pTarget->GetCollider()->GetFinalPos());
 }
 
 void CCreateEye::create_laser()

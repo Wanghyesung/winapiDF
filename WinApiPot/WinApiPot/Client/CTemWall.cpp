@@ -54,7 +54,8 @@ void CTemWall::OnColliderEnter(CCollider* _pOther)
 		Vec2 vPos = GetCollider()->GetFinalPos();
 		Vec2 vScale = GetCollider()->GetScale();
 
-		if (pObj->GetGravity()->IsGetGravity())
+		if (pObj->GetGravity() &&
+			pObj->GetGravity()->IsGetGravity())
 		{
 			if (vPlayerJumPos.y + vPlayerCollOffset.y - vPlayerScale.y / 2.f <= vPos.y + vScale.y / 2.f)
 			{
@@ -134,7 +135,8 @@ void CTemWall::OnCollision(CCollider* _pOther)
 		Vec2 vPos = GetCollider()->GetFinalPos();
 		Vec2 vScale = GetCollider()->GetScale();
 
-		if (pObj->GetGravity()->IsGetGravity())
+		if (pObj->GetGravity() &&
+			pObj->GetGravity()->IsGetGravity())
 		{
 			if (vPlayerJumPos.y + vPlayerCollOffset.y - vPlayerScale.y / 2.f <= vPos.y + vScale.y / 2.f)
 			{

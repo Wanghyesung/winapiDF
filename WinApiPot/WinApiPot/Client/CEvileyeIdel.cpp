@@ -10,6 +10,8 @@
 
 #include "CAnimator.h"
 #include "CAnimation.h"
+#include "CCollider.h"
+#include "CGravity.h"
 
 #include "AI.h"
 
@@ -54,10 +56,27 @@ void CEvileyeIdel::update()
 		m_pTarget = (CPlayer*)vecPlayer[0];
 	}
 
+
 	CEvileye* pEvil = (CEvileye*)GetMonster();
+	Vec2 vPos = pEvil->GetCollider()->GetFinalPos();
+	Vec2 vTargetPos;
+
+	if (m_pTarget->GetGravity()->IsGetGravity())
+	{
+		vTargetPos = m_pTarget->GetJumPos();
+	}
+	else
+		vTargetPos = m_pTarget->GetCollider()->GetFinalPos();
+
+	Vec2 vDiff = vTargetPos - vPos;
+
+	if (abs(vDiff.y) > 25.f)
+	{
+		ChangeAIState(GetAI(), MONSTER_STATE::TRACE);
+		return;
+	}
 
 	const tAttackInfo& tAtt = pEvil->GetAttackInfo();
-
 	if (m_pTarget != nullptr)
 	{
 		//공격 범위 안에 들면 공격
@@ -67,6 +86,7 @@ void CEvileyeIdel::update()
 			check_skill();
 		}
 	}
+
 
 }
 

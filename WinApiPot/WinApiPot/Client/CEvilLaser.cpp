@@ -166,9 +166,9 @@ void CEvilLaser::setDir(int _iDir)
 
 void CEvilLaser::set_DirUp()
 {
-	GetCollider()->SetScale(Vec2(50.f, 820.f));
+	GetCollider()->SetScale(Vec2(50.f, 150.f));
 	//위쪽으로
-	GetCollider()->SetOffSet(Vec2(0.f,-430.f));
+	GetCollider()->SetOffSet(Vec2(0.f,-80.f));
 	m_strLaserDir = L"_up";
 	m_iDir = 0;
 }

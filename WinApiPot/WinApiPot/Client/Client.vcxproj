@@ -178,6 +178,7 @@
     <ClInclude Include="CEvileyeTrace.h" />
     <ClInclude Include="CEvilLaser.h" />
     <ClInclude Include="CEvilScene_1.h" />
+    <ClInclude Include="CEvilScene_2.h" />
     <ClInclude Include="CExclusiveTrace.h" />
     <ClInclude Include="CFireBall.h" />
     <ClInclude Include="CFSM.h" />
@@ -317,6 +318,7 @@
     <ClCompile Include="CEvileyeTrace.cpp" />
     <ClCompile Include="CEvilLaser.cpp" />
     <ClCompile Include="CEvilScene_1.cpp" />
+    <ClCompile Include="CEvilScene_2.cpp" />
     <ClCompile Include="CExclusiveTrace.cpp" />
     <ClCompile Include="CFireBall.cpp" />
     <ClCompile Include="CFSM.cpp" />

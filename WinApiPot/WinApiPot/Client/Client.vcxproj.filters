@@ -827,6 +827,9 @@
     <ClInclude Include="CEvilScene_1.h">
       <Filter>Engine\04.CScene\CSceneEvil</Filter>
     </ClInclude>
+    <ClInclude Include="CEvilScene_2.h">
+      <Filter>Engine\04.CScene\CSceneEvil</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Client.rc">
@@ -1228,6 +1231,9 @@
       <Filter>Engine\05.CObject\CUI\CDungeonUI</Filter>
     </ClCompile>
     <ClCompile Include="CEvilScene_1.cpp">
+      <Filter>Engine\04.CScene\CSceneEvil</Filter>
+    </ClCompile>
+    <ClCompile Include="CEvilScene_2.cpp">
       <Filter>Engine\04.CScene\CSceneEvil</Filter>
     </ClCompile>
   </ItemGroup>

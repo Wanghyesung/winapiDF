@@ -104,8 +104,9 @@ void CCameraMgr::update()
 
 void CCameraMgr::init()
 {
-	//Vec2 vResolution = CCore::GetInst()->GetResolution();
-	//m_pVeilTex = CResMgr::GetInst()->CreatTexture(L"Veil", (UINT)vResolution.x, (UINT)vResolution.y);
+	Vec2 vResolution = CCore::GetInst()->GetResolution();
+	m_pVeilTex = CResMgr::GetInst()->CreatTexture(L"Veil", (UINT)vResolution.x, (UINT)vResolution.y);
+
 	if (m_pTargetObj != nullptr)
 	{
 		if (m_pTargetObj->GetGravity()->IsGetGravity())
@@ -191,6 +192,8 @@ void CCameraMgr::CalDiff()
 			m_vCurLookAt = m_vPreLookAt + vLookDir.NormalRize() * m_fSpeed * fDT;//이전 프레임의 지점부터 움직일것임
 		}
 	}
+
+	
 
 	Vec2 vResolution = CCore::GetInst()->GetResolution();
 	m_vDiff =  m_vCurLookAt - vResolution / 2.f;

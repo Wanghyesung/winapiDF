@@ -68,6 +68,9 @@
 #include "C:\Users\wangh\source\tem\WinApiPot\WinApiPot\Client\CDragonObj.cpp"
 
 
+#include "C:\Users\wangh\source\tem\WinApiPot\WinApiPot\Client\CDungeonUI.cpp"
+
+
 #include "C:\Users\wangh\source\tem\WinApiPot\WinApiPot\Client\CEventMgr.cpp"
 
 

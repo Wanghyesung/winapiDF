@@ -40,6 +40,9 @@ private:
     //눈 생성 시간, 현재 시간
     float m_fCreateEyeTime;
     float m_fCurTime;
+
+    float m_fHitTime;
+    float m_fCurHitTime;
 public:
     virtual void update();
     virtual void render(HDC _dc);

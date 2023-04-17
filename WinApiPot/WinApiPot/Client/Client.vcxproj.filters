@@ -410,6 +410,9 @@
     <Filter Include="Engine\05.CObject\CBoss\Evileye\EvileyeTrace">
       <UniqueIdentifier>{aae79641-8ce1-45fd-8af7-219263d51e54}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Engine\05.CObject\CUI\CDungeonUI">
+      <UniqueIdentifier>{6cf9125a-3858-4d86-93a9-a4b6848b20c5}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="pch.h" />
@@ -815,6 +818,9 @@
     <ClInclude Include="CEvileyeTrace.h">
       <Filter>Engine\05.CObject\CBoss\Evileye\EvileyeTrace</Filter>
     </ClInclude>
+    <ClInclude Include="CDungeonUI.h">
+      <Filter>Engine\05.CObject\CUI\CDungeonUI</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Client.rc">
@@ -1211,6 +1217,9 @@
     </ClCompile>
     <ClCompile Include="CEvileyeTrace.cpp">
       <Filter>Engine\05.CObject\CBoss\Evileye\EvileyeTrace</Filter>
+    </ClCompile>
+    <ClCompile Include="CDungeonUI.cpp">
+      <Filter>Engine\05.CObject\CUI\CDungeonUI</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

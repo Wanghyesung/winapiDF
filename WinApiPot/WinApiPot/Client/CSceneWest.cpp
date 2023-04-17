@@ -116,7 +116,7 @@ void CSceneWest::Init()
 	pPortal_1->SetName(L"Port_Portal");
 	pPortal_1->SetPos(Vec2(2450.f, 650.f));
 	pPortal_1->GetCollider()->SetScale(Vec2(50.f, 200.f));
-	pPortal_1->SetNextScene(SCENE_TYPE::FIRST_DUNGEON);
+	pPortal_1->SetNextScene(SCENE_TYPE::SELECT_SCENE);
 	//포탈 크기는 고정으로 생성자에서 만듬
 	AddObject(pPortal_1, GROUP_TYPE::PORTAL);
 

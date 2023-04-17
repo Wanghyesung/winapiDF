@@ -15,6 +15,7 @@
 #include "CInterFace.h"
 #include "CInterfaceMgr.h"
 
+#include "CResMgr.h"
 #include "CMonInterface.h"
 #include "CHP.h"
 
@@ -98,6 +99,7 @@ void CScene::backgroundrender(HDC _dc, CTexture* _pTex, Vec2 _vStartPos)
 		_pTex->GetDC(),
 		0, 0,
 		SRCCOPY);
+
 }
 
 void CScene::Tile_render(HDC _dc, CTexture* _pTex)

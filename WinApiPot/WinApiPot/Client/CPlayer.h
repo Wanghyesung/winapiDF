@@ -16,7 +16,7 @@ struct tPlayerInfo
     float       m_fHP;      //체력
     float       m_fMP;      //마나
     float       m_fAtt;     //공격력
-    float       m_AccHP;
+    float       m_AccHP;    //추가 체력
 };
 
 class CTexture;
@@ -103,6 +103,8 @@ public:
     void CreateSkill();
     CSkill* GetSkill() { return m_pSkill; }
 
+    void InitKeyStack() { m_iKeyStack = 0; }
+
 private:
     void update_doubleKey();
     void update_InterFace();
@@ -110,8 +112,6 @@ private:
     void SetPrevState(PLAYER_STATE _eState) { playerPrevState = _eState; }
 
     void resetvalue();
-
-
 
     friend class CBullet;
     friend class CFSM;

@@ -45,6 +45,25 @@ void CSeriaScene::render(HDC _dc)
 
 	CScene::render(_dc);
 
+	//CObject* pPLayer = GetPlayerObj();
+
+	//CTexture* tem = CResMgr::GetInst()->FindTexture(L"Veil");
+
+	//BLENDFUNCTION bf = {};
+
+	//bf.BlendOp = AC_SRC_OVER;
+	//bf.AlphaFormat = 0;
+	//bf.BlendFlags = 0;
+	//bf.SourceConstantAlpha = 127.f; //아까 만든 진행 비율 넣기
+
+	//AlphaBlend(_dc,
+	//	0, 0,
+	//	(int)(tem->Width()), (int)(tem->Height()),
+	//	tem->GetDC(),
+	//	0, 0,
+	//	(int)(tem->Width()), (int)(tem->Height()),
+	//	bf);
+
 	//CTexture* tem = CResMgr::GetInst()->LoadTextur(L"12", L"..\\OutPut\\bin_release\\Content\\emfact\\dark1.bmp");
 	//
 	//TransparentBlt(_dc,
@@ -82,15 +101,15 @@ void CSeriaScene::Init()
 	CSkillMgr::GetInst()->SetPlayer((CPlayer*)GetPlayerObj());
 	CSkillMgr::GetInst()->init(m_eType);
 
-	//CreateInterFace();
-	//
-	//CInventory* pInven = new CInventory;
-	//CHPItem* pItemHP = new CHPItem;
-	//pInven->AddItem(pItemHP);
-	//CMPItem* pItemMP = new CMPItem;
-	//pInven->AddItem(pItemMP);
-	//
-	//AddObject(pInven, GROUP_TYPE::UI);
+	CreateInterFace();
+	
+	CInventory* pInven = new CInventory;
+	CHPItem* pItemHP = new CHPItem;
+	pInven->AddItem(pItemHP);
+	CMPItem* pItemMP = new CMPItem;
+	pInven->AddItem(pItemMP);
+	
+	AddObject(pInven, GROUP_TYPE::UI);
 
 	RegisterPlayer(pObj);
 
@@ -119,7 +138,7 @@ void CSeriaScene::Enter()
 	//현재 씬에 스킬 초기화
 	CSkillMgr::GetInst()->SetPlayer((CPlayer*)GetPlayerObj());
 
-	//CInventoryMgr::GetInst()->init();
+	CInventoryMgr::GetInst()->init();
 
 	CColliderMgr::GetInst()->ChekGroup(GROUP_TYPE::PORTAL, GROUP_TYPE::PLAYER);
 	CColliderMgr::GetInst()->ChekGroup(GROUP_TYPE::WALL, GROUP_TYPE::PLAYER);

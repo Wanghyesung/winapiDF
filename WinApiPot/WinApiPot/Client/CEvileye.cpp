@@ -29,7 +29,9 @@ CEvileye::CEvileye():
 	m_eMonState(MONSTER_STATE::IDLE),
 	m_strMonDir(L"_right"),
 	m_fCreateEyeTime(7.f),
-	m_fCurTime(7.f)
+	m_fCurTime(7.f),
+	m_fHitTime(5.f),
+	m_fCurHitTime(0.f)
 {
 	CreateAnimator();
 	
@@ -68,6 +70,8 @@ void CEvileye::update()
 		DeleteObject(this);
 		return;
 	}
+	//일정시간이 지나야지 피격모션이 나오게
+	m_fCurHitTime -= fDT;
 
 	update_skilltime();
 
@@ -183,6 +187,7 @@ void CEvileye::update_passive()
 	}
 		
 }
+
 
 void CEvileye::SetDir(int _iDir)
 {
@@ -315,11 +320,16 @@ void CEvileye::hit(CCollider* _pOther, const tAttackInfo& _tAtt)
 		else
 			fDir = -1.f;
 
-		tHitInfo.m_fHitDir = fDir;
-		ChangeAIState(pAI, MONSTER_STATE::HIT);
+
+		if (m_fCurHitTime <= 0.f)
+		{
+			tHitInfo.m_fHitDir = fDir;
+			ChangeAIState(pAI, MONSTER_STATE::HIT);
+			m_fCurHitTime = m_fHitTime;
+		}
 
 		//띄움판정 없이
-		tMonInfo.m_iHp -= _tAtt.m_fAttackDamage;
+		tMonInfo.m_iHp -= _tAtt.m_fAttackDamage/7.f;
 		if (tMonInfo.m_iHp <= 0.f)
 		{
 			tMonInfo.m_iHp = 0.f;

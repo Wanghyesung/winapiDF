@@ -15,6 +15,8 @@
 #include "SceneTower5.h"
 #include "SceneBoss.h"
 
+#include "CCutScene.h"
+
 #include "CInterfaceMgr.h"
 
 #include "CInventoryMgr.h"
@@ -48,10 +50,11 @@ void SceneMgr::init()
 {
 	//¾À ¹è¿­¿¡ ¸¸µç ¾Àµé ³Ö±â
 	m_arrScene[(UINT)SCENE_TYPE::LOGO_SCENE] = new CSceneLog;
+	m_arrScene[(UINT)SCENE_TYPE::SELECT_SCENE] = new CCutScene;
 	m_arrScene[(UINT)SCENE_TYPE::START_SCENE] = new CScene_Start;
 	//m_arrScene[(UINT)SCENE_TYPE::START_SCENE]->SetName(L"Start Scene");
 	m_arrScene[(UINT)SCENE_TYPE::SCENE_BACKSTREET] = new CSceneBack;
-	m_arrScene[(UINT)SCENE_TYPE::SERIA_SCENE] = new CSeriaScene;
+	m_arrScene[(UINT)SCENE_TYPE::SERIA_SCENE] = new CSeriaScene; 
 	m_arrScene[(UINT)SCENE_TYPE::WEST_COAST] = new CSceneWest;
 	m_arrScene[(UINT)SCENE_TYPE::FIRST_DUNGEON] = new CSceneTowerFirst;
 	m_arrScene[(UINT)SCENE_TYPE::DUNGEON_2] = new  SceneTower_2;
@@ -67,7 +70,7 @@ void SceneMgr::init()
 		m_arrScene[i]->Init();
 	}
 
-	m_pCurrScene = m_arrScene[(UINT)SCENE_TYPE::SERIA_SCENE];//ÇöÀç ¾À ³Ö¾îÁÖ°í
+	m_pCurrScene = m_arrScene[(UINT)SCENE_TYPE::SELECT_SCENE];//ÇöÀç ¾À ³Ö¾îÁÖ°í
 	m_pCurrScene->Enter();
 }
 

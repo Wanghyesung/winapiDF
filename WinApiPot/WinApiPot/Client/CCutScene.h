@@ -15,6 +15,7 @@ private:
     CSound* pBackSound;
 public:
     virtual void render(HDC _dc);
+    virtual void update();
 
 public:
     virtual void Enter();

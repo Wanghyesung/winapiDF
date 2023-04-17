@@ -34,6 +34,7 @@
 enum class SCENE_TYPE
 {
 	LOGO_SCENE,
+	SELECT_SCENE,
 	START_SCENE,
 	SERIA_SCENE,
 	TOOL_SCENE,
@@ -47,7 +48,7 @@ enum class SCENE_TYPE
 	SCENE_BACKSTREET,//µ‘∞Ò∏Ò
 	SCENE_BAR,//¡÷¡°
 
-	END = 13,
+	END = 20,
 };
 
 

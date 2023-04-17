@@ -10,6 +10,15 @@ public:
 private:
 	bool m_bStart;
 
+	float m_fMoveValue;
+
+	float m_fMoveTime;
+	float m_fCurTime;
+
+	int m_iMoveDir;
+
+	Vec2 m_vStartPos;
+
 public:
 	virtual void enter();
 	virtual void exit();

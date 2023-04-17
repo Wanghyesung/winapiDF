@@ -64,6 +64,10 @@ void CSeriaScene::render(HDC _dc)
 	//	(int)(tem->Width()), (int)(tem->Height()),
 	//	bf);
 
+	
+
+
+
 	//CTexture* tem = CResMgr::GetInst()->LoadTextur(L"12", L"..\\OutPut\\bin_release\\Content\\emfact\\dark1.bmp");
 	//
 	//TransparentBlt(_dc,

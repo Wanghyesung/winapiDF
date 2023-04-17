@@ -413,6 +413,9 @@
     <Filter Include="Engine\05.CObject\CUI\CDungeonUI">
       <UniqueIdentifier>{6cf9125a-3858-4d86-93a9-a4b6848b20c5}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Engine\04.CScene\CSceneEvil">
+      <UniqueIdentifier>{cb2471b7-1fc4-42cd-b021-c0fc7b8fdf5b}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="pch.h" />
@@ -821,6 +824,9 @@
     <ClInclude Include="CDungeonUI.h">
       <Filter>Engine\05.CObject\CUI\CDungeonUI</Filter>
     </ClInclude>
+    <ClInclude Include="CEvilScene_1.h">
+      <Filter>Engine\04.CScene\CSceneEvil</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Client.rc">
@@ -1220,6 +1226,9 @@
     </ClCompile>
     <ClCompile Include="CDungeonUI.cpp">
       <Filter>Engine\05.CObject\CUI\CDungeonUI</Filter>
+    </ClCompile>
+    <ClCompile Include="CEvilScene_1.cpp">
+      <Filter>Engine\04.CScene\CSceneEvil</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

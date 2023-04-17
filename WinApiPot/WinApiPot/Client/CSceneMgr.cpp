@@ -17,6 +17,8 @@
 
 #include "CCutScene.h"
 
+#include "CEvilScene_1.h"
+
 #include "CInterfaceMgr.h"
 
 #include "CInventoryMgr.h"
@@ -63,6 +65,8 @@ void SceneMgr::init()
 	m_arrScene[(UINT)SCENE_TYPE::DUNGEON_5] = new SceneTower5;
 	m_arrScene[(UINT)SCENE_TYPE::DUNGEON_BOSS] = new SceneBoss;
 
+	m_arrScene[(UINT)SCENE_TYPE::EVIL_SCENE_1] = new CEvilScene_1;
+
 	for (UINT i = 0; i < (UINT)SCENE_TYPE::END; ++i)
 	{
 		if (m_arrScene[i] == nullptr)
@@ -70,7 +74,7 @@ void SceneMgr::init()
 		m_arrScene[i]->Init();
 	}
 
-	m_pCurrScene = m_arrScene[(UINT)SCENE_TYPE::SELECT_SCENE];//현재 씬 넣어주고
+	m_pCurrScene = m_arrScene[(UINT)SCENE_TYPE::SERIA_SCENE];//현재 씬 넣어주고
 	m_pCurrScene->Enter();
 }
 

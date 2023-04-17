@@ -13,10 +13,12 @@ CCutScene::CCutScene():
 	m_eType(SCENE_TYPE::SELECT_SCENE),
 	pBackSound(nullptr)
 {
+
 }
 
 CCutScene::~CCutScene()
 {
+
 }
 
 void CCutScene::render(HDC _dc)
@@ -72,7 +74,7 @@ void CCutScene::Init()
 	CDungeonUI* pEyeDungeonUI = new CDungeonUI;
 	pEyeDungeonUI->SetPos(Vec2(243.f, 170.f));
 	pEyeDungeonUI->SetScale(Vec2(168.f, 73.f));
-	//pEyeDungeonUI->SetNextScene(SCENE_TYPE::FIRST_DUNGEON);
+	pEyeDungeonUI->SetNextScene(SCENE_TYPE::EVIL_SCENE_1);
 
 	AddObject(pEyeDungeonUI, GROUP_TYPE::UI);
 

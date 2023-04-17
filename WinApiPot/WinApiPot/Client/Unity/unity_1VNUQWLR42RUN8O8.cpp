@@ -89,6 +89,9 @@
 #include "C:\Users\wangh\source\tem\WinApiPot\WinApiPot\Client\CEvilLaser.cpp"
 
 
+#include "C:\Users\wangh\source\tem\WinApiPot\WinApiPot\Client\CEvilScene_1.cpp"
+
+
 #include "C:\Users\wangh\source\tem\WinApiPot\WinApiPot\Client\CExclusiveTrace.cpp"
 
 

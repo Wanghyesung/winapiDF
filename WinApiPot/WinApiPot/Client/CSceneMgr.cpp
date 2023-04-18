@@ -18,6 +18,12 @@
 #include "CCutScene.h"
 
 #include "CEvilScene_1.h"
+#include "CEvilScene_2.h"
+#include "CEvilScene_3.h"
+#include "CEvilScene_4.h"
+#include "CEvilScene_5.h"
+#include "CEvilBossScene.h"
+
 
 #include "CInterfaceMgr.h"
 
@@ -66,6 +72,12 @@ void SceneMgr::init()
 	m_arrScene[(UINT)SCENE_TYPE::DUNGEON_BOSS] = new SceneBoss;
 
 	m_arrScene[(UINT)SCENE_TYPE::EVIL_SCENE_1] = new CEvilScene_1;
+	m_arrScene[(UINT)SCENE_TYPE::EVIL_SCENE_2] = new CEvilScene_2;
+	m_arrScene[(UINT)SCENE_TYPE::EVIL_SCENE_3] = new CEvilScene_3;
+	m_arrScene[(UINT)SCENE_TYPE::EVIL_SCENE_4] = new CEvilScene_4;
+	m_arrScene[(UINT)SCENE_TYPE::EVIL_SCENE_5] = new CEvilScene_5;
+	m_arrScene[(UINT)SCENE_TYPE::EVIL_BOSS] = new CEvilBossScene;
+
 
 	for (UINT i = 0; i < (UINT)SCENE_TYPE::END; ++i)
 	{
@@ -74,7 +86,7 @@ void SceneMgr::init()
 		m_arrScene[i]->Init();
 	}
 
-	m_pCurrScene = m_arrScene[(UINT)SCENE_TYPE::LOGO_SCENE];//현재 씬 넣어주고
+	m_pCurrScene = m_arrScene[(UINT)SCENE_TYPE::EVIL_BOSS];//현재 씬 넣어주고
 	m_pCurrScene->Enter();
 }
 

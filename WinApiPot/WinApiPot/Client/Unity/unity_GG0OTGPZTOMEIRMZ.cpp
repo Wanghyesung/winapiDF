@@ -74,6 +74,9 @@
 #include "C:\Users\wangh\source\tem\WinApiPot\WinApiPot\Client\CEventMgr.cpp"
 
 
+#include "C:\Users\wangh\source\tem\WinApiPot\WinApiPot\Client\CEvilBossScene.cpp"
+
+
 #include "C:\Users\wangh\source\tem\WinApiPot\WinApiPot\Client\CEvileye.cpp"
 
 
@@ -89,10 +92,19 @@
 #include "C:\Users\wangh\source\tem\WinApiPot\WinApiPot\Client\CEvilLaser.cpp"
 
 
+#include "C:\Users\wangh\source\tem\WinApiPot\WinApiPot\Client\CEvilScene_4.cpp"
+
+
 #include "C:\Users\wangh\source\tem\WinApiPot\WinApiPot\Client\CEvilScene_1.cpp"
 
 
 #include "C:\Users\wangh\source\tem\WinApiPot\WinApiPot\Client\CEvilScene_2.cpp"
+
+
+#include "C:\Users\wangh\source\tem\WinApiPot\WinApiPot\Client\CEvilScene_3.cpp"
+
+
+#include "C:\Users\wangh\source\tem\WinApiPot\WinApiPot\Client\CEvilScene_5.cpp"
 
 
 #include "C:\Users\wangh\source\tem\WinApiPot\WinApiPot\Client\CExclusiveTrace.cpp"

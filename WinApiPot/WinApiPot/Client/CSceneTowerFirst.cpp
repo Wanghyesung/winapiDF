@@ -132,14 +132,6 @@ void CSceneTowerFirst::Init()
 	//AddObject(brdragonInterface1, GROUP_TYPE::UI);
 	//AddObject(pBDragon2, GROUP_TYPE::MONSTER);
 	//
-	CMonster* pBDragon3 = CMonFactory::CraeteMonster(MON_TYPE::EVILEYE, Vec2(800.f, 500.f), m_eType);
-	pBDragon3->SetName(L"evil_2");
-	((CEvileye*)(pBDragon3))->SetDir(-1);
-	CMonInterface* brdragonInterface3 = new CMonInterface(pBDragon3->GetName(), 99, true);
-	brdragonInterface3->SetScale(Vec2(626, 29));
-	brdragonInterface3->SetPos(Vec2(40, 20));
-	AddObject(brdragonInterface3, GROUP_TYPE::UI);
-	AddObject(pBDragon3, GROUP_TYPE::MONSTER);
 
 	//방향 먼저 잡기
 	CGate* pGate = new CGate(L"up", false);

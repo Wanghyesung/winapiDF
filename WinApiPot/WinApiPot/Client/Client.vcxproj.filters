@@ -830,6 +830,18 @@
     <ClInclude Include="CEvilScene_2.h">
       <Filter>Engine\04.CScene\CSceneEvil</Filter>
     </ClInclude>
+    <ClInclude Include="CEvilScene_3.h">
+      <Filter>Engine\04.CScene\CSceneEvil</Filter>
+    </ClInclude>
+    <ClInclude Include="CEvilScene_4.h">
+      <Filter>Engine\04.CScene\CSceneEvil</Filter>
+    </ClInclude>
+    <ClInclude Include="CEvilScene_5.h">
+      <Filter>Engine\04.CScene\CSceneEvil</Filter>
+    </ClInclude>
+    <ClInclude Include="CEvilBossScene.h">
+      <Filter>Engine\04.CScene\CSceneEvil</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Client.rc">
@@ -1234,6 +1246,18 @@
       <Filter>Engine\04.CScene\CSceneEvil</Filter>
     </ClCompile>
     <ClCompile Include="CEvilScene_2.cpp">
+      <Filter>Engine\04.CScene\CSceneEvil</Filter>
+    </ClCompile>
+    <ClCompile Include="CEvilScene_3.cpp">
+      <Filter>Engine\04.CScene\CSceneEvil</Filter>
+    </ClCompile>
+    <ClCompile Include="CEvilScene_4.cpp">
+      <Filter>Engine\04.CScene\CSceneEvil</Filter>
+    </ClCompile>
+    <ClCompile Include="CEvilScene_5.cpp">
+      <Filter>Engine\04.CScene\CSceneEvil</Filter>
+    </ClCompile>
+    <ClCompile Include="CEvilBossScene.cpp">
       <Filter>Engine\04.CScene\CSceneEvil</Filter>
     </ClCompile>
   </ItemGroup>

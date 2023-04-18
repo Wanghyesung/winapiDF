@@ -78,11 +78,21 @@ void CEvilScene_1::Init()
 	CSkillMgr::GetInst()->SetPlayer((CPlayer*)GetPlayerObj());
 	CSkillMgr::GetInst()->init(m_eType);
 
+
+	CMonster* pBrNight1 = CMonFactory::CraeteMonster(MON_TYPE::KNIGHT_BROWN, Vec2(500.f, 500.f), m_eType);
+	pBrNight1->SetName(L"brownNight_1_1");
+	CMonInterface* brNightInter = new CMonInterface(pBrNight1->GetName(), 96);
+	brNightInter->SetScale(Vec2(626, 29));
+	brNightInter->SetPos(Vec2(40, 20));
+	AddObject(brNightInter, GROUP_TYPE::UI);
+	AddObject(pBrNight1, GROUP_TYPE::MONSTER);
+
+
 	//방향 먼저 잡기
 	CGate* pGate = new CGate(L"up", false);
 	pGate->SetPos(Vec2(500.f, 365.f));
 	pGate->GetCollider()->SetScale(Vec2(70.f, 70.f));
-	pGate->SetNextScene(SCENE_TYPE::DUNGEON_2);
+	pGate->SetNextScene(SCENE_TYPE::EVIL_SCENE_2);
 	AddObject(pGate, GROUP_TYPE::GATE);
 
 }

@@ -1,13 +1,14 @@
 #pragma once
 #include "CScene.h"
+
 class CSound;
 
-class CEvilScene_2 :
+class CEvilScene_4 :
     public CScene
 {
 public:
-    CEvilScene_2();
-    virtual ~CEvilScene_2();
+    CEvilScene_4();
+    virtual ~CEvilScene_4();
 
 private:
     SCENE_TYPE m_eType;
@@ -21,7 +22,5 @@ public:
     virtual void Enter();
     virtual void Exit();
     virtual void Init();
-
-
 };
 

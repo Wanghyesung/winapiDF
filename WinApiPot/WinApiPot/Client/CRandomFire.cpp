@@ -56,6 +56,7 @@ void CRandomFire::Skillupdate()
 {
 	CPlayer* pPlayer = GetSkill()->GetPlayer();
 	Vec2 pPlayerPos = pPlayer->GetPos();
+	pPlayerPos.x -= 20.f;
 	SetPos(pPlayerPos);
 
 	CAnimator* pAnim = pPlayer->GetAnimator();

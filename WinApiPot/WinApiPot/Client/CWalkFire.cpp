@@ -19,7 +19,7 @@
 CWalkFire::CWalkFire():
 	CSkillState(SKILL_STATE::WALK_FIRE),
 	m_iFireCount(22),
-	m_iMaxTime(0.15f),
+	m_iMaxTime(0.2f),
 	m_iCurTime(0.f),
 	m_iDir(1)
 {

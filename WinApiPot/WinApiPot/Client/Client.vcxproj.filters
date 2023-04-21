@@ -416,6 +416,21 @@
     <Filter Include="Engine\04.CScene\CSceneEvil">
       <UniqueIdentifier>{cb2471b7-1fc4-42cd-b021-c0fc7b8fdf5b}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Engine\07.Component\CSkill\SkillState\Rx78">
+      <UniqueIdentifier>{508c48a2-8f3a-4f11-a77c-a3ac75810c60}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\05.CObject\CRobot">
+      <UniqueIdentifier>{fbe80a0e-022e-4bf3-805d-77b748460c76}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\05.CObject\CRobot\CRobotRx78">
+      <UniqueIdentifier>{b9834740-3b60-4a7d-a508-a6afc258e904}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\07.Component\CSkill\SkillState\Fire">
+      <UniqueIdentifier>{06d603f1-3ee8-4c35-b54c-e4162c132fbf}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\07.Component\CSkill\SkillState\Fire\CTarget">
+      <UniqueIdentifier>{3f80681a-d0c4-4710-8454-fbd139370f97}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="pch.h" />
@@ -842,6 +857,21 @@
     <ClInclude Include="CEvilBossScene.h">
       <Filter>Engine\04.CScene\CSceneEvil</Filter>
     </ClInclude>
+    <ClInclude Include="CRx78.h">
+      <Filter>Engine\07.Component\CSkill\SkillState\Rx78</Filter>
+    </ClInclude>
+    <ClInclude Include="CBoom.h">
+      <Filter>Engine\05.CObject\CRobot</Filter>
+    </ClInclude>
+    <ClInclude Include="CRobotRx78.h">
+      <Filter>Engine\05.CObject\CRobot\CRobotRx78</Filter>
+    </ClInclude>
+    <ClInclude Include="CFire.h">
+      <Filter>Engine\07.Component\CSkill\SkillState\Fire</Filter>
+    </ClInclude>
+    <ClInclude Include="CTarget.h">
+      <Filter>Engine\07.Component\CSkill\SkillState\Fire\CTarget</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Client.rc">
@@ -1259,6 +1289,21 @@
     </ClCompile>
     <ClCompile Include="CEvilBossScene.cpp">
       <Filter>Engine\04.CScene\CSceneEvil</Filter>
+    </ClCompile>
+    <ClCompile Include="CRx78.cpp">
+      <Filter>Engine\07.Component\CSkill\SkillState\Rx78</Filter>
+    </ClCompile>
+    <ClCompile Include="CBoom.cpp">
+      <Filter>Engine\05.CObject\CRobot</Filter>
+    </ClCompile>
+    <ClCompile Include="CRobotRx78.cpp">
+      <Filter>Engine\05.CObject\CRobot\CRobotRx78</Filter>
+    </ClCompile>
+    <ClCompile Include="CFire.cpp">
+      <Filter>Engine\07.Component\CSkill\SkillState\Fire</Filter>
+    </ClCompile>
+    <ClCompile Include="CTarget.cpp">
+      <Filter>Engine\07.Component\CSkill\SkillState\Fire\CTarget</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

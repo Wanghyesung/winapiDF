@@ -69,8 +69,7 @@ void CEvileyeIdel::update()
 		vTargetPos = m_pTarget->GetCollider()->GetFinalPos();
 
 	Vec2 vDiff = vTargetPos - vPos;
-
-	if (abs(vDiff.y) > 25.f)
+	if (abs(vDiff.y) > 25.f && vDiff.Length() < 550.f)
 	{
 		ChangeAIState(GetAI(), MONSTER_STATE::TRACE);
 		return;

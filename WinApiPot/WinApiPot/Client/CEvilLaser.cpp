@@ -35,7 +35,7 @@ CEvilLaser::CEvilLaser():
 
 	m_tAtt.m_eAttType = ATTACK_TYPE::NORMAL;
 	m_tAtt.m_fAttackDamage = 10.f;
-	m_tAtt.m_fAttRcnt = 50.f;
+	m_tAtt.m_fAttRcnt = 80.f;
 	m_tAtt.m_fAttUpperRcnt = -60.f;
 	m_tAtt.m_fAttRigidityTime = 0.5f;
 }

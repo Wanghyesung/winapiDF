@@ -16,6 +16,7 @@
 #include "CNearAttack.h"
 #include "CAttackObject.h"
 #include "CBullet.h"
+#include "CBoom.h"
 #include "CSkillState.h"
 #include "CHitState.h"
 #include "CHitUpper.h"
@@ -199,7 +200,13 @@ void CBrDragon::OnColliderEnter(CCollider* _pOther)
 			CBullet* pBullet = dynamic_cast<CBullet*>(pobj);
 			hit(pBullet->GetCollider(), pBullet->GetAttInfo());
 		}
+		else if (dynamic_cast<CBoom*>(pobj))
+		{
+			CBoom* pBoom = dynamic_cast<CBoom*>(pobj);
+			hit(pBoom->GetCollider(), pBoom->GetAttInfo());
+		}
 	}
+
 
 	if (tMonInfo.m_iHp <= 0.f)
 	{

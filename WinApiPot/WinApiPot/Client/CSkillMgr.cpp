@@ -17,6 +17,8 @@
 #include "CWalkFire.h"
 #include "CMachKick.h"
 #include "CLaser.h"
+#include "CRx78.h"
+#include "CFire.h"
 
 #include "CFSM.h"
 #include "CPlayerState.h"
@@ -34,7 +36,8 @@ CSkillMgr::CSkillMgr() :
 	m_eCurStkllState(SKILL_STATE::END),
 	m_fMaxSkillTime(5.f),
 	m_bOnSkill(false),
-	m_pPlayer(nullptr)
+	m_pPlayer(nullptr),
+	m_iSkillType(2)
 {
 
 }
@@ -82,6 +85,15 @@ void CSkillMgr::initSkill(SCENE_TYPE _eSceneType)
 	CLaser* pLaser = new CLaser;
 	m_pPlayer->m_pSkill->AddSkill(pLaser);
 	SceneMgr::GetInst()->FindScene(_eSceneType)->AddObject(pLaser, GROUP_TYPE::SKILL);
+
+	CRx78* pRx78 = new CRx78;
+	m_pPlayer->m_pSkill->AddSkill(pRx78);
+	SceneMgr::GetInst()->FindScene(_eSceneType)->AddObject(pRx78, GROUP_TYPE::SKILL);
+
+	CFire* pFire = new CFire;
+	m_pPlayer->m_pSkill->AddSkill(pFire);
+	SceneMgr::GetInst()->FindScene(_eSceneType)->AddObject(pFire, GROUP_TYPE::SKILL);
+
 }
 
 
@@ -118,6 +130,7 @@ void CSkillMgr::skillKey_update()
 		return;
 
 	//스킬 사용중에 C를 누르면 캔슬
+
 	if (m_bOnSkill)
 	{
 		if (KEY_TAP(KEY::C))
@@ -131,32 +144,42 @@ void CSkillMgr::skillKey_update()
 		
 	else if (KEY_TAP(KEY::F))
 	{
-		m_eCurStkllState = SKILL_STATE::RANDOM_FIRE;
+		if (m_iSkillType == 1)
+			m_eCurStkllState = SKILL_STATE::RANDOM_FIRE;
+		else
+			m_eCurStkllState = SKILL_STATE::FIRE;
 	}
 
 	else if (KEY_TAP(KEY::D))
 	{
-		m_eCurStkllState = SKILL_STATE::WINDMILL;
+		if (m_iSkillType == 1)
+			m_eCurStkllState = SKILL_STATE::WINDMILL;
 	}
 
 	else if (KEY_TAP(KEY::S))
 	{
-		m_eCurStkllState = SKILL_STATE::MACH_KICK;
+		if (m_iSkillType == 1)
+			m_eCurStkllState = SKILL_STATE::MACH_KICK;
 	}
 
 	else if (KEY_TAP(KEY::Z))
 	{
-		m_eCurStkllState = SKILL_STATE::UPPER_KICK;
+		if (m_iSkillType == 1)
+			m_eCurStkllState = SKILL_STATE::UPPER_KICK;
+		else
+			m_eCurStkllState = SKILL_STATE::RX;
 	}
 
 	else if (KEY_TAP(KEY::T))
 	{
-		m_eCurStkllState = SKILL_STATE::WALK_FIRE;
+		if (m_iSkillType == 1)
+			m_eCurStkllState = SKILL_STATE::WALK_FIRE;
 	}
 
 	else if (KEY_TAP(KEY::W))
 	{
-		m_eCurStkllState = SKILL_STATE::LASER;
+		if (m_iSkillType == 1)
+			m_eCurStkllState = SKILL_STATE::LASER;
 	}
 	
 
@@ -215,8 +238,9 @@ void CSkillMgr::InitState(SKILL_STATE _tSkill)
 {
 	m_bOnSkill = true;//현재 스킬 상태를 나태냄
 	CSkillState* pSkill = m_pPlayer->m_pSkill->FindSkillState(_tSkill);
-	m_pPlayer->m_pFSM->GetCurState()->Exit();
-	m_pPlayer->playerCurState = PLAYER_STATE::IDLE;
+	//m_pPlayer->m_pFSM->GetCurState()->Exit();
+	m_pPlayer->m_pFSM->ChangeState(PLAYER_STATE::IDLE);
+	//ChangeFSMState(m_pPlayer->m_pFSM, PLAYER_STATE::IDLE);
 	pSkill->enter();
 }
 

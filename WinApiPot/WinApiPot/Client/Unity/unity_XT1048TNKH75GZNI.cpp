@@ -26,6 +26,9 @@
 #include "C:\Users\wangh\source\tem\WinApiPot\WinApiPot\Client\CBlueDragon.cpp"
 
 
+#include "C:\Users\wangh\source\tem\WinApiPot\WinApiPot\Client\CBoom.cpp"
+
+
 #include "C:\Users\wangh\source\tem\WinApiPot\WinApiPot\Client\CBrDragon.cpp"
 
 
@@ -108,6 +111,9 @@
 
 
 #include "C:\Users\wangh\source\tem\WinApiPot\WinApiPot\Client\CExclusiveTrace.cpp"
+
+
+#include "C:\Users\wangh\source\tem\WinApiPot\WinApiPot\Client\CFire.cpp"
 
 
 #include "C:\Users\wangh\source\tem\WinApiPot\WinApiPot\Client\CFireBall.cpp"
@@ -275,6 +281,12 @@
 #include "C:\Users\wangh\source\tem\WinApiPot\WinApiPot\Client\CRandomFire.cpp"
 
 
+#include "C:\Users\wangh\source\tem\WinApiPot\WinApiPot\Client\CRobotRx78.cpp"
+
+
+#include "C:\Users\wangh\source\tem\WinApiPot\WinApiPot\Client\CRx78.cpp"
+
+
 #include "C:\Users\wangh\source\tem\WinApiPot\WinApiPot\Client\CShotEye.cpp"
 
 
@@ -339,6 +351,9 @@
 
 
 #include "C:\Users\wangh\source\tem\WinApiPot\WinApiPot\Client\CStoneState.cpp"
+
+
+#include "C:\Users\wangh\source\tem\WinApiPot\WinApiPot\Client\CTarget.cpp"
 
 
 #include "C:\Users\wangh\source\tem\WinApiPot\WinApiPot\Client\CTemWall.cpp"

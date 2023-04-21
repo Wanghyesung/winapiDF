@@ -52,10 +52,8 @@ void CFSM::ChangeState(PLAYER_STATE _ePlayerState)
 	CPlayerState* pNextState = FindState(_ePlayerState);
 	//assert(pNextState != m_pCurState); //같은 state면 리턴
 
-	if (pNextState != m_pCurState)
-	{
-		m_pCurState->Exit();
-	}
+	
+	m_pCurState->Exit();
 	SetCurState(_ePlayerState);
 	m_pCurState->Enter();
 

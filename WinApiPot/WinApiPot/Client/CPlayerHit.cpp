@@ -67,6 +67,12 @@ void CPlayerHit::Enter()
 	{
 		((CPlayerAttack*)GetFSM()->FindState(prevState))->InitMulitZeroFrame();
 	}
+
+	CPlayer* pPlayer = GetFSM()->GetPlayer();
+	if (pPlayer->playerPrevState == PLAYER_STATE::HIT)
+	{
+		pPlayer->GetAnimator()->GetCurAnimation()->SetFram(1);
+	}
 }
 
 void CPlayerHit::Exit()

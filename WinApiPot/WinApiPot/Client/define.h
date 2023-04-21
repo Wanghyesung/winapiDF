@@ -72,8 +72,9 @@ enum class GROUP_TYPE
 	PLAYER,
 	ITEM,
 	WALL,
-	SKILL,
 	MONSTER,
+	SKILL,
+	ROBOT,
 	MONSTER_SKILL,
 	BULLET,
 	FIREBALL,
@@ -143,8 +144,11 @@ enum class SKILL_STATE
 	RANDOM_FIRE,
 	WALK_FIRE,
 	LASER,
-	BUFF,
-	END = 10
+	RX,
+	EX,
+	DROP,
+	FIRE,
+	END = 10,
 };
 
 enum class ATTACK_TYPE

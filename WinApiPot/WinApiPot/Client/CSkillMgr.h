@@ -17,6 +17,8 @@ private:
 	SKILL_STATE				 m_eCurStkllState;
 	map<SKILL_STATE, float>  m_mapSkill;
 
+	UINT m_iSkillType;
+
 public:
 	void update();//매 프레임마다 해당 키의 스킬이 눌렸는지 체크와 해당 스킬을 누르고 재사용대기시간 체크
 	void init(SCENE_TYPE _eSceneType);//스킬 리소스 받아두기
@@ -39,6 +41,9 @@ public:
 	void InitState(SKILL_STATE _tSkill);
 
 	float GetCurSKillTime(SKILL_STATE _eSkill);
+
+	void ChangeSKillType() { m_iSkillType == 1 ? m_iSkillType = 2 : m_iSkillType = 1; }
+	UINT GetSKillType() { return m_iSkillType; }
 
 private:
 	//키를 입력받고 입력된 키에 해당하는 스킬이 사용 가능한 스킬인지 확인

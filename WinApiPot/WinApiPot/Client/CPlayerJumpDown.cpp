@@ -20,11 +20,13 @@ CPlayerJumpDown::~CPlayerJumpDown()
 void CPlayerJumpDown::update()
 {
 	CFSM* pFSM = GetFSM();
-	int iFrame = GetCurFrame();
+	CPlayer* pPlayer = GetFSM()->GetPlayer();
+	int iCurFrame = pPlayer->GetAnimator()->GetCurAnimation()->GetCurFrame();
 
-	if (iFrame == -1)
+	if (iCurFrame == -1)
 	{
 		ChangeFSMState(pFSM, PLAYER_STATE::IDLE);
+		GetFSM()->GetPlayer()->GetAnimator()->GetCurAnimation()->SetFram(1,true);
 	}
 }
 
@@ -32,7 +34,7 @@ void CPlayerJumpDown::Exit()
 {
 	CPlayerState::Exit();
 	InitZeroFrame();
-	GetFSM()->GetPlayer()->GetAnimator()->GetCurAnimation()->SetFram(0);
+	GetFSM()->GetPlayer()->GetAnimator()->GetCurAnimation()->SetFram(0,true);
 }
 
 void CPlayerJumpDown::Enter()

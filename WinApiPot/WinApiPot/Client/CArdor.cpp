@@ -21,6 +21,7 @@
 
 #include "CBullet.h"
 #include "CSkillState.h"
+#include "CBoom.h"
 
 #include "CItemMgr.h"
 
@@ -237,6 +238,11 @@ void CArdor::OnColliderEnter(CCollider* _pOther)
 		{
 			CBullet* pBullet = dynamic_cast<CBullet*>(pobj);
 			hit(pBullet->GetCollider(), pBullet->GetAttInfo());
+		}
+		else if (dynamic_cast<CBoom*>(pobj))
+		{
+			CBoom* pBoom = dynamic_cast<CBoom*>(pobj);
+				hit(pBoom->GetCollider(), pBoom->GetAttInfo());
 		}
 	}
 

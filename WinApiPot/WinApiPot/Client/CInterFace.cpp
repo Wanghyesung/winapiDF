@@ -14,6 +14,7 @@
 #include "CInventoryMgr.h"
 #include "CInventory.h"
 
+#include "CSkillMgr.h"
 
 CInterFace::CInterFace():
 	m_pInterFaceTex(nullptr),
@@ -30,8 +31,8 @@ CInterFace::CInterFace():
 	m_pInterFaceTex = CResMgr::GetInst()->LoadTextur(L"InterFace", L"..\\OutPut\\bin_release\\Content\\Interface\\playerInterface.bmp");
 	SetScale(Vec2(1280.f, 100.f));
 
-	m_vecSKillTex.resize(6);
-	m_vecCoolDownTex.resize(6);
+	m_vecSKillTex.resize(10);
+	m_vecCoolDownTex.resize(10);
 	m_vecItem.resize(6);
 
 	//내 인터페이스 키 입력값
@@ -45,6 +46,13 @@ CInterFace::CInterFace():
 	m_vecSKillTex[4] = CResMgr::GetInst()->LoadTextur(L"WalkFire", L"..\\OutPut\\bin_release\\Content\\SKill\\WalkFire.bmp");
 	m_vecSKillTex[5] = CResMgr::GetInst()->LoadTextur(L"Laser", L"..\\OutPut\\bin_release\\Content\\SKill\\laser.bmp");
 
+	//두번째 스킬
+	m_vecSKillTex[6] = CResMgr::GetInst()->LoadTextur(L"rx-78", L"..\\OutPut\\bin_release\\Content\\SKill\\rx-78.bmp");
+	m_vecSKillTex[7] = CResMgr::GetInst()->LoadTextur(L"Dropland", L"..\\OutPut\\bin_release\\Content\\SKill\\Dropland.bmp");
+	m_vecSKillTex[8] = CResMgr::GetInst()->LoadTextur(L"7ex", L"..\\OutPut\\bin_release\\Content\\SKill\\7ex.bmp");
+	m_vecSKillTex[9] = CResMgr::GetInst()->LoadTextur(L"Fire", L"..\\OutPut\\bin_release\\Content\\SKill\\Fire.bmp");
+
+
 	m_vecCoolDownTex[0] = CResMgr::GetInst()->LoadTextur(L"Kick_", L"..\\OutPut\\bin_release\\Content\\SKill\\Kick_.bmp");
 	m_vecCoolDownTex[1] = CResMgr::GetInst()->LoadTextur(L"MachKick_", L"..\\OutPut\\bin_release\\Content\\SKill\\MachKick_.bmp");
 	m_vecCoolDownTex[2] = CResMgr::GetInst()->LoadTextur(L"Windmill_", L"..\\OutPut\\bin_release\\Content\\SKill\\Windmill_.bmp");
@@ -52,6 +60,11 @@ CInterFace::CInterFace():
 	m_vecCoolDownTex[4] = CResMgr::GetInst()->LoadTextur(L"WalkFire_", L"..\\OutPut\\bin_release\\Content\\SKill\\WalkFire_.bmp");
 	m_vecCoolDownTex[5] = CResMgr::GetInst()->LoadTextur(L"Laser_", L"..\\OutPut\\bin_release\\Content\\SKill\\laser_.bmp");
 
+	//두번째 스킬
+	m_vecCoolDownTex[6] = CResMgr::GetInst()->LoadTextur(L"rx-78_", L"..\\OutPut\\bin_release\\Content\\SKill\\rx-78_.bmp");
+	m_vecCoolDownTex[7] = CResMgr::GetInst()->LoadTextur(L"Dropland_", L"..\\OutPut\\bin_release\\Content\\SKill\\Dropland_.bmp");
+	m_vecCoolDownTex[8] = CResMgr::GetInst()->LoadTextur(L"7ex_", L"..\\OutPut\\bin_release\\Content\\SKill\\7ex_.bmp");
+	m_vecCoolDownTex[9] = CResMgr::GetInst()->LoadTextur(L"Fire_", L"..\\OutPut\\bin_release\\Content\\SKill\\Fire_.bmp");
 
 	m_vecNumber.resize(9);
 	//자식 오브젝트 추가
@@ -371,20 +384,31 @@ void CInterFace::skillRender(HDC _dc)
 {
 	// 760 655
 	Vec2 vStartPos = Vec2(758.f, 655.f);//스킬 아이콘 보여지는 구간
-	for (int i = 0; i < 6; ++i)
+	int iStart;
+	int iEnd;
+	if (CSkillMgr::GetInst()->GetSKillType() == 1)
+	{
+		iStart = 0; iEnd = 6;
+	}
+	else
+	{
+		iStart = 6; iEnd = 10;
+	}
+
+	for (iStart; iStart < iEnd; ++iStart)
 	{
 		//여기에 스킬 아이콘 그리기
 		//여기서 스킬 쿨타임 가져오기
-		float iSkillTime = CSkillMgr::GetInst()->GetCurSKillTime((SKILL_STATE)i);
+		float iSkillTime = CSkillMgr::GetInst()->GetCurSKillTime((SKILL_STATE)iStart);
 		//스킬 쿨타임이 0이면
 		if (iSkillTime <= 0.f)
 		{
 			TransparentBlt(_dc,
 				vStartPos.x, vStartPos.y,
 				m_vItemStep.x, m_vItemStep.y,
-				m_vecSKillTex[i]->GetDC(),
+				m_vecSKillTex[iStart]->GetDC(),
 				0, 0,
-				m_vecSKillTex[i]->Width(), m_vecSKillTex[i]->Height(),
+				m_vecSKillTex[iStart]->Width(), m_vecSKillTex[iStart]->Height(),
 				RGB(255, 255, 255));
 		}
 		else
@@ -392,9 +416,9 @@ void CInterFace::skillRender(HDC _dc)
 			TransparentBlt(_dc,
 				vStartPos.x, vStartPos.y,
 				m_vItemStep.x, m_vItemStep.y,
-				m_vecCoolDownTex[i]->GetDC(),
+				m_vecCoolDownTex[iStart]->GetDC(),
 				0, 0,
-				m_vecCoolDownTex[i]->Width(), m_vecCoolDownTex[i]->Height(),
+				m_vecCoolDownTex[iStart]->Width(), m_vecCoolDownTex[iStart]->Height(),
 				RGB(255, 255, 255));
 
 

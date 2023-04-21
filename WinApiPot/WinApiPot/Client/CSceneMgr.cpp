@@ -86,7 +86,7 @@ void SceneMgr::init()
 		m_arrScene[i]->Init();
 	}
 
-	m_pCurrScene = m_arrScene[(UINT)SCENE_TYPE::EVIL_BOSS];//현재 씬 넣어주고
+	m_pCurrScene = m_arrScene[(UINT)SCENE_TYPE::LOGO_SCENE];//현재 씬 넣어주고
 	m_pCurrScene->Enter();
 }
 

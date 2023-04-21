@@ -72,6 +72,8 @@ CPlayer::CPlayer() :
 	CTexture* m_pWalkFire = CResMgr::GetInst()->LoadTextur(L"Player_Skill_walkfire", L"..\\OutPut\\bin_release\\Content\\Texture\\walk_fire.bmp");
 	CTexture* m_pLaserRight  = CResMgr::GetInst()->LoadTextur(L"Player_skill_laser_right", L"..\\OutPut\\bin_release\\Content\\Texture\\Player_skill_laser_right.bmp");
 	CTexture* m_pLaserLeft = CResMgr::GetInst()->LoadTextur(L"Player_skill_laser_left", L"..\\OutPut\\bin_release\\Content\\Texture\\Player_skill_laser_left.bmp");
+	CTexture* m_pRightSkillB = CResMgr::GetInst()->LoadTextur(L"Player_SkillB_Right", L"..\\OutPut\\bin_release\\Content\\Texture\\skillB_right.bmp");
+	CTexture* m_pLeftSkillB = CResMgr::GetInst()->LoadTextur(L"Player_SkillB_Left", L"..\\OutPut\\bin_release\\Content\\Texture\\skillB_left.bmp");
 	m_pBullet = CResMgr::GetInst()->LoadTextur(L"Bullet", L"..\\OutPut\\bin_release\\Content\\Texture\\bullet.bmp");//ÃÑ¾Ë
 	//m_pFireMotion = CResMgr::GetInst()->LoadTextur(L"Bullet", L"Texture\\fire.bmp");//¹ß»ç ÀÓÆåÆ®
 
@@ -143,6 +145,12 @@ CPlayer::CPlayer() :
 	//laser
 	GetAnimator()->CreateAnimation(L"Player_skill_laser_right", m_pLaserRight, Vec2(0.f, 0.f), Vec2(300.f, 252.f), Vec2(300.f, 0.f), Vec2(0.f, 0.f), 0.1f, 9);
 	GetAnimator()->CreateAnimation(L"Player_skill_laser_left", m_pLaserLeft, Vec2(2400.f, 0.f), Vec2(300.f, 252.f), Vec2(-300.f, 0.f), Vec2(-40.f, 0.f), 0.1f, 9);
+
+	//½ºÅ³B
+	GetAnimator()->CreateAnimation(L"Player_skill_stand_right", m_pRightSkillB, Vec2(0.f, 0.f), Vec2(228.f, 252.f), Vec2(228.f, 0.f), Vec2(0.f, 0.f), 0.2f, 1);
+	GetAnimator()->CreateAnimation(L"Player_skill_stand_left", m_pLeftSkillB, Vec2(912.f, 0.f), Vec2(228.f, 252.f), Vec2(-228.f, 0.f), Vec2(-40.f, 0.f), 0.2f, 1);
+	GetAnimator()->CreateAnimation(L"Player_skill_Fire_right", m_pRightSkillB, Vec2(0.f, 252.f), Vec2(228.f, 252.f), Vec2(228.f, 0.f), Vec2(0.f, 0.f), 0.15f, 5);
+	GetAnimator()->CreateAnimation(L"Player_skill_Fire_left", m_pLeftSkillB, Vec2(912.f, 252.f), Vec2(228.f, 252.f), Vec2(-228.f, 0.f), Vec2(-40.f, 0.f), 0.15f, 5);
 
 	GetAnimator()->Play(L"Player_idle_right", true);
 
@@ -425,6 +433,25 @@ void CPlayer::updateSkillState()
 		pAninmaotr->Play(strMotion, false);
 	}
 	break;
+
+	case SKILL_STATE::RX:
+	{
+		strMotion += strDir;
+		int iCurFram = pAninmaotr->FindAnimation(strMotion)->GetCurFrame();
+		GetSkill()->GetCurSkill()->SetCurFram(iCurFram);
+		pAninmaotr->Play(strMotion, true);
+	}
+	break;
+
+	case SKILL_STATE::FIRE:
+	{
+		strMotion += strDir;
+		int iCurFram = pAninmaotr->FindAnimation(strMotion)->GetCurFrame();
+		GetSkill()->GetCurSkill()->SetCurFram(iCurFram);
+		pAninmaotr->Play(strMotion, false);
+	}
+	break;
+
 	case SKILL_STATE::END:
 	{
 
@@ -468,6 +495,11 @@ bool CPlayer::IsSameJumLoc(CCollider* _pOther, CCollider* _pThis)
 
 void CPlayer::HitPlayer(CCollider* _pOther, const tAttackInfo& _tAttInfo)
 {
+	if (playerCurState != PLAYER_STATE::IDLE)
+	{
+		m_pFSM->GetCurState()->Exit();
+	}
+
 	if (GetGravity()->IsGetGravity())
 	{
 		if(!IsSameJumLoc(_pOther, GetCollider()))

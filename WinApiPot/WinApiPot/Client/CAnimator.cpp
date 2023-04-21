@@ -67,7 +67,7 @@ void CAnimator::PlayMulti(const wstring& _strMainName, const wstring& _strOtherN
 {
 	m_pCurAnim = FindAnimation(_strMainName);
 	m_pOtherAnim = FindAnimation(_strOtherName);
-	m_pOtherAnim->SetFram(m_pCurAnim->GetCurFrame(),false);//다른 애니메이션도 프레임 똑같이
+	m_pOtherAnim->SetFram(m_pCurAnim->GetCurFrame(),true);//다른 애니메이션도 프레임 똑같이
 	m_bRepeat = _bRepeat;//연속재생
 }
 

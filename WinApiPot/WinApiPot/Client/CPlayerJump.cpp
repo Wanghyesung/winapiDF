@@ -32,7 +32,7 @@ void CPlayerJump::update()
 	PLAYER_STATE ePrevState = GetFSM()->GetPrevState();
 
 	int iDir = pPlayer->GetPlayerDirX();
-	int iCurFrame = GetCurFrame();
+	int iCurFrame = pPlayer->GetAnimator()->GetCurAnimation()->GetCurFrame();
 	//전프레임 상태
 
 	if (!pGraviy->IsGetGravity())
@@ -74,6 +74,9 @@ void CPlayerJump::update()
 	if (iCurFrame == -1)
 	{
 		ChangeFSMState(GetFSM(), PLAYER_STATE::JUMP_AIR);
+		//-1일때 render되면 깜박거리는게 보임 때문에 마지막 프레임으로 초기화
+		GetFSM()->GetPlayer()->GetAnimator()->GetCurAnimation()->SetFram(3,true);
+		GetFSM()->GetPlayer()->GetAnimator()->GetOtherAnimation()->SetFram(3,true);
 	}
 
 	if (KEY_TAP(KEY::X))
@@ -94,6 +97,6 @@ void CPlayerJump::Exit()
 	GetAnimSound()->Stop(true);
 	CPlayerState::Exit();
 	InitZeroFrame();
-	GetFSM()->GetPlayer()->GetAnimator()->GetCurAnimation()->SetFram(0);
-	GetFSM()->GetPlayer()->GetAnimator()->GetOtherAnimation()->SetFram(0);
+	GetFSM()->GetPlayer()->GetAnimator()->GetCurAnimation()->SetFram(0,true);
+	GetFSM()->GetPlayer()->GetAnimator()->GetOtherAnimation()->SetFram(0,true);
 }

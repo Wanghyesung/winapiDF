@@ -156,6 +156,7 @@
     <ClInclude Include="CAttackObject.h" />
     <ClInclude Include="CAttackState.h" />
     <ClInclude Include="CBlueDragon.h" />
+    <ClInclude Include="CBoom.h" />
     <ClInclude Include="CBrDragon.h" />
     <ClInclude Include="CBullet.h" />
     <ClInclude Include="CCameraMgr.h" />
@@ -184,6 +185,7 @@
     <ClInclude Include="CEvilScene_3.h" />
     <ClInclude Include="CEvilScene_5.h" />
     <ClInclude Include="CExclusiveTrace.h" />
+    <ClInclude Include="CFire.h" />
     <ClInclude Include="CFireBall.h" />
     <ClInclude Include="CFSM.h" />
     <ClInclude Include="CGate.h" />
@@ -240,6 +242,8 @@
     <ClInclude Include="CPortal.h" />
     <ClInclude Include="CPunisher.h" />
     <ClInclude Include="CRandomFire.h" />
+    <ClInclude Include="CRobotRx78.h" />
+    <ClInclude Include="CRx78.h" />
     <ClInclude Include="CShotEye.h" />
     <ClInclude Include="CRes.h" />
     <ClInclude Include="CResMgr.h" />
@@ -262,6 +266,7 @@
     <ClInclude Include="CState.h" />
     <ClInclude Include="CStoneBox.h" />
     <ClInclude Include="CStoneState.h" />
+    <ClInclude Include="CTarget.h" />
     <ClInclude Include="CTemWall.h" />
     <ClInclude Include="CTexture.h" />
     <ClInclude Include="CThunder.h" />
@@ -300,6 +305,7 @@
     <ClCompile Include="CAttackObject.cpp" />
     <ClCompile Include="CAttackState.cpp" />
     <ClCompile Include="CBlueDragon.cpp" />
+    <ClCompile Include="CBoom.cpp" />
     <ClCompile Include="CBrDragon.cpp" />
     <ClCompile Include="CBullet.cpp" />
     <ClCompile Include="CCameraMgr.cpp" />
@@ -328,6 +334,7 @@
     <ClCompile Include="CEvilScene_3.cpp" />
     <ClCompile Include="CEvilScene_5.cpp" />
     <ClCompile Include="CExclusiveTrace.cpp" />
+    <ClCompile Include="CFire.cpp" />
     <ClCompile Include="CFireBall.cpp" />
     <ClCompile Include="CFSM.cpp" />
     <ClCompile Include="CGate.cpp" />
@@ -383,6 +390,8 @@
     <ClCompile Include="CPortal.cpp" />
     <ClCompile Include="CPunisher.cpp" />
     <ClCompile Include="CRandomFire.cpp" />
+    <ClCompile Include="CRobotRx78.cpp" />
+    <ClCompile Include="CRx78.cpp" />
     <ClCompile Include="CShotEye.cpp" />
     <ClCompile Include="CRes.cpp" />
     <ClCompile Include="CResMgr.cpp" />
@@ -405,6 +414,7 @@
     <ClCompile Include="CState.cpp" />
     <ClCompile Include="CStoneBox.cpp" />
     <ClCompile Include="CStoneState.cpp" />
+    <ClCompile Include="CTarget.cpp" />
     <ClCompile Include="CTemWall.cpp" />
     <ClCompile Include="CTexture.cpp" />
     <ClCompile Include="CThunder.cpp" />

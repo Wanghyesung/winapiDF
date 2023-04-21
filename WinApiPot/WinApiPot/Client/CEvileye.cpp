@@ -13,6 +13,8 @@
 
 #include "CCollider.h"
 #include "CBullet.h"
+#include "CBoom.h"
+
 #include "CSkillState.h"
 #include "CHitState.h"
 #include "CDeadState.h"
@@ -258,6 +260,11 @@ void CEvileye::OnColliderEnter(CCollider* _pOther)
 		{
 			CBullet* pBullet = dynamic_cast<CBullet*>(pobj);
 			hit(pBullet->GetCollider(), pBullet->GetAttInfo());
+		}
+		else if (dynamic_cast<CBoom*>(pobj))
+		{
+			CBoom* pBoom = dynamic_cast<CBoom*>(pobj);
+			hit(pBoom->GetCollider(), pBoom->GetAttInfo());
 		}
 	}
 

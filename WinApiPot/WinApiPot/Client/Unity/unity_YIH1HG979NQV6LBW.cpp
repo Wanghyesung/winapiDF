@@ -188,6 +188,9 @@
 #include "C:\Users\wangh\source\tem\WinApiPot\WinApiPot\Client\CMachKick.cpp"
 
 
+#include "C:\Users\wangh\source\tem\WinApiPot\WinApiPot\Client\CMechDrop.cpp"
+
+
 #include "C:\Users\wangh\source\tem\WinApiPot\WinApiPot\Client\CMonFactory.cpp"
 
 

@@ -431,6 +431,12 @@
     <Filter Include="Engine\07.Component\CSkill\SkillState\Fire\CTarget">
       <UniqueIdentifier>{3f80681a-d0c4-4710-8454-fbd139370f97}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Engine\07.Component\CSkill\SkillState\MechDrop">
+      <UniqueIdentifier>{3f6be9e8-604b-4ff2-81ad-b61887c153af}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\07.Component\CSkill\SkillState\MechDrop\DropRobot">
+      <UniqueIdentifier>{b8ec0168-0e9e-4f80-9550-03824ac61622}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="pch.h" />
@@ -872,6 +878,9 @@
     <ClInclude Include="CTarget.h">
       <Filter>Engine\07.Component\CSkill\SkillState\Fire\CTarget</Filter>
     </ClInclude>
+    <ClInclude Include="CMechDrop.h">
+      <Filter>Engine\07.Component\CSkill\SkillState\MechDrop</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Client.rc">
@@ -1304,6 +1313,9 @@
     </ClCompile>
     <ClCompile Include="CTarget.cpp">
       <Filter>Engine\07.Component\CSkill\SkillState\Fire\CTarget</Filter>
+    </ClCompile>
+    <ClCompile Include="CMechDrop.cpp">
+      <Filter>Engine\07.Component\CSkill\SkillState\MechDrop</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

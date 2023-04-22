@@ -19,6 +19,7 @@
 #include "CLaser.h"
 #include "CRx78.h"
 #include "CFire.h"
+#include "CMechDrop.h"
 
 #include "CFSM.h"
 #include "CPlayerState.h"
@@ -94,6 +95,10 @@ void CSkillMgr::initSkill(SCENE_TYPE _eSceneType)
 	m_pPlayer->m_pSkill->AddSkill(pFire);
 	SceneMgr::GetInst()->FindScene(_eSceneType)->AddObject(pFire, GROUP_TYPE::SKILL);
 
+	CMechDrop* pMechDrop = new CMechDrop;
+	m_pPlayer->m_pSkill->AddSkill(pMechDrop);
+	SceneMgr::GetInst()->FindScene(_eSceneType)->AddObject(pMechDrop, GROUP_TYPE::SKILL);
+
 }
 
 
@@ -160,6 +165,8 @@ void CSkillMgr::skillKey_update()
 	{
 		if (m_iSkillType == 1)
 			m_eCurStkllState = SKILL_STATE::MACH_KICK;
+		else
+			m_eCurStkllState = SKILL_STATE::DROP;
 	}
 
 	else if (KEY_TAP(KEY::Z))

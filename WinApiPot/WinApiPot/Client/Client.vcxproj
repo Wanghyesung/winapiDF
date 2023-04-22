@@ -211,6 +211,7 @@
     <ClInclude Include="Client.h" />
     <ClInclude Include="CLord.h" />
     <ClInclude Include="CMachKick.h" />
+    <ClInclude Include="CMechDrop.h" />
     <ClInclude Include="CMonFactory.h" />
     <ClInclude Include="CMonHP.h" />
     <ClInclude Include="CMonInterface.h" />
@@ -359,6 +360,7 @@
     <ClCompile Include="CLaser.cpp" />
     <ClCompile Include="CLord.cpp" />
     <ClCompile Include="CMachKick.cpp" />
+    <ClCompile Include="CMechDrop.cpp" />
     <ClCompile Include="CMonFactory.cpp" />
     <ClCompile Include="CMonHP.cpp" />
     <ClCompile Include="CMonInterface.cpp" />

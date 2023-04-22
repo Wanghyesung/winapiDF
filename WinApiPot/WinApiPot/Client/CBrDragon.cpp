@@ -17,6 +17,8 @@
 #include "CAttackObject.h"
 #include "CBullet.h"
 #include "CBoom.h"
+#include "CDropRobot.h"
+
 #include "CSkillState.h"
 #include "CHitState.h"
 #include "CHitUpper.h"
@@ -236,6 +238,15 @@ void CBrDragon::OnCollision(CCollider* _pOther)
 				return;
 
 			hit(pSkill->GetCollider(), pSkill->GetAttInfo());
+		}
+
+		else if (dynamic_cast<CDropRobot*>(pobj))
+		{
+			CDropRobot* pRobot = dynamic_cast<CDropRobot*>(pobj);
+			if (!pRobot->IsAttackOn())
+				return;
+
+			hit(pRobot->GetCollider(), pRobot->GetAttInfo());
 		}
 
 		if (tMonInfo.m_iHp == 0)

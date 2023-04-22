@@ -71,6 +71,9 @@
 #include "C:\Users\wangh\source\tem\WinApiPot\WinApiPot\Client\CDragonObj.cpp"
 
 
+#include "C:\Users\wangh\source\tem\WinApiPot\WinApiPot\Client\CDropRobot.cpp"
+
+
 #include "C:\Users\wangh\source\tem\WinApiPot\WinApiPot\Client\CDungeonUI.cpp"
 
 

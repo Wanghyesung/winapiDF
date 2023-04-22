@@ -881,6 +881,9 @@
     <ClInclude Include="CMechDrop.h">
       <Filter>Engine\07.Component\CSkill\SkillState\MechDrop</Filter>
     </ClInclude>
+    <ClInclude Include="CDropRobot.h">
+      <Filter>Engine\07.Component\CSkill\SkillState\MechDrop\DropRobot</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Client.rc">
@@ -1316,6 +1319,9 @@
     </ClCompile>
     <ClCompile Include="CMechDrop.cpp">
       <Filter>Engine\07.Component\CSkill\SkillState\MechDrop</Filter>
+    </ClCompile>
+    <ClCompile Include="CDropRobot.cpp">
+      <Filter>Engine\07.Component\CSkill\SkillState\MechDrop\DropRobot</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

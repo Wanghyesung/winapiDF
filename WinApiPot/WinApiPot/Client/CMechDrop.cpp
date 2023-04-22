@@ -13,14 +13,16 @@
 
 #include "CCollider.h"
 
+#include "CDropRobot.h"
+
 
 CMechDrop::CMechDrop():
 	CSkillState(SKILL_STATE::DROP),
 	m_bStart(false),
 	m_iMoveDir(0),
 	m_iCreateCount(0),
-	m_fMoveValue(250.f),
-	m_fCreateTime(1.f),
+	m_fMoveValue(350.f),
+	m_fCreateTime(0.3f),
 	m_fCurTime(0.f)
 {
 	CreateCollider();
@@ -31,8 +33,6 @@ CMechDrop::CMechDrop():
 	SetMP(5.f);
 
 	SetTag(GROUP_TYPE::SKILL);
-
-	pMechTex = CResMgr::GetInst()->LoadTextur(L"Mech", L"..\\OutPut\\bin_release\\Content\\emfact\\mechdrop.bmp");
 }
 
 CMechDrop::~CMechDrop()
@@ -47,15 +47,15 @@ void CMechDrop::render(HDC _dc)
 		vPos = CCameraMgr::GetInst()->GetRenderPos(vPos);
 
 		TransparentBlt(_dc,
-			(int)(vPos.x - pMechTex->Width() / 2.f),
-			(int)(vPos.y - pMechTex->Height() / 2.f),
-			(int)(pMechTex->Width()),
-			(int)(pMechTex->Height()),
-			pMechTex->GetDC(),
+			(int)(vPos.x - m_pMechTex->Width() / 2.f),
+			(int)(vPos.y),
+			(int)(m_pMechTex->Width()),
+			(int)(m_pMechTex->Height()),
+			m_pMechTex->GetDC(),
 			(int)0,
 			(int)0,
-			(int)(pMechTex->Width()),
-			(int)(pMechTex->Height()),
+			(int)(m_pMechTex->Width()),
+			(int)(m_pMechTex->Height()),
 			RGB(255, 255, 255));
 	}
 }
@@ -88,16 +88,16 @@ void CMechDrop::Skillupdate()
 		SetPos(vPos);
 
 		//여기서 발
+		Vec2 vCreatePos = vPos;
 
 		if (m_fCurTime >= m_fCreateTime)
 		{
 			m_fCurTime = 0.f;
-			float m_fDiffPos = 50.f;
-			Vec2 vCreatePos = vPos;
+			Vec2 m_fDiffPos = Vec2(m_iMoveDir * 50.f,100.f);
 			for (int i = 0; i < 2; ++i)
 			{
 				create_dropmech(vCreatePos);
-				vCreatePos.y += m_fDiffPos;
+				vCreatePos -= m_fDiffPos;
 				++m_iCreateCount;
 			}
 		}
@@ -107,7 +107,8 @@ void CMechDrop::Skillupdate()
 
 void CMechDrop::init()
 {
-
+	CResMgr::GetInst()->LoadTextur(L"Mech_right", L"..\\OutPut\\bin_release\\Content\\emfact\\mechdrop_right.bmp");
+	CResMgr::GetInst()->LoadTextur(L"Mech_left", L"..\\OutPut\\bin_release\\Content\\emfact\\mechdrop_left.bmp");
 }
 
 void CMechDrop::exit()
@@ -120,6 +121,7 @@ void CMechDrop::exit()
 
 void CMechDrop::enter()
 {
+
 	CPlayer* pPlayer = GetSkill()->GetPlayer();
 	Vec2 vPlayerPos = pPlayer->GetCollider()->GetFinalPos();
 
@@ -133,7 +135,7 @@ void CMechDrop::enter()
 	wstring strSkillName = GetSkillName();
 	m_strSkillName = strSkillName + strDir;
 
-
+	m_pMechTex = CResMgr::GetInst()->FindTexture(L"Mech_" + strDir);
 }
 
 void CMechDrop::OnColliderEnter(CCollider* _pOther)
@@ -148,7 +150,16 @@ void CMechDrop::OnCollision(CCollider* _pOther)
 {
 }
 
+//생성될 위치
 void CMechDrop::create_dropmech(Vec2 _vCreatePos)
 {
+	Vec2 vAddPos = _vCreatePos - GetPos();
+	//맵 가장 위에서 생성
+	CDropRobot* pDropRobot = new CDropRobot;
+	pDropRobot->SetPos(Vec2(_vCreatePos.x, 0.f) + vAddPos);
 
+	//170도 정도에 떨어지게
+	pDropRobot->init_dir(m_iMoveDir, _vCreatePos);
+
+	CreateObject(pDropRobot, GROUP_TYPE::DROUP);
 }

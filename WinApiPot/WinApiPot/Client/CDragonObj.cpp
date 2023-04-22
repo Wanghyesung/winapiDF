@@ -209,6 +209,7 @@ void CDragonObj::OnCollision(CCollider* _pOther)
 			m_bActive = false;
 	}
 
+	//이동 못하게
 	if (pObj->GetTag() == GROUP_TYPE::PLAYER)
 	{
 		CPlayer* pPlayer = dynamic_cast<CPlayer*>(pObj);

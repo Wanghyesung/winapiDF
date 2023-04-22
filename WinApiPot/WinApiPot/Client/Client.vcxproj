@@ -171,6 +171,7 @@
     <ClInclude Include="CDefenseState.h" />
     <ClInclude Include="CDragon.h" />
     <ClInclude Include="CDragonObj.h" />
+    <ClInclude Include="CDropRobot.h" />
     <ClInclude Include="CDungeonUI.h" />
     <ClInclude Include="CEventMgr.h" />
     <ClInclude Include="CEvilBossScene.h" />
@@ -321,6 +322,7 @@
     <ClCompile Include="CDefenseState.cpp" />
     <ClCompile Include="CDragon.cpp" />
     <ClCompile Include="CDragonObj.cpp" />
+    <ClCompile Include="CDropRobot.cpp" />
     <ClCompile Include="CDungeonUI.cpp" />
     <ClCompile Include="CEventMgr.cpp" />
     <ClCompile Include="CEvilBossScene.cpp" />

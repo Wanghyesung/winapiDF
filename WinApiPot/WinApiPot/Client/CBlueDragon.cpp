@@ -18,6 +18,8 @@
 #include "CBullet.h"
 #include "CSkillState.h"
 #include "CBoom.h"
+#include "CDropRobot.h"
+
 #include "CHitState.h"
 #include "CHitUpper.h"
 #include "CDeadState.h"
@@ -277,7 +279,14 @@ void CBlueDragon::OnCollision(CCollider* _pOther)
 
 			hit(pSkill->GetCollider(), pSkill->GetAttInfo());
 		}
+		else if (dynamic_cast<CDropRobot*>(pobj))
+		{
+			CDropRobot* pRobot = dynamic_cast<CDropRobot*>(pobj);
+			if (!pRobot->IsAttackOn())
+				return;
 
+			hit(pRobot->GetCollider(), pRobot->GetAttInfo());
+		}
 		if (tMonInfo.m_iHp == 0)
 		{
 			ChangeAIState(GetAI(), MONSTER_STATE::DEAD);

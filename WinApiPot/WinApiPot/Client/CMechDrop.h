@@ -8,7 +8,7 @@ public:
     virtual ~CMechDrop();
 
 private:
-    CTexture* pMechTex;
+    CTexture* m_pMechTex;
 
     wstring m_strSkillName;
 

@@ -14,6 +14,8 @@
 #include "CSkillState.h"
 #include "CBullet.h"
 #include "CBoom.h"
+#include "CDropRobot.h"
+
 #include "CCollider.h"
 
 #include "CKnightAttack.h"
@@ -111,6 +113,11 @@ void CKnight::update()
 {
 	if (IsDead())
 	{
+		CAttackObject* pMonSkill = GetSKillObj();
+		if (pMonSkill->GetCollider()->IsActive())
+		{
+			pMonSkill->SetColActive(false);
+		}
 		DeleteObject(this);
 		return;
 	}
@@ -301,6 +308,14 @@ void CKnight::OnCollision(CCollider* _pOther)
 				return;
 
 			hit(pSkill->GetCollider(), pSkill->GetAttInfo());
+		}
+		else if (dynamic_cast<CDropRobot*>(pobj))
+		{
+			CDropRobot* pRobot = dynamic_cast<CDropRobot*>(pobj);
+			if (!pRobot->IsAttackOn())
+				return;
+
+			hit(pRobot->GetCollider(), pRobot->GetAttInfo());
 		}
 
 		if (tMonInfo.m_iHp <= 0)

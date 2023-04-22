@@ -56,13 +56,13 @@ void CFire::Skillupdate()
 	if (KEY_HOLD(KEY::F))
 	{
 		if (KEY_HOLD(KEY::RIGHT))
-			m_pTarget->move(Vec2(300.f, 0.f));
+			m_pTarget->move(Vec2(500.f, 0.f));
 		if (KEY_HOLD(KEY::LEFT))
-			m_pTarget->move(Vec2(-300.f, 0.f));
+			m_pTarget->move(Vec2(-500.f, 0.f));
 		if (KEY_HOLD(KEY::UP))
-			m_pTarget->move(Vec2(0.f, -220.f));
+			m_pTarget->move(Vec2(0.f, -380.f));
 		if (KEY_HOLD(KEY::DOWN))
-			m_pTarget->move(Vec2(0.f, 200.f));
+			m_pTarget->move(Vec2(0.f, 380.f));
 	}
 
 	else if (KEY_AWAY(KEY::F))
@@ -126,7 +126,16 @@ void CFire::jump_robot()
 		if (dynamic_cast<CRobotRx78*>(vecRobot[i]))
 		{
 			CRobotRx78* pRobot = dynamic_cast<CRobotRx78*>(vecRobot[i]);
+			if (pRobot->m_eState == ROBOTSTATE::ATTACK)
+				continue;
+
 			pRobot->m_vTargetPos = m_pTarget->GetPos() + Vec2(x/2, y/2);
+
+			if ((pRobot->m_vTargetPos - pRobot->GetPos()).x > 0.f)
+				pRobot->m_iDirX = 1;
+			else
+				pRobot->m_iDirX = -1;
+
 			pRobot->m_eState = ROBOTSTATE::JUMP;
 			//pRobot->jump(m_pTarget->GetPos());
 		}
@@ -139,6 +148,7 @@ void CFire::create_target()
 	CPlayer* pPlayer = GetSkill()->GetPlayer();
 
 	Vec2 vPos = pPlayer->GetCollider()->GetFinalPos();
+	vPos.x -= 110.f;
 	m_pTarget->SetPos(vPos);
 
 	CreateObject(m_pTarget, GROUP_TYPE::SKILL);

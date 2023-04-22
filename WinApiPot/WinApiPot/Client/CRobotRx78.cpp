@@ -53,7 +53,7 @@ CRobotRx78::CRobotRx78() :
 	GetAnimator()->CreateAnimation(L"rx78_Run_left", pRxTextLeft, Vec2(500.f, 0.f), Vec2(100.f, 100.f), Vec2(-100.f, 0.f), Vec2(0.f, 0.f), 0.1f, 6);
 
 	GetAnimator()->CreateAnimation(L"rx78_Attack_right", pRxTextRight, Vec2(0.f, 100.f), Vec2(100.f, 100.f), Vec2(100.f, 0.f), Vec2(0.f, 0.f), 0.1f, 4);
-	GetAnimator()->CreateAnimation(L"rx78_Attack_left", pRxTextLeft, Vec2(300.f, 100.f), Vec2(100.f, 100.f), Vec2(-100.f, 0.f), Vec2(0.f, 0.f), 0.1f, 4);
+	GetAnimator()->CreateAnimation(L"rx78_Attack_left", pRxTextLeft, Vec2(500.f, 100.f), Vec2(100.f, 100.f), Vec2(-100.f, 0.f), Vec2(0.f, 0.f), 0.1f, 4);
 
 	GetAnimator()->Play(L"rx78_Run_right", true);
 }
@@ -166,6 +166,7 @@ void CRobotRx78::createBoom()
 
 void CRobotRx78::jump()
 {
+
 	Vec2 vPos = GetCollider()->GetFinalPos();
 	Vec2 vDiff = m_vTargetPos - vPos;
 
@@ -278,7 +279,7 @@ void CRobotRx78::update_state()
 
 void CRobotRx78::OnColliderEnter(CCollider* _pOther)
 {
-	if (m_iAttackCount == 1)
+	if (m_iAttackCount == 1 || m_eState == ROBOTSTATE::JUMP)
 		return;
 
 	if (_pOther->GetObj()->GetTag() == GROUP_TYPE::MONSTER && m_iAttackCount == 0)

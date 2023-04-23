@@ -12,6 +12,8 @@
 #include "CSceneMgr.h"
 #include "CScene.h"
 
+#include "CRobotFire78.h"
+
 CDropRobot::CDropRobot() :
 	m_fDropSpeed(500.f),
 	m_hashColl{},
@@ -102,7 +104,14 @@ void CDropRobot::OnCollision(CCollider* _pOther)
 
 void CDropRobot::create_robot()
 {
-	int a = 10;
+	 
+	CRobotFire78* CRobot = new CRobotFire78;
+
+	Vec2 vPos = m_vCreatePos;
+	CRobot->SetPos(vPos);
+
+	CreateObject(CRobot, GROUP_TYPE::ROBOT);
+	
 }
 
 void CDropRobot::init_dir(int _iDir, Vec2 _vCreatePos)

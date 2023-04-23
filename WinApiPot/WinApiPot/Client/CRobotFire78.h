@@ -1,16 +1,15 @@
 #pragma once
 #include "CObject.h"
-
-class CMonster;
 class CFire;
+class CMonster;
 
-
-class CRobotRx78 :
+class CRobotFire78 :
     public CObject
 {
+
 public:
-    CRobotRx78();
-    virtual ~CRobotRx78();
+    CRobotFire78();
+    virtual ~CRobotFire78();
 
 private:
     ROBOTSTATE m_eState;
@@ -40,7 +39,7 @@ public:
 
 public:
     virtual void OnColliderEnter(CCollider* _pOther);
-    virtual void OnColliderExit(CCollider* _pOther) ;
+    virtual void OnColliderExit(CCollider* _pOther);
     virtual void OnCollision(CCollider* _pOther);
 
 private:
@@ -55,5 +54,6 @@ private:
 
 
     friend class CFire;
+
 };
 

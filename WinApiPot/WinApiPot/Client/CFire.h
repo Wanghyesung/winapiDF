@@ -16,6 +16,8 @@ private:
     CTarget* m_pTarget;
 
     bool m_bFire;
+
+    Vec2 m_vStartPos;
 public:
     virtual void Skillupdate();
     virtual void init();
@@ -29,6 +31,7 @@ public:
 
 private:
     void jump_robot();
+    void fire_robot();
     void create_target();
 };
 

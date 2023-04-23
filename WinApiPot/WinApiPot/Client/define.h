@@ -115,6 +115,14 @@ enum class MONSTER_STATE
 	END
 };
 
+enum class ROBOTSTATE
+{
+	TRACE,
+	ATTACK,
+	JUMP,
+	BOOM
+};
+
 enum class MONSTER_ATTACK_TYPE
 {
 	NORMAL,

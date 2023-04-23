@@ -15,13 +15,15 @@
 #include "CKeyMgr.h"
 
 #include "CRobotRx78.h"
+#include "CRobotFire78.h"
 #include "CScene.h"
 #include "CSceneMgr.h"
 
 CFire::CFire():
 	CSkillState(SKILL_STATE::FIRE),
 	m_pTarget(nullptr),
-	m_bFire(false)
+	m_bFire(false),
+	m_vStartPos(Vec2(0.f,0.f))
 {
 
 	SetSKillName(L"Player_skill_Fire_");
@@ -41,7 +43,6 @@ void CFire::Skillupdate()
 {
 	if (m_pTarget == nullptr)
 		return;
-	
 	CPlayer* pPLayer = GetSkill()->GetPlayer();
 	int iFrame = pPLayer->GetAnimator()->GetCurAnimation()->GetCurFrame();
 	if (!m_bFire && iFrame == 3)
@@ -68,7 +69,11 @@ void CFire::Skillupdate()
 	else if (KEY_AWAY(KEY::F))
 	{
 		m_bFire = true;
-		jump_robot();
+		if (m_vStartPos == m_pTarget->GetPos())
+			fire_robot();
+		else
+			jump_robot();
+
 		DeleteObject(m_pTarget);
 	}
 }
@@ -80,6 +85,7 @@ void CFire::init()
 
 void CFire::exit()
 {
+	m_vStartPos = Vec2(0.f, 0.f);
 	m_bFire = false;
 	GetSkill()->GetPlayer()->GetAnimator()->FindAnimation(m_strSkillName)->SetFram(0);
 	CSkillState::exit();
@@ -97,6 +103,7 @@ void CFire::OnColliderExit(CCollider* _pOther)
 
 void CFire::enter()
 {
+
 	CPlayer* pPLayer = GetSkill()->GetPlayer();
 	int iDir = pPLayer->GetPlayerDirX();
 
@@ -106,6 +113,8 @@ void CFire::enter()
 	m_strSkillName = strSkillName + strDir;
 
 	create_target();
+
+	m_vStartPos = m_pTarget->GetPos();
 }
 
 void CFire::OnCollision(CCollider* _pOther)
@@ -123,13 +132,14 @@ void CFire::jump_robot()
 
 	for (int i = 0; i < vecRobot.size(); ++i)
 	{
+		
 		if (dynamic_cast<CRobotRx78*>(vecRobot[i]))
 		{
-			CRobotRx78* pRobot = dynamic_cast<CRobotRx78*>(vecRobot[i]);
+			CRobotRx78*  pRobot = dynamic_cast<CRobotRx78*>(vecRobot[i]);
 			if (pRobot->m_eState == ROBOTSTATE::ATTACK)
 				continue;
 
-			pRobot->m_vTargetPos = m_pTarget->GetPos() + Vec2(x/2, y/2);
+			pRobot->m_vTargetPos = m_pTarget->GetPos() + Vec2(x / 2, y / 2);
 
 			if ((pRobot->m_vTargetPos - pRobot->GetPos()).x > 0.f)
 				pRobot->m_iDirX = 1;
@@ -137,9 +147,52 @@ void CFire::jump_robot()
 				pRobot->m_iDirX = -1;
 
 			pRobot->m_eState = ROBOTSTATE::JUMP;
-			//pRobot->jump(m_pTarget->GetPos());
+		}
+			
+		else if (dynamic_cast<CRobotFire78*>(vecRobot[i]))
+		{
+			CRobotFire78* pRobot = dynamic_cast<CRobotFire78*>(vecRobot[i]);
+			if (pRobot->m_eState == ROBOTSTATE::ATTACK)
+				continue;
+
+			pRobot->m_vTargetPos = m_pTarget->GetPos() + Vec2(x / 2, y / 2);
+
+			if ((pRobot->m_vTargetPos - pRobot->GetPos()).x > 0.f)
+				pRobot->m_iDirX = 1;
+			else
+				pRobot->m_iDirX = -1;
+
+			pRobot->m_eState = ROBOTSTATE::JUMP;
 		}
 	}
+}
+
+void CFire::fire_robot()
+{
+	const vector<CObject*>& vecRobot = SceneMgr::GetInst()->GetCurSCene()->GetGroupObject(GROUP_TYPE::ROBOT);
+
+	for (int i = 0; i < vecRobot.size(); ++i)
+	{
+
+		if (dynamic_cast<CRobotRx78*>(vecRobot[i]))
+		{
+			CRobotRx78* pRobot = dynamic_cast<CRobotRx78*>(vecRobot[i]);
+			if (pRobot->m_eState == ROBOTSTATE::ATTACK)
+				continue;
+
+			pRobot->m_eState = ROBOTSTATE::BOOM;
+		}
+
+		else if (dynamic_cast<CRobotFire78*>(vecRobot[i]))
+		{
+			CRobotFire78* pRobot = dynamic_cast<CRobotFire78*>(vecRobot[i]);
+			if (pRobot->m_eState == ROBOTSTATE::ATTACK)
+				continue;
+
+			pRobot->m_eState = ROBOTSTATE::BOOM;
+		}
+	}
+
 }
 
 void CFire::create_target()

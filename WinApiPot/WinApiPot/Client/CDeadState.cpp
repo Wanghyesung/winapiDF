@@ -8,6 +8,8 @@
 
 #include "CSound.h"
 
+
+
 CDeadState::CDeadState():
 	CState(MONSTER_STATE::DEAD),
 	m_iCurFrame(0)

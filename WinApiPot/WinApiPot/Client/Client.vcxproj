@@ -244,6 +244,7 @@
     <ClInclude Include="CPortal.h" />
     <ClInclude Include="CPunisher.h" />
     <ClInclude Include="CRandomFire.h" />
+    <ClInclude Include="CRobotFire78.h" />
     <ClInclude Include="CRobotRx78.h" />
     <ClInclude Include="CRx78.h" />
     <ClInclude Include="CShotEye.h" />
@@ -394,6 +395,7 @@
     <ClCompile Include="CPortal.cpp" />
     <ClCompile Include="CPunisher.cpp" />
     <ClCompile Include="CRandomFire.cpp" />
+    <ClCompile Include="CRobotFire78.cpp" />
     <ClCompile Include="CRobotRx78.cpp" />
     <ClCompile Include="CRx78.cpp" />
     <ClCompile Include="CShotEye.cpp" />

@@ -1,6 +1,8 @@
 #pragma once
 #include "CObject.h"
+
 class CMechDrop;
+class CRobotFire78;
 
 class CDropRobot :
     public CObject
@@ -43,5 +45,6 @@ private:
 	bool isSameYPos(CCollider* _pOtherCol);
 
 	friend class CMechDrop;
+	friend class CRobotFire78;
 };
 

@@ -437,6 +437,9 @@
     <Filter Include="Engine\07.Component\CSkill\SkillState\MechDrop\DropRobot">
       <UniqueIdentifier>{b8ec0168-0e9e-4f80-9550-03824ac61622}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Engine\05.CObject\CRobot\CRobotFire78">
+      <UniqueIdentifier>{a5669322-f2fc-45db-b619-419f681ce295}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="pch.h" />
@@ -884,6 +887,9 @@
     <ClInclude Include="CDropRobot.h">
       <Filter>Engine\07.Component\CSkill\SkillState\MechDrop\DropRobot</Filter>
     </ClInclude>
+    <ClInclude Include="CRobotFire78.h">
+      <Filter>Engine\05.CObject\CRobot\CRobotFire78</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Client.rc">
@@ -1322,6 +1328,9 @@
     </ClCompile>
     <ClCompile Include="CDropRobot.cpp">
       <Filter>Engine\07.Component\CSkill\SkillState\MechDrop\DropRobot</Filter>
+    </ClCompile>
+    <ClCompile Include="CRobotFire78.cpp">
+      <Filter>Engine\05.CObject\CRobot\CRobotFire78</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

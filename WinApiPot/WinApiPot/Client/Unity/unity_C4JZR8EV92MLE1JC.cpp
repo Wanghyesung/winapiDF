@@ -287,6 +287,9 @@
 #include "C:\Users\wangh\source\tem\WinApiPot\WinApiPot\Client\CRandomFire.cpp"
 
 
+#include "C:\Users\wangh\source\tem\WinApiPot\WinApiPot\Client\CRobotFire78.cpp"
+
+
 #include "C:\Users\wangh\source\tem\WinApiPot\WinApiPot\Client\CRobotRx78.cpp"
 
 

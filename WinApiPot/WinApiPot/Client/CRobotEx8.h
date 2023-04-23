@@ -1,20 +1,16 @@
 #pragma once
 #include "CObject.h"
-
 class CMonster;
-class CFire;
 
-
-class CRobotRx78 :
+class CRobotEx8 :
     public CObject
 {
 public:
-    CRobotRx78();
-    virtual ~CRobotRx78();
+    CRobotEx8();
+    virtual ~CRobotEx8();
 
 private:
     ROBOTSTATE m_eState;
-    CMonster* m_pTarget;
 
     tMonInfo m_tInfo;
 
@@ -40,20 +36,19 @@ public:
 
 public:
     virtual void OnColliderEnter(CCollider* _pOther);
-    virtual void OnColliderExit(CCollider* _pOther) ;
+    virtual void OnColliderExit(CCollider* _pOther);
     virtual void OnCollision(CCollider* _pOther);
 
 private:
     void attack();
+    void wait();
     void createBoom();
-    void trace();
     void jump();
-
-    bool setTarget();
 
     void update_state();
 
 
     friend class CFire;
+
 };
 

@@ -14,9 +14,6 @@ private:
 
     tMonInfo m_tInfo;
 
-    UINT m_iAttackCount;
-
-    float m_fDeleteCurTime;
     float m_fDeleteTime;
 
     int m_iDirX;
@@ -41,9 +38,15 @@ public:
 
 private:
     void attack();
-    void wait();
+    void wait();//시간 재기
     void createBoom();
     void jump();
+
+
+    void render_time(HDC _dc);
+
+    void render_second(HDC _dc);
+    void render_millisecond(HDC _dc);
 
     void update_state();
 

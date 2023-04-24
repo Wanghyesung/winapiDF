@@ -113,6 +113,9 @@
 #include "C:\Users\wangh\source\tem\WinApiPot\WinApiPot\Client\CEvilScene_5.cpp"
 
 
+#include "C:\Users\wangh\source\tem\WinApiPot\WinApiPot\Client\CEx8.cpp"
+
+
 #include "C:\Users\wangh\source\tem\WinApiPot\WinApiPot\Client\CExclusiveTrace.cpp"
 
 
@@ -285,6 +288,9 @@
 
 
 #include "C:\Users\wangh\source\tem\WinApiPot\WinApiPot\Client\CRandomFire.cpp"
+
+
+#include "C:\Users\wangh\source\tem\WinApiPot\WinApiPot\Client\CRobotEx8.cpp"
 
 
 #include "C:\Users\wangh\source\tem\WinApiPot\WinApiPot\Client\CRobotFire78.cpp"

@@ -16,6 +16,7 @@
 
 #include "CRobotRx78.h"
 #include "CRobotFire78.h"
+#include "CRobotEx8.h"
 #include "CScene.h"
 #include "CSceneMgr.h"
 
@@ -132,7 +133,6 @@ void CFire::jump_robot()
 
 	for (int i = 0; i < vecRobot.size(); ++i)
 	{
-		
 		if (dynamic_cast<CRobotRx78*>(vecRobot[i]))
 		{
 			CRobotRx78*  pRobot = dynamic_cast<CRobotRx78*>(vecRobot[i]);
@@ -164,6 +164,18 @@ void CFire::jump_robot()
 
 			pRobot->m_eState = ROBOTSTATE::JUMP;
 		}
+
+		if (dynamic_cast<CRobotEx8*>(vecRobot[i]))
+		{
+			CRobotEx8* pRobot = dynamic_cast<CRobotEx8*>(vecRobot[i]);
+			pRobot->m_vTargetPos = m_pTarget->GetPos() + Vec2(x / 2, y / 2);
+
+			if ((pRobot->m_vTargetPos - pRobot->GetPos()).x > 0.f)
+				pRobot->m_iDirX = 1;
+			else
+				pRobot->m_iDirX = -1;
+			pRobot->m_eState = ROBOTSTATE::JUMP;
+		}
 	}
 }
 
@@ -189,6 +201,13 @@ void CFire::fire_robot()
 			if (pRobot->m_eState == ROBOTSTATE::ATTACK)
 				continue;
 
+			pRobot->m_eState = ROBOTSTATE::BOOM;
+		}
+
+		if (dynamic_cast<CRobotEx8*>(vecRobot[i]))
+		{
+			CRobotEx8* pRobot = dynamic_cast<CRobotEx8*>(vecRobot[i]);
+			
 			pRobot->m_eState = ROBOTSTATE::BOOM;
 		}
 	}

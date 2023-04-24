@@ -54,6 +54,5 @@ private:
 
 
     friend class CFire;
-
 };
 

@@ -440,6 +440,12 @@
     <Filter Include="Engine\05.CObject\CRobot\CRobotFire78">
       <UniqueIdentifier>{a5669322-f2fc-45db-b619-419f681ce295}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Engine\05.CObject\CRobot\CRobotEx8">
+      <UniqueIdentifier>{459200ad-5609-4fa4-9064-2a616dd59d17}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\07.Component\CSkill\SkillState\CEx8">
+      <UniqueIdentifier>{83397406-8d9a-4c2e-bc6b-471de977e1e5}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="pch.h" />
@@ -890,6 +896,12 @@
     <ClInclude Include="CRobotFire78.h">
       <Filter>Engine\05.CObject\CRobot\CRobotFire78</Filter>
     </ClInclude>
+    <ClInclude Include="CRobotEx8.h">
+      <Filter>Engine\05.CObject\CRobot\CRobotEx8</Filter>
+    </ClInclude>
+    <ClInclude Include="CEx8.h">
+      <Filter>Engine\07.Component\CSkill\SkillState\CEx8</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Client.rc">
@@ -1331,6 +1343,12 @@
     </ClCompile>
     <ClCompile Include="CRobotFire78.cpp">
       <Filter>Engine\05.CObject\CRobot\CRobotFire78</Filter>
+    </ClCompile>
+    <ClCompile Include="CRobotEx8.cpp">
+      <Filter>Engine\05.CObject\CRobot\CRobotEx8</Filter>
+    </ClCompile>
+    <ClCompile Include="CEx8.cpp">
+      <Filter>Engine\07.Component\CSkill\SkillState\CEx8</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

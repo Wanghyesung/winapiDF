@@ -117,6 +117,7 @@ enum class MONSTER_STATE
 
 enum class ROBOTSTATE
 {
+	WAIT,
 	TRACE,
 	ATTACK,
 	JUMP,
@@ -154,8 +155,8 @@ enum class SKILL_STATE
 	WALK_FIRE,
 	LASER,
 	RX,
-	EX,
 	DROP,
+	EX8,
 	FIRE,
 	END = 10,
 };

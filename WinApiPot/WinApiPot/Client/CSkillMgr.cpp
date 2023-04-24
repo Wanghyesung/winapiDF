@@ -20,6 +20,7 @@
 #include "CRx78.h"
 #include "CFire.h"
 #include "CMechDrop.h"
+#include "CEx8.h"
 
 #include "CFSM.h"
 #include "CPlayerState.h"
@@ -99,6 +100,9 @@ void CSkillMgr::initSkill(SCENE_TYPE _eSceneType)
 	m_pPlayer->m_pSkill->AddSkill(pMechDrop);
 	SceneMgr::GetInst()->FindScene(_eSceneType)->AddObject(pMechDrop, GROUP_TYPE::SKILL);
 
+	CEx8* pEx8 = new CEx8;
+	m_pPlayer->m_pSkill->AddSkill(pEx8);
+	SceneMgr::GetInst()->FindScene(_eSceneType)->AddObject(pEx8, GROUP_TYPE::SKILL);
 }
 
 
@@ -159,6 +163,8 @@ void CSkillMgr::skillKey_update()
 	{
 		if (m_iSkillType == 1)
 			m_eCurStkllState = SKILL_STATE::WINDMILL;
+		else
+			m_eCurStkllState = SKILL_STATE::EX8;
 	}
 
 	else if (KEY_TAP(KEY::S))

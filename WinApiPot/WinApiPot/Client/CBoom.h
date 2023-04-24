@@ -14,6 +14,8 @@ private:
 
 	bool m_bAttackOn;
 
+
+
 public:
 	virtual void render(HDC _dc);
 	virtual void update();//»ó¼Ó

@@ -469,6 +469,14 @@ void CPlayer::updateSkillState()
 		pAninmaotr->Play(strMotion, true);
 	}
 	break;
+	case SKILL_STATE::EXS:
+	{
+		strMotion += strDir;
+		int iCurFram = pAninmaotr->FindAnimation(strMotion)->GetCurFrame();
+		GetSkill()->GetCurSkill()->SetCurFram(iCurFram);
+		pAninmaotr->Play(strMotion, true);
+	}
+	break;
 
 	case SKILL_STATE::END:
 	{

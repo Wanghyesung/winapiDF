@@ -64,6 +64,7 @@ void CEx8::init()
 
 void CEx8::exit()
 {
+	m_fCurTime = 0.f;
 	GetSkill()->GetPlayer()->GetAnimator()->FindAnimation(m_strSkillName)->SetFram(0);
 	CSkillState::exit();
 }

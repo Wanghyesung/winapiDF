@@ -21,6 +21,7 @@
 #include "CFire.h"
 #include "CMechDrop.h"
 #include "CEx8.h"
+#include "CExs.h"
 
 #include "CFSM.h"
 #include "CPlayerState.h"
@@ -103,6 +104,10 @@ void CSkillMgr::initSkill(SCENE_TYPE _eSceneType)
 	CEx8* pEx8 = new CEx8;
 	m_pPlayer->m_pSkill->AddSkill(pEx8);
 	SceneMgr::GetInst()->FindScene(_eSceneType)->AddObject(pEx8, GROUP_TYPE::SKILL);
+
+	CExs* pExs = new CExs;
+	m_pPlayer->m_pSkill->AddSkill(pExs);
+	SceneMgr::GetInst()->FindScene(_eSceneType)->AddObject(pExs, GROUP_TYPE::SKILL);
 }
 
 
@@ -187,11 +192,15 @@ void CSkillMgr::skillKey_update()
 	{
 		if (m_iSkillType == 1)
 			m_eCurStkllState = SKILL_STATE::WALK_FIRE;
+		else
+			m_eCurStkllState = SKILL_STATE::EXS;
 	}
 
 	else if (KEY_TAP(KEY::W))
 	{
 		if (m_iSkillType == 1)
+			m_eCurStkllState = SKILL_STATE::MULTI_HEAD;
+		else
 			m_eCurStkllState = SKILL_STATE::LASER;
 	}
 	

@@ -115,6 +115,7 @@ void CMechDrop::init()
 
 void CMechDrop::exit()
 {
+	m_fCurTime = 0.f;
 	m_iCreateCount = 0;
 	m_bStart = false;
 	CSkillState::exit();

@@ -446,6 +446,15 @@
     <Filter Include="Engine\07.Component\CSkill\SkillState\CEx8">
       <UniqueIdentifier>{83397406-8d9a-4c2e-bc6b-471de977e1e5}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Engine\05.CObject\CRobot\CRobotExs">
+      <UniqueIdentifier>{af984883-141b-4e24-8b7c-3fead9ad3c3b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\05.CObject\CRobot\CRobotExs\CExsFire">
+      <UniqueIdentifier>{d7ef2a5e-21fb-4a7e-8d40-48e8e635adf9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\07.Component\CSkill\SkillState\CExs">
+      <UniqueIdentifier>{90bb587e-8818-403d-b756-4441e8710312}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="pch.h" />
@@ -902,6 +911,15 @@
     <ClInclude Include="CEx8.h">
       <Filter>Engine\07.Component\CSkill\SkillState\CEx8</Filter>
     </ClInclude>
+    <ClInclude Include="CRobotExs.h">
+      <Filter>Engine\05.CObject\CRobot\CRobotExs</Filter>
+    </ClInclude>
+    <ClInclude Include="CExsFire.h">
+      <Filter>Engine\05.CObject\CRobot\CRobotExs\CExsFire</Filter>
+    </ClInclude>
+    <ClInclude Include="CExs.h">
+      <Filter>Engine\07.Component\CSkill\SkillState\CExs</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Client.rc">
@@ -1349,6 +1367,15 @@
     </ClCompile>
     <ClCompile Include="CEx8.cpp">
       <Filter>Engine\07.Component\CSkill\SkillState\CEx8</Filter>
+    </ClCompile>
+    <ClCompile Include="CRobotExs.cpp">
+      <Filter>Engine\05.CObject\CRobot\CRobotExs</Filter>
+    </ClCompile>
+    <ClCompile Include="CExsFire.cpp">
+      <Filter>Engine\05.CObject\CRobot\CRobotExs\CExsFire</Filter>
+    </ClCompile>
+    <ClCompile Include="CExs.cpp">
+      <Filter>Engine\07.Component\CSkill\SkillState\CExs</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

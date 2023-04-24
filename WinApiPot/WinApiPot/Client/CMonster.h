@@ -100,6 +100,8 @@ public:
 private:
     void set_attackobj(SCENE_TYPE _eSceneType);
 
+    bool IsSameJumLoc(CCollider* _pOther, CCollider* _pThis);
+
 public:
     void SettMonInfo(const tMonInfo& _tMonInfo) { m_tMonInfo = _tMonInfo; }
     tMonInfo& GetMonInfo() { return m_tMonInfo; }

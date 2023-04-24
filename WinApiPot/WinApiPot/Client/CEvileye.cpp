@@ -15,6 +15,7 @@
 #include "CBullet.h"
 #include "CBoom.h"
 #include "CDropRobot.h"
+#include "CExsFire.h"
 
 #include "CSkillState.h"
 #include "CHitState.h"
@@ -266,6 +267,11 @@ void CEvileye::OnColliderEnter(CCollider* _pOther)
 		{
 			CBoom* pBoom = dynamic_cast<CBoom*>(pobj);
 			hit(pBoom->GetCollider(), pBoom->GetAttInfo());
+		}
+		else if (dynamic_cast<CExsFire*>(pobj))
+		{
+			CExsFire* pFire = dynamic_cast<CExsFire*>(pobj);
+			hit(pFire->GetCollider(), pFire->GetAttInfo());
 		}
 	}
 

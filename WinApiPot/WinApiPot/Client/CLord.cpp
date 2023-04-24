@@ -22,6 +22,7 @@
 #include "CSkillState.h"
 #include "CBoom.h"
 #include "CDropRobot.h"
+#include "CExsFire.h"
 
 #include "CDeadState.h"
 
@@ -251,6 +252,11 @@ void CLord::OnColliderEnter(CCollider* _pOther)
 		{
 			CBoom* pBoom = dynamic_cast<CBoom*>(pobj);
 			hit(pBoom->GetCollider(), pBoom->GetAttInfo());
+		}
+		else if (dynamic_cast<CExsFire*>(pobj))
+		{
+			CExsFire* pFire = dynamic_cast<CExsFire*>(pobj);
+			hit(pFire->GetCollider(), pFire->GetAttInfo());
 		}
 	}
 

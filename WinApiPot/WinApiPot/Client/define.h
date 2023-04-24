@@ -153,12 +153,14 @@ enum class SKILL_STATE
 	WINDMILL,
 	RANDOM_FIRE,
 	WALK_FIRE,
-	LASER,
+	MULTI_HEAD,
 	RX,
 	DROP,
 	EX8,
 	FIRE,
-	END = 10,
+	EXS,
+	LASER,
+	END = 12,
 };
 
 enum class ATTACK_TYPE

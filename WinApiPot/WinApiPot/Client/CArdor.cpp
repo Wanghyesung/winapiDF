@@ -23,6 +23,7 @@
 #include "CSkillState.h"
 #include "CBoom.h"
 #include "CDropRobot.h"
+#include "CExsFire.h"
 
 #include "CItemMgr.h"
 
@@ -243,7 +244,12 @@ void CArdor::OnColliderEnter(CCollider* _pOther)
 		else if (dynamic_cast<CBoom*>(pobj))
 		{
 			CBoom* pBoom = dynamic_cast<CBoom*>(pobj);
-				hit(pBoom->GetCollider(), pBoom->GetAttInfo());
+			hit(pBoom->GetCollider(), pBoom->GetAttInfo());
+		}
+		else if (dynamic_cast<CExsFire*>(pobj))
+		{
+			CExsFire* pFire = dynamic_cast<CExsFire*>(pobj);
+			hit(pFire->GetCollider(), pFire->GetAttInfo());
 		}
 	}
 
@@ -265,6 +271,7 @@ void CArdor::OnCollision(CCollider* _pOther)
 	if (pobj->GetTag() == GROUP_TYPE::SKILL
 		&& tMonInfo.m_iHp != 0)
 	{
+		GetSKillObj()->SetColActive(false);
 		if (dynamic_cast<CSkillState*>(pobj))
 		{
 			CSkillState* pSkill = dynamic_cast<CSkillState*>(pobj);

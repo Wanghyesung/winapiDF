@@ -31,8 +31,8 @@ CInterFace::CInterFace():
 	m_pInterFaceTex = CResMgr::GetInst()->LoadTextur(L"InterFace", L"..\\OutPut\\bin_release\\Content\\Interface\\playerInterface.bmp");
 	SetScale(Vec2(1280.f, 100.f));
 
-	m_vecSKillTex.resize(10);
-	m_vecCoolDownTex.resize(10);
+	m_vecSKillTex.resize(12);
+	m_vecCoolDownTex.resize(12);
 	m_vecItem.resize(6);
 
 	//내 인터페이스 키 입력값
@@ -44,13 +44,15 @@ CInterFace::CInterFace():
 	m_vecSKillTex[2] = CResMgr::GetInst()->LoadTextur(L"Windmill", L"..\\OutPut\\bin_release\\Content\\SKill\\Windmill.bmp");
 	m_vecSKillTex[3] = CResMgr::GetInst()->LoadTextur(L"RandFire", L"..\\OutPut\\bin_release\\Content\\SKill\\RandomFire.bmp");
 	m_vecSKillTex[4] = CResMgr::GetInst()->LoadTextur(L"WalkFire", L"..\\OutPut\\bin_release\\Content\\SKill\\WalkFire.bmp");
-	m_vecSKillTex[5] = CResMgr::GetInst()->LoadTextur(L"Laser", L"..\\OutPut\\bin_release\\Content\\SKill\\laser.bmp");
+	m_vecSKillTex[5] = CResMgr::GetInst()->LoadTextur(L"MultiHead", L"..\\OutPut\\bin_release\\Content\\SKill\\multihead.bmp");
 
 	//두번째 스킬
 	m_vecSKillTex[6] = CResMgr::GetInst()->LoadTextur(L"rx-78", L"..\\OutPut\\bin_release\\Content\\SKill\\rx-78.bmp");
 	m_vecSKillTex[7] = CResMgr::GetInst()->LoadTextur(L"Dropland", L"..\\OutPut\\bin_release\\Content\\SKill\\Dropland.bmp");
 	m_vecSKillTex[8] = CResMgr::GetInst()->LoadTextur(L"7ex", L"..\\OutPut\\bin_release\\Content\\SKill\\7ex.bmp");
 	m_vecSKillTex[9] = CResMgr::GetInst()->LoadTextur(L"Fire", L"..\\OutPut\\bin_release\\Content\\SKill\\Fire.bmp");
+	m_vecSKillTex[10] = CResMgr::GetInst()->LoadTextur(L"exs", L"..\\OutPut\\bin_release\\Content\\SKill\\exs.bmp");
+	m_vecSKillTex[11] = CResMgr::GetInst()->LoadTextur(L"Laser", L"..\\OutPut\\bin_release\\Content\\SKill\\laser.bmp");
 
 
 	m_vecCoolDownTex[0] = CResMgr::GetInst()->LoadTextur(L"Kick_", L"..\\OutPut\\bin_release\\Content\\SKill\\Kick_.bmp");
@@ -58,13 +60,17 @@ CInterFace::CInterFace():
 	m_vecCoolDownTex[2] = CResMgr::GetInst()->LoadTextur(L"Windmill_", L"..\\OutPut\\bin_release\\Content\\SKill\\Windmill_.bmp");
 	m_vecCoolDownTex[3] = CResMgr::GetInst()->LoadTextur(L"RandFire_", L"..\\OutPut\\bin_release\\Content\\SKill\\RandomFire_.bmp");
 	m_vecCoolDownTex[4] = CResMgr::GetInst()->LoadTextur(L"WalkFire_", L"..\\OutPut\\bin_release\\Content\\SKill\\WalkFire_.bmp");
-	m_vecCoolDownTex[5] = CResMgr::GetInst()->LoadTextur(L"Laser_", L"..\\OutPut\\bin_release\\Content\\SKill\\laser_.bmp");
+	m_vecCoolDownTex[5] = CResMgr::GetInst()->LoadTextur(L"MultiHead_", L"..\\OutPut\\bin_release\\Content\\SKill\\multihead_.bmp");
+
 
 	//두번째 스킬
 	m_vecCoolDownTex[6] = CResMgr::GetInst()->LoadTextur(L"rx-78_", L"..\\OutPut\\bin_release\\Content\\SKill\\rx-78_.bmp");
 	m_vecCoolDownTex[7] = CResMgr::GetInst()->LoadTextur(L"Dropland_", L"..\\OutPut\\bin_release\\Content\\SKill\\Dropland_.bmp");
 	m_vecCoolDownTex[8] = CResMgr::GetInst()->LoadTextur(L"7ex_", L"..\\OutPut\\bin_release\\Content\\SKill\\7ex_.bmp");
 	m_vecCoolDownTex[9] = CResMgr::GetInst()->LoadTextur(L"Fire_", L"..\\OutPut\\bin_release\\Content\\SKill\\Fire_.bmp");
+	m_vecCoolDownTex[10] = CResMgr::GetInst()->LoadTextur(L"exs_", L"..\\OutPut\\bin_release\\Content\\SKill\\exs_.bmp");
+	m_vecCoolDownTex[11] = CResMgr::GetInst()->LoadTextur(L"Laser_", L"..\\OutPut\\bin_release\\Content\\SKill\\laser_.bmp");
+
 
 	m_vecNumber.resize(9);
 	//자식 오브젝트 추가
@@ -392,7 +398,7 @@ void CInterFace::skillRender(HDC _dc)
 	}
 	else
 	{
-		iStart = 6; iEnd = 10;
+		iStart = 6; iEnd = 12;
 	}
 
 	for (iStart; iStart < iEnd; ++iStart)

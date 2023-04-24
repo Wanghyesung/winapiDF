@@ -301,5 +301,17 @@ void CRobotRx78::OnColliderExit(CCollider* _pOther)
 
 void CRobotRx78::OnCollision(CCollider* _pOther)
 {
+	if (m_iAttackCount == 1 || m_eState == ROBOTSTATE::JUMP)
+		return;
 
+	if (_pOther->GetObj()->GetTag() == GROUP_TYPE::MONSTER && m_iAttackCount == 0)
+	{
+		++m_iAttackCount;
+		m_eState = ROBOTSTATE::ATTACK;
+
+		if (GetGravity()->IsGetGravity())
+		{
+			GetGravity()->SetGravity(false);
+		}
+	}
 }

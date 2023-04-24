@@ -1,6 +1,7 @@
 #include "pch.h"
-#include "CRx78.h"
+#include "CExs.h"
 
+#include "CResMgr.h"
 #include "CTimeMgr.h"
 
 #include "CAnimator.h"
@@ -10,10 +11,10 @@
 #include "CPlayer.h"
 
 #include "CCollider.h"
-#include "CRobotRx78.h"
+#include "CRobotExs.h"
 
-CRx78::CRx78():
-	CSkillState(SKILL_STATE::RX),
+CExs::CExs() :
+	CSkillState(SKILL_STATE::EXS),
 	m_fCurTime(0.f),
 	m_fCreateTime(0.5f)
 {
@@ -23,50 +24,54 @@ CRx78::CRx78():
 	SetMP(5.f);
 
 	CreateCollider();
+	GetCollider()->SetScale(Vec2(200.f, 150.f));
 }
 
-CRx78::~CRx78()
+CExs::~CExs()
 {
 
 }
 
-void CRx78::Skillupdate()
+void CExs::Skillupdate()
 {
 	m_fCurTime += fDT;
 	if (m_fCurTime >= m_fCreateTime)
 	{
 		m_fCurTime = 0.f;
-		createRx78();
+		createExs();
 		exit();
 	}
 }
 
-void CRx78::init()
+void CExs::init()
 {
 
 }
 
-void CRx78::exit()
+void CExs::exit()
 {
 	m_fCurTime = 0.f;
 	GetSkill()->GetPlayer()->GetAnimator()->FindAnimation(m_strSkillName)->SetFram(0);
 	CSkillState::exit();
 }
 
-void CRx78::enter()
+void CExs::enter()
 {
 	CPlayer* pPLayer = GetSkill()->GetPlayer();
 	int iDir = pPLayer->GetPlayerDirX();
 
 	wstring strSkillName = GetSkillName();
 	wstring strDir = iDir > 0 ? L"right" : L"left";
-	
+
 	m_strSkillName = strSkillName + strDir;
 }
 
-void CRx78::createRx78()
+void CExs::createExs()
 {
-	CRobotRx78* CRobot = new CRobotRx78;
+	CRobotExs* CRobot = new CRobotExs;
+
+	int iDir = GetSkill()->GetPlayer()->GetPlayerDirX();
+	CRobot->init_dir(iDir);
 
 	Vec2 vPos = GetSkill()->GetPlayer()->GetCollider()->GetFinalPos();
 	CRobot->SetPos(vPos);

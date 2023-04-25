@@ -41,7 +41,6 @@ CMachKick::~CMachKick()
 
 void CMachKick::Skillupdate()
 {
-
 	CPlayer* pPlayer = GetSkill()->GetPlayer();
 	Vec2 pPlayerPos = pPlayer->GetPos();
 	SetPos(pPlayerPos);
@@ -73,7 +72,6 @@ void CMachKick::Skillupdate()
 
 void CMachKick::init()
 {
-
 	CreateCollider();
 	GetCollider()->SetActive(false);
 

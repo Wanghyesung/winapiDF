@@ -115,6 +115,9 @@ void CBrDragon::render(HDC _dc)
 
 void CBrDragon::hit(CCollider* _pOther, const tAttackInfo& _tAtt)
 {
+	GetSKillObj()->SetColActive(false);
+
+
 	CMonster::hit(_pOther, _tAtt);
 }
 

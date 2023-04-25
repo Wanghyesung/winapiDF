@@ -221,6 +221,9 @@
 #include "C:\Users\wangh\source\tem\WinApiPot\WinApiPot\Client\CMPItem.cpp"
 
 
+#include "C:\Users\wangh\source\tem\WinApiPot\WinApiPot\Client\CMultiHead.cpp"
+
+
 #include "C:\Users\wangh\source\tem\WinApiPot\WinApiPot\Client\CNaias.cpp"
 
 

@@ -222,6 +222,7 @@
     <ClInclude Include="CMonster.h" />
     <ClInclude Include="CMP.h" />
     <ClInclude Include="CMPItem.h" />
+    <ClInclude Include="CMultiHead.h" />
     <ClInclude Include="CNaias.h" />
     <ClInclude Include="CNaiasAttack.h" />
     <ClInclude Include="CNaiasTrace.h" />
@@ -378,6 +379,7 @@
     <ClCompile Include="CMonster.cpp" />
     <ClCompile Include="CMP.cpp" />
     <ClCompile Include="CMPItem.cpp" />
+    <ClCompile Include="CMultiHead.cpp" />
     <ClCompile Include="CNaias.cpp" />
     <ClCompile Include="CNaiasAttack.cpp" />
     <ClCompile Include="CNaiasTrace.cpp" />

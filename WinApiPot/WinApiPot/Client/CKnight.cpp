@@ -173,6 +173,8 @@ void CKnight::hit(CCollider* _pOther, const tAttackInfo& _tAtt)
 	if (m_eMonState == MONSTER_STATE::STONE)
 		return;
 
+	GetSKillObj()->SetColActive(false);
+
 	CMonster::hit(_pOther, _tAtt);
 }
 

@@ -86,7 +86,7 @@ void CKick::init()
 {
 	CreateCollider();
 	GetCollider()->SetActive(false);
-
+	
 	AddAttackFrame(FIRST_ATTACK);
 
 	m_vCollSize = Vec2(60.f, 70.f);

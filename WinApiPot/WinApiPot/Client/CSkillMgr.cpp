@@ -22,6 +22,7 @@
 #include "CMechDrop.h"
 #include "CEx8.h"
 #include "CExs.h"
+#include "CMultiHead.h"
 
 #include "CFSM.h"
 #include "CPlayerState.h"
@@ -40,7 +41,7 @@ CSkillMgr::CSkillMgr() :
 	m_fMaxSkillTime(5.f),
 	m_bOnSkill(false),
 	m_pPlayer(nullptr),
-	m_iSkillType(2)
+	m_iSkillType(1)
 {
 
 }
@@ -108,6 +109,10 @@ void CSkillMgr::initSkill(SCENE_TYPE _eSceneType)
 	CExs* pExs = new CExs;
 	m_pPlayer->m_pSkill->AddSkill(pExs);
 	SceneMgr::GetInst()->FindScene(_eSceneType)->AddObject(pExs, GROUP_TYPE::SKILL);
+
+	CMultiHead* pMulti = new CMultiHead;
+	m_pPlayer->m_pSkill->AddSkill(pMulti);
+	SceneMgr::GetInst()->FindScene(_eSceneType)->AddObject(pMulti, GROUP_TYPE::SKILL);
 }
 
 

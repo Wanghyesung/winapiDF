@@ -72,6 +72,8 @@ CPlayer::CPlayer() :
 	CTexture* m_pWalkFire = CResMgr::GetInst()->LoadTextur(L"Player_Skill_walkfire", L"..\\OutPut\\bin_release\\Content\\Texture\\walk_fire.bmp");
 	CTexture* m_pLaserRight  = CResMgr::GetInst()->LoadTextur(L"Player_skill_laser_right", L"..\\OutPut\\bin_release\\Content\\Texture\\Player_skill_laser_right.bmp");
 	CTexture* m_pLaserLeft = CResMgr::GetInst()->LoadTextur(L"Player_skill_laser_left", L"..\\OutPut\\bin_release\\Content\\Texture\\Player_skill_laser_left.bmp");
+	CTexture* m_pMulitHeadRight = CResMgr::GetInst()->LoadTextur(L"Player_skill_Multi_Right", L"..\\OutPut\\bin_release\\Content\\Texture\\Player_skill_multihead_right.bmp");
+	CTexture* m_pMulitHeadLeft = CResMgr::GetInst()->LoadTextur(L"Player_skill_Multi_left", L"..\\OutPut\\bin_release\\Content\\Texture\\Player_skill_multihead_left.bmp");
 	CTexture* m_pRightSkillB = CResMgr::GetInst()->LoadTextur(L"Player_SkillB_Right", L"..\\OutPut\\bin_release\\Content\\Texture\\skillB_right.bmp");
 	CTexture* m_pLeftSkillB = CResMgr::GetInst()->LoadTextur(L"Player_SkillB_Left", L"..\\OutPut\\bin_release\\Content\\Texture\\skillB_left.bmp");
 	m_pBullet = CResMgr::GetInst()->LoadTextur(L"Bullet", L"..\\OutPut\\bin_release\\Content\\Texture\\bullet.bmp");//ÃÑ¾Ë
@@ -145,6 +147,17 @@ CPlayer::CPlayer() :
 	//laser
 	GetAnimator()->CreateAnimation(L"Player_skill_laser_right", m_pLaserRight, Vec2(0.f, 0.f), Vec2(300.f, 252.f), Vec2(300.f, 0.f), Vec2(0.f, 0.f), 0.1f, 9);
 	GetAnimator()->CreateAnimation(L"Player_skill_laser_left", m_pLaserLeft, Vec2(2400.f, 0.f), Vec2(300.f, 252.f), Vec2(-300.f, 0.f), Vec2(-40.f, 0.f), 0.1f, 9);
+
+	//multi
+	GetAnimator()->CreateAnimation(L"Player_skill_multihead_right_f", m_pMulitHeadRight, Vec2(0.f, 0.f), Vec2(228.f, 252.f), Vec2(228.f, 0.f), Vec2(0.f, 0.f), 0.15f, 4);
+	GetAnimator()->CreateAnimation(L"Player_skill_multihead_right_b", m_pMulitHeadRight, Vec2(0.f, 252.f), Vec2(228.f, 252.f), Vec2(228.f, 0.f), Vec2(0.f, 0.f), 0.15f, 4);
+	GetAnimator()->CreateAnimation(L"Player_skill_multihead_right_u", m_pMulitHeadRight, Vec2(0.f, 504.f), Vec2(228.f, 252.f), Vec2(228.f, 0.f), Vec2(0.f, 0.f), 0.15f, 4);
+	GetAnimator()->CreateAnimation(L"Player_skill_multihead_right_d", m_pMulitHeadRight, Vec2(0.f, 756.f), Vec2(228.f, 252.f), Vec2(228.f, 0.f), Vec2(0.f, 0.f), 0.15f, 4);
+									
+	GetAnimator()->CreateAnimation(L"Player_skill_multihead_left_f", m_pMulitHeadLeft, Vec2(684.f, 0.f), Vec2(228.f, 252.f),   Vec2(-228.f, 0.f), Vec2(-40.f, 0.f), 0.12f, 4);
+	GetAnimator()->CreateAnimation(L"Player_skill_multihead_left_b", m_pMulitHeadLeft, Vec2(684.f, 252.f), Vec2(228.f, 252.f), Vec2(-228.f, 0.f), Vec2(-40.f, 0.f), 0.12f, 4);
+	GetAnimator()->CreateAnimation(L"Player_skill_multihead_left_u", m_pMulitHeadLeft, Vec2(684.f, 504.f), Vec2(228.f, 252.f), Vec2(-228.f, 0.f), Vec2(-40.f, 0.f), 0.12f, 4);
+	GetAnimator()->CreateAnimation(L"Player_skill_multihead_left_d", m_pMulitHeadLeft, Vec2(684.f, 756.f), Vec2(228.f, 252.f), Vec2(-228.f, 0.f), Vec2(-40.f, 0.f), 0.12f, 4);
 
 	//½ºÅ³B
 	GetAnimator()->CreateAnimation(L"Player_skill_stand_right", m_pRightSkillB, Vec2(0.f, 0.f), Vec2(228.f, 252.f), Vec2(228.f, 0.f), Vec2(0.f, 0.f), 0.2f, 1);
@@ -475,6 +488,12 @@ void CPlayer::updateSkillState()
 		int iCurFram = pAninmaotr->FindAnimation(strMotion)->GetCurFrame();
 		GetSkill()->GetCurSkill()->SetCurFram(iCurFram);
 		pAninmaotr->Play(strMotion, true);
+	}
+	break;
+
+	case SKILL_STATE::MULTI_HEAD:
+	{
+		pAninmaotr->Play(strMotion, false);
 	}
 	break;
 

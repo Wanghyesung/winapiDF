@@ -455,6 +455,9 @@
     <Filter Include="Engine\07.Component\CSkill\SkillState\CExs">
       <UniqueIdentifier>{90bb587e-8818-403d-b756-4441e8710312}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Engine\07.Component\CSkill\SkillState\MultiHead">
+      <UniqueIdentifier>{742dfc46-c2f3-4c32-bd36-2a3a848725d5}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="pch.h" />
@@ -920,6 +923,9 @@
     <ClInclude Include="CExs.h">
       <Filter>Engine\07.Component\CSkill\SkillState\CExs</Filter>
     </ClInclude>
+    <ClInclude Include="CMultiHead.h">
+      <Filter>Engine\07.Component\CSkill\SkillState\MultiHead</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Client.rc">
@@ -1376,6 +1382,9 @@
     </ClCompile>
     <ClCompile Include="CExs.cpp">
       <Filter>Engine\07.Component\CSkill\SkillState\CExs</Filter>
+    </ClCompile>
+    <ClCompile Include="CMultiHead.cpp">
+      <Filter>Engine\07.Component\CSkill\SkillState\MultiHead</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

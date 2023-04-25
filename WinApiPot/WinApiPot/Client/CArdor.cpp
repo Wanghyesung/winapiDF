@@ -191,6 +191,8 @@ void CArdor::init_skill()
 
 void CArdor::hit(CCollider* _pOther, const tAttackInfo& _tAtt)
 {
+	GetSKillObj()->SetColActive(false);
+
 	AI* pAI = GetAI();
 	MONSTER_STATE m_tMonState = pAI->GetCurState()->GetType();
 
@@ -271,7 +273,6 @@ void CArdor::OnCollision(CCollider* _pOther)
 	if (pobj->GetTag() == GROUP_TYPE::SKILL
 		&& tMonInfo.m_iHp != 0)
 	{
-		GetSKillObj()->SetColActive(false);
 		if (dynamic_cast<CSkillState*>(pobj))
 		{
 			CSkillState* pSkill = dynamic_cast<CSkillState*>(pobj);

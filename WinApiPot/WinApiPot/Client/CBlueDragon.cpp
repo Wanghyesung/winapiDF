@@ -135,6 +135,8 @@ void CBlueDragon::render(HDC _dc)
 
 void CBlueDragon::hit(CCollider* _pOther, const tAttackInfo& _tAtt)
 {
+	GetSKillObj()->SetColActive(false);
+
 	if (GetAI()->GetCurState()->GetType() == MONSTER_STATE::DEFENSE)
 	{
 		tMonInfo m_tMonInfo = GetAI()->GetCMonster()->GetMonInfo();

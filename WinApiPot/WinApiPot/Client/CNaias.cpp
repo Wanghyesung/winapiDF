@@ -194,6 +194,8 @@ void CNaias::init_skill()
 
 void CNaias::hit(CCollider* _pOther, const tAttackInfo& _tAtt)
 {
+	GetSKillObj()->SetColActive(false);
+
 	AI* pAI = GetAI();
 	MONSTER_STATE m_tMonState = pAI->GetCurState()->GetType();
 

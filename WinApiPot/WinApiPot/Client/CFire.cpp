@@ -57,6 +57,9 @@ void CFire::Skillupdate()
 
 	if (KEY_HOLD(KEY::F))
 	{
+		if (m_bFire)
+			return;
+
 		if (KEY_HOLD(KEY::RIGHT))
 			m_pTarget->move(Vec2(500.f, 0.f));
 		if (KEY_HOLD(KEY::LEFT))
@@ -69,6 +72,9 @@ void CFire::Skillupdate()
 
 	else if (KEY_AWAY(KEY::F))
 	{
+		if (m_bFire)
+			return;
+
 		m_bFire = true;
 		if (m_vStartPos == m_pTarget->GetPos())
 			fire_robot();
@@ -126,6 +132,8 @@ void CFire::OnCollision(CCollider* _pOther)
 void CFire::jump_robot()
 {
 	const vector<CObject*>& vecRobot =  SceneMgr::GetInst()->GetCurSCene()->GetGroupObject(GROUP_TYPE::ROBOT);
+	if (vecRobot.size() == 0)
+		return;
 
 	//이미지파일 크기의 반만큼 더
 	int x = m_pTarget->m_pTargetTex->Width();

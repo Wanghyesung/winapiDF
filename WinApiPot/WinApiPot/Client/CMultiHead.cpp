@@ -10,6 +10,9 @@
 
 #include "CSkill.h"
 #include "CPlayer.h"
+#include "CRigidBody.h"
+
+#include "CParticle.h"
 
 #define SHOT_MOTION 1
 
@@ -120,7 +123,8 @@ void CMultiHead::Skillupdate()
 }
 
 void CMultiHead::update()
-{
+{ 
+
 }
 
 void CMultiHead::init()
@@ -151,8 +155,47 @@ void CMultiHead::enter()
 	SetPos(vPos);
 
 	m_iDirX = pPlayer->GetPlayerDirX();
-	m_iDirX > 0 ? m_vCollOffSet = Vec2(100.f, 0.f) : m_vCollOffSet = Vec2(-100.f, 0.f);
-	GetCollider()->SetOffSet(m_vCollOffSet);
+	wstring strSkillName = GetSkillName();
+	//m_iDirX > 0 ? m_vCollOffSet = Vec2(100.f, 0.f) : m_vCollOffSet = Vec2(-100.f, 0.f);
+	//GetCollider()->SetOffSet(m_vCollOffSet);
+	m_iDirX > 0 ? strSkillName += L"_right" : strSkillName += L"_left";
+	Vec2 vVel = pPlayer->GetRigidBody()->GetVelocity();
+	if (vVel == Vec2(0.f, 0.f))
+	{
+		m_iDirX > 0 ? m_vCollOffSet = Vec2(100.f, 0.f) : m_vCollOffSet = Vec2(-100.f, 0.f);
+		GetCollider()->SetOffSet(m_vCollOffSet);
+	}
+	//x쪽 먼저 우선순위
+	if (vVel.x != 0.f)
+	{
+		if (vVel.x > 0)
+		{
+			m_vCollOffSet = Vec2(100.f, 0.f);
+			m_iDirX > 0 ? strSkillName += L"_f" : strSkillName += L"_b";
+		}
+		else
+		{
+			m_vCollOffSet = Vec2(-100.f, 0.f);
+			m_iDirX > 0 ? strSkillName += L"_b" : strSkillName += L"_f";
+		}
+			
+	}
+	else
+	{
+		if (vVel.y > 0)
+		{
+			m_vCollOffSet = Vec2(0.f, 110.f);
+			strSkillName += L"_d";
+		}
+
+		else
+		{
+			m_vCollOffSet = Vec2(0.f, -160.f);
+			strSkillName += L"_u";
+		}
+
+	}
+	SetSKillName(strSkillName);
 
 	CSkillState::enter();
 }
@@ -183,6 +226,7 @@ void CMultiHead::OnCollision(CCollider* _pOther)
 			{
 				vecColl[_pOther->GetID()] = m_iAttackCount;
 				SetAttackOn(true);
+				create_particle(_pOther->GetFinalPos());
 				break;
 			}
 			else
@@ -238,4 +282,18 @@ void CMultiHead::change_Dir(int _iDirX, int _iDirY)
 	GetSkill()->GetPlayer()->GetAnimator()->FindAnimation(m_strSkillName)->SetFram(0);
 	++m_iAttackCount;
 	m_fCurExitTime = 0.f;
+}
+
+void CMultiHead::create_particle(Vec2 _vPos)
+{
+	CParticle* pParticle = new CParticle;
+	pParticle->SetPos(_vPos);
+
+	Vec2 vPos = GetCollider()->GetFinalPos();
+	if (vPos.x - _vPos.x > 0)
+		pParticle->SetDir(1);
+	else
+		pParticle->SetDir(-1);
+
+	CreateObject(pParticle, GROUP_TYPE::PARTICLE);
 }

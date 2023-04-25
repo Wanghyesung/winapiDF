@@ -458,6 +458,9 @@
     <Filter Include="Engine\07.Component\CSkill\SkillState\MultiHead">
       <UniqueIdentifier>{742dfc46-c2f3-4c32-bd36-2a3a848725d5}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Engine\05.CObject\CParticle">
+      <UniqueIdentifier>{fc5e96e7-5ea4-4d2b-88de-f4383e0f38db}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="pch.h" />
@@ -926,6 +929,9 @@
     <ClInclude Include="CMultiHead.h">
       <Filter>Engine\07.Component\CSkill\SkillState\MultiHead</Filter>
     </ClInclude>
+    <ClInclude Include="CParticle.h">
+      <Filter>Engine\05.CObject\CParticle</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Client.rc">
@@ -1385,6 +1391,9 @@
     </ClCompile>
     <ClCompile Include="CMultiHead.cpp">
       <Filter>Engine\07.Component\CSkill\SkillState\MultiHead</Filter>
+    </ClCompile>
+    <ClCompile Include="CParticle.cpp">
+      <Filter>Engine\05.CObject\CParticle</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

@@ -92,6 +92,8 @@ void CMonster::hit(CCollider* _pOther, const tAttackInfo& _tAtt)
 		else
 			fDir = -1.f;
 
+		int iDir = m_AI->GetCurState()->GetDir();
+
 		ATTACK_TYPE eAttackType = _tAtt.m_eAttType;
 		if (m_tMonState == MONSTER_STATE::UPPER_HIT)
 			eAttackType = ATTACK_TYPE::UPPER;
@@ -100,7 +102,7 @@ void CMonster::hit(CCollider* _pOther, const tAttackInfo& _tAtt)
 		{
 		case ATTACK_TYPE::UPPER:
 		{
-			m_tHitInfo.m_fHitDir = fDir;
+			m_tHitInfo.m_fHitDir = -iDir;
 			GetGravity()->SetGravity(true);
 			if (GetJumPos().IsZero())
 				SetJumPos(pCollider->GetFinalPos());
@@ -112,7 +114,7 @@ void CMonster::hit(CCollider* _pOther, const tAttackInfo& _tAtt)
 
 		case ATTACK_TYPE::NORMAL:
 		{
-			m_tHitInfo.m_fHitDir = fDir;
+			m_tHitInfo.m_fHitDir = -iDir;
 			ChangeAIState(m_AI, MONSTER_STATE::HIT);
 		}
 		break;

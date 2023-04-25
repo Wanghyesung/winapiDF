@@ -239,6 +239,9 @@
 #include "C:\Users\wangh\source\tem\WinApiPot\WinApiPot\Client\CObject.cpp"
 
 
+#include "C:\Users\wangh\source\tem\WinApiPot\WinApiPot\Client\CParticle.cpp"
+
+
 #include "C:\Users\wangh\source\tem\WinApiPot\WinApiPot\Client\CPathMgr.cpp"
 
 

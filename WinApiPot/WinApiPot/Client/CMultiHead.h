@@ -39,5 +39,6 @@ public:
 
 private:
 	void change_Dir(int _iDirX, int _iDirY);
+	void create_particle(Vec2 _vPos);
 };
 

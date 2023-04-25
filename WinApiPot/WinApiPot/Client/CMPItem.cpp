@@ -67,7 +67,7 @@ void CMPItem::UseItem()
 
 	if (pPlayer != nullptr)
 	{
-		if (pPlayer->m_tPlayerInfo.m_fMP > 0.f && pPlayer->m_tPlayerInfo.m_fMP < 100.f)
+		if (pPlayer->m_tPlayerInfo.m_fMP >= 0.f && pPlayer->m_tPlayerInfo.m_fMP < 100.f)
 		{
 			pPlayer->m_tPlayerInfo.m_fMP += 30.f;
 			if (pPlayer->m_tPlayerInfo.m_fMP >= 100.f)

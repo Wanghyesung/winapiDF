@@ -73,6 +73,7 @@ enum class GROUP_TYPE
 	ITEM,
 	WALL,
 	MONSTER,
+	PARTICLE,
 	SKILL,
 	DROUP,
 	ROBOT,

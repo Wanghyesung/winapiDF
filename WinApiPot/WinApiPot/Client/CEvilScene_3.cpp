@@ -122,7 +122,7 @@ void CEvilScene_3::Init()
 	CGate* pGate = new CGate(L"up", false);
 	pGate->SetPos(Vec2(500.f, 365.f));
 	pGate->GetCollider()->SetScale(Vec2(70.f, 70.f));
-	pGate->SetNextScene(SCENE_TYPE::DUNGEON_4);
+	pGate->SetNextScene(SCENE_TYPE::EVIL_SCENE_4);
 	AddObject(pGate, GROUP_TYPE::GATE);
 }
 

@@ -65,18 +65,18 @@ void CSeriaScene::render(HDC _dc)
 	//	bf);
 
 
-	CTexture* tem = CResMgr::GetInst()->LoadTextur(L"42", L"..\\OutPut\\bin_release\\Content\\emfact\\13.bmp");
-	
-	TransparentBlt(_dc,
-		200,0,
-		(int)(tem->Width()),
-		(int)(tem->Height()),
-		tem->GetDC(),
-		(int)0,
-		(int)0,
-		(int)(tem->Width()),
-		(int)(tem->Height()),
-		RGB(255, 255, 255));
+	//CTexture* tem = CResMgr::GetInst()->LoadTextur(L"42", L"..\\OutPut\\bin_release\\Content\\emfact\\particle_right.bmp");
+	//
+	//TransparentBlt(_dc,
+	//	200,0,
+	//	(int)(tem->Width()),
+	//	(int)(tem->Height()),
+	//	tem->GetDC(),
+	//	(int)0,
+	//	(int)0,
+	//	(int)(tem->Width()),
+	//	(int)(tem->Height()),
+	//	RGB(255, 255, 255));
 
 }
 void CSeriaScene::Init()

@@ -14,6 +14,8 @@
 #include "CMP.h"
 #include "CInterFace.h"
 #include "CInterfaceMgr.h"
+#include "CInvenIcon.h"
+#include "CSkillIcon.h"
 
 #include "CResMgr.h"
 #include "CMonInterface.h"
@@ -152,6 +154,14 @@ void CScene::CreateInterFace()
 	CMP* pMP = new CMP;
 	pMP->SetPos(Vec2(1195.f, 10.f));
 	pInterFace->AddChildUI(pMP);
+
+	CInvenIcon* pInvenIcon = new CInvenIcon;
+	pInvenIcon->SetPos(Vec2(668.f, 42.f));
+	pInterFace->AddChildUI(pInvenIcon);
+
+	CSkillIcon* pSkillIcon = new CSkillIcon;
+	pSkillIcon->SetPos(Vec2(573.f, 42.f));
+	pInterFace->AddChildUI(pSkillIcon);
 
 	AddObject(pInterFace, GROUP_TYPE::UI);
 

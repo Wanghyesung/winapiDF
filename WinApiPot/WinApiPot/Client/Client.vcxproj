@@ -201,6 +201,7 @@
     <ClInclude Include="CIdleState.h" />
     <ClInclude Include="CInterFace.h" />
     <ClInclude Include="CInterFaceMgr.h" />
+    <ClInclude Include="CInvenIcon.h" />
     <ClInclude Include="CInventory.h" />
     <ClInclude Include="CInventoryMgr.h" />
     <ClInclude Include="CItem.h" />
@@ -267,6 +268,7 @@
     <ClInclude Include="CSeleteGDI.h" />
     <ClInclude Include="CSeriaScene.h" />
     <ClInclude Include="CSkill.h" />
+    <ClInclude Include="CSkillIcon.h" />
     <ClInclude Include="CSkillMgr.h" />
     <ClInclude Include="CSkillState.h" />
     <ClInclude Include="CSound.h" />
@@ -360,6 +362,7 @@
     <ClCompile Include="CIdleState.cpp" />
     <ClCompile Include="CInterFace.cpp" />
     <ClCompile Include="CInterFaceMgr.cpp" />
+    <ClCompile Include="CInvenIcon.cpp" />
     <ClCompile Include="CInventory.cpp" />
     <ClCompile Include="CInventoryMgr.cpp" />
     <ClCompile Include="CItem.cpp" />
@@ -425,6 +428,7 @@
     <ClCompile Include="CSeleteGDI.cpp" />
     <ClCompile Include="CSeriaScene.cpp" />
     <ClCompile Include="CSkill.cpp" />
+    <ClCompile Include="CSkillIcon.cpp" />
     <ClCompile Include="CSkillMgr.cpp" />
     <ClCompile Include="CSkillState.cpp" />
     <ClCompile Include="CSound.cpp" />

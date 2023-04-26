@@ -161,6 +161,9 @@
 #include "C:\Users\wangh\source\tem\WinApiPot\WinApiPot\Client\CInterFaceMgr.cpp"
 
 
+#include "C:\Users\wangh\source\tem\WinApiPot\WinApiPot\Client\CInvenIcon.cpp"
+
+
 #include "C:\Users\wangh\source\tem\WinApiPot\WinApiPot\Client\CInventory.cpp"
 
 
@@ -354,6 +357,9 @@
 
 
 #include "C:\Users\wangh\source\tem\WinApiPot\WinApiPot\Client\CSkill.cpp"
+
+
+#include "C:\Users\wangh\source\tem\WinApiPot\WinApiPot\Client\CSkillIcon.cpp"
 
 
 #include "C:\Users\wangh\source\tem\WinApiPot\WinApiPot\Client\CSkillMgr.cpp"

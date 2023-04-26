@@ -461,6 +461,12 @@
     <Filter Include="Engine\05.CObject\CParticle">
       <UniqueIdentifier>{fc5e96e7-5ea4-4d2b-88de-f4383e0f38db}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Engine\05.CObject\CUI\CInterFace\CInvenIcon">
+      <UniqueIdentifier>{38545fdf-2458-462b-819d-e457bf5d4640}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\05.CObject\CUI\CInterFace\CSkillIcon">
+      <UniqueIdentifier>{583f1486-8bc4-452e-8f51-efbfba4e18db}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="pch.h" />
@@ -932,6 +938,12 @@
     <ClInclude Include="CParticle.h">
       <Filter>Engine\05.CObject\CParticle</Filter>
     </ClInclude>
+    <ClInclude Include="CInvenIcon.h">
+      <Filter>Engine\05.CObject\CUI\CInterFace\CInvenIcon</Filter>
+    </ClInclude>
+    <ClInclude Include="CSkillIcon.h">
+      <Filter>Engine\05.CObject\CUI\CInterFace\CSkillIcon</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Client.rc">
@@ -1394,6 +1406,12 @@
     </ClCompile>
     <ClCompile Include="CParticle.cpp">
       <Filter>Engine\05.CObject\CParticle</Filter>
+    </ClCompile>
+    <ClCompile Include="CInvenIcon.cpp">
+      <Filter>Engine\05.CObject\CUI\CInterFace\CInvenIcon</Filter>
+    </ClCompile>
+    <ClCompile Include="CSkillIcon.cpp">
+      <Filter>Engine\05.CObject\CUI\CInterFace\CSkillIcon</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

@@ -13,6 +13,7 @@
 #include "CSkillMgr.h"
 #include "CInventoryMgr.h"
 #include "CInventory.h"
+#include "CInvenIcon.h"
 
 #include "CSkillMgr.h"
 
@@ -79,6 +80,9 @@ CInterFace::CInterFace():
 		wstring strNum = std::to_wstring(i + 1);
 		m_vecNumber[i] = CResMgr::GetInst()->LoadTextur(L"Number" + strNum, L"..\\OutPut\\bin_release\\Content\\Item\\" + strNum + L".bmp");
 	}
+
+	//인터페이스 스킬 , 아이템창
+	
 
 }
 

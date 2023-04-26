@@ -20,6 +20,7 @@
 #include "CInventory.h"
 #include "CInventoryMgr.h"
 
+
 #include "CCollider.h"
 
 #include "CSound.h"
@@ -109,7 +110,7 @@ void CSeriaScene::Init()
 	pInven->AddItem(pItemHP);
 	CMPItem* pItemMP = new CMPItem;
 	pInven->AddItem(pItemMP);
-	
+
 	AddObject(pInven, GROUP_TYPE::UI);
 
 	RegisterPlayer(pObj);

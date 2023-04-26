@@ -44,6 +44,7 @@ void CHP::update()
 
 void CHP::MouseOn()
 {
+	int a = 10;
 }
 
 void CHP::MouseLbtnDown()

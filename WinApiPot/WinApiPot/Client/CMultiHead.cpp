@@ -36,7 +36,7 @@ CMultiHead::CMultiHead():
 	tAttackInfo tAtt = {};
 	tAtt.m_eAttType = ATTACK_TYPE::NORMAL;
 	tAtt.m_fAttackDamage = 10.f;
-	tAtt.m_fAttRcnt = 200.f;
+	tAtt.m_fAttRcnt = 100.f;
 	tAtt.m_fAttRigidityTime = 1.3f;
 	tAtt.m_fAttUpperRcnt = -80.f;
 	

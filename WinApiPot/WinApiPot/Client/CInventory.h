@@ -2,6 +2,7 @@
 #include "CUI.h"
 
 class CItem;
+class CInvenIcon;
 
 class CInventory :
     public CUI
@@ -53,5 +54,6 @@ private:
     void changeInterface(CItem* _pItem, CItem* _pOtherItem, Vec2 _vOtherDragePrePos);
 
     friend class CInventoryMgr;
+    friend class CInvenIcon;
 };
 

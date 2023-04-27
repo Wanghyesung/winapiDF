@@ -3,6 +3,7 @@
 
 #include "CResMgr.h"
 #include "CTexture.h"
+#include "CDungeonMgr.h"
 
 CChangeUI::CChangeUI()
 {
@@ -39,6 +40,7 @@ void CChangeUI::MouseLbtnUp()
 void CChangeUI::MouseLbtnClicked()
 {
 	//여기다가 기능
+	CDungeonMgr::GetInst()->change_dungeon();
 }
 
 void CChangeUI::render(HDC _dc)

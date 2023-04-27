@@ -104,6 +104,28 @@ void CEvilScene_2::Init()
 
 }
 
+void CEvilScene_2::InitMonster()
+{
+	GetPlayerObj()->SetPos(Vec2(300.f, 450.f));
+
+	CMonster* pBrNight = CMonFactory::CraeteMonster(MON_TYPE::KNIGHT_BROWN, Vec2(500.f, 500.f), m_eType);
+	pBrNight->SetName(L"brNight_2_1");
+	CMonInterface* brNightInter = new CMonInterface(pBrNight->GetName(), 96);
+	brNightInter->SetScale(Vec2(626, 29));
+	brNightInter->SetPos(Vec2(40, 20));
+	AddObject(brNightInter, GROUP_TYPE::UI);
+	AddObject(pBrNight, GROUP_TYPE::MONSTER);
+
+
+	CMonster* pBrNight_2 = CMonFactory::CraeteMonster(MON_TYPE::KNIGHT_BROWN, Vec2(1000.f, 500.f), m_eType);
+	pBrNight_2->SetName(L"brNight_2_2");
+	CMonInterface* brNightInter_2 = new CMonInterface(pBrNight_2->GetName(), 96);
+	brNightInter_2->SetScale(Vec2(626, 29));
+	brNightInter_2->SetPos(Vec2(40, 20));
+	AddObject(brNightInter_2, GROUP_TYPE::UI);
+	AddObject(pBrNight_2, GROUP_TYPE::MONSTER);
+}
+
 void CEvilScene_2::render(HDC _dc)
 {
 	backgroundrender(_dc, GetBackGround(), Vec2(0.f, 0.f));

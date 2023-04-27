@@ -19,7 +19,6 @@
 #include "CHPItem.h"
 #include "CInventory.h"
 #include "CInventoryMgr.h"
-#include "CDungeonMgr.h"
 
 #include "CCollider.h"
 

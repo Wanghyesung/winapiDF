@@ -160,6 +160,19 @@ void CSceneTowerFirst::Init()
 
 }
 
+void CSceneTowerFirst::InitMonster()
+{
+	GetPlayerObj()->SetPos(Vec2(300.f, 450.f));
+
+	CMonster* pBDragon1 = CMonFactory::CraeteMonster(MON_TYPE::BLUE_DRAGON, Vec2(500.f, 500.f), m_eType);
+	pBDragon1->SetName(L"bDragon1");
+	CMonInterface* brdragonInterface2 = new CMonInterface(pBDragon1->GetName(), 45);
+	brdragonInterface2->SetScale(Vec2(626, 29));
+	brdragonInterface2->SetPos(Vec2(40, 20));
+	AddObject(brdragonInterface2, GROUP_TYPE::UI);
+	AddObject(pBDragon1, GROUP_TYPE::MONSTER);
+}
+
 void CSceneTowerFirst::render(HDC _dc)
 {
 	Vec2 StartPos = Vec2(0.f, 0.f);//그림을 처음에 그릴 위치

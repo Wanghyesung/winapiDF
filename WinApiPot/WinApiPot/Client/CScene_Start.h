@@ -18,6 +18,7 @@ public:
     virtual void Exit();
     virtual void Init();
 
+    virtual void InitMonster();
 private:
     SCENE_TYPE m_eType;
 

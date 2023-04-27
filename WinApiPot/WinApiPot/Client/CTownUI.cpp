@@ -3,6 +3,7 @@
 
 #include "CResMgr.h"
 #include "CTexture.h"
+#include "CDungeonMgr.h"
 
 CTownUI::CTownUI()
 {
@@ -39,6 +40,7 @@ void CTownUI::MouseLbtnUp()
 void CTownUI::MouseLbtnClicked()
 {
 	//여기다가 기능
+	CDungeonMgr::GetInst()->exit_dungeon();
 }
 
 void CTownUI::render(HDC _dc)

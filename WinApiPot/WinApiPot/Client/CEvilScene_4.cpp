@@ -113,6 +113,37 @@ void CEvilScene_4::Init()
 	AddObject(pGate, GROUP_TYPE::GATE);
 }
 
+void CEvilScene_4::InitMonster()
+{
+	GetPlayerObj()->SetPos(Vec2(300.f, 450.f));
+
+	CMonster* pArdor = CMonFactory::CraeteMonster(MON_TYPE::ARDOR, Vec2(500.f, 500.f), m_eType);
+	pArdor->SetName(L"ardor_4_1");
+	CMonInterface* pArdorInter = new CMonInterface(pArdor->GetName(), 67);
+	pArdorInter->SetScale(Vec2(626, 29));
+	pArdorInter->SetPos(Vec2(40, 20));
+	AddObject(pArdorInter, GROUP_TYPE::UI);
+	AddObject(pArdor, GROUP_TYPE::MONSTER);
+
+	CMonster* pNaias_1 = CMonFactory::CraeteMonster(MON_TYPE::NAIAS, Vec2(500.f, 550.f), m_eType);
+	pNaias_1->SetName(L"naias_4_1");
+	//내 몬스터 인터페이스에 내 몬스터 이름 넣기
+	CMonInterface* pNaiasInter = new CMonInterface(pNaias_1->GetName(), 68);
+	pNaiasInter->SetScale(Vec2(626, 29));
+	pNaiasInter->SetPos(Vec2(40, 20));
+	AddObject(pNaiasInter, GROUP_TYPE::UI);
+	AddObject(pNaias_1, GROUP_TYPE::MONSTER);
+
+	CMonster* pNaias_2 = CMonFactory::CraeteMonster(MON_TYPE::NAIAS, Vec2(800.f, 440.f), m_eType);
+	pNaias_2->SetName(L"naias_4_2");
+	//내 몬스터 인터페이스에 내 몬스터 이름 넣기
+	CMonInterface* pNaiasInter_2 = new CMonInterface(pNaias_2->GetName(), 68);
+	pNaiasInter_2->SetScale(Vec2(626, 29));
+	pNaiasInter_2->SetPos(Vec2(40, 20));
+	AddObject(pNaiasInter_2, GROUP_TYPE::UI);
+	AddObject(pNaias_2, GROUP_TYPE::MONSTER);
+}
+
 void CEvilScene_4::render(HDC _dc)
 {
 	backgroundrender(_dc, GetBackGround(), Vec2(0.f, 0.f));

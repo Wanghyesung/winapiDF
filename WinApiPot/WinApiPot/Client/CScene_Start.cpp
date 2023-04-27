@@ -33,6 +33,8 @@
 #include "CHPItem.h"
 #include "CMPItem.h"
 
+#include "CKeyMgr.h"
+
 #include "CSound.h"
 
 CScene_Start::CScene_Start():
@@ -60,6 +62,7 @@ void CScene_Start::render(HDC _dc)
 
 void CScene_Start::update()
 {
+
 	CScene::update();
 }
 
@@ -195,6 +198,27 @@ void CScene_Start::Init()
 	pPortal_3->SetNextScene(SCENE_TYPE::WEST_COAST);
 	//포탈 크기는 고정으로 생성자에서 만듬
 	AddObject(pPortal_3, GROUP_TYPE::PORTAL);
+}
+
+void CScene_Start::InitMonster()
+{
+	//CMonster* pMon = CMonFactory::CraeteMonster(MON_TYPE::NAIAS, Vec2(900.f, 650.f), m_eType);
+	//pMon->SetName(L"Naias1");
+	////내 몬스터 인터페이스에 내 몬스터 이름 넣기
+	//CMonInterface* dragonInterface = new CMonInterface(pMon->GetName(), 68); //몬스터 인터페이스는 중복 안되게 해야하기때문에 1추가
+	//dragonInterface->SetScale(Vec2(626, 29));
+	//dragonInterface->SetPos(Vec2(40, 20));
+	//AddObject(dragonInterface, GROUP_TYPE::UI);
+	//AddObject(pMon, GROUP_TYPE::MONSTER);
+	//
+	//CMonster* pMon2 = CMonFactory::CraeteMonster(MON_TYPE::ARDOR, Vec2(700.f, 650.f), m_eType);
+	//pMon2->SetName(L"Ardor1");
+	////내 몬스터 인터페이스에 내 몬스터 이름 넣기
+	//CMonInterface* CArdorInface = new CMonInterface(pMon2->GetName(), 67); //몬스터 인터페이스는 중복 안되게 해야하기때문에 1추가
+	//CArdorInface->SetScale(Vec2(626, 29));
+	//CArdorInface->SetPos(Vec2(40, 20));
+	//AddObject(CArdorInface, GROUP_TYPE::UI);
+	//AddObject(pMon2, GROUP_TYPE::MONSTER);
 }
 
 void CScene_Start::Enter()

@@ -46,6 +46,9 @@ public:
 	virtual void Exit() = 0; //현재 씬 나갈 떄
 	virtual void Init() = 0; //한번만 실행
 
+	//맵의 몬스터 다시 생성
+	virtual void InitMonster() {};
+
 	void SetBackGround(CTexture* _pTex) { m_pBackgroundTex = _pTex; }
 	CTexture* GetBackGround() { return m_pBackgroundTex; }
 

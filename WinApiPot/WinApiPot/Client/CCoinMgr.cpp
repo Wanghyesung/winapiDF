@@ -14,6 +14,7 @@
 #include "CCameraMgr.h"
 #include "CSkillMgr.h"
 
+#include "CDungeonMgr.h"
 #include "CSceneMgr.h"
 #include "CScene.h"
 
@@ -107,6 +108,7 @@ void CCoinMgr::update()
 	{
 		m_bIsDead = false;
 		m_fResTime = 9.99f;
+		CDungeonMgr::GetInst()->SetDunType(DUNGEON_TYPE::NONE);
 		CObject* pPlayer = SceneMgr::GetInst()->GetCurSCene()->GetPlayerObj();
 		((CPlayer*)pPlayer)->m_bActive = true;
 		((CPlayer*)pPlayer)->resetvalue();

@@ -75,6 +75,7 @@ void CEvilBossScene::Init()
 	CSkillMgr::GetInst()->SetPlayer((CPlayer*)GetPlayerObj());
 	CSkillMgr::GetInst()->init(m_eType);
 
+
 	CTemWall* pTemWall = new CTemWall;
 	pTemWall->SetPos(Vec2(672.f, 110.f));
 	pTemWall->GetCollider()->SetScale(Vec2(1644.f, 600.f));
@@ -117,6 +118,29 @@ void CEvilBossScene::Init()
 	//pGate->GetCollider()->SetScale(Vec2(70.f, 70.f));
 	//pGate->SetNextScene(SCENE_TYPE::DUNGEON_BOSS);
 	//AddObject(pGate, GROUP_TYPE::GATE);
+}
+
+void CEvilBossScene::InitMonster()
+{
+	GetPlayerObj()->SetPos(Vec2(300.f, 450.f));
+
+	CMonster* pEvil2 = CMonFactory::CraeteMonster(MON_TYPE::EVILEYE, Vec2(1200.f, 500.f), m_eType);
+	pEvil2->SetName(L"evil_2");
+	((CEvileye*)(pEvil2))->SetDir(-1);
+	CMonInterface* pEvilInter2 = new CMonInterface(pEvil2->GetName(), 99, true);
+	pEvilInter2->SetScale(Vec2(626, 29));
+	pEvilInter2->SetPos(Vec2(40, 20));
+	AddObject(pEvilInter2, GROUP_TYPE::UI);
+	AddObject(pEvil2, GROUP_TYPE::MONSTER);
+
+	CMonster* pEvil = CMonFactory::CraeteMonster(MON_TYPE::EVILEYE, Vec2(100.f, 500.f), m_eType);
+	pEvil->SetName(L"evil_1");
+	((CEvileye*)(pEvil))->SetDir(1);
+	CMonInterface* pEvilInter = new CMonInterface(pEvil->GetName(), 99, true);
+	pEvilInter->SetScale(Vec2(626, 29));
+	pEvilInter->SetPos(Vec2(40, 20));
+	AddObject(pEvilInter, GROUP_TYPE::UI);
+	AddObject(pEvil, GROUP_TYPE::MONSTER);
 }
 
 void CEvilBossScene::update()

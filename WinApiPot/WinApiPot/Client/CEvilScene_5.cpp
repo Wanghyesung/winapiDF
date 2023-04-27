@@ -135,6 +135,36 @@ void CEvilScene_5::Init()
 	AddObject(pGate, GROUP_TYPE::GATE);
 }
 
+void CEvilScene_5::InitMonster()
+{
+	GetPlayerObj()->SetPos(Vec2(300.f, 450.f));
+
+	CMonster* pRedNight_1 = CMonFactory::CraeteMonster(MON_TYPE::KNIGHT_RED, Vec2(500.f, 550.f), m_eType);
+	pRedNight_1->SetName(L"redNight_5_1");
+	//내 몬스터 인터페이스에 내 몬스터 이름 넣기
+	CMonInterface* pRedNightInter = new CMonInterface(pRedNight_1->GetName(), 15);
+	pRedNightInter->SetScale(Vec2(626, 29));
+	pRedNightInter->SetPos(Vec2(40, 20));
+	AddObject(pRedNightInter, GROUP_TYPE::UI);
+	AddObject(pRedNight_1, GROUP_TYPE::MONSTER);
+
+	CMonster* pRedNight_2 = CMonFactory::CraeteMonster(MON_TYPE::KNIGHT_RED, Vec2(200.f, 500.f), m_eType);
+	pRedNight_2->SetName(L"redNight_5_2");
+	CMonInterface* pRedNightInter_2 = new CMonInterface(pRedNight_2->GetName(), 44);
+	pRedNightInter_2->SetScale(Vec2(626, 29));
+	pRedNightInter_2->SetPos(Vec2(40, 20));
+	AddObject(pRedNightInter_2, GROUP_TYPE::UI);
+	AddObject(pRedNight_2, GROUP_TYPE::MONSTER);
+
+	CMonster* pRedNight_3 = CMonFactory::CraeteMonster(MON_TYPE::KNIGHT_RED, Vec2(350.f, 500.f), m_eType);
+	pRedNight_3->SetName(L"redNight_5_3");
+	CMonInterface* pRedNightInter_3 = new CMonInterface(pRedNight_3->GetName(), 45);
+	pRedNightInter_3->SetScale(Vec2(626, 29));
+	pRedNightInter_3->SetPos(Vec2(40, 20));
+	AddObject(pRedNightInter_3, GROUP_TYPE::UI);
+	AddObject(pRedNight_3, GROUP_TYPE::MONSTER);
+}
+
 void CEvilScene_5::update()
 {
 	CScene::update();

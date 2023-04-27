@@ -19,5 +19,7 @@ public:
     virtual void Enter();
     virtual void Exit();
     virtual void Init();
+
+    virtual void InitMonster();
 };
 

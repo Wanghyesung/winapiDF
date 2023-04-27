@@ -125,8 +125,8 @@ void CMonster::hit(CCollider* _pOther, const tAttackInfo& _tAtt)
 		if (m_tMonInfo.m_iHp <= 0.f)
 		{
 			m_tMonInfo.m_iHp = 0.f;
-			//아이템 생성
-			CItemMgr::GetInst()->CreateItem(GetPos());
+			////아이템 생성
+			//CItemMgr::GetInst()->CreateItem(GetPos());
 		}	
 		update_MonInterFace();
 	}

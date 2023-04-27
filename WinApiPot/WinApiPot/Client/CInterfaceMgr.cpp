@@ -80,10 +80,13 @@ void CInterfaceMgr::Enter(CInterFace* _pInterFace)
 void CInterfaceMgr::deleteInterface(const wstring& _strName)
 {
 	unordered_map<wstring, CMonInterface*>::iterator iter = m_hashMonInterface.find(_strName);
+
 	if(iter != m_hashMonInterface.end())
 	{
 		//delete iter->second;
-		if (m_pTargetMon->GetMonName() == iter->second->GetMonName())
+		CMonInterface* pDelInter = iter->second;
+		if (m_pTargetMon != nullptr &&
+			m_pTargetMon->GetMonName() == iter->second->GetMonName())
 		{
 			m_hashMonInterface.erase(_strName);
 			m_pTargetMon = nullptr;
@@ -92,6 +95,7 @@ void CInterfaceMgr::deleteInterface(const wstring& _strName)
 		{
 			m_hashMonInterface.erase(_strName);
 		}
+		DeleteObject(pDelInter);
 	}
 
 }

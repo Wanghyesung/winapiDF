@@ -2,6 +2,7 @@
 
 class CInterFace;
 class CMonInterface;
+class CDeadState;;
 
 class CInterfaceMgr
 {
@@ -35,8 +36,10 @@ private:
 	//map<wstring, CMonInterface*>m_mapMonInterface;
 	unordered_map<wstring, CMonInterface*> m_hashMonInterface;
 
+private:
 	void deleteInterface(const wstring& _strName);
 
 	friend class CMonInterface;
+	friend class CDeadState;
 };
 

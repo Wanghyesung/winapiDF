@@ -105,6 +105,28 @@ void SceneTower_2::Init()
 
 }
 
+void SceneTower_2::InitMonster()
+{
+	GetPlayerObj()->SetPos(Vec2(300.f, 450.f));
+
+	CMonster* pBrDragon1 = CMonFactory::CraeteMonster(MON_TYPE::BROWN_DRAGON, Vec2(500.f, 500.f), m_eType);
+	pBrDragon1->SetName(L"brDragon1");
+	CMonInterface* brdragonInterface2 = new CMonInterface(pBrDragon1->GetName(), 44);
+	brdragonInterface2->SetScale(Vec2(626, 29));
+	brdragonInterface2->SetPos(Vec2(40, 20));
+	AddObject(brdragonInterface2, GROUP_TYPE::UI);
+	AddObject(pBrDragon1, GROUP_TYPE::MONSTER);
+
+
+	CMonster* pBrDragon2 = CMonFactory::CraeteMonster(MON_TYPE::BROWN_DRAGON, Vec2(1000.f, 500.f), m_eType);
+	pBrDragon2->SetName(L"brDragon2");
+	CMonInterface* brdragonInterface1 = new CMonInterface(pBrDragon2->GetName(), 44);
+	brdragonInterface1->SetScale(Vec2(626, 29));
+	brdragonInterface1->SetPos(Vec2(40, 20));
+	AddObject(brdragonInterface1, GROUP_TYPE::UI);
+	AddObject(pBrDragon2, GROUP_TYPE::MONSTER);
+}
+
 void SceneTower_2::render(HDC _dc)
 {
 	backgroundrender(_dc, GetBackGround(), Vec2(0.f, 0.f));

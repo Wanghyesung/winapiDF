@@ -44,7 +44,7 @@ CMonInterface::CMonInterface(const wstring& _strMonName, UINT _MonNum, bool _bIs
 
 CMonInterface::~CMonInterface()
 {
-
+	int a = 10;
 }
 
 
@@ -84,10 +84,10 @@ void CMonInterface::changeValue(float _fHpValue)
 	{
 		float fValue = ((100.f - _fHpValue) / 100.f * fFullValue);
 		pHP->SetMinusHp(fValue);
-		if (0.f >= _fHpValue)
+		/*if (0.f >= _fHpValue)
 		{
 			CInterfaceMgr::GetInst()->deleteInterface(m_strMonName);
-		}
+		}*/
 	}
 }
 

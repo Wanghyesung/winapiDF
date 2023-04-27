@@ -128,6 +128,37 @@ void CEvilScene_3::Init()
 	AddObject(pGate, GROUP_TYPE::GATE);
 }
 
+void CEvilScene_3::InitMonster()
+{
+	GetPlayerObj()->SetPos(Vec2(300.f, 450.f));
+
+	CMonster* pGrNight1 = CMonFactory::CraeteMonster(MON_TYPE::KNIGHT_GREEN, Vec2(500.f, 420.f), m_eType);
+	pGrNight1->SetName(L"grNight_3_1");
+	//내 몬스터 인터페이스에 내 몬스터 이름 넣기
+	CMonInterface* pGrNightInter = new CMonInterface(pGrNight1->GetName(), 97);
+	pGrNightInter->SetScale(Vec2(626, 29));
+	pGrNightInter->SetPos(Vec2(40, 20));
+	AddObject(pGrNightInter, GROUP_TYPE::UI);
+	AddObject(pGrNight1, GROUP_TYPE::MONSTER);
+
+	CMonster* pGrNight2 = CMonFactory::CraeteMonster(MON_TYPE::KNIGHT_GREEN, Vec2(500.f, 500.f), m_eType);
+	pGrNight2->SetName(L"grNight_3_2");
+	CMonInterface* pGrNightInter2 = new CMonInterface(pGrNight2->GetName(), 97);
+	pGrNightInter2->SetScale(Vec2(626, 29));
+	pGrNightInter2->SetPos(Vec2(40, 20));
+	AddObject(pGrNightInter2, GROUP_TYPE::UI);
+	AddObject(pGrNight2, GROUP_TYPE::MONSTER);
+
+
+	CMonster* pGrNight3 = CMonFactory::CraeteMonster(MON_TYPE::KNIGHT_GREEN, Vec2(1000.f, 500.f), m_eType);
+	pGrNight3->SetName(L"grNight_3_3");
+	CMonInterface* pGrNightInter3 = new CMonInterface(pGrNight3->GetName(), 97);
+	pGrNightInter3->SetScale(Vec2(626, 29));
+	pGrNightInter3->SetPos(Vec2(40, 20));
+	AddObject(pGrNightInter3, GROUP_TYPE::UI);
+	AddObject(pGrNight3, GROUP_TYPE::MONSTER);
+}
+
 void CEvilScene_3::Enter()
 {
 	m_pBackSound->Play(true);

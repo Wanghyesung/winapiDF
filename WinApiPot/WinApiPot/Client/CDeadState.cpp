@@ -7,9 +7,8 @@
 #include "CAnimator.h"
 #include "AI.h"
 #include "CSound.h"
-
-
-
+#include "CInterfaceMgr.h"
+#include "CItemMgr.h"
 
 CDeadState::CDeadState():
 	CState(MONSTER_STATE::DEAD),
@@ -29,6 +28,12 @@ void CDeadState::update()
 	if (m_iCurFrame == -1)
 	{
 		GetMonster()->SetDead();
+		
+		wstring strMonName = GetMonster()->GetName();
+		CInterfaceMgr::GetInst()->deleteInterface(strMonName);
+		//아이템 생성
+		Vec2 vItemPos = GetMonster()->GetPos();
+		CItemMgr::GetInst()->CreateItem(vItemPos);
 	}
 }
 

@@ -3,6 +3,7 @@
 
 #include "CResMgr.h"
 #include "CTexture.h"
+#include "CDungeonMgr.h"
 
 CReStartUI::CReStartUI()
 {
@@ -39,6 +40,7 @@ void CReStartUI::MouseLbtnUp()
 void CReStartUI::MouseLbtnClicked()
 {
 	//여기다가 기능
+	CDungeonMgr::GetInst()->restart_scene();
 }
 
 void CReStartUI::render(HDC _dc)

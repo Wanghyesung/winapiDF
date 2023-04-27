@@ -98,6 +98,19 @@ void CEvilScene_1::Init()
 
 }
 
+void CEvilScene_1::InitMonster()
+{
+	GetPlayerObj()->SetPos(Vec2(300.f, 450.f));
+	
+	CMonster* pBrNight1 = CMonFactory::CraeteMonster(MON_TYPE::KNIGHT_BROWN, Vec2(500.f, 500.f), m_eType);
+	pBrNight1->SetName(L"brownNight_1_1");
+	CMonInterface* brNightInter = new CMonInterface(pBrNight1->GetName(), 96);
+	brNightInter->SetScale(Vec2(626, 29));
+	brNightInter->SetPos(Vec2(40, 20));
+	AddObject(brNightInter, GROUP_TYPE::UI);
+	AddObject(pBrNight1, GROUP_TYPE::MONSTER);
+}
+
 void CEvilScene_1::render(HDC _dc)
 {
 	Vec2 StartPos = Vec2(0.f, 0.f);//그림을 처음에 그릴 위치

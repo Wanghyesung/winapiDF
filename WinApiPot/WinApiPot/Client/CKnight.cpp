@@ -115,11 +115,6 @@ void CKnight::update()
 {
 	if (IsDead())
 	{
-		CAttackObject* pMonSkill = GetSKillObj();
-		if (pMonSkill->GetCollider()->IsActive())
-		{
-			pMonSkill->SetColActive(false);
-		}
 		DeleteObject(this);
 		return;
 	}
@@ -172,6 +167,12 @@ void CKnight::hit(CCollider* _pOther, const tAttackInfo& _tAtt)
 {
 	if (m_eMonState == MONSTER_STATE::STONE)
 		return;
+
+	CAttackObject* pMonSkill = GetSKillObj();
+	if (pMonSkill->GetCollider()->IsActive())
+	{
+		pMonSkill->SetColActive(false);
+	}
 
 	GetSKillObj()->SetColActive(false);
 

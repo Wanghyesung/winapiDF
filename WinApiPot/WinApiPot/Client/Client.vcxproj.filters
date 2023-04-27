@@ -467,6 +467,21 @@
     <Filter Include="Engine\05.CObject\CUI\CInterFace\CSkillIcon">
       <UniqueIdentifier>{583f1486-8bc4-452e-8f51-efbfba4e18db}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Engine\03.Manager\DungeonMgr">
+      <UniqueIdentifier>{73a47a56-b2b7-4874-a00e-d132fe70c4d5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\05.CObject\CUI\CClearUI">
+      <UniqueIdentifier>{61b1e5b2-b1ab-4049-aee8-a22a978e20e2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\05.CObject\CUI\CClearUI\CReStartUI">
+      <UniqueIdentifier>{4c94b0c3-3683-45f7-a4b4-e34277ccc9f3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\05.CObject\CUI\CClearUI\CChangeUI">
+      <UniqueIdentifier>{734c3539-4833-4de2-994e-cfd7befc01cd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\05.CObject\CUI\CClearUI\CTownUI">
+      <UniqueIdentifier>{91d8236b-fa86-4f3b-8c68-2c8891969b58}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="pch.h" />
@@ -944,6 +959,21 @@
     <ClInclude Include="CSkillIcon.h">
       <Filter>Engine\05.CObject\CUI\CInterFace\CSkillIcon</Filter>
     </ClInclude>
+    <ClInclude Include="CDungeonMgr.h">
+      <Filter>Engine\03.Manager\DungeonMgr</Filter>
+    </ClInclude>
+    <ClInclude Include="CClearUI.h">
+      <Filter>Engine\05.CObject\CUI\CClearUI</Filter>
+    </ClInclude>
+    <ClInclude Include="CReStartUI.h">
+      <Filter>Engine\05.CObject\CUI\CClearUI\CReStartUI</Filter>
+    </ClInclude>
+    <ClInclude Include="CChangeUI.h">
+      <Filter>Engine\05.CObject\CUI\CClearUI\CChangeUI</Filter>
+    </ClInclude>
+    <ClInclude Include="CTownUI.h">
+      <Filter>Engine\05.CObject\CUI\CClearUI\CTownUI</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Client.rc">
@@ -1412,6 +1442,21 @@
     </ClCompile>
     <ClCompile Include="CSkillIcon.cpp">
       <Filter>Engine\05.CObject\CUI\CInterFace\CSkillIcon</Filter>
+    </ClCompile>
+    <ClCompile Include="CDungeonMgr.cpp">
+      <Filter>Engine\03.Manager\DungeonMgr</Filter>
+    </ClCompile>
+    <ClCompile Include="CClearUI.cpp">
+      <Filter>Engine\05.CObject\CUI\CClearUI</Filter>
+    </ClCompile>
+    <ClCompile Include="CReStartUI.cpp">
+      <Filter>Engine\05.CObject\CUI\CClearUI\CReStartUI</Filter>
+    </ClCompile>
+    <ClCompile Include="CChangeUI.cpp">
+      <Filter>Engine\05.CObject\CUI\CClearUI\CChangeUI</Filter>
+    </ClCompile>
+    <ClCompile Include="CTownUI.cpp">
+      <Filter>Engine\05.CObject\CUI\CClearUI\CTownUI</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

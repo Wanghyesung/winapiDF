@@ -160,6 +160,8 @@
     <ClInclude Include="CBrDragon.h" />
     <ClInclude Include="CBullet.h" />
     <ClInclude Include="CCameraMgr.h" />
+    <ClInclude Include="CChangeUI.h" />
+    <ClInclude Include="CClearUI.h" />
     <ClInclude Include="CCoinMgr.h" />
     <ClInclude Include="CCollider.h" />
     <ClInclude Include="CColliderMgr.h" />
@@ -172,6 +174,7 @@
     <ClInclude Include="CDragon.h" />
     <ClInclude Include="CDragonObj.h" />
     <ClInclude Include="CDropRobot.h" />
+    <ClInclude Include="CDungeonMgr.h" />
     <ClInclude Include="CDungeonUI.h" />
     <ClInclude Include="CEventMgr.h" />
     <ClInclude Include="CEvilBossScene.h" />
@@ -250,6 +253,7 @@
     <ClInclude Include="CPortal.h" />
     <ClInclude Include="CPunisher.h" />
     <ClInclude Include="CRandomFire.h" />
+    <ClInclude Include="CReStartUI.h" />
     <ClInclude Include="CRobotEx8.h" />
     <ClInclude Include="CRobotExs.h" />
     <ClInclude Include="CRobotFire78.h" />
@@ -284,6 +288,7 @@
     <ClInclude Include="CThunder.h" />
     <ClInclude Include="CThunderDown.h" />
     <ClInclude Include="CTimeMgr.h" />
+    <ClInclude Include="CTownUI.h" />
     <ClInclude Include="CTraceState.h" />
     <ClInclude Include="CUI.h" />
     <ClInclude Include="CUIMgr.h" />
@@ -321,6 +326,8 @@
     <ClCompile Include="CBrDragon.cpp" />
     <ClCompile Include="CBullet.cpp" />
     <ClCompile Include="CCameraMgr.cpp" />
+    <ClCompile Include="CChangeUI.cpp" />
+    <ClCompile Include="CClearUI.cpp" />
     <ClCompile Include="CCoinMgr.cpp" />
     <ClCompile Include="CCollider.cpp" />
     <ClCompile Include="CColliderMgr.cpp" />
@@ -333,6 +340,7 @@
     <ClCompile Include="CDragon.cpp" />
     <ClCompile Include="CDragonObj.cpp" />
     <ClCompile Include="CDropRobot.cpp" />
+    <ClCompile Include="CDungeonMgr.cpp" />
     <ClCompile Include="CDungeonUI.cpp" />
     <ClCompile Include="CEventMgr.cpp" />
     <ClCompile Include="CEvilBossScene.cpp" />
@@ -410,6 +418,7 @@
     <ClCompile Include="CPortal.cpp" />
     <ClCompile Include="CPunisher.cpp" />
     <ClCompile Include="CRandomFire.cpp" />
+    <ClCompile Include="CReStartUI.cpp" />
     <ClCompile Include="CRobotEx8.cpp" />
     <ClCompile Include="CRobotExs.cpp" />
     <ClCompile Include="CRobotFire78.cpp" />
@@ -444,6 +453,7 @@
     <ClCompile Include="CThunder.cpp" />
     <ClCompile Include="CThunderDown.cpp" />
     <ClCompile Include="CTimeMgr.cpp" />
+    <ClCompile Include="CTownUI.cpp" />
     <ClCompile Include="CTraceState.cpp" />
     <ClCompile Include="CUI.cpp" />
     <ClCompile Include="CUIMgr.cpp" />

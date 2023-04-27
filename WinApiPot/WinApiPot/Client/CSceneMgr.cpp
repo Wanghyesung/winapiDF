@@ -54,6 +54,20 @@ CScene* SceneMgr::FindScene(SCENE_TYPE _eSceneType)
 	return nullptr;
 }
 
+const vector<CScene*>& SceneMgr::GetDungeonType(DUNGEON_TYPE _eDunType)
+{
+	vector<CScene*> vecDunType;
+	for (UINT i = 0; i < (UINT)SCENE_TYPE::END; ++i)
+	{
+		if (m_arrScene[i]->m_eDungeonType == _eDunType)
+		{
+			vecDunType.push_back(m_arrScene[i]);
+		}
+	}
+
+	return vecDunType;
+}
+
 void SceneMgr::init()
 {
 	//¾À ¹è¿­¿¡ ¸¸µç ¾Àµé ³Ö±â

@@ -66,6 +66,8 @@ void CSceneTowerFirst::Init()
 	m_pBackSound
 		= CResMgr::GetInst()->LoadSound(L"draconian_tower", L"..\\OutPut\\bin_release\\Content\\Sound\\draconian_tower.wav");
 
+	SetDungeonType(DUNGEON_TYPE::LORD);
+
 	//1344 790
 	CTemWall* pTemWall = new CTemWall;
 	pTemWall->SetPos(Vec2(672.f, 110.f));

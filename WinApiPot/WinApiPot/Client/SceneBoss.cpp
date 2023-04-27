@@ -70,6 +70,8 @@ void SceneBoss::Init()
 	CSkillMgr::GetInst()->SetPlayer((CPlayer*)GetPlayerObj());
 	CSkillMgr::GetInst()->init(m_eType);
 
+	SetDungeonType(DUNGEON_TYPE::LORD);
+
 	CTemWall* pTemWall = new CTemWall;
 	pTemWall->SetPos(Vec2(672.f, 110.f));
 	pTemWall->GetCollider()->SetScale(Vec2(1644.f, 600.f));

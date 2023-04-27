@@ -29,6 +29,8 @@ private:
 	Vec2			m_vStartDrawPos; //그릴 이미지의 시작점
 	tBackGround     m_tBackgroundInfo;
 
+	DUNGEON_TYPE     m_eDungeonType;
+
 public:
 	virtual void render(HDC _dc);
 	virtual void update();//여기서 업데이트 하고 각각의 오브젝트에서 update, finalupdate
@@ -55,6 +57,7 @@ public:
 	void SetStartDrawPoint(Vec2 _v) { m_vStartDrawPos = _v; }
 	Vec2 GetStartDrawPoint() { return m_vStartDrawPos; }
 
+	void SetDungeonType(DUNGEON_TYPE _eDunType) { m_eDungeonType = _eDunType; }
 	//인터페이스
 public:
 	void CreateInterFace();
@@ -86,6 +89,6 @@ public:
 	//enter은 씬 바뀔때마다 계속 (충돌)
 protected:
 
-	friend class CSceneMgr;
+	friend class SceneMgr;
 };
 

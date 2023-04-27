@@ -26,6 +26,7 @@
 #include "CMPItem.h"
 #include "CHPItem.h"
 #include "CInventoryMgr.h"
+#include "CDungeonMgr.h"
 
 #include "CTemWall.h"
 
@@ -65,6 +66,8 @@ void CEvilBossScene::Init()
 
 	m_pBackSound
 		= CResMgr::GetInst()->LoadSound(L"boss_", L"..\\OutPut\\bin_release\\Content\\Sound\\boss.wav");
+
+	SetDungeonType(DUNGEON_TYPE::EVIL);
 
 	CObject* pObj = CreatePlayer(Vec2(300.f, 450.f));
 	AddObject(pObj, GROUP_TYPE::PLAYER);
@@ -124,6 +127,8 @@ void CEvilBossScene::update()
 void CEvilBossScene::Enter()
 {
 	m_pBackSound->Play(true);
+
+	CDungeonMgr::GetInst()->SetActive(m_eType, true);
 
 	CCameraMgr::GetInst()->SetTargetObj((CPlayer*)GetPlayerObj()); //vResolution / 2.f
 	CCameraMgr::GetInst()->init();

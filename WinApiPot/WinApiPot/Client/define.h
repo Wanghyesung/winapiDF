@@ -57,6 +57,12 @@ enum class SCENE_TYPE
 	END = 20,
 };
 
+enum class DUNGEON_TYPE
+{
+	NONE,
+	EVIL,
+	LORD
+};
 
 enum class GROUP_TYPE
 {

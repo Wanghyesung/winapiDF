@@ -5,8 +5,9 @@
 
 #include "CAnimation.h"
 #include "CAnimator.h"
-
+#include "AI.h"
 #include "CSound.h"
+
 
 
 
@@ -33,7 +34,8 @@ void CDeadState::update()
 
 void CDeadState::enter()
 {
-	GetAnimSound()->Play(false);
+	if(GetAI()->GetPreState()->GetType() != MONSTER_STATE::DEAD)
+		GetAnimSound()->Play(false);
 }
 
 void CDeadState::exit()

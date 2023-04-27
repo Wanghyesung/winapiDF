@@ -11,6 +11,7 @@
 #include "CSceneMgr.h"
 #include "CScene.h"
 
+
 CGate::CGate(const wstring& _strDir, bool _bIsBoss) :
 	m_strDir(_strDir),
 	CTex(nullptr),

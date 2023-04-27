@@ -38,6 +38,12 @@
 #include "C:\Users\wangh\source\tem\WinApiPot\WinApiPot\Client\CCameraMgr.cpp"
 
 
+#include "C:\Users\wangh\source\tem\WinApiPot\WinApiPot\Client\CChangeUI.cpp"
+
+
+#include "C:\Users\wangh\source\tem\WinApiPot\WinApiPot\Client\CClearUI.cpp"
+
+
 #include "C:\Users\wangh\source\tem\WinApiPot\WinApiPot\Client\CCoinMgr.cpp"
 
 
@@ -72,6 +78,9 @@
 
 
 #include "C:\Users\wangh\source\tem\WinApiPot\WinApiPot\Client\CDropRobot.cpp"
+
+
+#include "C:\Users\wangh\source\tem\WinApiPot\WinApiPot\Client\CDungeonMgr.cpp"
 
 
 #include "C:\Users\wangh\source\tem\WinApiPot\WinApiPot\Client\CDungeonUI.cpp"
@@ -305,6 +314,9 @@
 #include "C:\Users\wangh\source\tem\WinApiPot\WinApiPot\Client\CRandomFire.cpp"
 
 
+#include "C:\Users\wangh\source\tem\WinApiPot\WinApiPot\Client\CReStartUI.cpp"
+
+
 #include "C:\Users\wangh\source\tem\WinApiPot\WinApiPot\Client\CRobotEx8.cpp"
 
 
@@ -405,6 +417,9 @@
 
 
 #include "C:\Users\wangh\source\tem\WinApiPot\WinApiPot\Client\CTimeMgr.cpp"
+
+
+#include "C:\Users\wangh\source\tem\WinApiPot\WinApiPot\Client\CTownUI.cpp"
 
 
 #include "C:\Users\wangh\source\tem\WinApiPot\WinApiPot\Client\CTraceState.cpp"

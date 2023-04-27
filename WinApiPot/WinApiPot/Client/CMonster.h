@@ -41,6 +41,7 @@ struct tMonSkill
 
 class AI;
 class CAttackObject;
+class CDungeonMgr;
 
 class CMonster :
     public CObject
@@ -115,6 +116,7 @@ public:
     virtual void OnColliderExit(CCollider* _pOther);   
     virtual void OnCollision(CCollider* _pOther);
     
+    friend class CDungeonMgr;
     friend class CMonFactory;
     friend class CDeadState;
 };

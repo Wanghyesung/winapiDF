@@ -24,7 +24,8 @@
 
 CScene::CScene():
 	m_pPlayer(nullptr),
-	m_pBackgroundTex(nullptr)
+	m_pBackgroundTex(nullptr),
+	m_eDungeonType(DUNGEON_TYPE::NONE)
 {
 
 }

@@ -19,7 +19,7 @@
 #include "CHPItem.h"
 #include "CInventory.h"
 #include "CInventoryMgr.h"
-
+#include "CDungeonMgr.h"
 
 #include "CCollider.h"
 
@@ -127,7 +127,6 @@ void CSeriaScene::Init()
 	pTemWall->SetPos(Vec2(800.f, 250.f));
 	pTemWall->GetCollider()->SetScale(Vec2(1800.f, 600.f));
 	AddObject(pTemWall, GROUP_TYPE::WALL);
-
 }
 
 void CSeriaScene::Enter()
@@ -144,6 +143,7 @@ void CSeriaScene::Enter()
 
 	CColliderMgr::GetInst()->ChekGroup(GROUP_TYPE::PORTAL, GROUP_TYPE::PLAYER);
 	CColliderMgr::GetInst()->ChekGroup(GROUP_TYPE::WALL, GROUP_TYPE::PLAYER);
+
 }
 
 void CSeriaScene::Exit()

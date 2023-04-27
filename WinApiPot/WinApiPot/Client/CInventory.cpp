@@ -254,6 +254,8 @@ void CInventory::render(HDC _dc)
 
 void CInventory::update()
 {
+	if (!m_bActive)
+		return;
 	CUI::update();
 }
 

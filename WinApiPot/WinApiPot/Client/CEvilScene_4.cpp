@@ -62,6 +62,8 @@ void CEvilScene_4::Init()
 	CSkillMgr::GetInst()->SetPlayer((CPlayer*)GetPlayerObj());
 	CSkillMgr::GetInst()->init(m_eType);
 
+	SetDungeonType(DUNGEON_TYPE::EVIL);
+
 	CTemWall* pTemWall = new CTemWall;
 	pTemWall->SetPos(Vec2(672.f, 110.f));
 	pTemWall->GetCollider()->SetScale(Vec2(1344.f, 600.f));

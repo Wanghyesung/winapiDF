@@ -71,6 +71,7 @@ void CEvilScene_1::Init()
 	pTemWall->GetCollider()->SetScale(Vec2(1644.f, 600.f));
 	AddObject(pTemWall, GROUP_TYPE::WALL);
 
+	SetDungeonType(DUNGEON_TYPE::EVIL);
 
 	CObject* pObj = CreatePlayer(Vec2(300.f, 450.f));
 	AddObject(pObj, GROUP_TYPE::PLAYER);

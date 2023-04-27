@@ -16,7 +16,7 @@
 #include "CInventoryMgr.h"
 #include "CCoinMgr.h"
 #include "CSoundMgr.h"
-
+#include "CDungeonMgr.h"
 
 CCore::CCore():
 	m_hDC(0),
@@ -71,6 +71,7 @@ int CCore::init(HWND _hWnd, POINT _pt)
 	//CCameraMgr::GetInst()->init();
 	CCoinMgr::GetInst()->init();
 	SceneMgr::GetInst()->init();
+	CDungeonMgr::GetInst()->init();
 
 	return S_OK;
 }

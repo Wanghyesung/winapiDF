@@ -116,10 +116,14 @@ void CMultiHead::Skillupdate()
 	}
 
 	CAnimator* pAnim = GetSkill()->GetPlayer()->GetAnimator();
-	if (pAnim->FindAnimation(m_strSkillName)->GetCurFrame() == 3 && m_iAttackCount < 4)
+	int iFrame = pAnim->FindAnimation(m_strSkillName)->GetCurFrame();
+
+
+	if (iFrame == 3 && m_iAttackCount < 5)
 		pAnim->FindAnimation(m_strSkillName)->SetFram(3);
-	else if (pAnim->FindAnimation(m_strSkillName)->GetCurFrame() == 3 && m_iAttackCount >= 4)
+	else if (m_iAttackCount >= 5)
 		exit();
+
 }
 
 void CMultiHead::update()
@@ -141,6 +145,7 @@ void CMultiHead::init()
 void CMultiHead::exit()
 {
 	m_strPreStateName = L"";
+	SetSKillName(L"Player_skill_multihead");
 	m_iAttackCount = 0;
 	m_fCurExitTime = 0.f;
 	m_fCurChangeTime = 0.f;
@@ -196,7 +201,7 @@ void CMultiHead::enter()
 
 	}
 	SetSKillName(strSkillName);
-
+	m_strSkillName = strSkillName;
 	CSkillState::enter();
 }
 

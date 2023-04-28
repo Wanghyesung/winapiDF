@@ -27,17 +27,21 @@ void CDungeonMgr::SetActive(SCENE_TYPE _eSceneType, bool _bActive)
 void CDungeonMgr::init()
 {
 	m_vecClearUI.resize((UINT)SCENE_TYPE::END);
-	//어느 씬에 넣을지 결정
+	
 	CClearUI* pClear1 = new CClearUI;
 	pClear1->init();
-	m_vecClearUI[(UINT)SCENE_TYPE::EVIL_BOSS] = pClear1;
-	SceneMgr::GetInst()->FindScene(SCENE_TYPE::EVIL_BOSS)->AddObject(pClear1, GROUP_TYPE::UI);
+	m_vecClearUI[(UINT)SCENE_TYPE::DUNGEON_BOSS] = pClear1;
+	SceneMgr::GetInst()->FindScene(SCENE_TYPE::DUNGEON_BOSS)->AddObject(pClear1, GROUP_TYPE::UI);
 
+	CClearUI* pClear2 = new CClearUI;
+	pClear2->init();
+	m_vecClearUI[(UINT)SCENE_TYPE::EVIL_BOSS] = pClear2;
+	SceneMgr::GetInst()->FindScene(SCENE_TYPE::EVIL_BOSS)->AddObject(pClear2, GROUP_TYPE::UI);
 
-	//CClearUI* pClear2 = new CClearUI;
-	//pClear2->init();
-	//m_vecClearUI[(UINT)SCENE_TYPE::SERIA_SCENE] = pClear2;
-	//SceneMgr::GetInst()->FindScene(SCENE_TYPE::WEST_COAST)->AddObject(pClear2, GROUP_TYPE::UI);
+	//CClearUI* pClear3 = new CClearUI;
+	//pClear3->init();
+	//m_vecClearUI[(UINT)SCENE_TYPE::SERIA_SCENE] = pClear3;
+	//SceneMgr::GetInst()->FindScene(SCENE_TYPE::SERIA_SCENE)->AddObject(pClear3, GROUP_TYPE::UI);
 }
 
 void CDungeonMgr::map_clear()
@@ -69,11 +73,11 @@ void CDungeonMgr::restart_scene()
 
 void CDungeonMgr::exit_dungeon()
 {
-	m_eCurDunType = DUNGEON_TYPE::NONE;
-
 	SetActive(m_eCurScene, false);
 	//Scene에 있는 reInit호출하고 마을로
 	reinit();
+
+	m_eCurDunType = DUNGEON_TYPE::NONE;
 
 	ChangeScene(SCENE_TYPE::WEST_COAST);
 }
@@ -81,11 +85,12 @@ void CDungeonMgr::exit_dungeon()
 void CDungeonMgr::change_dungeon()
 {
 	// Scene에 있는 reInit호출하고 현재씬 활성 X
-	m_eCurDunType = DUNGEON_TYPE::NONE;
 
 	SetActive(m_eCurScene, false);
 
 	reinit();
+
+	m_eCurDunType = DUNGEON_TYPE::NONE;
 
 	ChangeScene(SCENE_TYPE::SELECT_SCENE);
 }

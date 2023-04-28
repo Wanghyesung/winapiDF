@@ -133,6 +133,8 @@ void CRobotFire78::attack()
 
 	else
 	{
+		if (m_pTarget->GetMonInfo().m_iHp <= 0.f)
+			return;
 		Vec2 vPos = GetCollider()->GetFinalPos();
 		Vec2 vTargetPos = m_pTarget->GetCollider()->GetFinalPos();
 
@@ -193,6 +195,7 @@ void CRobotFire78::jump()
 
 void CRobotFire78::trace()
 {
+
 	if (m_pTarget == nullptr || !m_pTarget->IsActiv())
 	{
 		if (!setTarget());
@@ -232,19 +235,23 @@ bool CRobotFire78::setTarget()
 		if (vDiff.Length() <= fMinValue)
 		{
 			fMinValue = vDiff.Length();
+
+			if (vecMonster[i]->IsDead())
+				continue;
+
 			m_pTarget = (CMonster*)vecMonster[i];
 		}
 	}
 
-	if (m_pTarget != nullptr)
-	{
-		Vec2 vPos = GetCollider()->GetFinalPos();
-		Vec2 vTargetPos = m_pTarget->GetCollider()->GetFinalPos();
-
-		Vec2 vDiff = vTargetPos - vPos;
-
-		vDiff.x > 0 ? m_iDirX = 1 : m_iDirX = -1;
-	}
+	//if (m_pTarget != nullptr)
+	//{
+	//	Vec2 vPos = GetCollider()->GetFinalPos();
+	//	Vec2 vTargetPos = m_pTarget->GetCollider()->GetFinalPos();
+	//
+	//	Vec2 vDiff = vTargetPos - vPos;
+	//
+	//	vDiff.x > 0 ? m_iDirX = 1 : m_iDirX = -1;
+	//}
 
 	if (fMinValue == m_tInfo.m_fnavigationScope)
 		return false;

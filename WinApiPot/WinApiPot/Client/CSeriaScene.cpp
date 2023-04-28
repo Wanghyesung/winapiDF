@@ -19,6 +19,7 @@
 #include "CHPItem.h"
 #include "CInventory.h"
 #include "CInventoryMgr.h"
+#include "CDungeonMgr.h"
 
 #include "CCollider.h"
 
@@ -61,11 +62,11 @@ void CSeriaScene::render(HDC _dc)
 	//	(int)(tem->Width()), (int)(tem->Height()),
 	//	tem->GetDC(),
 	//	0, 0,
-	//	(int)(tem->Width()), (int)(tem->Height()),
+	//	(int)(tem->Width()), (int)(tem->Height()),5
 	//	bf);
 
 
-	//CTexture* tem = CResMgr::GetInst()->LoadTextur(L"42", L"..\\OutPut\\bin_release\\Content\\emfact\\particle_right.bmp");
+	//CTexture* tem = CResMgr::GetInst()->LoadTextur(L"42", L"..\\OutPut\\bin_release\\Content\\emfact\\11.bmp");
 	//
 	//TransparentBlt(_dc,
 	//	200,0,
@@ -132,6 +133,8 @@ void CSeriaScene::Enter()
 {
 	//»ç¿îµå
 	m_pBackSound->Play(true);
+
+	//CDungeonMgr::GetInst()->SetActive(m_eType, true);
 
 	CCameraMgr::GetInst()->SetTargetObj((CPlayer*)GetPlayerObj()); //vResolution / 2.f
 	CCameraMgr::GetInst()->init();

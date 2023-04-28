@@ -103,7 +103,8 @@ void CExsFire::OnColliderEnter(CCollider* _pOther)
 	if (pObj->GetTag() == GROUP_TYPE::MONSTER)
 	{
 		//점프 상태인지 확인하고 점프상태이면 점프 위치를 기준으로
-		if (pObj->GetGravity()->IsGetGravity())
+		if (pObj->GetGravity() != nullptr &&
+			pObj->GetGravity()->IsGetGravity())
 		{
 			if (!IsSameJumLoc(_pOther))
 				return;

@@ -31,6 +31,7 @@
 
 #include "CTemWall.h"
 
+#include "CDungeonMgr.h"
 #include "CInventoryMgr.h"
 #include "CInventory.h"
 #include "CHPItem.h"
@@ -125,6 +126,7 @@ void CEvilScene_1::Enter()
 {
 	m_pBackSound->Play(true);
 
+	//CDungeonMgr::GetInst()->SetActive(m_eType, true);
 	//키 누른 횟수 초기화
 	((CPlayer*)GetPlayerObj())->InitKeyStack();
 
@@ -150,6 +152,7 @@ void CEvilScene_1::Enter()
 	CColliderMgr::GetInst()->ChekGroup(GROUP_TYPE::PLAYER, GROUP_TYPE::MONSTER_SKILL);
 	CColliderMgr::GetInst()->ChekGroup(GROUP_TYPE::BULLET, GROUP_TYPE::MONSTER);
 	CColliderMgr::GetInst()->ChekGroup(GROUP_TYPE::SKILL, GROUP_TYPE::MONSTER);
+	CColliderMgr::GetInst()->ChekGroup(GROUP_TYPE::MONSTER, GROUP_TYPE::ROBOT);
 }
 
 void CEvilScene_1::Exit()

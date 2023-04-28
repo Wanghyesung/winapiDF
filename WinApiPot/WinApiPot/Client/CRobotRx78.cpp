@@ -133,6 +133,9 @@ void CRobotRx78::attack()
 
 	else
 	{
+		if (m_pTarget->GetMonInfo().m_iHp <= 0.f)
+			return;
+
 		Vec2 vPos = GetCollider()->GetFinalPos();
 		Vec2 vTargetPos = m_pTarget->GetCollider()->GetFinalPos();
 
@@ -198,6 +201,9 @@ void CRobotRx78::trace()
 		if(!setTarget());
 			return;
 	}
+
+	if (m_pTarget->GetMonInfo().m_iHp <= 0.f)
+		return;
 		
 	Vec2 vPos = GetCollider()->GetFinalPos();
 	Vec2 vTargetPos = m_pTarget->GetCollider()->GetFinalPos();

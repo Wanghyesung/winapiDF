@@ -55,6 +55,8 @@ void CGate::update()
 	const vector<CObject*>& MonVec = SceneMgr::GetInst()->GetCurSCene()->GetGroupObject(GROUP_TYPE::MONSTER);
 	if (MonVec.size() == 0)
 		m_bActive = false;
+	else
+		m_bActive = true;
 }
 
 void CGate::render(HDC _dc)

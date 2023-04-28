@@ -23,7 +23,7 @@ CTownUI::~CTownUI()
 
 void CTownUI::MouseOn()
 {
-
+	
 }
 
 void CTownUI::MouseLbtnDown()
@@ -84,8 +84,6 @@ void CTownUI::update()
 		m_bMousePush = false;
 		m_bMouseOn = false;
 	}
-
-
 
 	CUI::update();
 }

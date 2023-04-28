@@ -28,6 +28,7 @@
 #include "CMonInterface.h"
 #include "CHP.h"
 
+#include "CDungeonMgr.h"
 #include "CInventoryMgr.h"
 #include "CInventory.h"
 #include "CHPItem.h"
@@ -225,6 +226,8 @@ void CScene_Start::Enter()
 {
 	m_pBackSound->Play(true);
 	//매니져 클레스에 현재 플레이어로 세티d
+	//CDungeonMgr::GetInst()->SetActive(m_eType, true);
+
 	CCameraMgr::GetInst()->SetTargetObj((CPlayer*)GetPlayerObj()); 
 	CCameraMgr::GetInst()->init();
 	CSkillMgr::GetInst()->SetPlayer((CPlayer*)GetPlayerObj());

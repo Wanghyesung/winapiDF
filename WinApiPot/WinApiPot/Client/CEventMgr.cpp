@@ -29,6 +29,7 @@ void CEventMgr::update()
 	for (int i = 0; i < m_vecDead.size(); ++i)
 	{
 		delete m_vecDead[i];
+		m_vecDead[i] = nullptr;
 	}
 	m_vecDead.clear();
 

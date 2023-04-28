@@ -13,7 +13,9 @@ CClearUI::CClearUI():
 {
 	SetTag(GROUP_TYPE::UI);
 	m_pUITex = CResMgr::GetInst()->LoadTextur(L"continueUI", L"..\\OutPut\\bin_release\\Content\\Interface\\continue.bmp");
-	SetScale(Vec2(270.f,160.f));
+
+	SetScale(Vec2(270.f,160.f) * 1.5f);
+
 	SetPos(Vec2(850, 10));
 }
 
@@ -81,7 +83,7 @@ void CClearUI::finalupdate()
 void CClearUI::init()
 {
 	CReStartUI* pResStartUI = new CReStartUI;
-	pResStartUI->SetPos(Vec2(170.f, 85.f));
+	pResStartUI->SetPos(Vec2(169.f, 85.f));
 	AddChildUI(pResStartUI);
 
 	CChangeUI* pChangeUI = new CChangeUI;

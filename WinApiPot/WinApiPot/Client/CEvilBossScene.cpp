@@ -28,6 +28,9 @@
 #include "CInventoryMgr.h"
 #include "CDungeonMgr.h"
 
+#include "CSceneMgr.h"
+#include "CDungeonMgr.h"
+
 #include "CTemWall.h"
 
 #include "CEvileye.h"
@@ -146,13 +149,18 @@ void CEvilBossScene::InitMonster()
 void CEvilBossScene::update()
 {
 	CScene::update();
+
+	if (SceneMgr::GetInst()->GetCurSCene()->GetGroupObject(GROUP_TYPE::MONSTER).size() == 0)
+	{
+		CDungeonMgr::GetInst()->SetActive(m_eType, true);
+	}
 }
 
 void CEvilBossScene::Enter()
 {
 	m_pBackSound->Play(true);
 
-	CDungeonMgr::GetInst()->SetActive(m_eType, true);
+	//CDungeonMgr::GetInst()->SetActive(m_eType, true);
 
 	CCameraMgr::GetInst()->SetTargetObj((CPlayer*)GetPlayerObj()); //vResolution / 2.f
 	CCameraMgr::GetInst()->init();
@@ -174,6 +182,7 @@ void CEvilBossScene::Enter()
 	CColliderMgr::GetInst()->ChekGroup(GROUP_TYPE::PLAYER, GROUP_TYPE::MONSTER_SKILL);
 	CColliderMgr::GetInst()->ChekGroup(GROUP_TYPE::BULLET, GROUP_TYPE::MONSTER);
 	CColliderMgr::GetInst()->ChekGroup(GROUP_TYPE::SKILL, GROUP_TYPE::MONSTER);
+	CColliderMgr::GetInst()->ChekGroup(GROUP_TYPE::MONSTER, GROUP_TYPE::ROBOT);
 }
 
 void CEvilBossScene::Exit()

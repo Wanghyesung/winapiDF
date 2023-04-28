@@ -136,7 +136,7 @@ void CUI::MouseOn()
 
 void CUI::MouseLbtnDown()
 {
-
+	int a = 10;
 }
 
 void CUI::MouseLbtnUp()

@@ -63,7 +63,7 @@ void CSkillState::enter()
 		m_pSound->Play(false);
 	}
 	//대충 크게 잡아서 100
-	m_vecOtherColl.resize(400,-1);
+	m_vecOtherColl.resize(1000,-1);
 	GetCollider()->SetActive(true);
 	
 }

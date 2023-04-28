@@ -26,6 +26,9 @@
 #include "CMPItem.h"
 #include "CHPItem.h"
 #include "CInventoryMgr.h"
+#include "CSceneMgr.h"
+
+#include "CDungeonMgr.h"
 
 #include "CTemWall.h"
 
@@ -77,20 +80,7 @@ void SceneBoss::Init()
 	pTemWall->GetCollider()->SetScale(Vec2(1644.f, 600.f));
 	AddObject(pTemWall, GROUP_TYPE::WALL);
 
-	CDragonObj* pStone2 = new CDragonObj;
-	pStone2->SetPos(Vec2(30.f, 500.f));
-	pStone2->GetCollider()->SetScale(Vec2(50.f, 50.f));
-	AddObject(pStone2, GROUP_TYPE::STONE_BOX);
-
-	CDragonObj* pStone3 = new CDragonObj;
-	pStone3->SetPos(Vec2(30.f, 800.f));
-	pStone3->GetCollider()->SetScale(Vec2(50.f, 50.f));
-	AddObject(pStone3, GROUP_TYPE::STONE_BOX);
-
-	CDragonObj* pStone4 = new CDragonObj;
-	pStone4->SetPos(Vec2(30.f, 650.f));
-	pStone4->GetCollider()->SetScale(Vec2(50.f, 50.f));
-	AddObject(pStone4, GROUP_TYPE::STONE_BOX);
+	
 
 	CSpinner* pSpinner = new CSpinner;
 	pSpinner->SetPos(Vec2(900.f, 500.f));
@@ -215,6 +205,7 @@ void SceneBoss::Enter()
 	CColliderMgr::GetInst()->ChekGroup(GROUP_TYPE::PLAYER, GROUP_TYPE::MONSTER_SKILL);
 	CColliderMgr::GetInst()->ChekGroup(GROUP_TYPE::BULLET, GROUP_TYPE::MONSTER);
 	CColliderMgr::GetInst()->ChekGroup(GROUP_TYPE::SKILL, GROUP_TYPE::MONSTER);
+	CColliderMgr::GetInst()->ChekGroup(GROUP_TYPE::MONSTER, GROUP_TYPE::ROBOT);
 }
 
 void SceneBoss::Exit()

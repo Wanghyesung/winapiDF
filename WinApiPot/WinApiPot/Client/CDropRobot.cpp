@@ -28,15 +28,15 @@ CDropRobot::CDropRobot() :
 	m_tAtt.m_fAttUpperRcnt = -200.f;
 
 	CreateCollider();
-	GetCollider()->SetScale(Vec2(50.f, 50.f));
-
-	CTexture* pDropTexRight = CResMgr::GetInst()->LoadTextur(L"Drop_right", L"..\\OutPut\\bin_release\\Content\\emfact\\drop_right.bmp");
-	CTexture* pDropTexLeft = CResMgr::GetInst()->LoadTextur(L"Drop_left", L"..\\OutPut\\bin_release\\Content\\emfact\\drop_left.bmp");
+	GetCollider()->SetScale(Vec2(60.f, 60.f));
+	GetCollider()->SetOffSet(Vec2(0.f, 60.f));
+	CTexture* pDropTexRight = CResMgr::GetInst()->LoadTextur(L"Drop_right", L"..\\OutPut\\bin_release\\Content\\emfact\\drop2_right.bmp");
+	CTexture* pDropTexLeft = CResMgr::GetInst()->LoadTextur(L"Drop_left", L"..\\OutPut\\bin_release\\Content\\emfact\\drop2_left.bmp");
 
 	CreateAnimator();
 	GetAnimator()->SetRBG(0, 0, 0);
-	GetAnimator()->CreateAnimation(L"Drop_right", pDropTexRight, Vec2(0.f, 0.f), Vec2(70.f, 70.f), Vec2(70.f, 0.f), Vec2(0.f, 0.f), 1.f, 3);
-	GetAnimator()->CreateAnimation(L"Drop_left", pDropTexLeft, Vec2(140.f, 0.f), Vec2(70.f, 70.f), Vec2(-70.f, 0.f), Vec2(0.f, 0.f), 1.f, 3);
+	GetAnimator()->CreateAnimation(L"Drop_right", pDropTexRight, Vec2(0.f, 0.f), Vec2(150.f, 210.f), Vec2(150.f, 0.f), Vec2(0.f, 0.f), 1.f, 3);
+	GetAnimator()->CreateAnimation(L"Drop_left", pDropTexLeft, Vec2(300.f, 0.f), Vec2(150.f, 210.f), Vec2(-150.f, 0.f), Vec2(0.f, 0.f), 1.f, 3);
 
 	const vector<CObject*>& vecMon = SceneMgr::GetInst()->GetCurSCene()->GetGroupObject(GROUP_TYPE::MONSTER);
 	for (int i = 0; i < vecMon.size(); ++i)
@@ -117,7 +117,7 @@ void CDropRobot::create_robot()
 void CDropRobot::init_dir(int _iDir, Vec2 _vCreatePos)
 {
 	m_vDir = Vec2(_iDir * 0.1f, 1.f);
-
+	GetCollider()->SetOffSet(Vec2(_iDir* 25.f, 60.f));
 	wstring strDir = _iDir > 0 ? L"_right" : L"_left";
 	GetAnimator()->Play(L"Drop" + strDir, true);
 	m_vCreatePos = _vCreatePos + GetCollider()->GetFinalPos();

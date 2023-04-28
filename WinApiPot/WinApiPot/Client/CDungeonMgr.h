@@ -4,6 +4,10 @@
 
 class CClearUI;
 
+class CChangeUI;
+class CReStartUI;
+class CTownUI;
+
 class CDungeonMgr
 {
 	SINGLE(CDungeonMgr);
@@ -30,7 +34,7 @@ private:
 	void reinit();
 
 	friend class CChangeUI;
-	friend class CTownUI;
 	friend class CReStartUI;
+	friend class CTownUI;
 };
 

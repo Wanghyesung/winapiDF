@@ -24,6 +24,8 @@
 #include "CDropRobot.h"
 #include "CExsFire.h"
 
+#include "CDungeonMgr.h"
+
 #include "CDeadState.h"
 
 #include "CInterfaceMgr.h"
@@ -93,6 +95,9 @@ void CLord::update()
 	if (IsDead())
 	{
 		DeleteObject(this);
+		//맵의 몬스터 정리
+		CDungeonMgr::GetInst()->map_clear();
+		CDungeonMgr::GetInst()->SetActive(SCENE_TYPE::DUNGEON_BOSS, true);
 		return;
 	}
 	AI* pAI = GetAI();

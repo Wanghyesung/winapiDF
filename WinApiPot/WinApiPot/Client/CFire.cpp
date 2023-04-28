@@ -92,6 +92,9 @@ void CFire::init()
 
 void CFire::exit()
 {
+	if(!m_bFire)
+		DeleteObject(m_pTarget);
+
 	m_vStartPos = Vec2(0.f, 0.f);
 	m_bFire = false;
 	GetSkill()->GetPlayer()->GetAnimator()->FindAnimation(m_strSkillName)->SetFram(0);

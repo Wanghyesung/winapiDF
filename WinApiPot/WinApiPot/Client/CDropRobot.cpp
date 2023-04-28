@@ -134,7 +134,7 @@ bool CDropRobot::isSameYPos(CCollider* _pOtherCol)
 
 	float fDiff = abs(fYOtherPos - fYPos);
 
-	if (fDiff <= abs(fYOtherScale + fYSclae) / 2.f)
+	if (fDiff <= abs(fYOtherScale + fYSclae))
 	{
 		return true;
 	}

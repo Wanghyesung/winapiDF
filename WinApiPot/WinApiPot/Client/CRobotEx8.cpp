@@ -172,7 +172,10 @@ void CRobotEx8::jump()
 		return;
 	}
 
-	GetRigidBody()->AddForce((Vec2(vDiff.NormalRize() * m_fJumSpeed * 1.5)));
+	Vec2 vPosition = GetPos();
+	vPosition = vPosition + (vDiff.NormalRize() * m_fJumSpeed * 1.5 * fDT);
+	//GetRigidBody()->AddForce((Vec2(vDiff.NormalRize() * m_fJumSpeed * 1.5)));
+	SetPos(vPosition);
 
 }
 

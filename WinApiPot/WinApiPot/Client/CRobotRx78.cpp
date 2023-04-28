@@ -190,7 +190,10 @@ void CRobotRx78::jump()
 		return;
 	}
 
-	GetRigidBody()->AddForce((Vec2(vDiff.NormalRize() * m_fJumSpeed * 1.5)));
+	Vec2 vPosition = GetPos();
+	vPosition = vPosition + (vDiff.NormalRize() * m_fJumSpeed * 1.5 * fDT);
+	//GetRigidBody()->AddForce((Vec2(vDiff.NormalRize() * m_fJumSpeed * 1.5)));
+	SetPos(vPosition);
 
 }
 
@@ -203,7 +206,10 @@ void CRobotRx78::trace()
 	}
 
 	if (m_pTarget->GetMonInfo().m_iHp <= 0.f)
+	{
+		setTarget();
 		return;
+	}
 		
 	Vec2 vPos = GetCollider()->GetFinalPos();
 	Vec2 vTargetPos = m_pTarget->GetCollider()->GetFinalPos();

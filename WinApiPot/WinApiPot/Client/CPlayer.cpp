@@ -540,6 +540,11 @@ bool CPlayer::IsSameJumLoc(CCollider* _pOther, CCollider* _pThis)
 
 void CPlayer::HitPlayer(CCollider* _pOther, const tAttackInfo& _tAttInfo)
 {
+	if (m_bOnSkill)
+	{
+		GetSkill()->GetCurSkill()->exit();
+	}
+
 	if (playerCurState != PLAYER_STATE::IDLE)
 	{
 		m_pFSM->GetCurState()->Exit();

@@ -152,7 +152,7 @@ void CSeriaScene::Exit()
 {
 	m_pBackSound->Stop(true);
 
-	DeleteGroup(GROUP_TYPE::SKILL);
+	//DeleteGroup(GROUP_TYPE::SKILL);
 
 	CColliderMgr::GetInst()->Reset();
 }

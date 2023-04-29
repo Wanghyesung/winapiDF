@@ -26,7 +26,8 @@ CFire::CFire():
 	CSkillState(SKILL_STATE::FIRE),
 	m_pTarget(nullptr),
 	m_bFire(false),
-	m_vStartPos(Vec2(0.f,0.f))
+	m_vStartPos(Vec2(0.f,0.f)),
+	m_bDelOn(false)
 {
 
 	SetSKillName(L"Player_skill_Fire_");
@@ -42,7 +43,7 @@ CFire::CFire():
 
 CFire::~CFire()
 {
-
+	int a = 10;
 }
 
 void CFire::Skillupdate()
@@ -91,6 +92,7 @@ void CFire::Skillupdate()
 		CSound* pSound = CResMgr::GetInst()->FindSound(L"gn_fire");
 		pSound->Play(false);
 
+		m_bDelOn = true;
 		DeleteObject(m_pTarget);
 	}
 }
@@ -102,10 +104,11 @@ void CFire::init()
 
 void CFire::exit()
 {
-	if(!m_bFire)
+	if (!m_bFire)
 		DeleteObject(m_pTarget);
 
 	m_vStartPos = Vec2(0.f, 0.f);
+	m_bDelOn = false;
 	m_bFire = false;
 	GetSkill()->GetPlayer()->GetAnimator()->FindAnimation(m_strSkillName)->SetFram(0);
 	CSkillState::exit();

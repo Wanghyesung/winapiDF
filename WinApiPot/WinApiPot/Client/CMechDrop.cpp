@@ -34,6 +34,7 @@ CMechDrop::CMechDrop():
 
 	SetTag(GROUP_TYPE::SKILL);
 
+	SetAnimSound(L"drop_02");
 	SetAnimSound(L"dropship_radio_01");
 }
 
@@ -125,7 +126,8 @@ void CMechDrop::exit()
 void CMechDrop::enter()
 {
 	CSkillState::enter();
-
+	CSound* pSound = CResMgr::GetInst()->FindSound(L"drop_02");
+	pSound->Play(false);
 
 	CPlayer* pPlayer = GetSkill()->GetPlayer();
 	Vec2 vPlayerPos = pPlayer->GetCollider()->GetFinalPos();

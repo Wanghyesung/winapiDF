@@ -5,6 +5,8 @@
 #include "CTexture.h"
 #include "CDungeonMgr.h"
 
+#include "CSound.h"
+
 CReStartUI::CReStartUI()
 {
 	SetTag(GROUP_TYPE::UI);
@@ -40,6 +42,7 @@ void CReStartUI::MouseLbtnUp()
 void CReStartUI::MouseLbtnClicked()
 {
 	//여기다가 기능
+	CResMgr::GetInst()->LoadSound(L"click2", L"..\\OutPut\\bin_release\\Content\\Sound\\click2.wav")->Play(false);
 	CDungeonMgr::GetInst()->restart_scene();
 }
 

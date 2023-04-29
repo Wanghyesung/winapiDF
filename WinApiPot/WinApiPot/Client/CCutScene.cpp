@@ -9,6 +9,8 @@
 #include "CUI.h"
 #include "CDungeonUI.h"
 
+#include "CSound.h"
+
 CCutScene::CCutScene():
 	m_eType(SCENE_TYPE::SELECT_SCENE),
 	pBackSound(nullptr)
@@ -43,6 +45,7 @@ void CCutScene::update()
 
 void CCutScene::Enter()
 {
+	CResMgr::GetInst()->LoadSound(L"map_disappear", L"..\\OutPut\\bin_release\\Content\\Sound\\map_disappear.wav")->Play(false);
 	CCameraMgr::GetInst()->SetTargetObj(nullptr);
 }
 

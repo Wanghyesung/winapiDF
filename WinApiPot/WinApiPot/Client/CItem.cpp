@@ -12,6 +12,8 @@
 #include "CTexture.h"
 #include "CResMgr.h"
 
+#include "CSound.h"
+
 CItem::CItem() :
 	m_pInven(nullptr),
 	m_bActive(false),
@@ -33,6 +35,8 @@ CItem::CItem() :
 	}
 	m_iNumberWidth = m_vecNumber[0]->Width();
 	m_iNumberHeight = m_vecNumber[0]->Height();
+
+	CResMgr::GetInst()->LoadSound(L"magicseal_ok", L"..\\OutPut\\bin_release\\Content\\Sound\\magicseal_ok.wav");
 
 }
 
@@ -106,6 +110,12 @@ void CItem::update()
 void CItem::finalupdate()
 {
 	CUI::finalupdate();
+}
+
+void CItem::UseItem()
+{
+	CSound* pSound = CResMgr::GetInst()->FindSound(L"magicseal_ok");
+	pSound->Play(false);
 }
 
 void CItem::MouseOn()

@@ -5,6 +5,8 @@
 #include "CAnimation.h"
 
 #include "CEvileye.h"
+#include "CResMgr.h"
+#include "CSound.h"
 
 CEvileyeAttack::CEvileyeAttack():
 	CState(MONSTER_STATE::ATTACK),

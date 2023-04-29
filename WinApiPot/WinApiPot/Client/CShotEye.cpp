@@ -16,6 +16,7 @@
 
 CShotEye::CShotEye() :
 	m_bAttackOn(false),
+	m_bDelOn(false),
 	m_pOwner(nullptr),
 	m_vLookAt(Vec2(0.f, 0.f)),
 	m_fDeleteTime(5.f),
@@ -54,9 +55,13 @@ void CShotEye::render(HDC _dc)
 
 void CShotEye::update()
 {
+	if (m_bDelOn)
+		return;
+
 	m_fCurTime += fDT;
 	if (m_fCurTime >= m_fDeleteTime)
 	{
+		m_bDelOn = true;
 		GetCollider()->SetActive(false);
 		DeleteObject(this);
 		return;
@@ -75,7 +80,11 @@ void CShotEye::update()
 
 void CShotEye::OnColliderEnter(CCollider* _pOther)
 {
+	if (m_bDelOn)
+		return;
+
 	CObject* pObj = _pOther->GetObj();
+
 	if (pObj->GetTag() == GROUP_TYPE::PLAYER)
 	{
 		//점프 상태인지 확인하고 점프상태이면 점프 위치를 기준으로
@@ -85,10 +94,15 @@ void CShotEye::OnColliderEnter(CCollider* _pOther)
 			if (!IsSameJumLoc(_pOther, GetCollider()))
 				return;
 			else
+			{
+				m_bDelOn = true;
 				DeleteObject(this);
+			}
+				
 		}
 		else
 		{
+			m_bDelOn = true;
 			DeleteObject(this);
 		}
 

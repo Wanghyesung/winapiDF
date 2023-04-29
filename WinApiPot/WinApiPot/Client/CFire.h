@@ -16,6 +16,7 @@ private:
     CTarget* m_pTarget;
 
     bool m_bFire;
+    bool m_bDelOn;
 
     Vec2 m_vStartPos;
 public:

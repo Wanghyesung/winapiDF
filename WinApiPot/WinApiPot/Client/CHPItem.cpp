@@ -69,6 +69,7 @@ void CHPItem::finalupdate()
 void CHPItem::UseItem()
 {
 	//개수 줄이기
+	CItem::UseItem();
 	CPlayer* pPlayer = (CPlayer*)SceneMgr::GetInst()->GetCurSCene()->GetPlayerObj();
 
 	if (pPlayer != nullptr)

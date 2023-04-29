@@ -621,10 +621,10 @@ void CPlayer::OnColliderEnter(CCollider* _pOther)
 	if (pObj->GetTag() == GROUP_TYPE::MONSTER_SKILL
 		&& m_tPlayerInfo.m_fHP != 0)
 	{
-		if (m_bOnSkill)
+		/*if (m_bOnSkill)
 		{
 			m_pSkill->GetCurSkill()->exit();
-		}
+		}*/
 
 		if (dynamic_cast<CFireBall*>(pObj))
 		{
@@ -684,10 +684,10 @@ void CPlayer::OnCollision(CCollider* _pOther)
 	if (pObj->GetTag() == GROUP_TYPE::MONSTER_SKILL
 		&& m_tPlayerInfo.m_fHP != 0)
 	{
-		if (m_bOnSkill)
+		/*if (m_bOnSkill)
 		{
 			m_pSkill->GetCurSkill()->exit();
-		}
+		}*/
 
 		if (dynamic_cast<CThunder*>(pObj))
 		{

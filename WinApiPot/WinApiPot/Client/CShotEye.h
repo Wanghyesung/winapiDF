@@ -16,6 +16,7 @@ private:
 
     tAttackInfo m_tAtt;
     bool m_bAttackOn;
+    bool m_bDelOn;
     UINT m_iFrame;
 
     int m_iDir;

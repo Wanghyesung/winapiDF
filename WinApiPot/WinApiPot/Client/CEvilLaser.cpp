@@ -16,6 +16,7 @@ CEvilLaser::CEvilLaser():
 	m_pOwner(nullptr),
 	m_bAttackOn(false),
 	m_iDir(0),
+	m_iFrame(-1),
 	m_tAtt{}
 {
 	SetTag(GROUP_TYPE::MONSTER_SKILL);
@@ -38,6 +39,8 @@ CEvilLaser::CEvilLaser():
 	m_tAtt.m_fAttRcnt = 80.f;
 	m_tAtt.m_fAttUpperRcnt = -60.f;
 	m_tAtt.m_fAttRigidityTime = 0.5f;
+
+	//CResMgr::GetInst()->LoadSound(L"eye_shot", L"..\\OutPut\\bin_release\\Content\\Sound\\eye_shot.wav");
 }
 
 CEvilLaser::~CEvilLaser()
@@ -168,7 +171,7 @@ void CEvilLaser::set_DirUp()
 {
 	GetCollider()->SetScale(Vec2(50.f, 100.f));
 	//위쪽으로
-	GetCollider()->SetOffSet(Vec2(0.f,-100.f));
+	GetCollider()->SetOffSet(Vec2(0.f,-80.f));
 	m_strLaserDir = L"_up";
 	m_iDir = 0;
 }

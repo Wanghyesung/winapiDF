@@ -6,10 +6,14 @@
 
 #include "CDungeonMgr.h"
 
+#include "CResMgr.h"
+#include "CSound.h"
+
 CDungeonUI::CDungeonUI():
 	m_eNextScene(SCENE_TYPE::END)
 {
-
+	CResMgr::GetInst()->LoadSound(L"map_select", L"..\\OutPut\\bin_release\\Content\\Sound\\map_select.wav");
+	
 }
 
 CDungeonUI::~CDungeonUI()
@@ -32,6 +36,8 @@ void CDungeonUI::MouseLbtnUp()
 
 void CDungeonUI::MouseLbtnClicked()
 {
+	CResMgr::GetInst()->FindSound(L"map_select")->Play(false);
+
 	if (m_eNextScene == SCENE_TYPE::FIRST_DUNGEON)
 		CDungeonMgr::GetInst()->SetDunType(DUNGEON_TYPE::LORD);
 	else if(m_eNextScene == SCENE_TYPE::EVIL_SCENE_1)

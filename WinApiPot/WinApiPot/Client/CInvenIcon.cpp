@@ -6,6 +6,8 @@
 #include "CResMgr.h"
 #include "CTexture.h"
 
+#include "CSound.h"
+
 
 CInvenIcon::CInvenIcon() :
 	m_bMouseOn(false),
@@ -16,6 +18,7 @@ CInvenIcon::CInvenIcon() :
 	pMouseNoneTex = CResMgr::GetInst()->LoadTextur(L"InvenIconNone", L"..\\OutPut\\bin_release\\Content\\Interface\\invenIcon_0.bmp");
 	pMouseOnTex = CResMgr::GetInst()->LoadTextur(L"InvenIconOn", L"..\\OutPut\\bin_release\\Content\\Interface\\invenIcon_1.bmp");
 	pMousePushTex = CResMgr::GetInst()->LoadTextur(L"InvenIconPush", L"..\\OutPut\\bin_release\\Content\\Interface\\invenIcon_2.bmp");
+
 }
 
 CInvenIcon::~CInvenIcon()
@@ -86,6 +89,8 @@ void CInvenIcon::MouseLbtnUp()
 
 void CInvenIcon::MouseLbtnClicked()
 {
+	CResMgr::GetInst()->LoadSound(L"click1", L"..\\OutPut\\bin_release\\Content\\Sound\\click1.wav")->Play(false);
+
 	CInventory* pInven = CInventoryMgr::GetInst()->GetInventory();
 	if (pInven->m_bActive)
 		pInven->m_bActive = false;

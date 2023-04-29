@@ -63,6 +63,8 @@ void CMPItem::finalupdate()
 
 void CMPItem::UseItem()
 {
+	CItem::UseItem();
+
 	CPlayer* pPlayer = (CPlayer*)SceneMgr::GetInst()->GetCurSCene()->GetPlayerObj();
 
 	if (pPlayer != nullptr)

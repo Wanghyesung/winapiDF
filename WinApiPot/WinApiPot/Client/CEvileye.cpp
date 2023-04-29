@@ -26,6 +26,8 @@
 #include "CShotEye.h"
 #include "CCreateEye.h"
 
+#include "CSound.h"
+
 UINT CEvileye::m_iEvilCount = 0;
 
 CEvileye::CEvileye():
@@ -58,6 +60,9 @@ CEvileye::CEvileye():
 	GetAnimator()->Play(L"evileye_idle" + m_strMonDir, true);
 
 	m_iEvilCount++;
+
+	CResMgr::GetInst()->LoadSound(L"eye_shot", L"..\\OutPut\\bin_release\\Content\\Sound\\Mon\\eye_shot.wav");
+	CResMgr::GetInst()->LoadSound(L"eye_appear", L"..\\OutPut\\bin_release\\Content\\Sound\\Mon\\eye_appear.wav");
 
 	init_skill();
 }
@@ -204,6 +209,9 @@ void CEvileye::shotEye()
 {
 	Vec2 vStartPos = Vec2(1.f, 0.5f);
 
+	CSound* pSound = CResMgr::GetInst()->FindSound(L"eye_appear");
+	pSound->Play(false);
+
 	for (int i = 1; i <= 5; ++i)
 	{
 		CShotEye* pEye = new CShotEye;
@@ -240,6 +248,9 @@ void CEvileye::createLaser()
 
 	pLaser->m_pOwner = this;
 	pLaser->m_strLaserDir = m_strMonDir;
+
+	CSound* pSound = CResMgr::GetInst()->FindSound(L"eye_shot");
+	pSound->Play(false);
 
 	CreateObject(pLaser, GROUP_TYPE::MONSTER_SKILL);
 }

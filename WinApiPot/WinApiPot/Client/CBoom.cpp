@@ -10,6 +10,9 @@
 #include "CSceneMgr.h"
 #include "CScene.h"
 
+#include "CResMgr.h"
+#include "CSound.h"
+
 CBoom::CBoom():
 	m_tAtt{}
 {
@@ -34,6 +37,8 @@ CBoom::CBoom():
 
 	GetAnimator()->Play(L"Boom", false);
 
+	CSound* pSound = CResMgr::GetInst()->LoadSound(L"grenadegravity_exp", L"..\\OutPut\\bin_release\\Content\\Sound\\grenadegravity_exp.wav");
+	pSound->Play(false);
 }
 
 CBoom::~CBoom()

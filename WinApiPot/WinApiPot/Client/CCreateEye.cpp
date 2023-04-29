@@ -18,6 +18,8 @@
 
 #include "CEvilLaser.h"
 
+#include "CSound.h"
+
 CCreateEye::CCreateEye():
 	m_bAttackOn(false),
 	m_iFrame(0),
@@ -107,6 +109,8 @@ void CCreateEye::create_laser()
 	CEvilLaser* pLaser = new CEvilLaser;
 	pLaser->m_pOwner = this;
 	pLaser->set_DirUp();
+	CSound* pSound = CResMgr::GetInst()->FindSound(L"eye_shot");
+	pSound->Play(false);
 	CreateObject(pLaser, GROUP_TYPE::MONSTER_SKILL);
 	//pLaser->m_pOwner = 
 }

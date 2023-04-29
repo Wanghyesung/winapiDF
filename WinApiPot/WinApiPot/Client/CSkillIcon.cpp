@@ -5,6 +5,7 @@
 #include "CResMgr.h"
 #include "CTexture.h"
 
+#include "CSound.h"
 
 CSkillIcon::CSkillIcon() :
 	m_bMouseOn(false),
@@ -85,6 +86,7 @@ void CSkillIcon::MouseLbtnUp()
 
 void CSkillIcon::MouseLbtnClicked()
 {
+	CResMgr::GetInst()->LoadSound(L"click2", L"..\\OutPut\\bin_release\\Content\\Sound\\click2.wav")->Play(false);
 	CSkillMgr::GetInst()->ChangeSKillType();
 
 	m_bMousePush = false;

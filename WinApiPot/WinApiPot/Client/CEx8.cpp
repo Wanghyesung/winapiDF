@@ -39,6 +39,8 @@ CEx8::CEx8() :
 	SetMP(5.f);
 
 	CreateCollider();
+
+	SetAnimSound(L"gn_lrunner");
 }
 
 CEx8::~CEx8()
@@ -71,6 +73,8 @@ void CEx8::exit()
 
 void CEx8::enter()
 {
+	CSkillState::enter();
+
 	CPlayer* pPLayer = GetSkill()->GetPlayer();
 	int iDir = pPLayer->GetPlayerDirX();
 

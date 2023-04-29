@@ -9,6 +9,8 @@
 
 #include "CTexture.h"
 
+#include "CResMgr.h"
+
 CExsFire::CExsFire():
 	m_fSpeed(300.f),
 	m_fCurTime(0.f),

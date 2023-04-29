@@ -20,6 +20,8 @@
 #include "CScene.h"
 #include "CSceneMgr.h"
 
+#include "CSound.h"
+
 CFire::CFire():
 	CSkillState(SKILL_STATE::FIRE),
 	m_pTarget(nullptr),
@@ -33,6 +35,9 @@ CFire::CFire():
 	SetMP(5.f);
 
 	CreateCollider();
+
+	SetAnimSound(L"gn_fire");
+	SetAnimSound(L"hold_go_finger");
 }
 
 CFire::~CFire()
@@ -52,6 +57,8 @@ void CFire::Skillupdate()
 	}
 	else if (m_bFire && iFrame == -1)
 	{
+		CSound* pSound = CResMgr::GetInst()->FindSound(L"hold_go_finger");
+		pSound->Play(false);
 		exit();
 	}
 
@@ -80,6 +87,9 @@ void CFire::Skillupdate()
 			fire_robot();
 		else
 			jump_robot();
+
+		CSound* pSound = CResMgr::GetInst()->FindSound(L"gn_fire");
+		pSound->Play(false);
 
 		DeleteObject(m_pTarget);
 	}

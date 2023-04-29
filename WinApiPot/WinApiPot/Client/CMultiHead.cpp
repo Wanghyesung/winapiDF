@@ -11,8 +11,10 @@
 #include "CSkill.h"
 #include "CPlayer.h"
 #include "CRigidBody.h"
-
 #include "CParticle.h"
+
+#include "CResMgr.h"
+#include "CSound.h"
 
 #define SHOT_MOTION 1
 
@@ -20,6 +22,7 @@ CMultiHead::CMultiHead():
 	CSkillState(SKILL_STATE::MULTI_HEAD),
 	m_fCurExitTime(0.f),
 	m_fExitTime(1.0f),
+	m_iCurAttackCount(-1),
 	m_iAttackCount(0),
 	m_fChangeTime(0.5f),
 	m_fCurChangeTime(0.f),
@@ -28,7 +31,7 @@ CMultiHead::CMultiHead():
 	m_strPreStateName(L"")
 {
 	SetMP(8.f);
-
+	
 	SetSKillName(L"Player_skill_multihead");
 	
 	SetSkillTime(3);
@@ -43,6 +46,12 @@ CMultiHead::CMultiHead():
 	SetAttInfo(tAtt);
 
 	//SetAnimSound(L"gn_mvshot");
+	SetAnimSound(L"gn_multihead_0");
+	SetAnimSound(L"gn_multihead_1");
+	SetAnimSound(L"gn_multihead_2");
+	SetAnimSound(L"gn_multihead_3");
+	SetAnimSound(L"gn_multihead_4");
+	SetAnimSound(L"gn_multihead_ready");
 }
 
 CMultiHead::~CMultiHead()
@@ -144,9 +153,13 @@ void CMultiHead::init()
 
 void CMultiHead::exit()
 {
+	CSound* pSound = CResMgr::GetInst()->FindSound(L"gn_multihead_4");
+	pSound->Play(false);
+
 	m_strPreStateName = L"";
 	SetSKillName(L"Player_skill_multihead");
 	m_iAttackCount = 0;
+	m_iCurAttackCount = -1;
 	m_fCurExitTime = 0.f;
 	m_fCurChangeTime = 0.f;
 	GetSkill()->GetPlayer()->GetAnimator()->FindAnimation(m_strSkillName)->SetFram(0);
@@ -287,6 +300,13 @@ void CMultiHead::change_Dir(int _iDirX, int _iDirY)
 	GetSkill()->GetPlayer()->GetAnimator()->FindAnimation(m_strSkillName)->SetFram(0);
 	++m_iAttackCount;
 	m_fCurExitTime = 0.f;
+
+	if (m_iAttackCount != m_iCurAttackCount && m_iAttackCount < 5)
+	{
+		wstring strNum = std::to_wstring(m_iAttackCount - 1);
+		CSound* pSound = CResMgr::GetInst()->FindSound(L"gn_multihead_" + strNum);
+		pSound->Play(false);
+	}
 }
 
 void CMultiHead::create_particle(Vec2 _vPos)

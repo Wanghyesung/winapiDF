@@ -13,6 +13,8 @@ private:
 	Vec2 m_vCollOffSet;
 
 	UINT m_iAttackCount;
+	int m_iCurAttackCount;
+
 	wstring m_strSkillName;
 	wstring m_strPreStateName;
 	//일정 시간동안 키를 움직이지 않으면 exit

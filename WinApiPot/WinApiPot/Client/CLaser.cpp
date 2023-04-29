@@ -20,6 +20,7 @@ CLaser::CLaser():
 	m_bStart(false)
 {
 	//플레이어 애니메이션 이름
+
 	SetSKillName(L"Player_skill_laser_");
 
 	SetMP(10.f);
@@ -44,6 +45,8 @@ CLaser::CLaser():
 	GetAnimator()->SetRBG(0, 0, 0);
 	GetAnimator()->CreateAnimation(L"Laser_right", pLaserTexRight, Vec2(0.f, 0.f), Vec2(730.f, 250.f), Vec2(0.f, 250.f), Vec2(0.f, 0.f), 0.11f, 9);
 	GetAnimator()->CreateAnimation(L"Laser_left", pLaserTexLeft, Vec2(0.f, 0.f), Vec2(730.f, 250.f), Vec2(0.f, 250.f), Vec2(0.f, 0.f), 0.11f, 9);
+
+	SetAnimSound(L"gn_laser");
 }
 
 CLaser::~CLaser()

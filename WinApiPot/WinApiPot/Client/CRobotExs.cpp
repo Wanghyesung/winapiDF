@@ -9,6 +9,7 @@
 #include "CAnimation.h"
 #include "CExsFire.h"
 
+#include "CSound.h"
 
 CRobotExs::CRobotExs():
 	m_fDeleteCurTime(0.f),
@@ -29,9 +30,10 @@ CRobotExs::CRobotExs():
 	CTexture* pRxTextLeft = CResMgr::GetInst()->LoadTextur(L"exs_left", L"..\\OutPut\\bin_release\\Content\\Texture\\exs_left.bmp");
 
 	CreateAnimator();
-	GetAnimator()->CreateAnimation(L"exs_right", pRxTextRight, Vec2(0.f, 0.f), Vec2(200.f, 150.f), Vec2(200.f, 0.f), Vec2(0.f, 0.f), 0.2f, 8);
-	GetAnimator()->CreateAnimation(L"exs_left", pRxTextLeft, Vec2(1400.f, 0.f), Vec2(200.f, 150.f), Vec2(-200.f, 0.f), Vec2(0.f, 0.f), 0.2f, 8);
+	GetAnimator()->CreateAnimation(L"exs_right", pRxTextRight, Vec2(0.f, 0.f), Vec2(200.f, 150.f), Vec2(200.f, 0.f), Vec2(0.f, 0.f), 0.14f, 8);
+	GetAnimator()->CreateAnimation(L"exs_left", pRxTextLeft, Vec2(1400.f, 0.f), Vec2(200.f, 150.f), Vec2(-200.f, 0.f), Vec2(0.f, 0.f), 0.14f, 8);
 
+	CResMgr::GetInst()->LoadSound(L"p_viper_shot_01", L"..\\OutPut\\bin_release\\Content\\Sound\\p_viper_shot_01.wav");
 }
 
 CRobotExs::~CRobotExs()
@@ -94,6 +96,9 @@ void CRobotExs::init_dir(int _iDir)
 
 void CRobotExs::create_fire()
 {
+	CSound* pSound = CResMgr::GetInst()->FindSound(L"p_viper_shot_01");
+	pSound->Play(false);
+
 	CExsFire* pFire = new CExsFire;
 
 	Vec2 vCreatePos = GetPos() + Vec2(m_iDirX * 30.f, -40.f);

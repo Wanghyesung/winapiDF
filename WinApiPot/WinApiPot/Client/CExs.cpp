@@ -25,6 +25,8 @@ CExs::CExs() :
 
 	CreateCollider();
 	GetCollider()->SetScale(Vec2(200.f, 150.f));
+
+	SetAnimSound(L"gn_viper");
 }
 
 CExs::~CExs()
@@ -57,6 +59,8 @@ void CExs::exit()
 
 void CExs::enter()
 {
+	CSkillState::enter();
+
 	CPlayer* pPLayer = GetSkill()->GetPlayer();
 	int iDir = pPLayer->GetPlayerDirX();
 

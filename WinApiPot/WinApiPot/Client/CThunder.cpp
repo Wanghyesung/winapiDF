@@ -18,7 +18,7 @@ CThunder::CThunder():
 	m_iFrame(0),
 	m_fMaxTime(3.f),
 	m_fTime(0.f),
-	vOffset(Vec2(400.f,-50.f))
+	vOffset(Vec2(450.f,-50.f))
 {
 
 	SetTag(GROUP_TYPE::MONSTER_SKILL);
@@ -26,13 +26,14 @@ CThunder::CThunder():
 	SetName(L"Thunder");
 
 	CreateCollider();
-	GetCollider()->SetScale(Vec2(700.f, 150.f));
+	GetCollider()->SetScale(Vec2(700.f, 100.f));
 
-	CTexture* pTex_right = CResMgr::GetInst()->LoadTextur(L"Thunder1_right", L"..\\OutPut\\bin_release\\Content\\emfact\\Thuner1_right.bmp");
-	CTexture* pTex_left = CResMgr::GetInst()->LoadTextur(L"Thunder1_left", L"..\\OutPut\\bin_release\\Content\\emfact\\Thuner1_left.bmp");
+	CTexture* pTex_right = CResMgr::GetInst()->LoadTextur(L"Thunder2_right", L"..\\OutPut\\bin_release\\Content\\emfact\\Thuner2_right.bmp");
+	CTexture* pTex_left = CResMgr::GetInst()->LoadTextur(L"Thunder2_left", L"..\\OutPut\\bin_release\\Content\\emfact\\Thuner2_left.bmp");
 
 
 	CreateAnimator();
+	GetAnimator()->SetRBG(0, 0, 0);
 	GetAnimator()->CreateAnimation(L"Thunder_right", pTex_right, Vec2(0.f, 0.f), Vec2(900.f, 400.f), Vec2(900.f, 0.f), Vec2(0.f, 0.f), 0.1f, 4);
 	GetAnimator()->CreateAnimation(L"Thunder_left", pTex_left, Vec2(2700.f, 0.f), Vec2(900.f, 400.f), Vec2(-900.f, 0.f), Vec2(0.f, 0.f), 0.1f, 4);
 }

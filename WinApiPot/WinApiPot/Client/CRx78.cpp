@@ -23,6 +23,8 @@ CRx78::CRx78():
 	SetMP(5.f);
 
 	CreateCollider();
+
+	SetAnimSound(L"gn_lrunner");
 }
 
 CRx78::~CRx78()
@@ -55,6 +57,8 @@ void CRx78::exit()
 
 void CRx78::enter()
 {
+	CSkillState::enter();
+
 	CPlayer* pPLayer = GetSkill()->GetPlayer();
 	int iDir = pPLayer->GetPlayerDirX();
 

@@ -524,11 +524,11 @@ CMonster* CMonFactory::CraeteMonster(MON_TYPE _monType, Vec2 _vPos, SCENE_TYPE _
 		pAI->AddState(new CNaiasTrace);
 
 		CNaiasAttack* pNaiasAttack = new CNaiasAttack;
-		pNaiasAttack->SetAnimSound(L"hunt_atk");
+		pNaiasAttack->SetAnimSound(L"watersoul_atk_1");
 		pAI->AddState(pNaiasAttack);
 
 		CHitState* pHit = new CHitState;
-		pHit->SetAnimSound(L"hunt_comm");
+		pHit->SetAnimSound(L"sfish_dmg");
 		pAI->AddState(pHit);
 
 		/*CHitUpper* pHitUp = new CHitUpper;
@@ -536,7 +536,7 @@ CMonster* CMonFactory::CraeteMonster(MON_TYPE _monType, Vec2 _vPos, SCENE_TYPE _
 		pAI->AddState(pHitUp);*/
 
 		CDeadState* pDead = new CDeadState;
-		pDead->SetAnimSound(L"hunt_die");
+		pDead->SetAnimSound(L"sfish_die");
 		pAI->AddState(pDead);
 
 		pAI->SetCurState(MONSTER_STATE::IDLE);
@@ -580,11 +580,11 @@ CMonster* CMonFactory::CraeteMonster(MON_TYPE _monType, Vec2 _vPos, SCENE_TYPE _
 		pAI->AddState(new CNaiasTrace);
 
 		CNaiasAttack* pNaiasAttack = new CNaiasAttack;
-		pNaiasAttack->SetAnimSound(L"hunt_atk");
+		pNaiasAttack->SetAnimSound(L"watersoul_atk_1");
 		pAI->AddState(pNaiasAttack);
 
 		CHitState* pHit = new CHitState;
-		pHit->SetAnimSound(L"hunt_comm");
+		pHit->SetAnimSound(L"sfish_dmg");
 		pAI->AddState(pHit);
 
 		/*CHitUpper* pHitUp = new CHitUpper;
@@ -592,7 +592,7 @@ CMonster* CMonFactory::CraeteMonster(MON_TYPE _monType, Vec2 _vPos, SCENE_TYPE _
 		pAI->AddState(pHitUp);*/
 
 		CDeadState* pDead = new CDeadState;
-		pDead->SetAnimSound(L"hunt_die");
+		pDead->SetAnimSound(L"sfish_die");
 		pAI->AddState(pDead);
 
 		pAI->SetCurState(MONSTER_STATE::IDLE);
@@ -644,7 +644,7 @@ CMonster* CMonFactory::CraeteMonster(MON_TYPE _monType, Vec2 _vPos, SCENE_TYPE _
 		pAI->AddState(pHitUp);*/
 
 		CDeadState* pDead = new CDeadState;
-		pDead->SetAnimSound(L"hunt_die");
+		pDead->SetAnimSound(L"evil_shout");
 		pAI->AddState(pDead);
 
 		pAI->SetCurState(MONSTER_STATE::IDLE);

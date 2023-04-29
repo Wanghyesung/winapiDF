@@ -12,10 +12,8 @@
 #include "CAnimation.h"
 
 #include "CCollider.h"
-
-
 #include "CDropRobot.h"
-
+#include "CSound.h"
 
 
 CMechDrop::CMechDrop():
@@ -35,6 +33,8 @@ CMechDrop::CMechDrop():
 	SetMP(5.f);
 
 	SetTag(GROUP_TYPE::SKILL);
+
+	SetAnimSound(L"dropship_radio_01");
 }
 
 CMechDrop::~CMechDrop()
@@ -124,6 +124,8 @@ void CMechDrop::exit()
 
 void CMechDrop::enter()
 {
+	CSkillState::enter();
+
 
 	CPlayer* pPlayer = GetSkill()->GetPlayer();
 	Vec2 vPlayerPos = pPlayer->GetCollider()->GetFinalPos();

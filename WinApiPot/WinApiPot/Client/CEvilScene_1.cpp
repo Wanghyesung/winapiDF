@@ -89,6 +89,14 @@ void CEvilScene_1::Init()
 	AddObject(brNightInter, GROUP_TYPE::UI);
 	AddObject(pBrNight1, GROUP_TYPE::MONSTER);
 
+	//CMonster* pBDragon1 = CMonFactory::CraeteMonster(MON_TYPE::BLUE_DRAGON, Vec2(700.f, 500.f), m_eType);
+	//pBDragon1->SetName(L"bDragon1_1");
+	//CMonInterface* brdragonInterface2 = new CMonInterface(pBDragon1->GetName(), 45);
+	//brdragonInterface2->SetScale(Vec2(626, 29));
+	//brdragonInterface2->SetPos(Vec2(40, 20));
+	//AddObject(brdragonInterface2, GROUP_TYPE::UI);
+	//AddObject(pBDragon1, GROUP_TYPE::MONSTER);
+
 
 	//방향 먼저 잡기
 	CGate* pGate = new CGate(L"up", false);
@@ -110,6 +118,14 @@ void CEvilScene_1::InitMonster()
 	brNightInter->SetPos(Vec2(40, 20));
 	AddObject(brNightInter, GROUP_TYPE::UI);
 	AddObject(pBrNight1, GROUP_TYPE::MONSTER);
+
+	//CMonster* pBDragon1 = CMonFactory::CraeteMonster(MON_TYPE::BLUE_DRAGON, Vec2(700.f, 500.f), m_eType);
+	//pBDragon1->SetName(L"bDragon1_1");
+	//CMonInterface* brdragonInterface2 = new CMonInterface(pBDragon1->GetName(), 45);
+	//brdragonInterface2->SetScale(Vec2(626, 29));
+	//brdragonInterface2->SetPos(Vec2(40, 20));
+	//AddObject(brdragonInterface2, GROUP_TYPE::UI);
+	//AddObject(pBDragon1, GROUP_TYPE::MONSTER);
 }
 
 void CEvilScene_1::render(HDC _dc)
@@ -153,6 +169,7 @@ void CEvilScene_1::Enter()
 	CColliderMgr::GetInst()->ChekGroup(GROUP_TYPE::BULLET, GROUP_TYPE::MONSTER);
 	CColliderMgr::GetInst()->ChekGroup(GROUP_TYPE::SKILL, GROUP_TYPE::MONSTER);
 	CColliderMgr::GetInst()->ChekGroup(GROUP_TYPE::MONSTER, GROUP_TYPE::ROBOT);
+	CColliderMgr::GetInst()->ChekGroup(GROUP_TYPE::MONSTER, GROUP_TYPE::DROUP);
 }
 
 void CEvilScene_1::Exit()

@@ -9,6 +9,7 @@ class CFSM;
 class CHPItem;
 class CMPItem;
 class CCoinMgr;
+class CDungeonMgr;
 
 struct tPlayerInfo
 {
@@ -113,6 +114,7 @@ private:
 
     void resetvalue();
 
+    friend class CDungeonMgr;
     friend class CBullet;
     friend class CFSM;
     friend class CPlayerHit;

@@ -39,8 +39,8 @@ CBullet::CBullet(CPlayer* _pPlayer, ATTACK_TYPE _eAttType = ATTACK_TYPE::NORMAL)
 
 	m_tAtt.m_fAttackDamage = 5.f;
 	m_tAtt.m_fAttRigidityTime = 0.8f;
-	m_tAtt.m_fAttUpperRcnt = -60.f;
-	m_tAtt.m_fAttRcnt = 30.f;
+	m_tAtt.m_fAttUpperRcnt = -80.f;
+	m_tAtt.m_fAttRcnt = 20.f;
 	m_tAtt.m_eAttType = _eAttType;
 
 	//中宜端 持失

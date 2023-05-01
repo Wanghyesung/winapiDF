@@ -67,7 +67,7 @@ void CPlayerHitUpper::Exit()
 
 void CPlayerHitUpper::Enter()
 {
-	GetAnimSound()->Play(false);
+	
 	PLAYER_STATE prevState = GetFSM()->GetPlayer()->GetPrevState();
 	if (prevState == PLAYER_STATE::ATTACK ||
 		prevState == PLAYER_STATE::ATTACK_DOWN)
@@ -76,9 +76,15 @@ void CPlayerHitUpper::Enter()
 	}
 
 	CPlayer* pPlayer = GetFSM()->GetPlayer();
+	wstring strDir = pPlayer->m_iDirX > 0 ? L"_left" : L"_right";
 	if (pPlayer->playerPrevState == PLAYER_STATE::UPPER_HIT)
 	{
-		pPlayer->GetAnimator()->GetCurAnimation()->SetFram(2);
+		pPlayer->GetAnimator()->FindAnimation(L"Player_Hit" + strDir)->SetFram(3);
+	}
+
+	else
+	{
+		GetAnimSound()->Play(false);
 	}
 
 }

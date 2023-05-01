@@ -19,7 +19,7 @@ private:
 
     float m_fUltimateTime;
     float m_fUltimateCurTime;
-
+ 
 public:
     virtual void update();
     virtual void render(HDC _dc);

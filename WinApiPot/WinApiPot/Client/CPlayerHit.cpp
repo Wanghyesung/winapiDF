@@ -57,7 +57,7 @@ void CPlayerHit::update()
 void CPlayerHit::Enter()
 {
 	//내 속도 0으로 초기화
-	GetAnimSound()->Play(false);
+	
 	GetFSM()->GetPlayer()->GetRigidBody()->SetVelocity(Vec2(0.f, 0.f));
 	GetFSM()->GetPlayer()->GetRigidBody()->SetAccel(false);
 
@@ -69,15 +69,20 @@ void CPlayerHit::Enter()
 	}
 
 	CPlayer* pPlayer = GetFSM()->GetPlayer();
+	wstring strDir = pPlayer->m_iDirX> 0 ? L"_left" : L"_right";
 	if (pPlayer->playerPrevState == PLAYER_STATE::HIT)
 	{
-		pPlayer->GetAnimator()->GetCurAnimation()->SetFram(1);
+		pPlayer->GetAnimator()->FindAnimation(L"Player_Hit"+ strDir)->SetFram(1);
+	}
+	else
+	{
+		GetAnimSound()->Play(false);
 	}
 }
 
 void CPlayerHit::Exit()
 {
-	GetAnimSound()->Stop(true);
+	//GetAnimSound()->Stop(true);
 	m_fCurTime = 0.f;
 	CPlayerState::Exit();
 	InitZeroFrame();

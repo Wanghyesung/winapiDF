@@ -124,7 +124,7 @@ void CDragonObj::OnColliderEnter(CCollider* _pOther)
 			CBullet* pBullet = dynamic_cast<CBullet*>(pObj);
 			m_fHp -= pBullet->GetAttInfo().m_fAttackDamage;
 		}
-		else
+		else if(dynamic_cast<CSkillState*>(pObj))
 		{
 			CSkillState* pSkill = dynamic_cast<CSkillState*>(pObj);
 			if (!pSkill->IsAttackOn())
@@ -197,11 +197,12 @@ void CDragonObj::OnCollision(CCollider* _pOther)
 			CBullet* pBullet = dynamic_cast<CBullet*>(pObj);
 			m_fHp -= pBullet->GetAttInfo().m_fAttackDamage;
 		}
-		else
+		else if (dynamic_cast<CSkillState*>(pObj))
 		{
 			CSkillState* pSkill = dynamic_cast<CSkillState*>(pObj);
 			if (!pSkill->IsAttackOn())
 				return;
+
 			m_fHp -= pSkill->GetAttInfo().m_fAttackDamage;
 		}
 

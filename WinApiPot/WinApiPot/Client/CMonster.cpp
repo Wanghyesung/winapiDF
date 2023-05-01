@@ -38,10 +38,10 @@ CMonster::~CMonster()
 
 	//이것도 Scene에서 소멸자에서 삭제
 	//DeleteObject(m_pAttackObj);
-	//if (m_pAttackObj != nullptr)
-	//{
-	//	DeleteObject(m_pAttackObj);
-	//}
+	if (m_pAttackObj != nullptr && m_tMonInfo.m_iHp <= 0)
+	{
+		DeleteObject(m_pAttackObj);
+	}
 }
 
 
@@ -73,11 +73,11 @@ void CMonster::hit(CCollider* _pOther, const tAttackInfo& _tAtt)
 	
 	CCollider* pCollider = GetCollider();
 
-	if (GetGravity()->IsGetGravity())
-	{
-		if (!IsSameJumLoc(_pOther, GetCollider()))
-			return;
-	}
+	//if (GetGravity()->IsGetGravity())
+	//{
+	//	if (!IsSameJumLoc(_pOther, GetCollider()))
+	//		return;
+	//}
 
 	m_tHitInfo.m_fHitRcnt = _tAtt.m_fAttRcnt;
 	m_tHitInfo.m_fHitRigidityTime = _tAtt.m_fAttRigidityTime;
@@ -92,7 +92,7 @@ void CMonster::hit(CCollider* _pOther, const tAttackInfo& _tAtt)
 		else
 			fDir = -1.f;
 
-		int iDir = m_AI->GetCurState()->GetDir();
+		int iDir = m_AI->GetCurState()->GetDir() * -1;
 
 		ATTACK_TYPE eAttackType = _tAtt.m_eAttType;
 		if (m_tMonState == MONSTER_STATE::UPPER_HIT)
@@ -102,11 +102,11 @@ void CMonster::hit(CCollider* _pOther, const tAttackInfo& _tAtt)
 		{
 		case ATTACK_TYPE::UPPER:
 		{
-			m_tHitInfo.m_fHitDir = -iDir;
+			m_tHitInfo.m_fHitDir = iDir;
 			GetGravity()->SetGravity(true);
 			if (GetJumPos().IsZero())
 				SetJumPos(pCollider->GetFinalPos());
-			GetRigidBody()->SetVelocity(Vec2(0.f, m_tHitInfo.m_fHitUpperRcnt));
+			GetRigidBody()->SetVelocity(Vec2(m_tHitInfo.m_fHitRcnt * iDir, m_tHitInfo.m_fHitUpperRcnt));
 			//GetRigidBody()->SetAccelA(Vec2(0.f, _tAtt.m_fAttUpperAcc));
 			ChangeAIState(m_AI, MONSTER_STATE::UPPER_HIT);
 		}
@@ -114,7 +114,7 @@ void CMonster::hit(CCollider* _pOther, const tAttackInfo& _tAtt)
 
 		case ATTACK_TYPE::NORMAL:
 		{
-			m_tHitInfo.m_fHitDir = -iDir;
+			m_tHitInfo.m_fHitDir = iDir;
 			ChangeAIState(m_AI, MONSTER_STATE::HIT);
 		}
 		break;

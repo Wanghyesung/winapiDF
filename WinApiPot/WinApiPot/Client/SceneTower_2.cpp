@@ -108,7 +108,7 @@ void SceneTower_2::Init()
 void SceneTower_2::InitMonster()
 {
 	GetPlayerObj()->SetPos(Vec2(300.f, 450.f));
-
+	
 	CMonster* pBrDragon1 = CMonFactory::CraeteMonster(MON_TYPE::BROWN_DRAGON, Vec2(500.f, 500.f), m_eType);
 	pBrDragon1->SetName(L"brDragon1");
 	CMonInterface* brdragonInterface2 = new CMonInterface(pBrDragon1->GetName(), 44);
@@ -116,8 +116,8 @@ void SceneTower_2::InitMonster()
 	brdragonInterface2->SetPos(Vec2(40, 20));
 	AddObject(brdragonInterface2, GROUP_TYPE::UI);
 	AddObject(pBrDragon1, GROUP_TYPE::MONSTER);
-
-
+	
+	
 	CMonster* pBrDragon2 = CMonFactory::CraeteMonster(MON_TYPE::BROWN_DRAGON, Vec2(1000.f, 500.f), m_eType);
 	pBrDragon2->SetName(L"brDragon2");
 	CMonInterface* brdragonInterface1 = new CMonInterface(pBrDragon2->GetName(), 44);
@@ -162,6 +162,7 @@ void SceneTower_2::Enter()
 	CColliderMgr::GetInst()->ChekGroup(GROUP_TYPE::BULLET, GROUP_TYPE::MONSTER);
 	CColliderMgr::GetInst()->ChekGroup(GROUP_TYPE::SKILL, GROUP_TYPE::MONSTER);
 	CColliderMgr::GetInst()->ChekGroup(GROUP_TYPE::MONSTER, GROUP_TYPE::ROBOT);
+	CColliderMgr::GetInst()->ChekGroup(GROUP_TYPE::MONSTER, GROUP_TYPE::DROUP);
 	//CColliderMgr::GetInst()->ChekGroup(GROUP_TYPE::MONSTER, GROUP_TYPE::MONSTER);
 }
 

@@ -214,7 +214,7 @@ void CArdor::hit(CCollider* _pOther, const tAttackInfo& _tAtt)
 		else
 			fDir = -1.f;
 
-		tHitInfo.m_fHitDir = fDir;
+		tHitInfo.m_fHitDir = pAI->GetCurState()->GetDir() * -1;
 		ChangeAIState(pAI, MONSTER_STATE::HIT);
 
 		//띄움판정 없이

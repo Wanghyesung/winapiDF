@@ -41,7 +41,7 @@
 CSceneTowerFirst::CSceneTowerFirst():
 	m_eType(SCENE_TYPE::FIRST_DUNGEON)
 {
-
+	
 }
 
 CSceneTowerFirst::~CSceneTowerFirst()
@@ -163,7 +163,7 @@ void CSceneTowerFirst::Init()
 void CSceneTowerFirst::InitMonster()
 {
 	GetPlayerObj()->SetPos(Vec2(300.f, 450.f));
-
+	
 	CMonster* pBDragon1 = CMonFactory::CraeteMonster(MON_TYPE::BLUE_DRAGON, Vec2(500.f, 500.f), m_eType);
 	pBDragon1->SetName(L"bDragon1");
 	CMonInterface* brdragonInterface2 = new CMonInterface(pBDragon1->GetName(), 45);
@@ -218,6 +218,7 @@ void CSceneTowerFirst::Enter()
 	CColliderMgr::GetInst()->ChekGroup(GROUP_TYPE::BULLET, GROUP_TYPE::MONSTER);
 	CColliderMgr::GetInst()->ChekGroup(GROUP_TYPE::SKILL, GROUP_TYPE::MONSTER);
 	CColliderMgr::GetInst()->ChekGroup(GROUP_TYPE::MONSTER, GROUP_TYPE::ROBOT);
+	CColliderMgr::GetInst()->ChekGroup(GROUP_TYPE::MONSTER, GROUP_TYPE::DROUP);
 	//CColliderMgr::GetInst()->ChekGroup(GROUP_TYPE::MONSTER, GROUP_TYPE::MONSTER);
 }
 

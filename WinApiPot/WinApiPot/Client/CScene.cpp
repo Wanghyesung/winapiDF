@@ -102,7 +102,6 @@ void CScene::backgroundrender(HDC _dc, CTexture* _pTex, Vec2 _vStartPos)
 		_pTex->GetDC(),
 		0, 0,
 		SRCCOPY);
-
 }
 
 void CScene::Tile_render(HDC _dc, CTexture* _pTex)

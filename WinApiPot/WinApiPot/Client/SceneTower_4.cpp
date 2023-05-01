@@ -116,7 +116,7 @@ void SceneTower_4::Init()
 void SceneTower_4::InitMonster()
 {
 	CObject* pObj = CreatePlayer(Vec2(300.f, 450.f));
-
+	
 	CMonster* pBrDragon1 = CMonFactory::CraeteMonster(MON_TYPE::BROWN_DRAGON, Vec2(500.f, 500.f), m_eType);
 	pBrDragon1->SetName(L"brDragon_4_1");
 	CMonInterface* brdragonInterface2 = new CMonInterface(pBrDragon1->GetName(), 44);
@@ -124,7 +124,7 @@ void SceneTower_4::InitMonster()
 	brdragonInterface2->SetPos(Vec2(40, 20));
 	AddObject(brdragonInterface2, GROUP_TYPE::UI);
 	AddObject(pBrDragon1, GROUP_TYPE::MONSTER);
-
+	
 	CMonster* pDragon1 = CMonFactory::CraeteMonster(MON_TYPE::DRAGON, Vec2(500.f, 550.f), m_eType);
 	pDragon1->SetName(L"CDragon_4_1");
 	//내 몬스터 인터페이스에 내 몬스터 이름 넣기
@@ -133,7 +133,7 @@ void SceneTower_4::InitMonster()
 	dragonInterface1->SetPos(Vec2(40, 20));
 	AddObject(dragonInterface1, GROUP_TYPE::UI);
 	AddObject(pDragon1, GROUP_TYPE::MONSTER);
-
+	
 	CMonster* pMon = CMonFactory::CraeteMonster(MON_TYPE::DRAGON, Vec2(800.f, 440.f), m_eType);
 	pMon->SetName(L"CDragon_4_2");
 	//내 몬스터 인터페이스에 내 몬스터 이름 넣기
@@ -181,6 +181,7 @@ void SceneTower_4::Enter()
 	CColliderMgr::GetInst()->ChekGroup(GROUP_TYPE::BULLET, GROUP_TYPE::MONSTER);
 	CColliderMgr::GetInst()->ChekGroup(GROUP_TYPE::SKILL, GROUP_TYPE::MONSTER);
 	CColliderMgr::GetInst()->ChekGroup(GROUP_TYPE::MONSTER, GROUP_TYPE::ROBOT);
+	CColliderMgr::GetInst()->ChekGroup(GROUP_TYPE::MONSTER, GROUP_TYPE::DROUP);
 	//CColliderMgr::GetInst()->ChekGroup(GROUP_TYPE::MONSTER, GROUP_TYPE::MONSTER);
 }
 

@@ -212,6 +212,8 @@ void CRobotRx78::trace()
 	}
 		
 	Vec2 vPos = GetCollider()->GetFinalPos();
+	if (m_pTarget->GetCollider() == nullptr)
+		return;
 	Vec2 vTargetPos = m_pTarget->GetCollider()->GetFinalPos();
 
 	Vec2 vDiff = vTargetPos - vPos;

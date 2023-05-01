@@ -7,7 +7,10 @@
 #include "CSceneMgr.h"
 #include "CScene.h"
 
-CDungeonMgr::CDungeonMgr()
+#include "CPlayer.h"
+
+CDungeonMgr::CDungeonMgr():
+	m_eCurDunType(DUNGEON_TYPE::NONE)
 {
 
 }
@@ -27,16 +30,21 @@ void CDungeonMgr::SetActive(SCENE_TYPE _eSceneType, bool _bActive)
 void CDungeonMgr::init()
 {
 	m_vecClearUI.resize((UINT)SCENE_TYPE::END);
-	
-	CClearUI* pClear1 = new CClearUI;
-	pClear1->init();
-	m_vecClearUI[(UINT)SCENE_TYPE::DUNGEON_BOSS] = pClear1;
-	SceneMgr::GetInst()->FindScene(SCENE_TYPE::DUNGEON_BOSS)->AddObject(pClear1, GROUP_TYPE::UI);
 
 	CClearUI* pClear2 = new CClearUI;
 	pClear2->init();
 	m_vecClearUI[(UINT)SCENE_TYPE::EVIL_BOSS] = pClear2;
 	SceneMgr::GetInst()->FindScene(SCENE_TYPE::EVIL_BOSS)->AddObject(pClear2, GROUP_TYPE::UI);
+
+	CClearUI* pClear1 = new CClearUI;
+	pClear1->init();
+	m_vecClearUI[(UINT)SCENE_TYPE::DUNGEON_BOSS] = pClear1;
+	SceneMgr::GetInst()->FindScene(SCENE_TYPE::DUNGEON_BOSS)->AddObject(pClear1, GROUP_TYPE::UI);
+
+	//CClearUI* pClear3 = new CClearUI;
+	//pClear3->init();
+	//m_vecClearUI[(UINT)SCENE_TYPE::START_SCENE] = pClear3;
+	//SceneMgr::GetInst()->FindScene(SCENE_TYPE::START_SCENE)->AddObject(pClear3, GROUP_TYPE::UI);
 
 	//CClearUI* pClear3 = new CClearUI;
 	//pClear3->init();
@@ -62,6 +70,9 @@ void CDungeonMgr::restart_scene()
 	//Scene에 있는 reInit호출하고 다시 처음 던전으로
 	SetActive(m_eCurScene, false);
 
+	CObject* pPlayer = SceneMgr::GetInst()->GetCurSCene()->GetPlayerObj();
+	((CPlayer*)pPlayer)->resetvalue();
+
 	reinit();
 
 	if (m_eCurDunType == DUNGEON_TYPE::LORD)
@@ -75,6 +86,10 @@ void CDungeonMgr::exit_dungeon()
 {
 	SetActive(m_eCurScene, false);
 	//Scene에 있는 reInit호출하고 마을로
+
+	CObject* pPlayer = SceneMgr::GetInst()->GetCurSCene()->GetPlayerObj();
+	((CPlayer*)pPlayer)->resetvalue();
+
 	reinit();
 
 	m_eCurDunType = DUNGEON_TYPE::NONE;
@@ -88,6 +103,9 @@ void CDungeonMgr::change_dungeon()
 
 	SetActive(m_eCurScene, false);
 
+	CObject* pPlayer = SceneMgr::GetInst()->GetCurSCene()->GetPlayerObj();
+	((CPlayer*)pPlayer)->resetvalue();
+
 	reinit();
 
 	m_eCurDunType = DUNGEON_TYPE::NONE;
@@ -97,7 +115,7 @@ void CDungeonMgr::change_dungeon()
 
 void CDungeonMgr::reinit()
 {
-	const vector<CScene*>& vecDunScene = SceneMgr::GetInst()->GetDungeonType(m_eCurDunType);
+	vector<CScene*> vecDunScene = SceneMgr::GetInst()->GetDungeonType(m_eCurDunType);
 	for (int i = 0; i < vecDunScene.size(); ++i)
 	{
 		vecDunScene[i]->InitMonster();

@@ -140,7 +140,7 @@ void SceneBoss::Init()
 void SceneBoss::InitMonster()
 {
 	GetPlayerObj()->SetPos(Vec2(300.f, 450.f));
-
+	
 	CMonster* pLord = CMonFactory::CraeteMonster(MON_TYPE::LORD, Vec2(600.f, 300.f), m_eType);
 	pLord->SetName(L"Lord");
 	CMonInterface* pLordInterface = new CMonInterface(pLord->GetName(), 46, true);
@@ -148,8 +148,8 @@ void SceneBoss::InitMonster()
 	pLordInterface->SetPos(Vec2(40, 20));
 	AddObject(pLordInterface, GROUP_TYPE::UI);
 	AddObject(pLord, GROUP_TYPE::MONSTER);
-
-
+	
+	
 	CMonster* pDragon1 = CMonFactory::CraeteMonster(MON_TYPE::DRAGON, Vec2(500.f, 550.f), m_eType);
 	pDragon1->SetName(L"CDragon_b_1");
 	//내 몬스터 인터페이스에 내 몬스터 이름 넣기
@@ -158,7 +158,7 @@ void SceneBoss::InitMonster()
 	dragonInterface1->SetPos(Vec2(40, 20));
 	AddObject(dragonInterface1, GROUP_TYPE::UI);
 	AddObject(pDragon1, GROUP_TYPE::MONSTER);
-
+	
 	CMonster* pBrDragon1 = CMonFactory::CraeteMonster(MON_TYPE::BROWN_DRAGON, Vec2(200.f, 500.f), m_eType);
 	pBrDragon1->SetName(L"brDragon_b_1");
 	CMonInterface* brdragonInterface2 = new CMonInterface(pBrDragon1->GetName(), 44);
@@ -166,7 +166,7 @@ void SceneBoss::InitMonster()
 	brdragonInterface2->SetPos(Vec2(40, 20));
 	AddObject(brdragonInterface2, GROUP_TYPE::UI);
 	AddObject(pBrDragon1, GROUP_TYPE::MONSTER);
-
+	
 	CMonster* pBDragon2 = CMonFactory::CraeteMonster(MON_TYPE::BLUE_DRAGON, Vec2(350.f, 500.f), m_eType);
 	pBDragon2->SetName(L"bDragonb_1");
 	CMonInterface* brdragonInterface3 = new CMonInterface(pBDragon2->GetName(), 45);
@@ -178,6 +178,11 @@ void SceneBoss::InitMonster()
 
 void SceneBoss::update()
 {
+	//if (SceneMgr::GetInst()->GetCurSCene()->GetGroupObject(GROUP_TYPE::MONSTER).size() == 0)
+	//{
+	//	CDungeonMgr::GetInst()->SetActive(m_eType, true);
+	//}
+
 	CScene::update();
 }
 
@@ -206,6 +211,7 @@ void SceneBoss::Enter()
 	CColliderMgr::GetInst()->ChekGroup(GROUP_TYPE::BULLET, GROUP_TYPE::MONSTER);
 	CColliderMgr::GetInst()->ChekGroup(GROUP_TYPE::SKILL, GROUP_TYPE::MONSTER);
 	CColliderMgr::GetInst()->ChekGroup(GROUP_TYPE::MONSTER, GROUP_TYPE::ROBOT);
+	CColliderMgr::GetInst()->ChekGroup(GROUP_TYPE::MONSTER, GROUP_TYPE::DROUP);
 }
 
 void SceneBoss::Exit()

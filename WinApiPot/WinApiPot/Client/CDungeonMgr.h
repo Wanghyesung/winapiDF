@@ -36,5 +36,6 @@ private:
 	friend class CChangeUI;
 	friend class CReStartUI;
 	friend class CTownUI;
+	friend class CLord;
 };
 

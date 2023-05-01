@@ -247,15 +247,15 @@ bool CRobotRx78::setTarget()
 		}
 	}
 
-	if (m_pTarget != nullptr)
-	{
-		Vec2 vPos = GetCollider()->GetFinalPos();
-		Vec2 vTargetPos = m_pTarget->GetCollider()->GetFinalPos();
-
-		Vec2 vDiff = vTargetPos - vPos;
-
-		vDiff.x > 0 ? m_iDirX = 1 : m_iDirX = -1;
-	}
+	//if (m_pTarget != nullptr)
+	//{
+	//	Vec2 vPos = GetCollider()->GetFinalPos();
+	//	Vec2 vTargetPos = m_pTarget->GetCollider()->GetFinalPos();
+	//
+	//	Vec2 vDiff = vTargetPos - vPos;
+	//
+	//	vDiff.x > 0 ? m_iDirX = 1 : m_iDirX = -1;
+	//}
 
 	if (fMinValue == m_tInfo.m_fnavigationScope)
 		return false;

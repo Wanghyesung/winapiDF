@@ -68,12 +68,13 @@ void CDungeonMgr::map_clear()
 void CDungeonMgr::restart_scene()
 {
 	//Scene에 있는 reInit호출하고 다시 처음 던전으로
+	reinit();
+
 	SetActive(m_eCurScene, false);
 
 	CObject* pPlayer = SceneMgr::GetInst()->GetCurSCene()->GetPlayerObj();
 	((CPlayer*)pPlayer)->resetvalue();
 
-	reinit();
 
 	if (m_eCurDunType == DUNGEON_TYPE::LORD)
 		ChangeScene(SCENE_TYPE::FIRST_DUNGEON);
@@ -84,13 +85,13 @@ void CDungeonMgr::restart_scene()
 
 void CDungeonMgr::exit_dungeon()
 {
+	reinit();
+
 	SetActive(m_eCurScene, false);
 	//Scene에 있는 reInit호출하고 마을로
 
 	CObject* pPlayer = SceneMgr::GetInst()->GetCurSCene()->GetPlayerObj();
 	((CPlayer*)pPlayer)->resetvalue();
-
-	reinit();
 
 	m_eCurDunType = DUNGEON_TYPE::NONE;
 
@@ -100,13 +101,14 @@ void CDungeonMgr::exit_dungeon()
 void CDungeonMgr::change_dungeon()
 {
 	// Scene에 있는 reInit호출하고 현재씬 활성 X
+	
+	reinit();
 
 	SetActive(m_eCurScene, false);
 
 	CObject* pPlayer = SceneMgr::GetInst()->GetCurSCene()->GetPlayerObj();
 	((CPlayer*)pPlayer)->resetvalue();
 
-	reinit();
 
 	m_eCurDunType = DUNGEON_TYPE::NONE;
 
@@ -116,8 +118,8 @@ void CDungeonMgr::change_dungeon()
 void CDungeonMgr::reinit()
 {
 	vector<CScene*> vecDunScene = SceneMgr::GetInst()->GetDungeonType(m_eCurDunType);
-	for (int i = 0; i < vecDunScene.size(); ++i)
-	{
-		vecDunScene[i]->InitMonster();
-	}
+	//for (int i = 0; i < vecDunScene.size(); ++i)
+	//{
+	//	vecDunScene[i]->InitMonster();
+	//}
 }

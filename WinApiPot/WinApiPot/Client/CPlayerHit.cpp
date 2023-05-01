@@ -69,7 +69,7 @@ void CPlayerHit::Enter()
 	}
 
 	CPlayer* pPlayer = GetFSM()->GetPlayer();
-	wstring strDir = pPlayer->m_iDirX> 0 ? L"_left" : L"_right";
+	wstring strDir = pPlayer->m_iDirX <0 ? L"_left" : L"_right";
 	if (pPlayer->playerPrevState == PLAYER_STATE::HIT)
 	{
 		pPlayer->GetAnimator()->FindAnimation(L"Player_Hit"+ strDir)->SetFram(1);

@@ -21,7 +21,7 @@ CClearUI::CClearUI():
 
 CClearUI::~CClearUI()
 {
-
+	int a = 10;
 }
 
 void CClearUI::MouseOn()

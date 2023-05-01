@@ -41,7 +41,7 @@ CSkillMgr::CSkillMgr() :
 	m_fMaxSkillTime(5.f),
 	m_bOnSkill(false),
 	m_pPlayer(nullptr),
-	m_iSkillType(1)
+	m_iSkillType(2)
 {
 
 }

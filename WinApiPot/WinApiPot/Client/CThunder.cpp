@@ -50,7 +50,7 @@ void CThunder::render(HDC _dc)
 
 void CThunder::update()
 {
-	if (m_pOwner == nullptr || !m_pOwner->IsActiv())
+	if (m_pOwner == nullptr || m_pOwner->GetMonInfo().m_iHp<=0.f)
 	{
 		DeleteObject(this);
 		return;

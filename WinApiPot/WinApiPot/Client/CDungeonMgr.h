@@ -3,7 +3,6 @@
 //활성화 상태가 아니면 그리지말기
 
 class CClearUI;
-
 class CChangeUI;
 class CReStartUI;
 class CTownUI;
@@ -36,6 +35,7 @@ private:
 	friend class CChangeUI;
 	friend class CReStartUI;
 	friend class CTownUI;
-	friend class CLord;
+	friend class CScene_Start;
+	friend class SceneBoss;
 };
 

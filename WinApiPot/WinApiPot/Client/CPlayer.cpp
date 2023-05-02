@@ -186,11 +186,13 @@ CPlayer::~CPlayer()
 	if (m_pSkill != nullptr)
 	{
 		delete m_pSkill;
+		m_pSkill = nullptr;
 	}
 
 	if (m_pFSM != nullptr)
 	{
 		delete m_pFSM;
+		m_pFSM = nullptr;
 	}
 }
 
@@ -570,7 +572,7 @@ void CPlayer::HitPlayer(CCollider* _pOther, const tAttackInfo& _tAttInfo)
 	//spiiner은 방향 반대로 주기
 	if (_pOther->GetObj()->GetTag() == GROUP_TYPE::SPINNER)
 		fDir *= -1;
-
+	//int iDir = m_AI->GetCurState()->GetDir() * -1;
 	CGravity* pGravity = GetGravity();
 	ATTACK_TYPE eAttackType = _tAttInfo.m_eAttType;
 
@@ -581,7 +583,7 @@ void CPlayer::HitPlayer(CCollider* _pOther, const tAttackInfo& _tAttInfo)
 	{
 	case ATTACK_TYPE::UPPER:
 	{
-		m_tPlayerHit.m_fHitDir = fDir;
+		m_tPlayerHit.m_fHitDir = m_iDirX * -1;
 		GetGravity()->SetGravity(true);
 		if (GetJumPos().IsZero())
 			SetJumPos(GetPos());
@@ -592,7 +594,7 @@ void CPlayer::HitPlayer(CCollider* _pOther, const tAttackInfo& _tAttInfo)
 	break;
 	case ATTACK_TYPE::NORMAL:
 	{
-		m_tPlayerHit.m_fHitDir = fDir;
+		m_tPlayerHit.m_fHitDir = m_iDirX * -1;
 		ChangeFSMState(m_pFSM, PLAYER_STATE::HIT);
 	}
 	break;

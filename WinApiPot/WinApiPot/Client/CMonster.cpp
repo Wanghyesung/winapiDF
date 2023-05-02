@@ -34,11 +34,12 @@ CMonster::~CMonster()
 	if (m_AI != nullptr)
 	{
 		delete m_AI;
+		m_AI = nullptr;
 	}
 
 	//이것도 Scene에서 소멸자에서 삭제
 	//DeleteObject(m_pAttackObj);
-	if (m_pAttackObj != nullptr && m_tMonInfo.m_iHp <= 0)
+	if (m_pAttackObj != nullptr && m_tMonInfo.m_iHp <= 0.f)
 	{
 		DeleteObject(m_pAttackObj);
 	}

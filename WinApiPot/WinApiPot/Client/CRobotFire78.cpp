@@ -133,8 +133,11 @@ void CRobotFire78::attack()
 
 	else
 	{
-		if (m_pTarget->GetMonInfo().m_iHp <= 0.f)
+		if (((CObject*)m_pTarget)->IsDead())
+		{
+			m_eState = ROBOTSTATE::BOOM;
 			return;
+		}
 		Vec2 vPos = GetCollider()->GetFinalPos();
 		Vec2 vTargetPos = m_pTarget->GetCollider()->GetFinalPos();
 
@@ -198,7 +201,7 @@ void CRobotFire78::jump()
 void CRobotFire78::trace()
 {
 
-	if (m_pTarget == nullptr || !m_pTarget->IsActiv())
+	if (m_pTarget == nullptr || ((CObject*)m_pTarget)->IsDead())
 	{
 		if (!setTarget());
 		return;
@@ -209,10 +212,11 @@ void CRobotFire78::trace()
 		setTarget();
 		return;
 	}
-
-	Vec2 vPos = GetCollider()->GetFinalPos();
 	if (m_pTarget->GetCollider() == nullptr)
 		return;
+
+
+	Vec2 vPos = GetCollider()->GetFinalPos();
 
 	Vec2 vTargetPos = m_pTarget->GetCollider()->GetFinalPos();
 

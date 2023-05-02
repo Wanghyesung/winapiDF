@@ -34,7 +34,7 @@
 SceneTower5::SceneTower5():
 	m_eType(SCENE_TYPE::DUNGEON_5)
 {
-
+	SetDungeonType(DUNGEON_TYPE::LORD);
 }
 
 SceneTower5::~SceneTower5()
@@ -71,7 +71,6 @@ void SceneTower5::Init()
 	m_pBackSound
 		= CResMgr::GetInst()->LoadSound(L"draconian_tower", L"..\\OutPut\\bin_release\\Content\\Sound\\draconian_tower.wav");
 
-	SetDungeonType(DUNGEON_TYPE::LORD);
 
 	CTemWall* pTemWall = new CTemWall;
 	pTemWall->SetPos(Vec2(672.f, 110.f));
@@ -101,30 +100,30 @@ void SceneTower5::Init()
 	AddObject(pSpinner2, GROUP_TYPE::SPINNER);
 
 
-	CMonster* pDragon1 = CMonFactory::CraeteMonster(MON_TYPE::DRAGON, Vec2(500.f, 550.f), m_eType);
-	pDragon1->SetName(L"CDragon_5_1");
+	CMonster* pDragon5_1 = CMonFactory::CraeteMonster(MON_TYPE::DRAGON, Vec2(500.f, 550.f), m_eType);
+	pDragon5_1->SetName(L"CDragon_5_1");
 	//내 몬스터 인터페이스에 내 몬스터 이름 넣기
-	CMonInterface* dragonInterface1 = new CMonInterface(pDragon1->GetName(),15);
-	dragonInterface1->SetScale(Vec2(626, 29));
-	dragonInterface1->SetPos(Vec2(40, 20));
-	AddObject(dragonInterface1, GROUP_TYPE::UI);
-	AddObject(pDragon1, GROUP_TYPE::MONSTER);
+	CMonInterface* pDragonInter5_1 = new CMonInterface(pDragon5_1->GetName(),15);
+	pDragonInter5_1->SetScale(Vec2(626, 29));
+	pDragonInter5_1->SetPos(Vec2(40, 20));
+	AddObject(pDragonInter5_1, GROUP_TYPE::UI);
+	AddObject(pDragon5_1, GROUP_TYPE::MONSTER);
 
-	CMonster* pBrDragon1 = CMonFactory::CraeteMonster(MON_TYPE::BROWN_DRAGON, Vec2(200.f, 500.f), m_eType);
-	pBrDragon1->SetName(L"brDragon_5_1");
-	CMonInterface* brdragonInterface2 = new CMonInterface(pBrDragon1->GetName(),44);
-	brdragonInterface2->SetScale(Vec2(626, 29));
-	brdragonInterface2->SetPos(Vec2(40, 20));
-	AddObject(brdragonInterface2, GROUP_TYPE::UI);
-	AddObject(pBrDragon1, GROUP_TYPE::MONSTER);
+	CMonster* pBrDragon5_1 = CMonFactory::CraeteMonster(MON_TYPE::BROWN_DRAGON, Vec2(200.f, 500.f), m_eType);
+	pBrDragon5_1->SetName(L"brDragon_5_1");
+	CMonInterface* pBrDragonInter5_1 = new CMonInterface(pBrDragon5_1->GetName(),44);
+	pBrDragonInter5_1->SetScale(Vec2(626, 29));
+	pBrDragonInter5_1->SetPos(Vec2(40, 20));
+	AddObject(pBrDragonInter5_1, GROUP_TYPE::UI);
+	AddObject(pBrDragon5_1, GROUP_TYPE::MONSTER);
 
-	CMonster* pBDragon2 = CMonFactory::CraeteMonster(MON_TYPE::BLUE_DRAGON, Vec2(350.f, 500.f), m_eType);
-	pBDragon2->SetName(L"bDragon5_1");
-	CMonInterface* brdragonInterface3 = new CMonInterface(pBDragon2->GetName(),45);
-	brdragonInterface3->SetScale(Vec2(626, 29));
-	brdragonInterface3->SetPos(Vec2(40, 20));
-	AddObject(brdragonInterface3, GROUP_TYPE::UI);
-	AddObject(pBDragon2, GROUP_TYPE::MONSTER);
+	CMonster* pBDragon5_1 = CMonFactory::CraeteMonster(MON_TYPE::BLUE_DRAGON, Vec2(350.f, 500.f), m_eType);
+	pBDragon5_1->SetName(L"bDragon5_1");
+	CMonInterface* pBDragonInter5_1 = new CMonInterface(pBDragon5_1->GetName(),45);
+	pBDragonInter5_1->SetScale(Vec2(626, 29));
+	pBDragonInter5_1->SetPos(Vec2(40, 20));
+	AddObject(pBDragonInter5_1, GROUP_TYPE::UI);
+	AddObject(pBDragon5_1, GROUP_TYPE::MONSTER);
 	
 
 	//방향 먼저 잡기
@@ -139,30 +138,30 @@ void SceneTower5::InitMonster()
 {
 	GetPlayerObj()->SetPos(Vec2(300.f, 450.f));
 	
-	CMonster* pDragon1 = CMonFactory::CraeteMonster(MON_TYPE::DRAGON, Vec2(500.f, 550.f), m_eType);
-	pDragon1->SetName(L"CDragon_5_1");
+	CMonster* pDragon5_1 = CMonFactory::CraeteMonster(MON_TYPE::DRAGON, Vec2(500.f, 550.f), m_eType);
+	pDragon5_1->SetName(L"CDragon_5_1");
 	//내 몬스터 인터페이스에 내 몬스터 이름 넣기
-	CMonInterface* dragonInterface1 = new CMonInterface(pDragon1->GetName(), 15);
-	dragonInterface1->SetScale(Vec2(626, 29));
-	dragonInterface1->SetPos(Vec2(40, 20));
-	AddObject(dragonInterface1, GROUP_TYPE::UI);
-	AddObject(pDragon1, GROUP_TYPE::MONSTER);
+	CMonInterface* pDragonInter5_1 = new CMonInterface(pDragon5_1->GetName(), 15);
+	pDragonInter5_1->SetScale(Vec2(626, 29));
+	pDragonInter5_1->SetPos(Vec2(40, 20));
+	AddObject(pDragonInter5_1, GROUP_TYPE::UI);
+	AddObject(pDragon5_1, GROUP_TYPE::MONSTER);
 	
-	CMonster* pBrDragon1 = CMonFactory::CraeteMonster(MON_TYPE::BROWN_DRAGON, Vec2(200.f, 500.f), m_eType);
-	pBrDragon1->SetName(L"brDragon_5_1");
-	CMonInterface* brdragonInterface2 = new CMonInterface(pBrDragon1->GetName(), 44);
-	brdragonInterface2->SetScale(Vec2(626, 29));
-	brdragonInterface2->SetPos(Vec2(40, 20));
-	AddObject(brdragonInterface2, GROUP_TYPE::UI);
-	AddObject(pBrDragon1, GROUP_TYPE::MONSTER);
+	CMonster* pBrDragon5_1 = CMonFactory::CraeteMonster(MON_TYPE::BROWN_DRAGON, Vec2(200.f, 500.f), m_eType);
+	pBrDragon5_1->SetName(L"brDragon_5_1");
+	CMonInterface* pBrDragonInter5_1 = new CMonInterface(pBrDragon5_1->GetName(), 44);
+	pBrDragonInter5_1->SetScale(Vec2(626, 29));
+	pBrDragonInter5_1->SetPos(Vec2(40, 20));
+	AddObject(pBrDragonInter5_1, GROUP_TYPE::UI);
+	AddObject(pBrDragon5_1, GROUP_TYPE::MONSTER);
 	
-	CMonster* pBDragon2 = CMonFactory::CraeteMonster(MON_TYPE::BLUE_DRAGON, Vec2(350.f, 500.f), m_eType);
-	pBDragon2->SetName(L"bDragon5_1");
-	CMonInterface* brdragonInterface3 = new CMonInterface(pBDragon2->GetName(), 45);
-	brdragonInterface3->SetScale(Vec2(626, 29));
-	brdragonInterface3->SetPos(Vec2(40, 20));
-	AddObject(brdragonInterface3, GROUP_TYPE::UI);
-	AddObject(pBDragon2, GROUP_TYPE::MONSTER);
+	CMonster* pBDragon5_1 = CMonFactory::CraeteMonster(MON_TYPE::BLUE_DRAGON, Vec2(350.f, 500.f), m_eType);
+	pBDragon5_1->SetName(L"bDragon5_1");
+	CMonInterface* pBDragonInter5_1 = new CMonInterface(pBDragon5_1->GetName(), 45);
+	pBDragonInter5_1->SetScale(Vec2(626, 29));
+	pBDragonInter5_1->SetPos(Vec2(40, 20));
+	AddObject(pBDragonInter5_1, GROUP_TYPE::UI);
+	AddObject(pBDragon5_1, GROUP_TYPE::MONSTER);
 }
 
 void SceneTower5::update()

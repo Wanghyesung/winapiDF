@@ -29,21 +29,25 @@ CObject::~CObject()
 	if (nullptr != m_pAnim)
 	{
 		delete m_pAnim;
+		m_pAnim = nullptr;
 	}
 
 	if (nullptr != m_pRigidBody)
 	{
 		delete m_pRigidBody;
+		m_pRigidBody = nullptr;
 	}
 
 	if (nullptr != m_pCollider)
 	{
 		delete m_pCollider;
+		m_pCollider = nullptr;
 	}
 
  	if (nullptr != m_pGravity)
 	{
 		delete m_pGravity;
+		m_pGravity = nullptr;
 	}
 }
 

@@ -32,9 +32,11 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
     // 전역 문자열을 초기화합니다.
     LoadStringW(hInstance, IDS_APP_TITLE, szTitle, MAX_LOADSTRING);
     LoadStringW(hInstance, IDC_CLIENT, szWindowClass, MAX_LOADSTRING);
-    MyRegisterClass(hInstance);
+
     _CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF);
-    //_CrtSetBreakAlloc(432241);
+
+    MyRegisterClass(hInstance);
+    //_CrtSetBreakAlloc(125827);
 
     //int* a = new int;
 

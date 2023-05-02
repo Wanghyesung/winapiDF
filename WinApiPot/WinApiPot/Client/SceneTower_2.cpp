@@ -26,7 +26,7 @@
 SceneTower_2::SceneTower_2():
 	m_eType(SCENE_TYPE::DUNGEON_2)
 {
-
+	SetDungeonType(DUNGEON_TYPE::LORD);
 }
 
 SceneTower_2::~SceneTower_2()
@@ -49,8 +49,6 @@ void SceneTower_2::Init()
 
 	m_pBackSound
 		= CResMgr::GetInst()->LoadSound(L"draconian_tower", L"..\\OutPut\\bin_release\\Content\\Sound\\draconian_tower.wav");
-
-	SetDungeonType(DUNGEON_TYPE::LORD);
 
 	CObject* pObj = CreatePlayer(Vec2(300.f, 450.f));
 	AddObject(pObj, GROUP_TYPE::PLAYER);
@@ -78,22 +76,22 @@ void SceneTower_2::Init()
 	pStone3->GetCollider()->SetScale(Vec2(50.f, 50.f));
 	AddObject(pStone3, GROUP_TYPE::STONE_BOX);
 
-	CMonster* pBrDragon1 = CMonFactory::CraeteMonster(MON_TYPE::BROWN_DRAGON, Vec2(500.f, 500.f), m_eType);
-	pBrDragon1->SetName(L"brDragon1");
-	CMonInterface* brdragonInterface2 = new CMonInterface(pBrDragon1->GetName(),44);
-	brdragonInterface2->SetScale(Vec2(626, 29));
-	brdragonInterface2->SetPos(Vec2(40, 20));
-	AddObject(brdragonInterface2, GROUP_TYPE::UI);
-	AddObject(pBrDragon1, GROUP_TYPE::MONSTER);
+	CMonster* pBrDragon2_1 = CMonFactory::CraeteMonster(MON_TYPE::BROWN_DRAGON, Vec2(500.f, 500.f), m_eType);
+	pBrDragon2_1->SetName(L"brDragon2_1");
+	CMonInterface* pBrDragonInter2_1 = new CMonInterface(pBrDragon2_1->GetName(),44);
+	pBrDragonInter2_1->SetScale(Vec2(626, 29));
+	pBrDragonInter2_1->SetPos(Vec2(40, 20));
+	AddObject(pBrDragonInter2_1, GROUP_TYPE::UI);
+	AddObject(pBrDragon2_1, GROUP_TYPE::MONSTER);
 
 
-	CMonster* pBrDragon2 = CMonFactory::CraeteMonster(MON_TYPE::BROWN_DRAGON, Vec2(1000.f, 500.f), m_eType);
-	pBrDragon2->SetName(L"brDragon2");
-	CMonInterface* brdragonInterface1 = new CMonInterface(pBrDragon2->GetName(),44);
-	brdragonInterface1->SetScale(Vec2(626, 29));
-	brdragonInterface1->SetPos(Vec2(40, 20));
-	AddObject(brdragonInterface1, GROUP_TYPE::UI);
-	AddObject(pBrDragon2, GROUP_TYPE::MONSTER);
+	CMonster* pBrDragon2_2 = CMonFactory::CraeteMonster(MON_TYPE::BROWN_DRAGON, Vec2(1000.f, 500.f), m_eType);
+	pBrDragon2_2->SetName(L"brDragon2_2");
+	CMonInterface* pBrDragonInter2_2 = new CMonInterface(pBrDragon2_2->GetName(),44);
+	pBrDragonInter2_2->SetScale(Vec2(626, 29));
+	pBrDragonInter2_2->SetPos(Vec2(40, 20));
+	AddObject(pBrDragonInter2_2, GROUP_TYPE::UI);
+	AddObject(pBrDragon2_2, GROUP_TYPE::MONSTER);
 
 	//방향 먼저 잡기
 	CGate* pGate = new CGate(L"up", false);
@@ -109,22 +107,22 @@ void SceneTower_2::InitMonster()
 {
 	GetPlayerObj()->SetPos(Vec2(300.f, 450.f));
 	
-	CMonster* pBrDragon1 = CMonFactory::CraeteMonster(MON_TYPE::BROWN_DRAGON, Vec2(500.f, 500.f), m_eType);
-	pBrDragon1->SetName(L"brDragon1");
-	CMonInterface* brdragonInterface2 = new CMonInterface(pBrDragon1->GetName(), 44);
-	brdragonInterface2->SetScale(Vec2(626, 29));
-	brdragonInterface2->SetPos(Vec2(40, 20));
-	AddObject(brdragonInterface2, GROUP_TYPE::UI);
-	AddObject(pBrDragon1, GROUP_TYPE::MONSTER);
+	CMonster* pBrDragon2_1 = CMonFactory::CraeteMonster(MON_TYPE::BROWN_DRAGON, Vec2(500.f, 500.f), m_eType);
+	pBrDragon2_1->SetName(L"brDragon2_1");
+	CMonInterface* pBrDragonInter2_1 = new CMonInterface(pBrDragon2_1->GetName(), 44);
+	pBrDragonInter2_1->SetScale(Vec2(626, 29));
+	pBrDragonInter2_1->SetPos(Vec2(40, 20));
+	AddObject(pBrDragonInter2_1, GROUP_TYPE::UI);
+	AddObject(pBrDragon2_1, GROUP_TYPE::MONSTER);
 	
 	
-	CMonster* pBrDragon2 = CMonFactory::CraeteMonster(MON_TYPE::BROWN_DRAGON, Vec2(1000.f, 500.f), m_eType);
-	pBrDragon2->SetName(L"brDragon2");
-	CMonInterface* brdragonInterface1 = new CMonInterface(pBrDragon2->GetName(), 44);
-	brdragonInterface1->SetScale(Vec2(626, 29));
-	brdragonInterface1->SetPos(Vec2(40, 20));
-	AddObject(brdragonInterface1, GROUP_TYPE::UI);
-	AddObject(pBrDragon2, GROUP_TYPE::MONSTER);
+	CMonster* pBrDragon2_2 = CMonFactory::CraeteMonster(MON_TYPE::BROWN_DRAGON, Vec2(1000.f, 500.f), m_eType);
+	pBrDragon2_2->SetName(L"brDragon2_2");
+	CMonInterface* pBrDragonInter2_2 = new CMonInterface(pBrDragon2_2->GetName(), 44);
+	pBrDragonInter2_2->SetScale(Vec2(626, 29));
+	pBrDragonInter2_2->SetPos(Vec2(40, 20));
+	AddObject(pBrDragonInter2_2, GROUP_TYPE::UI);
+	AddObject(pBrDragon2_2, GROUP_TYPE::MONSTER);
 }
 
 void SceneTower_2::render(HDC _dc)

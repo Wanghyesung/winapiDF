@@ -25,7 +25,7 @@ public:
     virtual void update();//상속
     virtual void finalupdate();
 
-    void init();//자식UI들 미리 설정
+    void Create();//자식UI들 미리 설정
 
     friend class CDungeonMgr;
 };

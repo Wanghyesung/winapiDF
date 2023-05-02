@@ -37,7 +37,9 @@ CScene::~CScene()
 		for (size_t j = 0; j < m_arrObj[i].size(); ++j)
 		{
 			delete m_arrObj[i][j];
+			m_arrObj[i][j] = nullptr;
 		}
+		m_arrObj[i].clear();
 	}
 }
 

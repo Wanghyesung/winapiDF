@@ -61,7 +61,8 @@ enum class DUNGEON_TYPE
 {
 	NONE,
 	EVIL,
-	LORD
+	LORD,
+	END = 3
 };
 
 enum class GROUP_TYPE

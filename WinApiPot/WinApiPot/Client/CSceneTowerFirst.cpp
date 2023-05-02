@@ -41,7 +41,7 @@
 CSceneTowerFirst::CSceneTowerFirst():
 	m_eType(SCENE_TYPE::FIRST_DUNGEON)
 {
-	
+	SetDungeonType(DUNGEON_TYPE::LORD);
 }
 
 CSceneTowerFirst::~CSceneTowerFirst()
@@ -66,7 +66,6 @@ void CSceneTowerFirst::Init()
 	m_pBackSound
 		= CResMgr::GetInst()->LoadSound(L"draconian_tower", L"..\\OutPut\\bin_release\\Content\\Sound\\draconian_tower.wav");
 
-	SetDungeonType(DUNGEON_TYPE::LORD);
 
 	//1344 790
 	CTemWall* pTemWall = new CTemWall;
@@ -117,13 +116,13 @@ void CSceneTowerFirst::Init()
 	//AddObject(pLordInterface, GROUP_TYPE::UI);
 	//AddObject(pLord, GROUP_TYPE::MONSTER);
 
-	CMonster* pBDragon1 = CMonFactory::CraeteMonster(MON_TYPE::BLUE_DRAGON, Vec2(500.f, 500.f), m_eType);
-	pBDragon1->SetName(L"bDragon1");
-	CMonInterface* brdragonInterface2 = new CMonInterface(pBDragon1->GetName(),45);
-	brdragonInterface2->SetScale(Vec2(626, 29));
-	brdragonInterface2->SetPos(Vec2(40, 20));
-	AddObject(brdragonInterface2, GROUP_TYPE::UI);
-	AddObject(pBDragon1, GROUP_TYPE::MONSTER);
+	CMonster* pBDragon1_1 = CMonFactory::CraeteMonster(MON_TYPE::BLUE_DRAGON, Vec2(500.f, 500.f), m_eType);
+	pBDragon1_1->SetName(L"bDragon1_1");
+	CMonInterface* pBDragonInter_1 = new CMonInterface(pBDragon1_1->GetName(),45);
+	pBDragonInter_1->SetScale(Vec2(626, 29));
+	pBDragonInter_1->SetPos(Vec2(40, 20));
+	AddObject(pBDragonInter_1, GROUP_TYPE::UI);
+	AddObject(pBDragon1_1, GROUP_TYPE::MONSTER);
 	
 	
 	//CMonster* pBDragon2 = CMonFactory::CraeteMonster(MON_TYPE::EVILEYE, Vec2(200.f, 500.f), m_eType);
@@ -164,13 +163,13 @@ void CSceneTowerFirst::InitMonster()
 {
 	GetPlayerObj()->SetPos(Vec2(300.f, 450.f));
 	
-	CMonster* pBDragon1 = CMonFactory::CraeteMonster(MON_TYPE::BLUE_DRAGON, Vec2(500.f, 500.f), m_eType);
-	pBDragon1->SetName(L"bDragon1");
-	CMonInterface* brdragonInterface2 = new CMonInterface(pBDragon1->GetName(), 45);
-	brdragonInterface2->SetScale(Vec2(626, 29));
-	brdragonInterface2->SetPos(Vec2(40, 20));
-	AddObject(brdragonInterface2, GROUP_TYPE::UI);
-	AddObject(pBDragon1, GROUP_TYPE::MONSTER);
+	CMonster* pBDragon1_1 = CMonFactory::CraeteMonster(MON_TYPE::BLUE_DRAGON, Vec2(500.f, 500.f), m_eType);
+	pBDragon1_1->SetName(L"bDragon1_1");
+	CMonInterface* pBDragonInter_1 = new CMonInterface(pBDragon1_1->GetName(), 45);
+	pBDragonInter_1->SetScale(Vec2(626, 29));
+	pBDragonInter_1->SetPos(Vec2(40, 20));
+	AddObject(pBDragonInter_1, GROUP_TYPE::UI);
+	AddObject(pBDragon1_1, GROUP_TYPE::MONSTER);
 }
 
 void CSceneTowerFirst::render(HDC _dc)

@@ -45,7 +45,9 @@ void CCutScene::update()
 
 void CCutScene::Enter()
 {
-	CResMgr::GetInst()->LoadSound(L"map_disappear", L"..\\OutPut\\bin_release\\Content\\Sound\\map_disappear.wav")->Play(false);
+	CSound* pSound = CResMgr::GetInst()->LoadSound(L"map_disappear", L"..\\OutPut\\bin_release\\Content\\Sound\\map_disappear.wav");
+	pSound->Play(false);
+
 	CCameraMgr::GetInst()->SetTargetObj(nullptr);
 }
 

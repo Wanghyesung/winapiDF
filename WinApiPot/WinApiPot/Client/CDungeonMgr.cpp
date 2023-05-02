@@ -31,15 +31,16 @@ void CDungeonMgr::init()
 {
 	m_vecClearUI.resize((UINT)SCENE_TYPE::END);
 
+	CClearUI* pClear1 = new CClearUI;
+	pClear1->Create();
+	m_vecClearUI[(UINT)SCENE_TYPE::DUNGEON_BOSS] = pClear1;
+	SceneMgr::GetInst()->FindScene(SCENE_TYPE::DUNGEON_BOSS)->AddObject(pClear1, GROUP_TYPE::UI);
+
 	CClearUI* pClear2 = new CClearUI;
-	pClear2->init();
+	pClear2->Create();
 	m_vecClearUI[(UINT)SCENE_TYPE::EVIL_BOSS] = pClear2;
 	SceneMgr::GetInst()->FindScene(SCENE_TYPE::EVIL_BOSS)->AddObject(pClear2, GROUP_TYPE::UI);
 
-	CClearUI* pClear1 = new CClearUI;
-	pClear1->init();
-	m_vecClearUI[(UINT)SCENE_TYPE::DUNGEON_BOSS] = pClear1;
-	SceneMgr::GetInst()->FindScene(SCENE_TYPE::DUNGEON_BOSS)->AddObject(pClear1, GROUP_TYPE::UI);
 
 	//CClearUI* pClear3 = new CClearUI;
 	//pClear3->init();
@@ -117,9 +118,5 @@ void CDungeonMgr::change_dungeon()
 
 void CDungeonMgr::reinit()
 {
-	vector<CScene*> vecDunScene = SceneMgr::GetInst()->GetDungeonType(m_eCurDunType);
-	//for (int i = 0; i < vecDunScene.size(); ++i)
-	//{
-	//	vecDunScene[i]->InitMonster();
-	//}
+	SceneMgr::GetInst()->reinit(m_eCurDunType);
 }

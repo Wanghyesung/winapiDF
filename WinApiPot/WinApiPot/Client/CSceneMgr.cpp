@@ -42,6 +42,7 @@ SceneMgr::~SceneMgr()
 		if (nullptr != m_arrScene[i])
 		{
 			delete m_arrScene[i];
+			m_arrScene[i] = nullptr;
 		}
 	}
 }
@@ -54,23 +55,23 @@ CScene* SceneMgr::FindScene(SCENE_TYPE _eSceneType)
 	return nullptr;
 }
 
-const vector<CScene*> SceneMgr::GetDungeonType(DUNGEON_TYPE _eDunType)
-{
-	 vector<CScene*> vecDunType;
-	
-	for (UINT i = 0; i < (UINT)SCENE_TYPE::END; ++i)
-	{
-		if (m_arrScene[i] == nullptr)
-			continue;
-	
-		if (m_arrScene[i]->m_eDungeonType == _eDunType)
-		{
-			vecDunType.push_back(m_arrScene[i]);
-		}
-	}
-	
-	return vecDunType;
-}
+//const vector<CScene*> SceneMgr::GetDungeonType(DUNGEON_TYPE _eDunType)
+//{
+//	 vector<CScene*> vecDunType;
+//
+//	for (UINT i = 0; i < (UINT)SCENE_TYPE::END; ++i)
+//	{
+//		if (m_arrScene[i] == nullptr)
+//			continue;
+//	
+//		if ((UINT)m_arrScene[i]->m_eDungeonType == (UINT)_eDunType)
+//		{
+//			vecDunType.push_back(m_arrScene[i]);
+//		}
+//	}
+//	
+//	return vecDunType;
+//}
 
 void SceneMgr::init()
 {
@@ -106,6 +107,20 @@ void SceneMgr::init()
 
 	m_pCurrScene = m_arrScene[(UINT)SCENE_TYPE::LOGO_SCENE];//현재 씬 넣어주고
 	m_pCurrScene->Enter();
+}
+
+void SceneMgr::reinit(DUNGEON_TYPE _eDunType)
+{
+	for (UINT i = 0; i < (UINT)SCENE_TYPE::END; ++i)
+	{
+		if (m_arrScene[i] == nullptr)
+			continue;
+
+		if ((UINT)m_arrScene[i]->m_eDungeonType == (UINT)_eDunType)
+		{
+			m_arrScene[i]->InitMonster();
+		}
+	}
 }
 
 void SceneMgr::render(HDC _dc)

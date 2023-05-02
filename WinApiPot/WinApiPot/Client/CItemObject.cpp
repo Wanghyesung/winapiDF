@@ -31,7 +31,11 @@ CItemObject::~CItemObject()
 {
 	//캐릭터가 안먹고 맵에 남아있다면
 	if (m_pItem != nullptr && m_bOnMap)
+	{
 		delete m_pItem;
+		m_pItem = nullptr;
+	}
+		
 }
 
 void CItemObject::update()

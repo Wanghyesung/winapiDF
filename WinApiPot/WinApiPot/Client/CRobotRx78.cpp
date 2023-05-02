@@ -133,8 +133,14 @@ void CRobotRx78::attack()
 
 	else
 	{
-		if (m_pTarget->GetMonInfo().m_iHp <= 0.f)
+		//if (m_pTarget->GetMonInfo().m_iHp <= 0.f)
+		//	return;
+
+		if (((CObject*)m_pTarget)->IsDead())
+		{
+			m_eState = ROBOTSTATE::BOOM;
 			return;
+		}
 
 		Vec2 vPos = GetCollider()->GetFinalPos();
 		Vec2 vTargetPos = m_pTarget->GetCollider()->GetFinalPos();

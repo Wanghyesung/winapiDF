@@ -80,7 +80,7 @@ void CClearUI::finalupdate()
 	CUI::finalupdate();
 }
 
-void CClearUI::init()
+void CClearUI::Create()
 {
 	CReStartUI* pResStartUI = new CReStartUI;
 	pResStartUI->SetPos(Vec2(169.f, 85.f));

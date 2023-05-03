@@ -96,7 +96,7 @@ void CLord::update()
 	{
 		DeleteObject(this);
 		//맵의 몬스터 정리
-		//CDungeonMgr::GetInst()->map_clear();
+		CDungeonMgr::GetInst()->map_clear();
 		return;
 	}
 	AI* pAI = GetAI();

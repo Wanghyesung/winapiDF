@@ -10,6 +10,7 @@
 #include "CTimeMgr.h"
 
 #include "CGravity.h"
+#include "CRigidBody.h"
 #include "CPlayerAttack.h"
 
 #include "CSound.h"
@@ -36,17 +37,21 @@ void CPlayerHitUpper::update()
 	CFSM* pFSM = GetFSM();
 	CPlayer* pPlayer = pFSM->GetPlayer();
 
-	int iFrame = GetCurFrame();
+	//int iFrame = GetCurFrame();
+	wstring strDir = pPlayer->m_iDirX < 0 ? L"_left" : L"_right";
+	wstring strMotion = L"Player_Hit" + strDir;
+	int iFrame = pPlayer->GetAnimator()->FindAnimation(strMotion)->GetCurFrame();
+
 
 	if (!pPlayer->GetGravity()->IsGetGravity())
 	{
 		m_fCurTime += fDT;
-		pPlayer->GetAnimator()->GetCurAnimation()->SetFram(4);
+		pPlayer->GetAnimator()->FindAnimation(strMotion)->SetFram(4);
 	}
 
-	else if (iFrame == 3)
+	else if (iFrame >= 3)
 	{
-		pPlayer->GetAnimator()->GetCurAnimation()->SetFram(3);
+		pPlayer->GetAnimator()->FindAnimation(strMotion)->SetFram(3);
 	}
 
 	if (m_fCurTime >= m_fDonwTime)
@@ -76,14 +81,15 @@ void CPlayerHitUpper::Enter()
 	}
 
 	CPlayer* pPlayer = GetFSM()->GetPlayer();
+	pPlayer->GetRigidBody()->SetAccel(false);
 	wstring strDir = pPlayer->m_iDirX < 0 ? L"_left" : L"_right";
 	if (pPlayer->playerPrevState == PLAYER_STATE::UPPER_HIT)
 	{
 		pPlayer->GetAnimator()->FindAnimation(L"Player_Hit" + strDir)->SetFram(3);
 	}
-
 	else
 	{
+		pPlayer->GetAnimator()->FindAnimation(L"Player_Hit" + strDir)->SetFram(0);
 		GetAnimSound()->Play(false);
 	}
 

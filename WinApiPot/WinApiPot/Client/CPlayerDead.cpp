@@ -29,8 +29,7 @@ void CPlayerDead::update()
 	{
 		//부활할지
 		CCoinMgr::GetInst()->StartUpdate(GetFSM()->GetPlayer()->GetPos());
-		GetFSM()->GetPlayer()->SetPos(Vec2(-2000.f, -2000.f));
-		GetFSM()->GetPlayer()->GetAnimator()->Play(L"Player_idle_right", true);
+		GetFSM()->GetPlayer()->SetPos(Vec2(-3000.f, -3000.f));
 		ChangeFSMState(GetFSM(), PLAYER_STATE::IDLE);
 	}
 
@@ -46,9 +45,10 @@ void CPlayerDead::Enter()
 
 void CPlayerDead::Exit()
 {
-	GetAnimSound()->Stop(true);
 	CPlayerState::Exit();
 	InitZeroFrame();
-	GetFSM()->GetPlayer()->GetAnimator()->GetCurAnimation()->SetFram(0);
-	GetFSM()->GetPlayer()->GetAnimator()->Play(L"Player_idle_right", true);
+	int iDir = GetFSM()->GetPlayer()->GetPlayerDirX();
+	wstring strDir = iDir < 0 ? L"_left" : L"_right";
+	GetFSM()->GetPlayer()->GetAnimator()->FindAnimation(L"Player_Hit" + strDir)->SetFram(0);
+	
 }

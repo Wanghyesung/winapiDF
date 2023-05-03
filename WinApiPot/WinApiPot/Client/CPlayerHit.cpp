@@ -33,6 +33,8 @@ void CPlayerHit::update()
 	CPlayer* pPlayer = GetFSM()->GetPlayer();
 	tHitInfo& tPlayerHit = pPlayer->m_tPlayerHit;
 
+	wstring strDir = pPlayer->m_iDirX < 0 ? L"_left" : L"_right";
+
 	int iCurFrame = GetCurFrame();
 
 	if (tPlayerHit.m_fHitRigidityTime <= m_fCurTime)
@@ -41,10 +43,9 @@ void CPlayerHit::update()
 		return;
 	}
 
-	if (iCurFrame == 1)
+	if (iCurFrame >= 1)
 	{
-		pPlayer->GetAnimator()->GetCurAnimation()->SetFram(1);
-		
+		pPlayer->GetAnimator()->FindAnimation(L"Player_Hit" + strDir)->SetFram(1);
 	}
 	else
 	{
@@ -76,6 +77,7 @@ void CPlayerHit::Enter()
 	}
 	else
 	{
+		pPlayer->GetAnimator()->FindAnimation(L"Player_Hit" + strDir)->SetFram(0);
 		GetAnimSound()->Play(false);
 	}
 }

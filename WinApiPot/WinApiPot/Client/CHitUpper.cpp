@@ -38,6 +38,8 @@ void CHitUpper::enter()
 	if (GetAI()->GetPreState()->GetType() == GetType())
 	{
 		GetMonster()->GetAnimator()->FindAnimation(m_strMotionName)->SetFram(HITMOTION);
+		Vec2 vVel = GetMonster()->GetRigidBody()->GetVelocity();
+		GetMonster()->GetRigidBody()->SetVelocity(Vec2(0.f, vVel.y));
 	}
 
 	m_fCurTime = 0.f;

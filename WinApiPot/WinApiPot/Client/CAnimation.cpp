@@ -58,7 +58,32 @@ void CAnimation::update()
 void CAnimation::render(HDC _dc)
 {
 	if (m_bFinish)
+	{
+		//애니메이션이 끝나면 m_iCurFrame은 안건들이고 마지막꺼만 렌더링되게
+		int iLastFrame = m_vecFrm.size() - 1;
+
+		CObject* pObj = m_pAnimator->GetObj();
+		Vec2 vPos = pObj->GetPos();
+
+		vPos += m_vecFrm[iLastFrame].vOffset;
+
+		vPos = CCameraMgr::GetInst()->GetRenderPos(vPos);
+
+		//좌상단, 우하단, 좌상단으로부터의 하단값
+		TransparentBlt(_dc,
+			(int)(vPos.x - m_vecFrm[iLastFrame].vSlice.x / 2.f),
+			(int)(vPos.y - m_vecFrm[iLastFrame].vSlice.y / 2.f),
+			(int)(m_vecFrm[iLastFrame].vSlice.x),
+			(int)(m_vecFrm[iLastFrame].vSlice.y),
+			m_pTex->GetDC(),
+			(int)(m_vecFrm[iLastFrame].vLt.x),
+			(int)(m_vecFrm[iLastFrame].vLt.y),
+			(int)(m_vecFrm[iLastFrame].vSlice.x),
+			(int)(m_vecFrm[iLastFrame].vSlice.y),
+			RGB(m_pAnimator->r, m_pAnimator->g, m_pAnimator->b));
+
 		return;
+	}
 
 	CObject* pObj = m_pAnimator->GetObj();
 	Vec2 vPos = pObj->GetPos();

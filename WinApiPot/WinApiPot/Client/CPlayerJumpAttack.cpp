@@ -15,7 +15,7 @@
 
 CPlayerJumpAttack::CPlayerJumpAttack() :
 	CPlayerState(PLAYER_STATE::ATTACK_AIR),
-	m_fAttackTime(0.3f),
+	m_fAttackTime(0.5f),
 	m_fCurTime(0.f)
 {
 }
@@ -33,7 +33,7 @@ void CPlayerJumpAttack::update()
 
 	m_fCurTime += fDT;
 
-	if (KEY_TAP(KEY::X) || KEY_HOLD(KEY::X))
+	if ((KEY_TAP(KEY::X) || KEY_HOLD(KEY::X)) && m_fCurTime >= 0.3f)
 	{
 		m_fCurTime = 0.f;
 	}

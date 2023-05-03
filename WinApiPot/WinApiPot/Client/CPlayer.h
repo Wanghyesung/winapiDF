@@ -54,6 +54,10 @@ private:
 
     //죽었는지
     static bool m_bActive;
+    
+    //무적시간
+    float m_fCurResurTime;
+    bool m_bOnResur;
 
     float m_fCurAccTime;
     float m_fAccTime;
@@ -105,6 +109,8 @@ public:
     CSkill* GetSkill() { return m_pSkill; }
 
     void InitKeyStack() { m_iKeyStack = 0; }
+
+    bool IsActive() { return m_bActive; }
 
 private:
     void update_doubleKey();

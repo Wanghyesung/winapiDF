@@ -109,7 +109,10 @@ void CInventory::AddItem(CItem* _pItem)
 		//원래 있는 내 아이템
 		CItem* pItem = FindItem(_pItem->GetItemInfo().m_strName);
 		if (pItem->m_iItemCount >= 9)
+		{
+			DeleteObject(_pItem);
 			return;
+		}
 		++pItem->m_iItemCount;
 		DeleteObject(_pItem);
 	}

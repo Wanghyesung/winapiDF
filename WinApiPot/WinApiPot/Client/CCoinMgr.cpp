@@ -25,7 +25,7 @@ CCoinMgr::CCoinMgr():
 	m_vecCoinCountTex{},
 	m_vecCountTex{},
 	m_fResTime(9.99f),
-	m_iCoinCount(2)
+	m_iCoinCount(5)
 {
 	m_vecCoinCountTex.resize(10);
 	m_vecCountTex.resize(10);
@@ -135,10 +135,11 @@ void CCoinMgr::Resurrection()
 	//죽은지점에서 피 100으로 부활
 	CObject* pPlayer = SceneMgr::GetInst()->GetCurSCene()->GetPlayerObj();
 	((CPlayer*)pPlayer)->m_bActive = true;
+	((CPlayer*)pPlayer)->m_bOnResur = true;
 	((CPlayer*)pPlayer)->resetvalue();
 
 	pPlayer->SetPos(m_vResPos);
-
+	
 	m_fResTime = 9.99f;
 	m_bIsDead = false;
 

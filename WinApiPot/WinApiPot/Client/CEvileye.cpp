@@ -17,6 +17,9 @@
 #include "CDropRobot.h"
 #include "CExsFire.h"
 
+#include "CScene.h"
+#include "CPlayer.h"
+
 #include "CSkillState.h"
 #include "CHitState.h"
 #include "CDeadState.h"
@@ -27,6 +30,8 @@
 #include "CCreateEye.h"
 
 #include "CSound.h"
+#include "CSceneMgr.h"
+
 
 UINT CEvileye::m_iEvilCount = 0;
 
@@ -187,6 +192,11 @@ void CEvileye::update_passive()
 	if (m_eMonState == MONSTER_STATE::HIT ||
 		m_eMonState == MONSTER_STATE::ATTACK)
 		return;
+	
+ 	CObject* pObj = SceneMgr::GetInst()->GetCurSCene()->GetPlayerObj();
+	if (pObj != nullptr && !((CPlayer*)pObj)->IsActive())
+		return;
+
 
 	m_fCurTime -= fDT;
 	if (m_fCurTime < 0.f)
@@ -233,6 +243,8 @@ void CEvileye::shotEye()
 
 void CEvileye::createEye()
 {
+	//if()
+
 	CCreateEye* pEye = new CCreateEye;
 	pEye->init_pos();
 	CreateObject(pEye, GROUP_TYPE::MONSTER_SKILL);

@@ -51,11 +51,13 @@ CPlayer::CPlayer() :
 	playerCurSkill(SKILL_STATE::END),
 	m_fRunTime(0.3f),
 	m_fCurTime(0.f),
-	m_fAccTime(10.f),
+	m_fAccTime(0.1f),
 	m_fCurAccTime(0.f),
+	m_fCurResurTime(1.5f),
 	m_pBullet(nullptr),
 	m_pFireMotion(nullptr),
-	m_pSkill(nullptr)
+	m_pSkill(nullptr),
+	m_bOnResur(false)
 {
 	//PathMgr안쓰고 바로 접근
 	CTexture* m_pTexRight = CResMgr::GetInst()->LoadTextur(L"Player_Motion_Right", L"..\\OutPut\\bin_release\\Content\\Texture\\montion_right.bmp");//애니메이션 파일 넣기
@@ -209,7 +211,19 @@ void CPlayer::update()
 		return;
 
 	//인터페이스에 체력 마나 표시
-	update_InterFace();
+	else
+		update_InterFace();
+
+	if (m_fCurResurTime > 0.f && m_bOnResur)
+	{
+		m_fCurResurTime -= fDT;
+		if (m_fCurResurTime <= 0.f)
+		{
+			m_bOnResur = false;
+			m_fCurResurTime = 1.5f;
+		}
+			
+	}
 
 	//움직이기 전에 현재 스킬 사용이 되었는지 확인
 	m_bOnSkill = CSkillMgr::GetInst()->IsOnSkill();
@@ -542,6 +556,9 @@ bool CPlayer::IsSameJumLoc(CCollider* _pOther, CCollider* _pThis)
 
 void CPlayer::HitPlayer(CCollider* _pOther, const tAttackInfo& _tAttInfo)
 {
+	if (m_bOnResur)
+		return;
+
 	if (m_bOnSkill)
 	{
 		GetSkill()->GetCurSkill()->exit();
@@ -603,7 +620,7 @@ void CPlayer::HitPlayer(CCollider* _pOther, const tAttackInfo& _tAttInfo)
 	m_tPlayerInfo.m_fHP -= _tAttInfo.m_fAttackDamage;
 	if (m_tPlayerInfo.m_fHP <= 0.f)
 	{
-		m_tPlayerInfo.m_fHP = 0.f;
+		m_tPlayerInfo.m_fHP = -1.f;
 		ChangeFSMState(m_pFSM, PLAYER_STATE::DEAD);
 	}
 	

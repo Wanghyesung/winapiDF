@@ -26,10 +26,10 @@ CMonster* CState::GetMonster()
 void CState::exit()
 {
 	CSound* pSound = GetAnimSound();
-	if (pSound != nullptr)
-	{
-		pSound->Stop(true);
-	}
+	//if (pSound != nullptr)
+	//{
+	//	pSound->Stop(true);
+	//}
 
 	m_AI->SetPreState(this);
 }

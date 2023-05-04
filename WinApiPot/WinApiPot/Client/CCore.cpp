@@ -98,6 +98,7 @@ void CCore::progress()
 
 	SceneMgr::GetInst()->render(m_memDC);
 	CInterfaceMgr::GetInst()->TargetRender(m_memDC);
+	CDungeonMgr::GetInst()->render(m_memDC);
 	CCoinMgr::GetInst()->render(m_memDC);
 	CCameraMgr::GetInst()->render(m_memDC);
 

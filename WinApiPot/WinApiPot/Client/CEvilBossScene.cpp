@@ -153,6 +153,7 @@ void CEvilBossScene::update()
 	if (SceneMgr::GetInst()->GetCurSCene()->GetGroupObject(GROUP_TYPE::MONSTER).size() == 0)
 	{
 		CDungeonMgr::GetInst()->SetActive(m_eType, true);
+		CDungeonMgr::GetInst()->m_bRenderOn = false;
 	}
 }
 

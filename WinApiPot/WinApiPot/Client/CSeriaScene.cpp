@@ -66,12 +66,12 @@ void CSeriaScene::render(HDC _dc)
 	//	bf);
 
 
-	//CTexture* tem = CResMgr::GetInst()->LoadTextur(L"42", L"..\\OutPut\\bin_release\\Content\\emfact\\11.bmp");
+	//CTexture* tem = CResMgr::GetInst()->LoadTextur(L"42", L"..\\OutPut\\bin_release\\Content\\Minimap\\minmap.bmp");
 	//
 	//TransparentBlt(_dc,
 	//	200,0,
-	//	(int)(tem->Width()),
-	//	(int)(tem->Height()),
+	//	(int)(tem->Width() * 1.5f),
+	//	(int)(tem->Height() * 1.5f),
 	//	tem->GetDC(),
 	//	(int)0,
 	//	(int)0,

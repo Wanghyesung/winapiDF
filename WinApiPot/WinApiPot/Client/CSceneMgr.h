@@ -22,11 +22,11 @@ public:
 	CScene* GetCurSCene() { return m_pCurrScene; }
 
 	CScene* FindScene(SCENE_TYPE _eSceneType);
-	//const vector<CScene*> GetDungeonType(DUNGEON_TYPE _eDunType);
+	const vector<CScene*> GetDungeonType(DUNGEON_TYPE _eDunType);
 
 	void init();
 	void reinit(DUNGEON_TYPE _eDunType);
-
+	
 private:
 
 	friend class CEventMgr;

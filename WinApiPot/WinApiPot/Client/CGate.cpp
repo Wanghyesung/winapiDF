@@ -10,7 +10,7 @@
 #include "CCameraMgr.h"
 #include "CSceneMgr.h"
 #include "CScene.h"
-
+#include "CDungeonMgr.h"
 
 CGate::CGate(const wstring& _strDir, bool _bIsBoss) :
 	m_strDir(_strDir),
@@ -119,6 +119,7 @@ void CGate::OnColliderEnter(CCollider* _pOther)
 			return;
 
 		ChangeScene(m_eNextScene);
+		CDungeonMgr::GetInst()->move_icon(Vec2(0.f, -1.f));
 	}
 }
 

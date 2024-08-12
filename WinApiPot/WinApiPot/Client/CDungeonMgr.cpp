@@ -182,7 +182,7 @@ void CDungeonMgr::restart_scene()
 	//Scene에 있는 reInit호출하고 다시 처음 던전으로
 	reinit();
 
-	init_map();
+	//init_map();
 
 	SetActive(m_eCurScene, false);
 

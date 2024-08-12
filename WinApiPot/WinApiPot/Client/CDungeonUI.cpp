@@ -43,7 +43,7 @@ void CDungeonUI::MouseLbtnClicked()
 	else if(m_eNextScene == SCENE_TYPE::EVIL_SCENE_1)
 		CDungeonMgr::GetInst()->SetDunType(DUNGEON_TYPE::EVIL);
 
-	CDungeonMgr::GetInst()->init_map();
+	//CDungeonMgr::GetInst()->init_map();
 	ChangeScene(m_eNextScene);
 }
 

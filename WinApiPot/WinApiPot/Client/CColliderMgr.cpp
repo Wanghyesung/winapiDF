@@ -56,7 +56,7 @@ void CColliderMgr::CollisionGroupUpdate(GROUP_TYPE _eLeft, GROUP_TYPE _eRight)
 		for (int j = 0; j < m_RarrObject.size(); ++j)
 		{
 			if ((m_RarrObject[j]->GetCollider() == nullptr ||
-				m_LarrObject[i] == m_RarrObject[j]))// ex) 내 플레이어랑 내 플레이어일 떄, 비활성일 떄 collider가 없을 떄
+				m_LarrObject[i] == m_RarrObject[j]))// ex) 내 플레이어랑 내 플레이어일 떄, 비활성일 떄 collider가 없을 때
 				continue;
 
 			//같은 그룹이면 두번 호출되나?
@@ -145,9 +145,6 @@ bool CColliderMgr::IsCollision(CCollider* _pLeftCol, CCollider* _pRightCol)
 
 	Vec2 vRPos = _pRightCol->GetFinalPos();
 	Vec2 vRScale = _pRightCol->GetScale();
-	
-	//전체 길이 - 
-	//크기 /2 끼리의 합 < 두 물체 끼리리의 거리 = 그럼 겹침
 	
 	if (abs(vLPos.x - vRPos.x) <= abs((vRScale.x + vLScale.x) /2.f) &&
 		abs(vLPos.y - vRPos.y) <= abs((vRScale.y + vLScale.y) / 2.f))

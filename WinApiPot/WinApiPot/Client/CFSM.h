@@ -32,8 +32,8 @@ private:
 	map<PLAYER_STATE, CPlayerState*> m_mapState;
 	CPlayerState* m_pCurState;
 
-	PLAYER_STATE m_eCurState;
-	PLAYER_STATE m_ePreState;
+	PLAYER_STATE m_eCurStateType;
+	PLAYER_STATE m_ePreStateType;
 
 	CPlayer* m_pOwner;
 

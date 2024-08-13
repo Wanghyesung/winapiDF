@@ -20,7 +20,6 @@ CEventMgr::~CEventMgr()
 
 }
 
-//이벤트 매니저는 항상 매 프레임 마지막에 실행
 void CEventMgr::update()
 {
 	if (m_vecEvent.empty() && m_vecDead.empty())
@@ -85,8 +84,5 @@ void CEventMgr::Excute(const tEvent& _eve)
 		mFSM->ChangeState(playerState);
 	}
 	break;
-
-
-
 	}
 }

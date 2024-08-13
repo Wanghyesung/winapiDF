@@ -7,7 +7,7 @@
 CFSM::CFSM():
 	m_mapState{},
 	m_pCurState(nullptr),
-	m_eCurState(PLAYER_STATE::IDLE)
+	m_eCurStateType(PLAYER_STATE::IDLE)
 {
 
 }
@@ -28,7 +28,6 @@ void CFSM::update()
 void CFSM::AddState(CPlayerState* _pState)
 {
 	CPlayerState* pState = FindState(_pState->GetType());
-	//중복 금지
 	assert(!pState);
 
 	m_mapState.insert(make_pair(_pState->GetType(), _pState));
@@ -50,8 +49,6 @@ CPlayerState* CFSM::FindState(PLAYER_STATE _ePlayerState)
 void CFSM::ChangeState(PLAYER_STATE _ePlayerState)
 {	
 	CPlayerState* pNextState = FindState(_ePlayerState);
-	//assert(pNextState != m_pCurState); //같은 state면 리턴
-
 	
 	m_pCurState->Exit();
 	SetCurState(_ePlayerState);
@@ -61,9 +58,12 @@ void CFSM::ChangeState(PLAYER_STATE _ePlayerState)
 
 void CFSM::SetCurState(PLAYER_STATE _ePlayerState)
 {
-	m_ePreState = m_eCurState;
+	m_ePreStateType = m_eCurStateType;
+
 	m_pCurState = FindState(_ePlayerState);
-	m_eCurState = m_pCurState->GetType();
+
+	m_eCurStateType = m_pCurState->GetType();
+
 	assert(m_pCurState);
 }
 

@@ -1,7 +1,8 @@
 #pragma once
 #include "CObject.h"
+#include "CMonster.h"
+
 class CFire;
-class CMonster;
 
 class CRobotFire78 :
     public CObject

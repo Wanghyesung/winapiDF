@@ -7,6 +7,7 @@ class CChangeUI;
 class CReStartUI;
 class CTownUI;
 class CGate;
+class CTexture;
 
 class CDungeonMgr
 {

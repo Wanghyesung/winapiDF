@@ -28,11 +28,7 @@ void CTimeMgr::update()
 	//현재 프레임 - 이전프레임 / 전체 카운트값
 	m_dDT = (double)(m_llCurCount.QuadPart - m_llPrevCount.QuadPart) / (double)m_llFrequency.QuadPart;
 	m_llPrevCount = m_llCurCount;
-//#ifdef _DEBUG
-//	if (m_dDT >= (1. / 60.))
-//		m_dDT = 1. / 60.;
-//
-//#endif	
+
 
 }
 

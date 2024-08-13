@@ -34,7 +34,6 @@ void CUIMgr::update()
 
 	if (pTargetUI != nullptr)
 	{
-		//´©¸£¸é
 		pTargetUI->MouseOn();
 
 		if (KeyTap)
@@ -122,16 +121,12 @@ CUI* CUIMgr::GetFoucseUI()
 
 CUI* CUIMgr::GetTargetUI(CUI* _pParentUI)
 {
-	bool bLbtnAway = KEY_AWAY(KEY::LBTN);
-
 	CUI* pTargetUI = nullptr;
-
 	static list<CUI*> queue;
 	static vector<CUI*> vecNoeTarget;
 
 	queue.clear();
 	vecNoeTarget.clear();
-
 	queue.push_back(_pParentUI);
 
 	while (!queue.empty())
@@ -142,9 +137,8 @@ CUI* CUIMgr::GetTargetUI(CUI* _pParentUI)
 		if (pUI->IsMosueOn())
 		{
 			if (pTargetUI != nullptr)
-			{
 				vecNoeTarget.push_back(pTargetUI);
-			}
+
 			pTargetUI = pUI;
 		}
 		else
@@ -159,6 +153,7 @@ CUI* CUIMgr::GetTargetUI(CUI* _pParentUI)
 		}
 	}
 
+	bool bLbtnAway = KEY_AWAY(KEY::LBTN);
 	if (bLbtnAway)
 	{
 		for (int i = 0; i < vecNoeTarget.size(); ++i)
@@ -166,8 +161,6 @@ CUI* CUIMgr::GetTargetUI(CUI* _pParentUI)
 			vecNoeTarget[i]->m_bLbntDown = false;
 		}
 	}
-
-
 	return pTargetUI;
 }
 

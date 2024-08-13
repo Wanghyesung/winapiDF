@@ -278,13 +278,13 @@ void CPlayer::updateState()
 		strOtherDir = L"_right";
 	}
 
-
 	switch (playerCurState)
 	{
 	case PLAYER_STATE::IDLE:
 	{
 		strMotion = L"Player_idle";
 		strMotion += strDir;
+
 		pAninmaotr->Play(strMotion, true);
 	}
 	break;
@@ -292,6 +292,7 @@ void CPlayer::updateState()
 	{
 		strMotion = L"Player_walk";
 		strMotion += strDir;
+
 		strOtherMtion = L"Player_walk" + strOtherDir;
 		pAninmaotr->PlayMulti(strMotion, strOtherMtion, true);
 	}
@@ -300,6 +301,7 @@ void CPlayer::updateState()
 	{
 		strMotion = L"Player_run";
 		strMotion += strDir;
+
 		pAninmaotr->Play(strMotion, true);
 	}
 	break;

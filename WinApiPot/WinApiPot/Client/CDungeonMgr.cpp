@@ -87,18 +87,6 @@ void CDungeonMgr::render(HDC _dc)
 		return;
 
 	Vec2 vPos = Vec2(1100.f, 100.f);
-	//¸Ê Æ² ±ò°í
-	//TransparentBlt(_dc,
-	//	(int)(vPos.x - 200.f),
-	//	(int)(vPos.y -50.f),
-	//	(int)(m_pminMap_->Width() * 1.5f),
-	//	(int)(m_pminMap_->Height()),
-	//	m_pminMap_->GetDC(),
-	//	(int)0,
-	//	(int)0,
-	//	(int)(m_pminMap_->Width()),
-	//	(int)(m_pminMap_->Height()),
-	//	RGB(255, 255, 255));
 
 	TransparentBlt(_dc,
 		(int)(vPos.x),

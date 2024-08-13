@@ -1,5 +1,8 @@
 #pragma once
 #include "CScene.h"
+
+class CSound;
+
 class CEvilScene_3 :
     public CScene
 {

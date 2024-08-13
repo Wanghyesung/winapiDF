@@ -1,7 +1,7 @@
 #pragma once
 #include "CObject.h"
+#include "CMonster.h"
 
-class CMonster;
 class CFire;
 
 

@@ -4,11 +4,10 @@ class CTexture;
 
 enum class KEY_STATE
 {
-	TAP,//지금 눌렀을 때
-	HOLD,//이전 프레임에도 누르고 지금도 눌렀을 떄
-	AWAY,//전 프레임에는 눌렀고 지금은 땠을 때
-	DOUBLE,//정해진 시간안에 push가 true인 key가 다시 눌렸을 때
-	NONE,//아무것도 누르지 않을 떄
+	TAP,	//지금 누른 상태 
+	HOLD,	//이전 프레임에도 눌렀고 지금도 누른 상태
+	AWAY,	//전 프레임에는 눌렀고 지금은 땐 상태
+	NONE,	//아무것도 누르지 않은 상태
 };
 
 enum class KEY

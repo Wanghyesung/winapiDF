@@ -13,7 +13,8 @@
 
 
 CPlayerRun::CPlayerRun():
-	CPlayerState(PLAYER_STATE::RUN)
+	CPlayerState(PLAYER_STATE::RUN),
+	m_fRunSpeed(320.f)
 {
 
 }
@@ -32,21 +33,21 @@ void CPlayerRun::update()
 	{
 		iDirX = 1;
 		pPlayer->SetPlayerDirX(iDirX);
-		pRigidy->AddForce(Vec2(320.f, 0.f));
+		pRigidy->AddForce(Vec2(m_fRunSpeed, 0.f));
 	}
 
 	if (KEY_HOLD(KEY::LEFT))
 	{
 		iDirX = -1;
 		pPlayer->SetPlayerDirX(iDirX);
-		pRigidy->AddForce(Vec2(-320.f, 0.f));
+		pRigidy->AddForce(Vec2(-m_fRunSpeed, 0.f));
 	}
 
 	if (KEY_HOLD(KEY::DOWN))
-		pRigidy->AddForce(Vec2(0.f, 320.f));
+		pRigidy->AddForce(Vec2(0.f, m_fRunSpeed));
 
 	if (KEY_HOLD(KEY::UP))
-		pRigidy->AddForce(Vec2(0.f, -320.f));
+		pRigidy->AddForce(Vec2(0.f, -m_fRunSpeed));
 	
 	if (KEY_TAP(KEY::X))
 		ChangeFSMState(GetFSM(), PLAYER_STATE::ATTACK_SLIDING);

@@ -8,7 +8,7 @@ public:
     virtual ~CPlayerWalk();
     
 private:
-
+    float m_fWalkSpeed;
 
 public:
     virtual void update();
